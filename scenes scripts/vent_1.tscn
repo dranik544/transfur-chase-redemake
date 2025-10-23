@@ -1,0 +1,210 @@
+[gd_scene load_steps=16 format=3 uid="uid://dpsuhojkxbdha"]
+
+[ext_resource type="Script" uid="uid://13tfdve6tc0f" path="res://scenes scripts/vent_1.gd" id="1_86coe"]
+[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites materials/vent1.png" id="1_p4sqs"]
+[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites materials/box1.png" id="2_p4sqs"]
+[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites materials/bg1.png" id="3_86coe"]
+[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites materials/vent2.png" id="5_gpv4y"]
+[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites materials/Cat.png" id="6_ys87n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86coe"]
+albedo_texture = ExtResource("1_p4sqs")
+metallic = 0.15
+metallic_specular = 0.0
+metallic_texture = ExtResource("3_86coe")
+metallic_texture_channel = 2
+roughness = 0.15
+detail_albedo = ExtResource("2_p4sqs")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.535887
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_gpv4y"]
+material = SubResource("StandardMaterial3D_86coe")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gpv4y"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="Animation" id="Animation_86coe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("item:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("item:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_p4sqs"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.3, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.74533, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.3, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.45, -0.55), Vector3(0, 0.45, -0.45)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5),
+"transitions": PackedFloat32Array(0.3, 1.6, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.75, 0), Vector3(0, 0.4, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("item:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("item:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86coe"]
+_data = {
+&"RESET": SubResource("Animation_86coe"),
+&"open": SubResource("Animation_p4sqs")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ys87n"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys87n"]
+albedo_texture = ExtResource("5_gpv4y")
+detail_albedo = ExtResource("2_p4sqs")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.535887
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_lfnx1"]
+material = SubResource("StandardMaterial3D_ys87n")
+
+[node name="vent1" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+script = ExtResource("1_86coe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gpv4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gpv4y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86coe")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ys87n")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.03, 0)
+mesh = SubResource("QuadMesh_lfnx1")
+
+[node name="item" type="Node3D" parent="."]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="item"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+billboard = 1
+texture = ExtResource("6_ys87n")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

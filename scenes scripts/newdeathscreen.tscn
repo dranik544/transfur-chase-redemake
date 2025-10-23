@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddq7tmo8xynb"]
+
+[ext_resource type="Script" uid="uid://dpkf5mdyptxxd" path="res://scenes scripts/newdeathscreen.gd" id="1_36kbc"]
+[ext_resource type="Texture2D" uid="uid://cwjispanxvl4q" path="res://sprites materials/deathscreen3.png" id="1_sxofj"]
+[ext_resource type="Texture2D" uid="uid://dl34jfb68v2jl" path="res://sprites materials/deathscreen2.png" id="2_36kbc"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_8w1qj"]
+[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="5_36hd4"]
+
+[node name="newdeathscreen" type="Node2D"]
+script = ExtResource("1_36kbc")
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sxofj")
+
+[node name="colin" type="TextureRect" parent="."]
+offset_left = -155.0
+offset_right = 485.0
+offset_bottom = 480.0
+pivot_offset = Vector2(320, 480)
+texture = ExtResource("2_36kbc")
+
+[node name="label" type="Label" parent="."]
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 480.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_8w1qj")
+theme_override_font_sizes/font_size = 20
+text = "ты был ВЫЕБАН
+сломано коробок: хз
+открыто люков: да я хз
+бла
+бла
+бла
+бла
+бла
+бла
+итоги: иди нахуй"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bg2" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sxofj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 405.0
+offset_right = 640.0
+offset_bottom = 445.0
+pivot_offset = Vector2(0, 20)
+color = Color(0, 0, 0, 0.392157)
+
+[node name="label2" type="Label" parent="."]
+offset_top = 405.0
+offset_right = 640.0
+offset_bottom = 446.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_8w1qj")
+theme_override_font_sizes/font_size = 20
+text = "выход в меню: Q или ESC; перезапуск: SPACE или R."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="slime" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(320, 240)
+texture = ExtResource("5_36hd4")
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi5m4wyed2s30"]
+
+[ext_resource type="Texture2D" uid="uid://b8aa7uqb7g4u4" path="res://sprites materials/provoda1.png" id="1_47aa6"]
+
+[node name="cabels1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.5, 0)
+billboard = 2
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("1_47aa6")

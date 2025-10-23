@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://d15h6sm1ybfa7"]
+
+[ext_resource type="Texture2D" uid="uid://bdxpcty4f53td" path="res://sprites materials/basket3.png" id="1_akoqu"]
+[ext_resource type="Texture2D" uid="uid://3t44tp8s8fan" path="res://sprites materials/basket2.png" id="2_akoqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_akoqu"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cm2m"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ex2hc"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3s6dn"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fybjw"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akoqu"]
+transparency = 1
+albedo_texture = ExtResource("1_akoqu")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_akoqu"]
+material = SubResource("StandardMaterial3D_akoqu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cm2m"]
+transparency = 1
+albedo_texture = ExtResource("2_akoqu")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ex2hc"]
+material = SubResource("StandardMaterial3D_8cm2m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8cm2m"]
+material = SubResource("StandardMaterial3D_akoqu")
+size = Vector2(0.8, 0.8)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex2hc"]
+transparency = 1
+albedo_texture = ExtResource("1_akoqu")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_3s6dn"]
+material = SubResource("StandardMaterial3D_ex2hc")
+size = Vector2(0.8, 0.8)
+orientation = 1
+
+[node name="basket1" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+shape = SubResource("BoxShape3D_akoqu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.45, 0, 0)
+shape = SubResource("BoxShape3D_8cm2m")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0.45)
+shape = SubResource("BoxShape3D_ex2hc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, -0.45, 0, 0)
+shape = SubResource("BoxShape3D_3s6dn")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0, -0.45)
+shape = SubResource("BoxShape3D_fybjw")
+
+[node name="mesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0.4)
+mesh = SubResource("QuadMesh_akoqu")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh1"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, -2.26267e-08, 1, 0, 8.44439e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_ex2hc")
+skeleton = NodePath("../..")
+
+[node name="mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.5904e-09, -4.30473e-08, 0.4, 0, 0)
+mesh = SubResource("QuadMesh_akoqu")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh2"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, -2.26267e-08, 1, 0, 8.44439e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_ex2hc")
+skeleton = NodePath("../..")
+
+[node name="mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 1.51808e-08, 8.60946e-08, 0, 0.984808, -0.173648, -8.74228e-08, -0.173648, -0.984808, 0, 0, -0.4)
+mesh = SubResource("QuadMesh_akoqu")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh3"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, -2.26267e-08, 1, 0, 8.44439e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_ex2hc")
+skeleton = NodePath("../..")
+
+[node name="mesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.173648, -0.984808, 0, 0.984808, -0.173648, 1, -7.5904e-09, -4.30473e-08, -0.4, 0, 0)
+mesh = SubResource("QuadMesh_akoqu")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh4"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, -2.26267e-08, 1, 0, 8.44439e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_ex2hc")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("QuadMesh_8cm2m")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh5"]
+transform = Transform3D(1, -6.47961e-08, 8.44439e-08, -6.47961e-08, -1, -7.38232e-15, 8.44439e-08, 1.60772e-22, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_3s6dn")
+skeleton = NodePath("../..")

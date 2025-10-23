@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dxt76l4k84upw"]
+
+[ext_resource type="Texture2D" uid="uid://ceetneqox2chf" path="res://sprites materials/box3.png" id="1_npd7s"]
+[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites materials/box1.png" id="2_d401e"]
+
+[resource]
+albedo_texture = ExtResource("1_npd7s")
+detail_albedo = ExtResource("2_d401e")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.535887
+texture_filter = 2

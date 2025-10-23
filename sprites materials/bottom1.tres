@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bx6bxqa7wcar2"]
+
+[ext_resource type="Texture2D" uid="uid://bs5cm0u2t7art" path="res://sprites materials/bottom1.png" id="1_5n57l"]
+
+[resource]
+albedo_texture = ExtResource("1_5n57l")
+metallic = 0.5
+uv1_triplanar = true
+texture_filter = 2

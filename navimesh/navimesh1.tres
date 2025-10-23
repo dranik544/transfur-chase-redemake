@@ -1,0 +1,7 @@
+[gd_resource type="NavigationMesh" format=3 uid="uid://cc8w71ejygk66"]
+
+[resource]
+cell_size = 0.1
+agent_height = 1.8
+agent_radius = 0.6
+vertices_per_polygon = 12.0

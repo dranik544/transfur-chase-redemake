@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://dut80minejjcs"]
+
+[ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
+[ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="2_xomnv"]
+[ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites materials/inv1.png" id="4_0amtw"]
+[ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites materials/nullinv1.png" id="5_ndhvj"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
+[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="9_v6gaw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f74ev"]
+radius = 0.28
+height = 0.56
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6gaw"]
+radius = 0.35
+height = 0.75
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_ydash")
+BakeAfterSlide = true
+
+[node name="center camera" type="Node3D" parent="."]
+
+[node name="cam" type="Camera3D" parent="center camera"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
+keep_aspect = 0
+projection = 1
+size = 10.0
+far = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_mhidd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)
+shape = SubResource("CapsuleShape3D_f74ev")
+disabled = true
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0.04, 0)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = ExtResource("2_xomnv")
+animation = &"run"
+autoplay = "idle"
+frame = 2
+frame_progress = 0.575689
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_v6gaw")
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="slime" type="TextureRect" parent="gui"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(320, 240)
+texture = ExtResource("9_v6gaw")
+metadata/_edit_use_anchors_ = true
+
+[node name="slidebar" type="ProgressBar" parent="gui"]
+visible = false
+offset_left = 370.0
+offset_top = 265.0
+offset_right = 445.0
+offset_bottom = 285.0
+step = 0.1
+value = 100.0
+show_percentage = false
+
+[node name="slidetimer" type="Timer" parent="gui/slidebar"]
+wait_time = 5.0
+
+[node name="slimecolor" type="ColorRect" parent="gui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="inv" type="TextureRect" parent="gui"]
+offset_left = 10.0
+offset_top = 390.0
+offset_right = 90.0
+offset_bottom = 470.0
+texture = ExtResource("4_0amtw")
+
+[node name="invtexture" type="TextureRect" parent="gui"]
+offset_left = 10.0
+offset_top = 390.0
+offset_right = 90.0
+offset_bottom = 470.0
+texture = ExtResource("5_ndhvj")
+
+[node name="Label" type="Label" parent="gui"]
+offset_left = 95.0
+offset_top = 447.0
+offset_right = 227.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_511js")
+text = "тип предмета"
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="gui/slidebar/slidetimer" to="." method="_on_slidetimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

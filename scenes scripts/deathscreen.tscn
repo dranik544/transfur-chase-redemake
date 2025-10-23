@@ -1,0 +1,176 @@
+[gd_scene load_steps=21 format=3 uid="uid://cfqo7rvlf20u6"]
+
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="1_7dfof"]
+[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites materials/bg1.png" id="1_ql4pt"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="2_ql4pt"]
+[ext_resource type="Texture2D" uid="uid://dq6l6xowkqt8n" path="res://sprites materials/colin1transfur.png" id="4_jh7hi"]
+[ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="4_xmafo"]
+[ext_resource type="Texture2D" uid="uid://drxvfj5qwdknf" path="res://sprites materials/colin2transfur.png" id="5_itid1"]
+[ext_resource type="Texture2D" uid="uid://mmhjccp6x6y2" path="res://sprites materials/colin3transfur.png" id="6_xmafo"]
+[ext_resource type="Texture2D" uid="uid://bkentxq3t3ls8" path="res://sprites materials/colin4transfur.png" id="7_k2gie"]
+[ext_resource type="Texture2D" uid="uid://bte5tpfhq0mwn" path="res://sprites materials/colin5transfur.png" id="8_xdve6"]
+[ext_resource type="Texture2D" uid="uid://b4fbk5bsuj2pj" path="res://sprites materials/colin6transfur.png" id="9_b6bw3"]
+[ext_resource type="Texture2D" uid="uid://daq4g1dlkkgkn" path="res://sprites materials/colin7transfur.png" id="10_n4m5j"]
+[ext_resource type="Texture2D" uid="uid://ciy5lasblvoct" path="res://sprites materials/colin8transfur.png" id="11_ajnbe"]
+[ext_resource type="Texture2D" uid="uid://2twawoobjgkp" path="res://sprites materials/colin9transfur.png" id="12_uon5s"]
+[ext_resource type="Texture2D" uid="uid://cromw3iyk6h21" path="res://sprites materials/enemy1idle1.png" id="13_d0fjc"]
+[ext_resource type="FontFile" uid="uid://du7vrsnudq1cb" path="res://fonts/kwl-data-1088.ttf" id="14_itid1"]
+[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="16_k2gie"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x4tc2"]
+panorama = ExtResource("1_ql4pt")
+filter = false
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_soo4o"]
+sky_material = SubResource("PanoramaSkyMaterial_x4tc2")
+
+[sub_resource type="Environment" id="Environment_xg6mb"]
+background_mode = 2
+background_color = Color(0.490196, 0.490196, 0.490196, 1)
+sky = SubResource("Sky_soo4o")
+tonemap_mode = 2
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.490196, 0.490196, 0.490196, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4hlfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jh7hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_itid1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xmafo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k2gie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xdve6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b6bw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_n4m5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ajnbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uon5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d0fjc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="deathscreen" type="Node3D"]
+
+[node name="old" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="old"]
+environment = SubResource("Environment_xg6mb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="old"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="room1" type="CSGBox3D" parent="old"]
+visible = false
+use_collision = true
+size = Vector3(10, 0.1, 20)
+material = ExtResource("1_7dfof")
+
+[node name="wall" type="CSGBox3D" parent="old/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 10)
+use_collision = true
+size = Vector3(10, 3, 0.1)
+material = ExtResource("2_ql4pt")
+
+[node name="wall2" type="CSGBox3D" parent="old/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+use_collision = true
+size = Vector3(10, 3, 0.1)
+material = ExtResource("2_ql4pt")
+
+[node name="wall3" type="CSGBox3D" parent="old/room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, 0)
+use_collision = true
+size = Vector3(20, 3, 0.1)
+material = ExtResource("2_ql4pt")
+
+[node name="box2" parent="old/room1" instance=ExtResource("4_xmafo")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -4, 0.6, -1)
+
+[node name="box3" parent="old/room1" instance=ExtResource("4_xmafo")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -4, 0.6, -3)
+
+[node name="box4" parent="old/room1" instance=ExtResource("4_xmafo")]
+transform = Transform3D(-5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, -4, 0.6, -5)
+
+[node name="box5" parent="old/room1" instance=ExtResource("4_xmafo")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -4, 0.6, -7)
+
+[node name="box6" parent="old/room1" instance=ExtResource("4_xmafo")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -4, 0.6, -9)
+
+[node name="Camera3D" type="Camera3D" parent="old"]
+transform = Transform3D(0.5, -0.224144, 0.836516, -1.13133e-08, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 5, 3, 0)
+visible = false
+projection = 1
+fov = 35.0
+size = 5.0
+near = 0.001
+far = 50.0
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="old"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -2, 1, -2)
+visible = false
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_4hlfl")
+autoplay = "default"
+frame = 9
+frame_progress = 1.0
+
+[node name="Label3D" type="Label3D" parent="old"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.2, -5)
+visible = false
+pixel_size = 0.0075
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+text = "статистики
+1
+2
+3
+4
+5
+6
+итого: хуйня"
+font = ExtResource("14_itid1")
+
+[node name="gui" type="CanvasLayer" parent="old"]
+visible = false
+
+[node name="slime" type="TextureRect" parent="old/gui"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(320, 240)
+texture = ExtResource("16_k2gie")
+metadata/_edit_use_anchors_ = true

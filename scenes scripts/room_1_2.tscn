@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://001qwtlik72j"]
+
+[ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_nrx4r"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="2_3h45v"]
+[ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_auan8"]
+[ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="2_ou363"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="3_dm82l"]
+[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="4_dv1yl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxyrb"]
+albedo_texture = ExtResource("4_dv1yl")
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
+size = Vector3(15, 3, 10)
+
+[node name="room1 2" type="Node3D"]
+script = ExtResource("1_nrx4r")
+NumBoxes1 = 8
+NumBoxes2 = 3
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navi"]]
+navigation_mesh = ExtResource("2_auan8")
+
+[node name="room1" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
+use_collision = true
+size = Vector3(15, 0.1, 10)
+material = ExtResource("2_3h45v")
+
+[node name="door" parent="NavigationRegion3D/room1" instance=ExtResource("2_ou363")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.5, 1, 0)
+
+[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+use_collision = true
+size = Vector3(15, 3, 0.1)
+material = ExtResource("3_dm82l")
+
+[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+use_collision = true
+size = Vector3(15, 3, 0.1)
+material = ExtResource("3_dm82l")
+
+[node name="wall3" type="CSGBox3D" parent="NavigationRegion3D/room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 1.5, -3)
+use_collision = true
+size = Vector3(4, 3, 0.1)
+material = ExtResource("3_dm82l")
+
+[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/room1/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+use_collision = true
+size = Vector3(4, 3, 0.1)
+material = ExtResource("3_dm82l")
+
+[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/room1/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 4.76837e-07)
+use_collision = true
+size = Vector3(2, 1, 0.1)
+material = SubResource("StandardMaterial3D_pxyrb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+shape = SubResource("BoxShape3D_ccg18")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://chn6wexphktmt"]
+
+[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="1_flbdl"]
+
+[node name="gui" type="CanvasLayer"]
+
+[node name="slime" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_flbdl")

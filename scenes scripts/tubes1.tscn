@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cusattjn2rljb"]
+
+[ext_resource type="Material" uid="uid://b4ocrtjpxpn4k" path="res://sprites materials/tubes1.tres" id="1_rhp0h"]
+[ext_resource type="Texture2D" uid="uid://v00ip7n66d3" path="res://sprites materials/tubes2.png" id="2_tkf0x"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_garsy"]
+material = ExtResource("1_rhp0h")
+top_radius = 0.2
+bottom_radius = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tkf0x"]
+material = ExtResource("1_rhp0h")
+top_radius = 0.2
+bottom_radius = 0.16
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_tkf0x"]
+material = ExtResource("1_rhp0h")
+radius = 0.2
+height = 0.4
+
+[node name="tubes" type="Node3D"]
+
+[node name="mesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_garsy")
+
+[node name="mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="mesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+
+[node name="mesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+shaded = true
+texture_filter = 2
+texture = ExtResource("2_tkf0x")
