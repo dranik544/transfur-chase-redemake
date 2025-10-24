@@ -165,7 +165,7 @@ func _physics_process(delta: float) -> void:
 		var tweenslidebar = create_tween()
 		$gui/slidebar.value = 0.0
 		tweenslidebar.tween_property($gui/slidebar, "value", 100.0, $gui/slidebar/slidetimer.wait_time)
-		$gui/slidebar.visible = true
+		$gui/slidebar/slidebar.visible = true
 		isslide = true
 		slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -273,4 +273,4 @@ func _on_timer_timeout() -> void:
 
 func _on_slidetimer_timeout() -> void:
 	canslide = true
-	$gui/slidebar.visible = false
+	$gui/slidebar/slidebar.visible = false

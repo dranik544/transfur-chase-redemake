@@ -75,17 +75,28 @@ texture = ExtResource("9_v6gaw")
 metadata/_edit_use_anchors_ = true
 
 [node name="slidebar" type="ProgressBar" parent="gui"]
-visible = false
-offset_left = 370.0
-offset_top = 265.0
-offset_right = 445.0
-offset_bottom = 285.0
+offset_left = 95.0
+offset_top = 390.0
+offset_right = 218.0
+offset_bottom = 410.0
 step = 0.1
 value = 100.0
 show_percentage = false
 
 [node name="slidetimer" type="Timer" parent="gui/slidebar"]
 wait_time = 5.0
+
+[node name="slidebar" type="ProgressBar" parent="gui/slidebar"]
+visible = false
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 20.0
+step = 0.1
+value = 100.0
+show_percentage = false
+indeterminate = true
+editor_preview_indeterminate = false
 
 [node name="slimecolor" type="ColorRect" parent="gui"]
 anchors_preset = 15

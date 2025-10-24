@@ -20,6 +20,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			$hint.visible = true
 		if body.hit:
 			hit(1)
+		if body.isslide:
+			hit(99)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
