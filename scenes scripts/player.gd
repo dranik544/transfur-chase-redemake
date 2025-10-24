@@ -32,6 +32,7 @@ var itemkg: float = 0.0
 var camfollow: bool = false
 var camfollowpos: Vector3 = Vector3.ZERO
 var camfollowpluspos: float = 0.0
+var camscalewheel = 0.0
 
 
 func _ready():
@@ -52,6 +53,13 @@ func _input(event):
 		rotate_y(-deg_to_rad(45))
 	elif Input.is_action_just_pressed("F2"):
 		rotate_y(-deg_to_rad(45/2))
+
+func _unhandled_input(event):
+	if event.is_action_pressed("CCM DOWN"):
+		camscalewheel += 0.75
+	if event.is_action_pressed("CCM UP"):
+		camscalewheel -= 0.75
+	camscalewheel = clampf(camscalewheel, -2.5, 7.5)
 
 func camfollowupdate(canfollow: bool, camposx = 0.0):
 	camfollow = canfollow
@@ -182,7 +190,7 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D2.disabled = true
 		isslide = false
 	
-	cam.size = lerp(cam.size, camscale, 5 * delta)
+	cam.size = lerp(cam.size, camscale + camscalewheel, 5 * delta)
 	$gui/slimecolor.color = lerp($gui/slimecolor.color, Color(1.0, 1.0, 1.0, 0.0), 1 * delta)
 	
 	if !isslide:

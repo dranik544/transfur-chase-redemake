@@ -46,9 +46,16 @@ func _ready():
 	if Cabels:
 		spawnbox(SceneCabels1, NumCabels1, 3.0)
 	
-	if $Area3D2:
-		$Area3D2.body_entered.connect(camzoneentered)
-		$Area3D2.body_exited.connect(camzoneexited)
+	var areacam = Area3D.new()
+	var collcam = CollisionShape3D.new()
+	add_child(areacam)
+	areacam.add_child(collcam)
+	collcam.shape = load("res://BoxShapes/collcam1.tres")
+	areacam.position.x = 1.0
+	
+	if areacam:
+		areacam.body_entered.connect(camzoneentered)
+		areacam.body_exited.connect(camzoneexited)
 	camposx = $NavigationRegion3D/room1.size.x / 2.0
 
 func spawnbox(typebox: PackedScene, count: int, posy: float):

@@ -29,7 +29,7 @@ BakeAfterSlide = true
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
 keep_aspect = 0
 projection = 1
-size = 10.0
+size = 13.0
 far = 50.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
