@@ -51,7 +51,7 @@ func _ready():
 	add_child(areacam)
 	areacam.add_child(collcam)
 	collcam.shape = load("res://BoxShapes/collcam1.tres")
-	areacam.position.x = 1.0
+	areacam.position.x = -1.0
 	
 	if areacam:
 		areacam.body_entered.connect(camzoneentered)

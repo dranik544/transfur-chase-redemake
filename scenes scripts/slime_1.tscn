@@ -20,3 +20,8 @@ billboard = 2
 shaded = true
 texture_filter = 2
 texture = ExtResource("1_2bvpc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
