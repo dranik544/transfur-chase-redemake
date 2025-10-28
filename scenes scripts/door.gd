@@ -37,7 +37,7 @@ func hit(damage: float):
 	if hp <= 0:
 		Global.brokendoors += 1
 		freeze = false
-		collision_layer = 2
+		collision_layer = false
 		$hint.queue_free()
 		$Area3D.queue_free()
 		apply_impulse(Vector3(-7.5, 10, 0), Vector3.ZERO)

@@ -22,6 +22,7 @@ var isplayerbeeninroom: bool = false
 @export var boxposy: float = 1
 var canbake: bool = false
 var camposx: float = 0.0
+@export var navibridgeScene: PackedScene = preload("res://scenes scripts/navibridge.tscn")
 
 @export_category("Not Added")
 @export var MinNumBoxes: int = 6
@@ -51,12 +52,17 @@ func _ready():
 	add_child(areacam)
 	areacam.add_child(collcam)
 	collcam.shape = load("res://BoxShapes/collcam1.tres")
-	areacam.position.x = -1.0
+	areacam.position.x = -0.5
 	
 	if areacam:
 		areacam.body_entered.connect(camzoneentered)
 		areacam.body_exited.connect(camzoneexited)
 	camposx = $NavigationRegion3D/room1.size.x / 2.0
+	
+	var navibridge: StaticBody3D = navibridgeScene.instantiate()
+	$NavigationRegion3D/room1.add_child(navibridge)
+	navibridge.position = Vector3(-$NavigationRegion3D/room1.size.x / 2, 0, 0)
+	$Area3D/CollisionShape3D.shape.size = $NavigationRegion3D/room1.size
 
 func spawnbox(typebox: PackedScene, count: int, posy: float):
 	for i in count:
@@ -80,10 +86,12 @@ func _on_timer_timeout() -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		#$Timer.start()
+		
 		#autodelete = true
 		#queue_free()
 		canbake = false
 		Global.navibakereq.connect(bakenavi)
+		$NavigationRegion3D.bake_navigation_mesh()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -100,9 +108,9 @@ func bakenavi():
 func camzoneentered(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/room1.size.x / 2.0
-		body.camfollowupdate(true, curcamposx)
+		body.camfollowupdate(true, curcamposx - 0.5)
 
 func camzoneexited(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/room1.size.x / 2.0
-		body.camfollowupdate(false, curcamposx)
+		body.camfollowupdate(false, curcamposx - 0.5)

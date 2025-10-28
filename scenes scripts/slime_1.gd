@@ -25,7 +25,7 @@ func _on_timer_timeout() -> void:
 		var tween = create_tween()
 		var enemy = enemyScene.instantiate()
 		get_parent().add_child(enemy)
-		enemy.global_position = global_position
+		enemy.global_position = global_position + Vector3(0, 0.8, 0)
 		tween.tween_property($Sprite3D, "scale", Vector3(0.0, 0.0, 0.0), randf_range(0.5, 2.0))
 		await tween.finished
 		queue_free()

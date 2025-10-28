@@ -161,7 +161,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ys87n"]
-size = Vector3(2, 0.1, 2)
+size = Vector3(3, 0.1, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys87n"]
 albedo_texture = ExtResource("5_gpv4y")
@@ -204,6 +204,7 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="item"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
 billboard = 1
 texture = ExtResource("6_ys87n")
 

@@ -70,7 +70,7 @@ func camfollowupdate(canfollow: bool, camposx = 0.0):
 		camfollowpluspos = 0.0
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("RCM"):
+	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		freecam = false
 	else:
@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D2.disabled = false
 			await get_tree().physics_frame
 			$CollisionShape3D.disabled = true
-		speed = lerp(speed, 3.5 - itemkg, 5 * delta)
+		speed = lerp(speed, 2.5 - itemkg, 5 * delta)
 		taunt = true
 	else:
 		if !$RayCast3D.is_colliding():
@@ -199,7 +199,7 @@ func _physics_process(delta: float) -> void:
 				$Sprite3D.play("run")
 				camscale = lerp(camscale, 11.0, 10 * delta)
 			else:
-				$Sprite3D.play("taunt run")
+				$Sprite3D.play("crawl run")
 				camscale = lerp(camscale, 11.0, 11 * delta)
 			velocity.x = lerp(velocity.x, direction.x * speed, 9 * delta)
 			velocity.z = lerp(velocity.z, direction.z * speed, 9 * delta)
@@ -208,7 +208,7 @@ func _physics_process(delta: float) -> void:
 				$Sprite3D.play("idle")
 				camscale = lerp(camscale, 9.0, 10 * delta)
 			else:
-				$Sprite3D.play("taunt")
+				$Sprite3D.play("crawl run")
 				camscale = lerp(camscale, 8.5, 10 * delta)
 			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), 15 * delta)
 			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), 15 * delta)

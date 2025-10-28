@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites materials/bg4.png" id="2_fjbm2"]
 [ext_resource type="Shader" uid="uid://dnq1qhbwm0kl0" path="res://blackborder.gdshader" id="3_7qyx5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkf0x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4nki"]
 render_priority = 0
 shader = ExtResource("3_7qyx5")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 5.0
-shader_parameter/fade_start = 30.0
+shader_parameter/fade_start = 30.64
 shader_parameter/fade_end = 30.0
 
 [resource]
-next_pass = SubResource("ShaderMaterial_tkf0x")
+next_pass = SubResource("ShaderMaterial_s4nki")
 albedo_texture = ExtResource("1_dbytf")
 metallic = 1.0
 metallic_texture = ExtResource("2_fjbm2")

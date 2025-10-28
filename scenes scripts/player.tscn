@@ -20,6 +20,7 @@ radius = 0.35
 height = 0.75
 
 [node name="player" type="CharacterBody3D"]
+collision_mask = 3
 script = ExtResource("1_ydash")
 BakeAfterSlide = true
 
@@ -47,14 +48,13 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 sprite_frames = ExtResource("2_xomnv")
-animation = &"run"
+animation = &"crawl run"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.575689
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
+collision_mask = 3
 
 [node name="RayCast3D2" type="RayCast3D" parent="."]
 

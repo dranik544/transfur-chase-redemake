@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckgad4iixpkk8"]
+
+[ext_resource type="Shader" uid="uid://dnq1qhbwm0kl0" path="res://blackborder.gdshader" id="1_s4nki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yupse"]
+render_priority = 0
+shader = ExtResource("1_s4nki")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+shader_parameter/fade_start = 32.61
+shader_parameter/fade_end = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuk1j"]
+next_pass = SubResource("ShaderMaterial_yupse")
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4nki"]
+material = SubResource("StandardMaterial3D_iuk1j")
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4nki"]
+render_priority = 0
+shader = ExtResource("1_s4nki")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+shader_parameter/fade_start = 66.595
+shader_parameter/fade_end = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupse"]
+next_pass = SubResource("ShaderMaterial_s4nki")
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_yupse"]
+material = SubResource("StandardMaterial3D_yupse")
+size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuk1j"]
+size = Vector3(3, 0.1, 3)
+
+[node name="table1" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="mesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_s4nki")
+
+[node name="mesh2" type="MeshInstance3D" parent="mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, -0.5, 1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh3" type="MeshInstance3D" parent="mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -0.5, 1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh4" type="MeshInstance3D" parent="mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -0.5, -1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, -0.5, -1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_iuk1j")

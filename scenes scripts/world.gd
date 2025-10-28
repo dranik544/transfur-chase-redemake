@@ -31,7 +31,7 @@ func _ready():
 		spawnroom()
 		o += 1
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
-	$navi.bake_navigation_mesh()
+	#$navi.bake_navigation_mesh()
 	$CanvasLayer.visible = false
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
@@ -44,9 +44,9 @@ func _on_timer_timeout() -> void:
 	spawnroom()
 	#$navi.bake_navigation_mesh()
 
-func _on_detectspawnroom_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		$navi.bake_navigation_mesh()
+#func _on_detectspawnroom_body_entered(body: Node3D) -> void:
+	#if body.is_in_group("player"):
+		#$navi.bake_navigation_mesh()
 
 func spawnroom():
 	var numroom: int = randi_range(1, 5)
@@ -65,7 +65,7 @@ func spawnroom():
 	if sceneroom:
 		var nextroom: Node3D = sceneroom.instantiate()
 		nextroom.position = $spawnnextroom.position
-		$navi.add_child(nextroom)
+		add_child(nextroom)
 	
 	$spawnnextroom.position -= typeroompos
 	$detectspawnroom.position -= typeroompos
