@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites materials/vent2.png" id="5_gpv4y"]
 [ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites materials/Cat.png" id="6_ys87n"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86coe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfnx1"]
 albedo_texture = ExtResource("1_p4sqs")
 metallic = 0.15
 metallic_specular = 0.0
@@ -21,7 +21,7 @@ uv2_triplanar_sharpness = 0.535887
 texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_gpv4y"]
-material = SubResource("StandardMaterial3D_86coe")
+material = SubResource("StandardMaterial3D_lfnx1")
 size = Vector3(1, 0.1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gpv4y"]

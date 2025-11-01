@@ -1,12 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=38 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites materials/bg3.png" id="2_60p26"]
 [ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="4_2epkg"]
 [ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="5_eeftm"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
-[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="8_4j3ub"]
-[ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="9_pa2cx"]
+[ext_resource type="Material" uid="uid://b4ocrtjpxpn4k" path="res://sprites materials/tubes1.tres" id="6_ewvr7"]
+[ext_resource type="Texture2D" uid="uid://v00ip7n66d3" path="res://sprites materials/tubes2.png" id="7_a6jpe"]
+[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites materials/vent2.png" id="8_0b3bo"]
+[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites materials/box1.png" id="9_7tfu8"]
+[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites materials/vent1.png" id="10_eeftm"]
+[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites materials/bg1.png" id="11_dst00"]
+[ext_resource type="Shader" uid="uid://dnq1qhbwm0kl0" path="res://blackborder.gdshader" id="12_dst00"]
+[ext_resource type="Texture2D" uid="uid://c6s3tc2wgpjel" path="res://sprites materials/bottom2.png" id="13_4j3ub"]
+[ext_resource type="Texture2D" uid="uid://dl5wintagfnav" path="res://sprites materials/tv1.png" id="14_eaxk7"]
+[ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites materials/bg4.png" id="15_k8css"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="16_k8css"]
+[ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites materials/icon2.png" id="17_xh7j4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -28,9 +38,104 @@ fog_light_color = Color(0.490196, 0.490196, 0.490196, 1)
 fog_density = 1.0
 fog_depth_begin = 100.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxyrb"]
-albedo_texture = ExtResource("8_4j3ub")
+[sub_resource type="CylinderMesh" id="CylinderMesh_0b3bo"]
+material = ExtResource("6_ewvr7")
+top_radius = 0.2
+bottom_radius = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_tkf0x"]
+material = ExtResource("6_ewvr7")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tkf0x"]
+material = ExtResource("6_ewvr7")
+top_radius = 0.2
+bottom_radius = 0.16
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys87n"]
+albedo_texture = ExtResource("8_0b3bo")
+detail_albedo = ExtResource("9_7tfu8")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.535887
 texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_eeftm"]
+material = SubResource("StandardMaterial3D_ys87n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86coe"]
+albedo_texture = ExtResource("10_eeftm")
+metallic = 0.15
+metallic_specular = 0.0
+metallic_texture = ExtResource("11_dst00")
+metallic_texture_channel = 2
+roughness = 0.15
+detail_albedo = ExtResource("9_7tfu8")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.535887
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_4j3ub"]
+material = SubResource("StandardMaterial3D_86coe")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yupse"]
+render_priority = 0
+shader = ExtResource("12_dst00")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+shader_parameter/fade_start = 32.61
+shader_parameter/fade_end = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuk1j"]
+next_pass = SubResource("ShaderMaterial_yupse")
+albedo_color = Color(0.874737, 0.874737, 0.874737, 1)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_pa2cx"]
+material = SubResource("StandardMaterial3D_iuk1j")
+size = Vector3(2, 0.1, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4nki"]
+render_priority = 0
+shader = ExtResource("12_dst00")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+shader_parameter/fade_start = 66.595
+shader_parameter/fade_end = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupse"]
+next_pass = SubResource("ShaderMaterial_s4nki")
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_yupse"]
+material = SubResource("StandardMaterial3D_yupse")
+size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuk1j"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa2cx"]
+transparency = 1
+albedo_texture = ExtResource("13_4j3ub")
+roughness = 0.0
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xh7j4"]
+albedo_texture = ExtResource("14_eaxk7")
+metallic = 0.15
+metallic_specular = 1.0
+metallic_texture = ExtResource("15_k8css")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_eogbu"]
+material = SubResource("StandardMaterial3D_xh7j4")
+size = Vector2(1.5, 1)
 
 [node name="menu" type="Node3D"]
 script = ExtResource("1_tnq6k")
@@ -48,65 +153,289 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
 keep_aspect = 0
 projection = 1
-size = 13.0
-far = 50.0
+size = 15.0
+far = 25.0
 
 [node name="room1 1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
 [node name="room1" type="CSGBox3D" parent="room1 1" groups=["navi"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 use_collision = true
-size = Vector3(10, 0.1, 10)
+size = Vector3(10, 0.1, 8)
 material = ExtResource("5_eeftm")
 
 [node name="door" parent="room1 1/room1" instance=ExtResource("6_dst00")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 2)
 
 [node name="wall" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
 use_collision = true
 size = Vector3(10, 3, 0.1)
 material = ExtResource("4_2epkg")
 
 [node name="wall2" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
 use_collision = true
 size = Vector3(10, 3, 0.1)
 material = ExtResource("4_2epkg")
 
 [node name="wall3" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, -3)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, 0)
 use_collision = true
-size = Vector3(4, 3, 0.1)
+size = Vector3(8, 3, 0.1)
 material = ExtResource("4_2epkg")
 
-[node name="wall" type="CSGBox3D" parent="room1 1/room1/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+[node name="wall5" type="CSGBox3D" parent="room1 1/room1/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 0)
+operation = 2
 use_collision = true
-size = Vector3(4, 3, 0.1)
+size = Vector3(2, 2, 0.1)
 material = ExtResource("4_2epkg")
-
-[node name="wall2" type="CSGBox3D" parent="room1 1/room1/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 4.76837e-07)
-use_collision = true
-size = Vector3(2, 1, 0.1)
-material = SubResource("StandardMaterial3D_pxyrb")
-
-[node name="tubes" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.55)
-
-[node name="tubes2" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3, 1.5, -4.7)
-
-[node name="tubes3" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 2, 4.55)
-
-[node name="tubes4" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 1, 1.5, 4.7)
 
 [node name="wall4" type="CSGBox3D" parent="room1 1/room1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 1.5, 0)
 use_collision = true
-size = Vector3(10, 3, 0.1)
+size = Vector3(8, 3, 0.1)
 material = ExtResource("4_2epkg")
+
+[node name="tubes4" type="Node3D" parent="room1 1/room1"]
+transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 1.30353, 3.06407)
+
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0b3bo")
+
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes4/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes4/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes4"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+shaded = true
+texture_filter = 2
+texture = ExtResource("7_a6jpe")
+
+[node name="tubes5" type="Node3D" parent="room1 1/room1"]
+transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 0.687653, 1.7845)
+
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0b3bo")
+
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes5/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes5/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes5"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+shaded = true
+texture_filter = 2
+texture = ExtResource("7_a6jpe")
+
+[node name="tubes6" type="Node3D" parent="room1 1/room1"]
+transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 1.82196, 0.917071)
+
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0b3bo")
+
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes6/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes6/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_tkf0x")
+skeleton = NodePath("../..")
+
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
+mesh = SubResource("CylinderMesh_tkf0x")
+skeleton = NodePath("../mesh1")
+
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes6"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
+shaded = true
+texture_filter = 2
+texture = ExtResource("7_a6jpe")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="room1 1/room1"]
+transform = Transform3D(-3.27835e-08, 7.99361e-15, -0.75, 0, 0.75, 7.99361e-15, 0.75, 3.49412e-22, -3.27835e-08, 4.9, 0.554353, 3.35123)
+mesh = SubResource("QuadMesh_eeftm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="room1 1/room1"]
+transform = Transform3D(-3.27835e-08, -0.75, 3.27835e-08, 0, -3.27835e-08, -0.75, 0.75, -3.27835e-08, 1.43301e-15, 4.9, 0.628967, -3.38341)
+mesh = SubResource("BoxMesh_4j3ub")
+
+[node name="table1" type="StaticBody3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+collision_layer = 2
+collision_mask = 0
+
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/table1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+mesh = SubResource("BoxMesh_pa2cx")
+
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.5, 1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.5, 1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.5, -1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.5, -1.4)
+mesh = SubResource("BoxMesh_yupse")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room1 1/room1/table1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_iuk1j")
+
+[node name="csg1" type="CSGCylinder3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.3, -2)
+radius = 0.8
+height = 2.5
+sides = 14
+material = SubResource("StandardMaterial3D_pa2cx")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50757, 1.08857, -2)
+operation = 2
+size = Vector3(1, 3, 2)
+
+[node name="csg2" type="CSGCylinder3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, -2)
+radius = 0.9
+height = 0.2
+sides = 14
+material = ExtResource("4_2epkg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1/csg2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507568, -0.211426, 0)
+operation = 2
+size = Vector3(1, 3, 2)
+
+[node name="csg3" type="CSGCylinder3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -2)
+radius = 0.9
+height = 0.2
+sides = 14
+material = ExtResource("4_2epkg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1/csg3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507568, -0.211426, 0)
+operation = 2
+size = Vector3(1, 3, 2)
+
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1"]
+transform = Transform3D(-4.2222e-08, -0.258819, -0.965926, -1.13133e-08, 0.965926, -0.258819, 1, 0, -4.37114e-08, 4.66238, 2, 2.70348)
+mesh = SubResource("QuadMesh_eogbu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="start" type="Button" parent="CanvasLayer"]
+offset_right = 145.0
+offset_bottom = 31.0
+pivot_offset = Vector2(55, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "начать"
+icon = ExtResource("17_xh7j4")
+expand_icon = true
+
+[node name="exit" type="Button" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 34.0
+offset_right = 147.0
+offset_bottom = 65.0
+pivot_offset = Vector2(55, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "выйти"
+icon = ExtResource("17_xh7j4")
+expand_icon = true
+
+[node name="settings" type="Button" parent="CanvasLayer"]
+offset_left = 3.0
+offset_top = 70.0
+offset_right = 148.0
+offset_bottom = 101.0
+pivot_offset = Vector2(55, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "настройки"
+icon = ExtResource("17_xh7j4")
+expand_icon = true
+
+[node name="tutorial" type="Button" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 108.0
+offset_right = 147.0
+offset_bottom = 139.0
+pivot_offset = Vector2(55, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "обучение"
+icon = ExtResource("17_xh7j4")
+expand_icon = true
