@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvqdyq2tfhg3y"]
+
+[ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
+[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites materials/bg3.png" id="2_60p26"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="4_2epkg"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="5_eeftm"]
+[ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
+[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="8_4j3ub"]
+[ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="9_pa2cx"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
+panorama = ExtResource("2_60p26")
+filter = false
+
+[sub_resource type="Sky" id="Sky_y5apx"]
+sky_material = SubResource("PanoramaSkyMaterial_ewvr7")
+
+[sub_resource type="Environment" id="Environment_a6jpe"]
+background_mode = 2
+background_color = Color(0.490196, 0.490196, 0.490196, 1)
+sky = SubResource("Sky_y5apx")
+ambient_light_source = 2
+ambient_light_color = Color(0.789172, 0.789172, 0.789172, 1)
+tonemap_mode = 2
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.490196, 0.490196, 0.490196, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxyrb"]
+albedo_texture = ExtResource("8_4j3ub")
+texture_filter = 2
+
+[node name="menu" type="Node3D"]
+script = ExtResource("1_tnq6k")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a6jpe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+shadow_enabled = true
+
+[node name="center camera" type="Node3D" parent="."]
+
+[node name="cam" type="Camera3D" parent="center camera"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
+keep_aspect = 0
+projection = 1
+size = 13.0
+far = 50.0
+
+[node name="room1 1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="room1" type="CSGBox3D" parent="room1 1" groups=["navi"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+use_collision = true
+size = Vector3(10, 0.1, 10)
+material = ExtResource("5_eeftm")
+
+[node name="door" parent="room1 1/room1" instance=ExtResource("6_dst00")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 0)
+
+[node name="wall" type="CSGBox3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+use_collision = true
+size = Vector3(10, 3, 0.1)
+material = ExtResource("4_2epkg")
+
+[node name="wall2" type="CSGBox3D" parent="room1 1/room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+use_collision = true
+size = Vector3(10, 3, 0.1)
+material = ExtResource("4_2epkg")
+
+[node name="wall3" type="CSGBox3D" parent="room1 1/room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, -3)
+use_collision = true
+size = Vector3(4, 3, 0.1)
+material = ExtResource("4_2epkg")
+
+[node name="wall" type="CSGBox3D" parent="room1 1/room1/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+use_collision = true
+size = Vector3(4, 3, 0.1)
+material = ExtResource("4_2epkg")
+
+[node name="wall2" type="CSGBox3D" parent="room1 1/room1/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 4.76837e-07)
+use_collision = true
+size = Vector3(2, 1, 0.1)
+material = SubResource("StandardMaterial3D_pxyrb")
+
+[node name="tubes" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.55)
+
+[node name="tubes2" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3, 1.5, -4.7)
+
+[node name="tubes3" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 2, 4.55)
+
+[node name="tubes4" parent="room1 1/room1" instance=ExtResource("9_pa2cx")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 1, 1.5, 4.7)
+
+[node name="wall4" type="CSGBox3D" parent="room1 1/room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 1.5, 0)
+use_collision = true
+size = Vector3(10, 3, 0.1)
+material = ExtResource("4_2epkg")

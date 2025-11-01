@@ -29,13 +29,13 @@
 panorama = ExtResource("2_y5apx")
 filter = false
 
-[sub_resource type="Sky" id="Sky_y5apx"]
+[sub_resource type="Sky" id="Sky_txncy"]
 sky_material = SubResource("PanoramaSkyMaterial_ifjlx")
 
 [sub_resource type="Environment" id="Environment_55rg2"]
 background_mode = 2
 background_color = Color(0.490196, 0.490196, 0.490196, 1)
-sky = SubResource("Sky_y5apx")
+sky = SubResource("Sky_txncy")
 ambient_light_source = 2
 ambient_light_color = Color(0.789172, 0.789172, 0.789172, 1)
 tonemap_mode = 2
