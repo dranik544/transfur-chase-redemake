@@ -12,8 +12,12 @@ config_version=5
 
 config/name="TransFur Chase DEMAKE"
 config/tags=PackedStringArray("dranik544")
-run/main_scene="uid://cstvl2h2vgyr"
+run/main_scene="uid://cmvf6gdw38n03"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/image="uid://cpcveufr3oecp"
 config/icon="res://icon.svg"
 
 [autoload]
