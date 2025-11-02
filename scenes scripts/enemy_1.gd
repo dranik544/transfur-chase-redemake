@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 3.5
 var curspeed = 3.5
+var speeddist = 0.0
 
 
 func _ready():
@@ -10,9 +11,12 @@ func _ready():
 func _physics_process(delta):
 	var nextloc = $NavigationAgent3D.get_next_path_position()
 	var curloc = global_transform.origin
-	var newvelocity = (nextloc - curloc).normalized() * speed
+	var newvelocity = (nextloc - curloc).normalized() * curspeed
+	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
 	
-	targetpos(get_tree().get_first_node_in_group("player").global_transform.origin)
+	targetpos(player.global_transform.origin)
+	
+	speeddist = 0.0 + global_position.distance_to(player.global_position) / 200
 	
 	if velocity.length() > 0:
 		$Sprite3D.play("run")
@@ -26,9 +30,9 @@ func _physics_process(delta):
 	else:
 		speed = 3.5
 	
-	if global_position.y != 0.8:
-		global_position.y = 0.8
-	curspeed = lerp(curspeed, speed, 2 * delta)
+	if global_position.y != 0.9:
+		global_position.y = 0.9
+	curspeed = lerp(curspeed, speed + speeddist, 2 * delta)
 	velocity = velocity.move_toward(newvelocity, 0.5)
 	move_and_slide()
 

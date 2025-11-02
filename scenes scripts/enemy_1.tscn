@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://d01pvqt8ch6th" path="res://sprites materials/enemy_sprite.tres" id="2_aut8l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
-radius = 0.28
-height = 0.56
+radius = 0.36
+height = 0.72
 
 [node name="enemy1" type="CharacterBody3D"]
 collision_mask = 3
@@ -17,7 +17,7 @@ speed = 4.0
 target_desired_distance = 0.5
 avoidance_enabled = true
 height = 0.6
-radius = 0.3
+radius = 0.36
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=11 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="2_xomnv"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites materials/inv1.png" id="4_0amtw"]
 [ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites materials/nullinv1.png" id="5_ndhvj"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
+[ext_resource type="Texture2D" uid="uid://b7k16svsdf4gs" path="res://sprites materials/colin bg1.png" id="7_f74ev"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="9_v6gaw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
@@ -32,6 +33,10 @@ keep_aspect = 0
 projection = 1
 size = 13.0
 far = 50.0
+
+[node name="RayCast3D" type="RayCast3D" parent="center camera/cam"]
+transform = Transform3D(1, 0, 0, 0, -8.9407e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)
+target_position = Vector3(0, -11, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mhidd")
@@ -131,6 +136,11 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_511js")
 text = "тип предмета"
 vertical_alignment = 2
+
+[node name="colinbg" type="Sprite2D" parent="gui"]
+position = Vector2(67, -70)
+scale = Vector2(4, 4)
+texture = ExtResource("7_f74ev")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

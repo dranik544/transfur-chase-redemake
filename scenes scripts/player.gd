@@ -36,11 +36,11 @@ var camscalewheel = 0.0
 
 
 func _ready():
+	add_to_group("player")
 	slimebasepos = $gui/slime.position
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
 	print(cam, centercam)
-	add_to_group("player")
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -85,6 +85,13 @@ func _physics_process(delta: float) -> void:
 	cam.rotation.z += driftcam
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
+	
+	$gui/colinbg.position = $"center camera/cam".unproject_position($Sprite3D.global_position)
+	$gui/colinbg.scale = Vector2(1 / $"center camera/cam".size * 38, 1 / $"center camera/cam".size * 38)
+	if $"center camera/cam/RayCast3D".is_colliding():
+		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.25, 5 * delta))
+	else:
+		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.0, 5 * delta))
 	
 	if Input.is_action_pressed("CTRL"):
 		if !isslide:
@@ -214,8 +221,10 @@ func _physics_process(delta: float) -> void:
 			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), 15 * delta)
 	if Input.is_action_just_pressed("A"):
 		$Sprite3D.flip_h = true
+		$gui/colinbg.flip_h = true
 	elif Input.is_action_just_pressed("D"):
 		$Sprite3D.flip_h = false
+		$gui/colinbg.flip_h = false
 	
 	#if $"center camera/Camera3D/RayCast3D".is_colliding():
 		#var collider = $"center camera/Camera3D/RayCast3D".get_collider()

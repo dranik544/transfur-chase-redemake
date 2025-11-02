@@ -99,6 +99,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		#autodelete = false
 		#isplayerbeeninroom = true
 		canbake = true
+		bakenavi()
 		Global.navibakereq.disconnect(bakenavi)
 
 func bakenavi():
