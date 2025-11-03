@@ -18,6 +18,10 @@ func _ready():
 	$CanvasLayer/exit/btnexit.mouse_exited.connect(btnexitmouseexited)
 	$CanvasLayer/settings/btnsettings.mouse_entered.connect(btnsettingsmouseentered)
 	$CanvasLayer/settings/btnsettings.mouse_exited.connect(btnsettingsmouseexited)
+	$CanvasLayer/tutorial/btntutorial.mouse_entered.connect(btntutorialmouseentered)
+	$CanvasLayer/tutorial/btntutorial.mouse_exited.connect(btntutorialmouseexited)
+	$CanvasLayer/stats/btnstats.mouse_entered.connect(btnstatsmouseentered)
+	$CanvasLayer/stats/btnstats.mouse_exited.connect(btnstatsmouseexited)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -40,35 +44,14 @@ func _unhandled_input(event):
 	camscalewheel = clampf(camscalewheel, -2.5, 7.5)
 
 func _physics_process(delta: float) -> void:
-	$CanvasLayer/start.global_position = lerp($CanvasLayer/start.global_position, cam.unproject_position($"room1 1/room1/door".global_position), 25 * delta)
-	$CanvasLayer/exit.global_position = lerp($CanvasLayer/exit.global_position, cam.unproject_position($"room1 1/room1/MeshInstance3D".global_position), 25 * delta)
-	$CanvasLayer/settings.global_position = lerp($CanvasLayer/settings.global_position, cam.unproject_position($"room1 1/room1/MeshInstance3D2".global_position), 25 * delta)
-	$CanvasLayer/tutorial.global_position = lerp($CanvasLayer/tutorial.global_position, cam.unproject_position($"room1 1/room1/mesh1".global_position), 25 * delta)
-	
-	var mousepos = get_viewport().get_mouse_position()
-	var tr = 600
+	var mp = get_viewport().get_mouse_position()
+	var tr = 900
 	var sz = 1600
-	$CanvasLayer/start.modulate = Color(1, 1, 1, 1.0 - mousepos.distance_to($CanvasLayer/start.global_position) / tr)
-	$CanvasLayer/exit.modulate = Color(1, 1, 1, 1.0 - mousepos.distance_to($CanvasLayer/exit.global_position) / tr)
-	$CanvasLayer/settings.modulate = Color(1, 1, 1, 1.0 - mousepos.distance_to($CanvasLayer/settings.global_position) / tr)
-	$CanvasLayer/tutorial.modulate = Color(1, 1, 1, 1.0 - mousepos.distance_to($CanvasLayer/tutorial.global_position) / tr)
-	
-	$CanvasLayer/start.scale = Vector2(
-		1.0 - mousepos.distance_to($CanvasLayer/start.global_position) / sz,
-		1.0 - mousepos.distance_to($CanvasLayer/start.global_position) / sz
-	)
-	$CanvasLayer/exit.scale = Vector2(
-		1.0 - mousepos.distance_to($CanvasLayer/exit.global_position) / sz,
-		1.0 - mousepos.distance_to($CanvasLayer/exit.global_position) / sz
-	)
-	$CanvasLayer/settings.scale = Vector2(
-		1.0 - mousepos.distance_to($CanvasLayer/settings.global_position) / sz,
-		1.0 - mousepos.distance_to($CanvasLayer/settings.global_position) / sz
-	)
-	$CanvasLayer/tutorial.scale = Vector2(
-		1.0 - mousepos.distance_to($CanvasLayer/tutorial.global_position) / sz,
-		1.0 - mousepos.distance_to($CanvasLayer/tutorial.global_position) / sz
-	)
+	dinamicbtn(delta, $CanvasLayer/start, $"room1 1/room1/door", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/exit, $"room1 1/room1/MeshInstance3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/settings, $"room1 1/room1/MeshInstance3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/tutorial, $"room1 1/room1/mesh1", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/stats, $"room1 1/room1/Sprite3D", 25, tr, sz, mp)
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -81,9 +64,22 @@ func _physics_process(delta: float) -> void:
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
 
-func btnstartmouseentered():	$CanvasLayer/text/Label.text = "приготовьте свои мандарины"
+#btn = button, unprpos = unproject position, tr = transparent, sz = size
+func dinamicbtn(curdelta: float, btn, unprpos, speed: int, tr: int, sz: int, mousepos):
+	btn.global_position = lerp(btn.global_position, cam.unproject_position(unprpos.global_position), speed * curdelta)
+	btn.modulate = Color(1, 1, 1, 1.0 - mousepos.distance_to(btn.global_position) / tr)
+	btn.scale = Vector2(
+		1.0 - mousepos.distance_to(btn.global_position) / sz,
+		1.0 - mousepos.distance_to(btn.global_position) / sz
+	)
+
+func btnstartmouseentered():	$CanvasLayer/text/Label.text = "приготовьте свои мандарины!"
 func btnstartmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btnexitmouseentered():	$CanvasLayer/text/Label.text = "если надоело - это для вас"
+func btnexitmouseentered():	$CanvasLayer/text/Label.text = "если надоело - это для вас."
 func btnexitmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btnsettingsmouseentered():	$CanvasLayer/text/Label.text = "настройте игру как душа пожелает"
+func btnsettingsmouseentered():	$CanvasLayer/text/Label.text = "настройте игру как душа пожелает!"
 func btnsettingsmouseexited():	$CanvasLayer/text/Label.text = ". . ."
+func btntutorialmouseentered():	$CanvasLayer/text/Label.text = "освежите память!"
+func btntutorialmouseexited():	$CanvasLayer/text/Label.text = ". . ."
+func btnstatsmouseentered():	$CanvasLayer/text/Label.text = "узнайте свою статистику и новое об противниках!"
+func btnstatsmouseexited():	$CanvasLayer/text/Label.text = ". . ."
