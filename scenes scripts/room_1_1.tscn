@@ -1,16 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://c33iojhyr4ddn"]
+[gd_scene load_steps=12 format=3 uid="uid://c33iojhyr4ddn"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_ks1wj"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="2_bj5s0"]
 [ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="2_smuh1"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="3_smuh1"]
-[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="4_v056k"]
+[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://sprites materials/wallmesh1.tres" id="5_ejhko"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="6_smuh1"]
+[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://sprites materials/wallmesh2.tres" id="6_v056k"]
 [ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="7_v056k"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxyrb"]
-albedo_texture = ExtResource("4_v056k")
-texture_filter = 2
+[sub_resource type="QuadMesh" id="QuadMesh_v056k"]
+material = ExtResource("2_smuh1")
+size = Vector2(10, 10)
+center_offset = Vector3(-5, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ejhko"]
+size = Vector3(10, 10, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v056k"]
+size = Vector3(10, 3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
 size = Vector3(10, 3, 10)
@@ -24,56 +31,76 @@ NumBasket1 = 1
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = ExtResource("6_smuh1")
 
-[node name="room1" type="CSGBox3D" parent="NavigationRegion3D" groups=["navi"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
-use_collision = true
-size = Vector3(10, 0.1, 10)
-material = ExtResource("2_smuh1")
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
 
-[node name="door" parent="NavigationRegion3D/room1" instance=ExtResource("2_bj5s0")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 0)
+[node name="bottom" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" groups=["navi"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_v056k")
+skeleton = NodePath("../..")
 
-[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
-use_collision = true
-size = Vector3(10, 3, 0.1)
-material = ExtResource("3_smuh1")
+[node name="bottomcoll" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 0, 0)
+shape = SubResource("BoxShape3D_ejhko")
 
-[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
-use_collision = true
-size = Vector3(10, 3, 0.1)
-material = ExtResource("3_smuh1")
+[node name="door" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("2_bj5s0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 1, 0)
 
-[node name="wall3" type="CSGBox3D" parent="NavigationRegion3D/room1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, -3)
-use_collision = true
-size = Vector3(4, 3, 0.1)
-material = ExtResource("3_smuh1")
+[node name="tubes" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("7_v056k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -4.55)
 
-[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/room1/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-use_collision = true
-size = Vector3(4, 3, 0.1)
-material = ExtResource("3_smuh1")
+[node name="tubes2" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("7_v056k")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8, 1.5, -4.7)
 
-[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/room1/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 4.76837e-07)
-use_collision = true
-size = Vector3(2, 1, 0.1)
-material = SubResource("StandardMaterial3D_pxyrb")
+[node name="tubes3" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("7_v056k")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 2, 4.55)
 
-[node name="tubes" parent="NavigationRegion3D/room1" instance=ExtResource("7_v056k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.55)
+[node name="tubes4" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("7_v056k")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -4, 1.5, 4.7)
 
-[node name="tubes2" parent="NavigationRegion3D/room1" instance=ExtResource("7_v056k")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3, 1.5, -4.7)
+[node name="wall1" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 5)
+mesh = ExtResource("5_ejhko")
+skeleton = NodePath("../bottom")
 
-[node name="tubes3" parent="NavigationRegion3D/room1" instance=ExtResource("7_v056k")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 2, 4.55)
+[node name="wallcoll1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 5)
+shape = SubResource("BoxShape3D_v056k")
 
-[node name="tubes4" parent="NavigationRegion3D/room1" instance=ExtResource("7_v056k")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 1, 1.5, 4.7)
+[node name="wall2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -5)
+mesh = ExtResource("5_ejhko")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -5)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, -3)
+mesh = ExtResource("5_ejhko")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, -3)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, 3)
+mesh = ExtResource("5_ejhko")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, 3)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall5" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -10, 2.50299, 0)
+mesh = ExtResource("6_v056k")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll5" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -10, 2.50299, 0)
+shape = SubResource("BoxShape3D_v056k")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

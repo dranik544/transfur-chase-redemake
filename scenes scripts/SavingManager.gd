@@ -7,9 +7,11 @@ var whatload
 func save(what):
 	var file = FileAccess.open(savepath, FileAccess.WRITE)
 	file.store_var(what)
+	file.close()
 
-func load(what):
+func load():
 	var file = FileAccess.open(savepath, FileAccess.READ)
-	whatload = file.get_var(what)
+	whatload = file.get_var()
+	file.close()
 	
 	return whatload

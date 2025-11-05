@@ -57,21 +57,27 @@ func _ready():
 	if areacam:
 		areacam.body_entered.connect(camzoneentered)
 		areacam.body_exited.connect(camzoneexited)
-	camposx = $NavigationRegion3D/room1.size.x / 2.0
+	camposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
 	
 	var navibridge: StaticBody3D = navibridgeScene.instantiate()
-	$NavigationRegion3D/room1.add_child(navibridge)
-	navibridge.position = Vector3(-$NavigationRegion3D/room1.size.x / 2, 0, 0)
-	$Area3D/CollisionShape3D.shape.size = $NavigationRegion3D/room1.size
+	$NavigationRegion3D/StaticBody3D.add_child(navibridge)
+	navibridge.position = Vector3(-$NavigationRegion3D/StaticBody3D/bottom.mesh.size.x, 0, 0)
+	$Area3D/CollisionShape3D.shape.size = Vector3(
+		$NavigationRegion3D/StaticBody3D/bottom.mesh.size.x,
+		3.0,
+		$NavigationRegion3D/StaticBody3D/bottom.mesh.size.y
+	)
+	
+	bakenavi()
 
 func spawnbox(typebox: PackedScene, count: int, posy: float):
 	for i in count:
 		var box = typebox.instantiate()
-		add_child(box)
-		var posboxz = ($NavigationRegion3D/room1.size.z / 2.0) * 0.8
-		var posboxx = ($NavigationRegion3D/room1.size.x / 2.0) * 0.8
+		$NavigationRegion3D.add_child(box)
+		var posboxz = ($NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0) * 0.8
+		var posboxx = ($NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0) * 0.8
 		box.position = Vector3(
-			randf_range(-posboxx, posboxx) - $NavigationRegion3D/room1.size.x / 2.0,
+			randf_range(-posboxx, posboxx) - $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0,
 			posy,
 			randf_range(-posboxz, posboxz)
 		)
@@ -108,10 +114,10 @@ func bakenavi():
 
 func camzoneentered(body):
 	if body.is_in_group("player"):
-		var curcamposx = $NavigationRegion3D/room1.size.x / 2.0
+		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
 		body.camfollowupdate(true, curcamposx - 0.5)
 
 func camzoneexited(body):
 	if body.is_in_group("player"):
-		var curcamposx = $NavigationRegion3D/room1.size.x / 2.0
+		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
 		body.camfollowupdate(false, curcamposx - 0.5)

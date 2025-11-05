@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
-[ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="2_xomnv"]
+[ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="2_f74ev"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites materials/inv1.png" id="4_0amtw"]
 [ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites materials/nullinv1.png" id="5_ndhvj"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
@@ -52,18 +52,14 @@ billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = ExtResource("2_xomnv")
-animation = &"crawl run"
+sprite_frames = ExtResource("2_f74ev")
+animation = &"transfur"
 autoplay = "idle"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 3
-
-[node name="RayCast3D2" type="RayCast3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-target_position = Vector3(0, -3, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)

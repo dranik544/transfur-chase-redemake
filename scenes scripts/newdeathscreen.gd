@@ -19,7 +19,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
 		get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
 	if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes scripts/menu.tscn")
 	
 	
 	$slime.position = Vector2(0.0, 0.0) + Vector2(

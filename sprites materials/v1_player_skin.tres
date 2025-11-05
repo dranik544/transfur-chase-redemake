@@ -1,0 +1,71 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://2d43pbpim6cm"]
+
+[ext_resource type="Texture2D" uid="uid://ch5dqh1aww4cv" path="res://sprites materials/V1 colin skin/colin1idle.png" id="1_ccy6w"]
+[ext_resource type="Texture2D" uid="uid://bc07q6vabq5ld" path="res://sprites materials/V1 colin skin/colin2idle.png" id="2_5w8gt"]
+[ext_resource type="Texture2D" uid="uid://d18girwah3rd1" path="res://sprites materials/V1 colin skin/colin1run.png" id="3_0eomo"]
+[ext_resource type="Texture2D" uid="uid://cl3wh1ywu3odc" path="res://sprites materials/V1 colin skin/colin2run.png" id="4_f720w"]
+[ext_resource type="Texture2D" uid="uid://bq87evvou6okr" path="res://sprites materials/V1 colin skin/colin2slide.png" id="5_440ff"]
+[ext_resource type="Texture2D" uid="uid://dih1d7qemskx" path="res://sprites materials/V1 colin skin/colin1taunt.png" id="6_f720w"]
+[ext_resource type="Texture2D" uid="uid://dbssfsqcgi70t" path="res://sprites materials/V1 colin skin/colin2taunt.png" id="7_440ff"]
+[ext_resource type="Texture2D" uid="uid://bkf5iic7k3f1g" path="res://sprites materials/V1 colin skin/colin3taunt.png" id="8_1akni"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ccy6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5w8gt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0eomo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ccy6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f720w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5w8gt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_440ff")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f720w")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f720w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_440ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1akni")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}]

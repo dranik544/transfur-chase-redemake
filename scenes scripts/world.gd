@@ -1,18 +1,10 @@
 extends Node3D
 
 var rooms1 = {
-	1: preload("res://scenes scripts/room_1_3.tscn"),
-	2: preload("res://scenes scripts/room_2_2.tscn"),
-	3: preload("res://scenes scripts/room_1_5.tscn"),
-	4: preload("res://scenes scripts/room_1_6.tscn"),
-	5: preload("res://scenes scripts/room_1_7.tscn"),
+	1: preload("res://scenes scripts/room_1_1.tscn"),
 }
 var rooms2 = {
-	1: preload("res://scenes scripts/room_1_4.tscn"),
-	2: preload("res://scenes scripts/room_1_4.tscn"),
-	3: preload("res://scenes scripts/room_1_4.tscn"),
-	4: preload("res://scenes scripts/room_1_4.tscn"),
-	5: preload("res://scenes scripts/room_1_4.tscn"),
+	1: preload("res://scenes scripts/room_1_1.tscn"),
 }
 
 var room1size = Vector3(10, 0, 0)
@@ -49,8 +41,8 @@ func _on_timer_timeout() -> void:
 		#$navi.bake_navigation_mesh()
 
 func spawnroom():
-	var numroom: int = randi_range(1, 5)
-	var typeroom: int = randi_range(1, 2)
+	var numroom: int = randi_range(1, 1)
+	var typeroom: int = randi_range(1, 1)
 	var sceneroom: PackedScene
 	var typeroompos
 	

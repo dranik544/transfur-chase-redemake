@@ -14,6 +14,7 @@ func _ready():
 	
 	$CanvasLayer/logo.visible = true
 	$"CanvasLayer/stats menu".visible = false
+	$"CanvasLayer/skins menu".visible = false
 	
 	$CanvasLayer/start/btnstart.mouse_entered.connect(btnstartmouseentered)
 	$CanvasLayer/start/btnstart.mouse_exited.connect(btnstartmouseexited)
@@ -25,9 +26,16 @@ func _ready():
 	$CanvasLayer/tutorial/btntutorial.mouse_exited.connect(btntutorialmouseexited)
 	$CanvasLayer/stats/btnstats.mouse_entered.connect(btnstatsmouseentered)
 	$CanvasLayer/stats/btnstats.mouse_exited.connect(btnstatsmouseexited)
+	$CanvasLayer/skins/btnskins.mouse_entered.connect(btnskinsmouseentered)
+	$CanvasLayer/skins/btnskins.mouse_exited.connect(btnskinsmouseexited)
 	
 	$CanvasLayer/stats/btnstats.pressed.connect(btnstatspressed)
 	$"CanvasLayer/stats menu/btnexit".pressed.connect(btnstatsexitpressed)
+	$CanvasLayer/skins/btnskins.pressed.connect(btnskinspressed)
+	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
+	
+	if Global.colinskin != "":
+		$"CanvasLayer/skins menu".updateskin()
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -58,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	dinamicbtn(delta, $CanvasLayer/settings, $"room1 1/room1/MeshInstance3D2", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/tutorial, $"room1 1/room1/mesh1", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/stats, $"room1 1/room1/Sprite3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/skins, $"room1 1/room1/Sprite3D2", 25, tr, sz, mp)
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -89,6 +98,10 @@ func btntutorialmouseentered():$CanvasLayer/text/Label.text = "освежите 
 func btntutorialmouseexited():$CanvasLayer/text/Label.text = ". . ."
 func btnstatsmouseentered():$CanvasLayer/text/Label.text = "узнайте свою статистику и новое об противниках!"
 func btnstatsmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btnskinsmouseentered():$CanvasLayer/text/Label.text = "выберите любой костюм для Колина!"
+func btnskinsmouseexited():$CanvasLayer/text/Label.text = ". . ."
 
 func btnstatspressed():$"CanvasLayer/stats menu".visible = true
 func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false
+func btnskinspressed():$"CanvasLayer/skins menu".visible = true
+func btnskinsexitpressed():$"CanvasLayer/skins menu".visible = false

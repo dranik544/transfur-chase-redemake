@@ -41,6 +41,9 @@ func _ready():
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
 	print(cam, centercam)
+	
+	if Global.colinskin != "":
+		updateskin()
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -70,14 +73,6 @@ func camfollowupdate(canfollow: bool, camposx = 0.0):
 		camfollowpluspos = 0.0
 
 func _physics_process(delta: float) -> void:
-	
-	
-	
-	print(health)
-	
-	
-	
-	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		freecam = false
@@ -93,6 +88,13 @@ func _physics_process(delta: float) -> void:
 	cam.rotation.z += driftcam
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
+	
+	if Global.colinskin == "V1":
+		$gui/colinbg.texture = load("res://sprites materials/V1 colin skin/colin bg1.png")
+		$Sprite3D.sprite_frames = load("res://sprites materials/v1_player_skin.tres")
+	elif Global.colinskin == "colin":
+		$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
+		$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
 	
 	$gui/colinbg.position = $"center camera/cam".unproject_position($Sprite3D.global_position)
 	$gui/colinbg.scale = Vector2(1 / $"center camera/cam".size * 38, 1 / $"center camera/cam".size * 38)
@@ -160,7 +162,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
 	if health <= 0:
-		get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
+		$Sprite3D.animation = "transfur"
+		var tween = create_tween()
+		tween.tween_property($"center camera/cam", "size", 0, 4)
+		$"center camera/cam".look_at($Sprite3D.global_position)
+		await $Sprite3D.animation_finished
+		if not is_queued_for_deletion() and get_tree():
+			get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
 	
 	if not is_on_floor():
@@ -292,3 +300,14 @@ func _on_timer_timeout() -> void:
 func _on_slidetimer_timeout() -> void:
 	canslide = true
 	$gui/slidebar/slidebar.visible = false
+
+func updateskin():
+	print(Global.colinskin)
+	
+	match Global.colinskin:
+		"colin":
+			$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
+		"V1":
+			$Sprite3D.sprite_frames = load("res://sprites materials/v1_player_skin.tres")
+	
+	$Sprite3D.play("idle")
