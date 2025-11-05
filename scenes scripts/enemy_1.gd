@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var speed = 3.5
+@export var canmove: bool = true
 var curspeed = 3.5
 var speeddist = 0.0
 
@@ -33,7 +34,8 @@ func _physics_process(delta):
 	if global_position.y != 0.9:
 		global_position.y = 0.9
 	curspeed = lerp(curspeed, speed + speeddist, 2 * delta)
-	velocity = velocity.move_toward(newvelocity, 0.5)
+	if canmove:
+		velocity = velocity.move_toward(newvelocity, 0.5)
 	move_and_slide()
 
 func targetpos(target):

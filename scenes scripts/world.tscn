@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=19 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -9,20 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dpsuhojkxbdha" path="res://scenes scripts/vent_1.tscn" id="6_y5apx"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="8_53xst"]
-[ext_resource type="Texture2D" uid="uid://credevmqqdkmd" path="res://sprites materials/colin1idle.png" id="9_ixu3i"]
-[ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites materials/bg4.png" id="9_jvjns"]
 [ext_resource type="PackedScene" uid="uid://bo1djaqkbljmv" path="res://scenes scripts/item_1.tscn" id="9_sjbx3"]
-[ext_resource type="Texture2D" uid="uid://b1jh8h6xs5l5n" path="res://sprites materials/colin2idle.png" id="10_jvjns"]
 [ext_resource type="PackedScene" uid="uid://ckgad4iixpkk8" path="res://scenes scripts/table_1.tscn" id="10_txncy"]
-[ext_resource type="Texture2D" uid="uid://b7g05v6r52e07" path="res://sprites materials/colin1run.png" id="11_llgq5"]
-[ext_resource type="Texture2D" uid="uid://cq020v55fls7h" path="res://sprites materials/colin2run.png" id="12_53xst"]
-[ext_resource type="Texture2D" uid="uid://c20mkio8a7to" path="res://sprites materials/colin1slide.png" id="13_sjbx3"]
-[ext_resource type="Texture2D" uid="uid://dg1xlc6j8i232" path="res://sprites materials/colin2slide.png" id="14_txncy"]
-[ext_resource type="Texture2D" uid="uid://l6ohi5ko30bi" path="res://sprites materials/colin1taunt.png" id="15_djrql"]
-[ext_resource type="Texture2D" uid="uid://c8ng7bkbq3jvs" path="res://sprites materials/colin2taunt.png" id="16_dmrwp"]
-[ext_resource type="Texture2D" uid="uid://ccyiuvmuay8uu" path="res://sprites materials/colin3taunt.png" id="17_1rh5m"]
-[ext_resource type="Texture2D" uid="uid://cromw3iyk6h21" path="res://sprites materials/enemy1idle1.png" id="18_pfh51"]
-[ext_resource type="Texture2D" uid="uid://bi5qjno2d77e0" path="res://sprites materials/enemy1run1.png" id="19_wwf3r"]
+[ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites materials/icon1.png" id="13_sivfs"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifjlx"]
@@ -48,97 +37,20 @@ fog_depth_begin = 100.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_ktiys"]
 size = Vector3(1, 1, 10)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_36geb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ixu3i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_jvjns")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_llgq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ixu3i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_53xst")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_ixu3i")
-}],
-"loop": true,
-"name": &"run",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_sjbx3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_txncy")
-}],
-"loop": true,
-"name": &"slide",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_djrql")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_dmrwp")
-}],
-"loop": true,
-"name": &"taunt",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_djrql")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_1rh5m")
-}],
-"loop": true,
-"name": &"taunt run",
-"speed": 4.0
-}]
+[sub_resource type="GDScript" id="GDScript_rf126"]
+script/source = "extends TextureRect
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_i23gq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ixu3i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_jvjns")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_pfh51")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_wwf3r")
-}],
-"loop": true,
-"name": &"run",
-"speed": 10.0
-}]
+var time: float = 0.0
+
+
+func _process(delta: float) -> void:
+	time += delta
+	rotation = 0.0 + sin(time * 2) * 3.2
+"
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
+loadrooms = 20
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")
@@ -148,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shadow_enabled = true
 
 [node name="enemy1" parent="." instance=ExtResource("7_soo4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.1, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -3)
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -166,6 +78,8 @@ wait_time = 10.0
 
 [node name="room1" parent="." instance=ExtResource("3_55rg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+RandomBox = false
+RandomNumBoxes = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
@@ -226,7 +140,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0)
 shape = SubResource("BoxShape3D_ktiys")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -236,32 +149,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_top = 400.0
-offset_right = 640.0
-offset_bottom = 480.0
-texture = ExtResource("9_jvjns")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(471, 404)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_36geb")
-animation = &"run"
-autoplay = "run"
-flip_h = true
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(563, 404)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_i23gq")
-animation = &"run"
-autoplay = "run"
-flip_h = true
-
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 10.0
 offset_top = 425.0
-offset_right = 280.0
+offset_right = 348.0
 offset_bottom = 470.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -269,6 +160,16 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("22_53xst")
 theme_override_font_sizes/font_size = 32
 text = "load rooms... (???%)"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 585.0
+offset_top = 425.0
+offset_right = 625.0
+offset_bottom = 465.0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("13_sivfs")
+script = SubResource("GDScript_rf126")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -96, 77, 85)

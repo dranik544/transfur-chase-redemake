@@ -70,6 +70,14 @@ func camfollowupdate(canfollow: bool, camposx = 0.0):
 		camfollowpluspos = 0.0
 
 func _physics_process(delta: float) -> void:
+	
+	
+	
+	print(health)
+	
+	
+	
+	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		freecam = false
@@ -113,7 +121,7 @@ func _physics_process(delta: float) -> void:
 	pick = Input.is_action_pressed("E")
 	
 	var camitem = get_viewport().get_camera_3d()
-	var directionitem = camitem.global_transform.basis.y
+	var directionitem = -camitem.global_transform.basis.z
 	var throwpos = (camitem.global_transform.basis.z / 0.75)
 	
 	if isinv:
@@ -124,16 +132,17 @@ func _physics_process(delta: float) -> void:
 			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
 		if Input.is_action_just_pressed("LCM"):
 			if itemscene:
+				var item = itemscene.instantiate()
+				get_parent().add_child(item)
+				
+				if item.ischangehp:
+					health += item.changehp
+					item.queue_free()
+				
 				itemsprite = null
 				$gui/invtexture.texture = load("res://sprites materials/nullinv1.png")
-				var item = itemscene.instantiate()
 				itemscene = null
-				get_parent().add_child(item)
-				item.global_position = global_position + throwpos
-				item.apply_impulse(directionitem * 8 - Vector3(itemkg, itemkg, itemkg), Vector3.ZERO)
-				item.isthrow = true
 				itemkg = 0.0
-				item.timer()
 				itemtype = "Тип предмета"
 				$gui/Label.text = itemtype
 				isinv = false
@@ -206,7 +215,7 @@ func _physics_process(delta: float) -> void:
 				$Sprite3D.play("run")
 				camscale = lerp(camscale, 11.0, 10 * delta)
 			else:
-				$Sprite3D.play("crawl run")
+				$Sprite3D.play("taunt run")
 				camscale = lerp(camscale, 11.0, 11 * delta)
 			velocity.x = lerp(velocity.x, direction.x * speed, 9 * delta)
 			velocity.z = lerp(velocity.z, direction.z * speed, 9 * delta)
@@ -215,7 +224,7 @@ func _physics_process(delta: float) -> void:
 				$Sprite3D.play("idle")
 				camscale = lerp(camscale, 9.0, 10 * delta)
 			else:
-				$Sprite3D.play("crawl run")
+				$Sprite3D.play("taunt")
 				camscale = lerp(camscale, 8.5, 10 * delta)
 			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), 15 * delta)
 			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), 15 * delta)

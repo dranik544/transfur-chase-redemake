@@ -32,7 +32,7 @@ func _ready():
 		o += 1
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
 	#$navi.bake_navigation_mesh()
-	$CanvasLayer.visible = false
+	$CanvasLayer.queue_free()
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
 	#$Timer.start()

@@ -12,6 +12,9 @@ func _ready():
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
 	
+	$CanvasLayer/logo.visible = true
+	$"CanvasLayer/stats menu".visible = false
+	
 	$CanvasLayer/start/btnstart.mouse_entered.connect(btnstartmouseentered)
 	$CanvasLayer/start/btnstart.mouse_exited.connect(btnstartmouseexited)
 	$CanvasLayer/exit/btnexit.mouse_entered.connect(btnexitmouseentered)
@@ -22,6 +25,9 @@ func _ready():
 	$CanvasLayer/tutorial/btntutorial.mouse_exited.connect(btntutorialmouseexited)
 	$CanvasLayer/stats/btnstats.mouse_entered.connect(btnstatsmouseentered)
 	$CanvasLayer/stats/btnstats.mouse_exited.connect(btnstatsmouseexited)
+	
+	$CanvasLayer/stats/btnstats.pressed.connect(btnstatspressed)
+	$"CanvasLayer/stats menu/btnexit".pressed.connect(btnstatsexitpressed)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -73,13 +79,16 @@ func dinamicbtn(curdelta: float, btn, unprpos, speed: int, tr: int, sz: int, mou
 		1.0 - mousepos.distance_to(btn.global_position) / sz
 	)
 
-func btnstartmouseentered():	$CanvasLayer/text/Label.text = "приготовьте свои мандарины!"
-func btnstartmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btnexitmouseentered():	$CanvasLayer/text/Label.text = "если надоело - это для вас."
-func btnexitmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btnsettingsmouseentered():	$CanvasLayer/text/Label.text = "настройте игру как душа пожелает!"
-func btnsettingsmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btntutorialmouseentered():	$CanvasLayer/text/Label.text = "освежите память!"
-func btntutorialmouseexited():	$CanvasLayer/text/Label.text = ". . ."
-func btnstatsmouseentered():	$CanvasLayer/text/Label.text = "узнайте свою статистику и новое об противниках!"
-func btnstatsmouseexited():	$CanvasLayer/text/Label.text = ". . ."
+func btnstartmouseentered():$CanvasLayer/text/Label.text = "приготовьте свои мандарины!"
+func btnstartmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btnexitmouseentered():$CanvasLayer/text/Label.text = "если надоело - это для вас."
+func btnexitmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btnsettingsmouseentered():$CanvasLayer/text/Label.text = "настройте игру как душа пожелает!"
+func btnsettingsmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btntutorialmouseentered():$CanvasLayer/text/Label.text = "освежите память!"
+func btntutorialmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btnstatsmouseentered():$CanvasLayer/text/Label.text = "узнайте свою статистику и новое об противниках!"
+func btnstatsmouseexited():$CanvasLayer/text/Label.text = ". . ."
+
+func btnstatspressed():$"CanvasLayer/stats menu".visible = true
+func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false
