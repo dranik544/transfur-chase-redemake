@@ -89,13 +89,6 @@ func _physics_process(delta: float) -> void:
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
 	
-	if Global.colinskin == "V1":
-		$gui/colinbg.texture = load("res://sprites materials/V1 colin skin/colin bg1.png")
-		$Sprite3D.sprite_frames = load("res://sprites materials/v1_player_skin.tres")
-	elif Global.colinskin == "colin":
-		$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
-		$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
-	
 	$gui/colinbg.position = $"center camera/cam".unproject_position($Sprite3D.global_position)
 	$gui/colinbg.scale = Vector2(1 / $"center camera/cam".size * 38, 1 / $"center camera/cam".size * 38)
 	if $"center camera/cam/RayCast3D".is_colliding():
@@ -306,8 +299,13 @@ func updateskin():
 	
 	match Global.colinskin:
 		"colin":
+			$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
 		"V1":
+			$gui/colinbg.texture = load("res://sprites materials/V1 colin skin/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://sprites materials/v1_player_skin.tres")
+		"hank":
+			$gui/colinbg.texture = load("res://sprites materials/hank colin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://sprites materials/hank_player_skin.tres")
 	
 	$Sprite3D.play("idle")

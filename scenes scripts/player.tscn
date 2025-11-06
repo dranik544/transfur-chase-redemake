@@ -53,8 +53,7 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 sprite_frames = ExtResource("2_f74ev")
-animation = &"transfur"
-autoplay = "idle"
+animation = &"crawl run"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)

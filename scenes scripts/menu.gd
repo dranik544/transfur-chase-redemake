@@ -5,7 +5,7 @@ var cam
 var freecam: bool = false
 var sens: float = 0.01
 var driftcam: float = 0
-var camscalewheel: float = 10.0
+var camsize: float = 15.0
 
 
 func _ready():
@@ -16,26 +16,28 @@ func _ready():
 	$"CanvasLayer/stats menu".visible = false
 	$"CanvasLayer/skins menu".visible = false
 	
-	$CanvasLayer/start/btnstart.mouse_entered.connect(btnstartmouseentered)
-	$CanvasLayer/start/btnstart.mouse_exited.connect(btnstartmouseexited)
-	$CanvasLayer/exit/btnexit.mouse_entered.connect(btnexitmouseentered)
-	$CanvasLayer/exit/btnexit.mouse_exited.connect(btnexitmouseexited)
-	$CanvasLayer/settings/btnsettings.mouse_entered.connect(btnsettingsmouseentered)
-	$CanvasLayer/settings/btnsettings.mouse_exited.connect(btnsettingsmouseexited)
-	$CanvasLayer/tutorial/btntutorial.mouse_entered.connect(btntutorialmouseentered)
-	$CanvasLayer/tutorial/btntutorial.mouse_exited.connect(btntutorialmouseexited)
-	$CanvasLayer/stats/btnstats.mouse_entered.connect(btnstatsmouseentered)
-	$CanvasLayer/stats/btnstats.mouse_exited.connect(btnstatsmouseexited)
-	$CanvasLayer/skins/btnskins.mouse_entered.connect(btnskinsmouseentered)
-	$CanvasLayer/skins/btnskins.mouse_exited.connect(btnskinsmouseexited)
+	$CanvasLayer/buttons/start/btnstart.mouse_entered.connect(btnstartmouseentered)
+	$CanvasLayer/buttons/start/btnstart.mouse_exited.connect(btnstartmouseexited)
+	$CanvasLayer/buttons/exit/btnexit.mouse_entered.connect(btnexitmouseentered)
+	$CanvasLayer/buttons/exit/btnexit.mouse_exited.connect(btnexitmouseexited)
+	$CanvasLayer/buttons/settings/btnsettings.mouse_entered.connect(btnsettingsmouseentered)
+	$CanvasLayer/buttons/settings/btnsettings.mouse_exited.connect(btnsettingsmouseexited)
+	$CanvasLayer/buttons/tutorial/btntutorial.mouse_entered.connect(btntutorialmouseentered)
+	$CanvasLayer/buttons/tutorial/btntutorial.mouse_exited.connect(btntutorialmouseexited)
+	$CanvasLayer/buttons/stats/btnstats.mouse_entered.connect(btnstatsmouseentered)
+	$CanvasLayer/buttons/stats/btnstats.mouse_exited.connect(btnstatsmouseexited)
+	$CanvasLayer/buttons/skins/btnskins.mouse_entered.connect(btnskinsmouseentered)
+	$CanvasLayer/buttons/skins/btnskins.mouse_exited.connect(btnskinsmouseexited)
 	
-	$CanvasLayer/stats/btnstats.pressed.connect(btnstatspressed)
+	$CanvasLayer/buttons/stats/btnstats.pressed.connect(btnstatspressed)
 	$"CanvasLayer/stats menu/btnexit".pressed.connect(btnstatsexitpressed)
-	$CanvasLayer/skins/btnskins.pressed.connect(btnskinspressed)
+	$CanvasLayer/buttons/skins/btnskins.pressed.connect(btnskinspressed)
 	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
 	
-	if Global.colinskin != "":
-		$"CanvasLayer/skins menu".updateskin()
+	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
+	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
+	
+	$"CanvasLayer/skins menu".updateskin(false, false)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -50,23 +52,16 @@ func _input(event):
 	elif Input.is_action_just_pressed("F2"):
 		rotate_y(-deg_to_rad(45/2))
 
-func _unhandled_input(event):
-	if event.is_action_pressed("CCM DOWN"):
-		camscalewheel += 0.75
-	if event.is_action_pressed("CCM UP"):
-		camscalewheel -= 0.75
-	camscalewheel = clampf(camscalewheel, -2.5, 7.5)
-
 func _physics_process(delta: float) -> void:
 	var mp = get_viewport().get_mouse_position()
 	var tr = 900
 	var sz = 1600
-	dinamicbtn(delta, $CanvasLayer/start, $"room1 1/room1/door", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/exit, $"room1 1/room1/MeshInstance3D", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/settings, $"room1 1/room1/MeshInstance3D2", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/tutorial, $"room1 1/room1/mesh1", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/stats, $"room1 1/room1/Sprite3D", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/skins, $"room1 1/room1/Sprite3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/start, $"room1 1/room1/door", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/exit, $"room1 1/room1/MeshInstance3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/settings, $"room1 1/room1/MeshInstance3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/tutorial, $"room1 1/room1/mesh1", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/room1/Sprite3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/room1/Sprite3D2", 25, tr, sz, mp)
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -78,6 +73,8 @@ func _physics_process(delta: float) -> void:
 	cam.rotation.z += driftcam
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
+	
+	cam.size = lerp(cam.size, camsize, 10 * delta)
 
 #btn = button, unprpos = unproject position, tr = transparent, sz = size
 func dinamicbtn(curdelta: float, btn, unprpos, speed: int, tr: int, sz: int, mousepos):
@@ -101,7 +98,19 @@ func btnstatsmouseexited():$CanvasLayer/text/Label.text = ". . ."
 func btnskinsmouseentered():$CanvasLayer/text/Label.text = "выберите любой костюм для Колина!"
 func btnskinsmouseexited():$CanvasLayer/text/Label.text = ". . ."
 
-func btnstatspressed():$"CanvasLayer/stats menu".visible = true
-func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false
-func btnskinspressed():$"CanvasLayer/skins menu".visible = true
-func btnskinsexitpressed():$"CanvasLayer/skins menu".visible = false
+func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false
+func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true
+func btnskinspressed():
+	$"CanvasLayer/skins menu".visible = true
+	$CanvasLayer/buttons.visible = false
+	$CanvasLayer/text.visible = false
+	camsize = 6
+func btnskinsexitpressed():
+	$"CanvasLayer/skins menu".visible = false
+	$CanvasLayer/buttons.visible = true
+	$CanvasLayer/text.visible = true
+	$"CanvasLayer/skins menu".updateskin(true, false)
+	camsize = 15
+
+func btnstartpressed():get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
+func btnexitpressed():get_tree().quit()

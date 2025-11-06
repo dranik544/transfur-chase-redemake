@@ -50,7 +50,6 @@ func _process(delta: float) -> void:
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")

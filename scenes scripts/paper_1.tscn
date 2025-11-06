@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4iblfdwkgip0"]
+
+[ext_resource type="Texture2D" uid="uid://rgq32l8m3u21" path="res://sprites materials/paper2.png" id="1_otesp"]
+
+[node name="paper1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, -0.3, 0.05)
+shaded = true
+double_sided = false
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("1_otesp")

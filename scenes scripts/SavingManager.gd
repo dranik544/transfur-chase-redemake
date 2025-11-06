@@ -1,17 +1,25 @@
 extends Node
 
-var savepath = "user://tfcrdsave1.lmao"
-var whatload
 
-
-func save(what):
-	var file = FileAccess.open(savepath, FileAccess.WRITE)
-	file.store_var(what)
-	file.close()
-
-func load():
-	var file = FileAccess.open(savepath, FileAccess.READ)
-	whatload = file.get_var()
-	file.close()
+func save(savefile: String, what):
+	var savepath = "user://" + str(savefile) + ".sdb"
 	
-	return whatload
+	var file = FileAccess.open(savepath, FileAccess.WRITE)
+	if file:
+		file.store_var(what)
+		file.close()
+		return true
+	return false
+
+func load(savefile):
+	var savepath = "user://" + str(savefile) + ".sdb"
+	
+	if not FileAccess.file_exists(savepath):
+		return null
+	
+	var file = FileAccess.open(savepath, FileAccess.READ)
+	if file:
+		var data = file.get_var()
+		file.close()
+		return data
+	return null

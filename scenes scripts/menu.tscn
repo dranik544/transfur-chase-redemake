@@ -31,8 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://3oyxxfydk52x" path="res://sprites materials/wiki1.png" id="26_bhk6r"]
 [ext_resource type="Texture2D" uid="uid://bcujvutljhqce" path="res://sprites materials/wiki2.png" id="27_bhk6r"]
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
-[ext_resource type="Texture2D" uid="uid://g8328tjhuw5b" path="res://sprites materials/skins1.png" id="30_hxmmw"]
-[ext_resource type="Texture2D" uid="uid://bk1boqpbned" path="res://sprites materials/skins2.png" id="31_0xt4r"]
+[ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
+[ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites materials/arrow1.png" id="31_hxmmw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -345,7 +345,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
 keep_aspect = 0
 projection = 1
-size = 15.0
 far = 25.0
 
 [node name="room1 1" type="Node3D" parent="."]
@@ -585,7 +584,7 @@ texture_filter = 2
 texture = ExtResource("16_t6ycr")
 
 [node name="Sprite3D2" type="AnimatedSprite3D" parent="room1 1/room1"]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 1, 1.04, -1)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.04, 0)
 billboard = 1
 shaded = true
 alpha_cut = 1
@@ -601,9 +600,11 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="start" type="Node2D" parent="CanvasLayer"]
+[node name="buttons" type="Node2D" parent="CanvasLayer"]
 
-[node name="btnstart" type="Button" parent="CanvasLayer/start"]
+[node name="start" type="Node2D" parent="CanvasLayer/buttons"]
+
+[node name="btnstart" type="Button" parent="CanvasLayer/buttons/start"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -624,9 +625,9 @@ text = "начать"
 icon = ExtResource("17_xh7j4")
 expand_icon = true
 
-[node name="exit" type="Node2D" parent="CanvasLayer"]
+[node name="exit" type="Node2D" parent="CanvasLayer/buttons"]
 
-[node name="btnexit" type="Button" parent="CanvasLayer/exit"]
+[node name="btnexit" type="Button" parent="CanvasLayer/buttons/exit"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -647,9 +648,9 @@ text = "выйти"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
-[node name="settings" type="Node2D" parent="CanvasLayer"]
+[node name="settings" type="Node2D" parent="CanvasLayer/buttons"]
 
-[node name="btnsettings" type="Button" parent="CanvasLayer/settings"]
+[node name="btnsettings" type="Button" parent="CanvasLayer/buttons/settings"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -670,9 +671,9 @@ text = "настройки"
 icon = ExtResource("20_n7qjf")
 expand_icon = true
 
-[node name="tutorial" type="Node2D" parent="CanvasLayer"]
+[node name="tutorial" type="Node2D" parent="CanvasLayer/buttons"]
 
-[node name="btntutorial" type="Button" parent="CanvasLayer/tutorial"]
+[node name="btntutorial" type="Button" parent="CanvasLayer/buttons/tutorial"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -693,9 +694,9 @@ text = "обучение"
 icon = ExtResource("21_jh7g4")
 expand_icon = true
 
-[node name="stats" type="Node2D" parent="CanvasLayer"]
+[node name="stats" type="Node2D" parent="CanvasLayer/buttons"]
 
-[node name="btnstats" type="Button" parent="CanvasLayer/stats"]
+[node name="btnstats" type="Button" parent="CanvasLayer/buttons/stats"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -716,9 +717,9 @@ text = "статистика"
 icon = ExtResource("22_ybihx")
 expand_icon = true
 
-[node name="skins" type="Node2D" parent="CanvasLayer"]
+[node name="skins" type="Node2D" parent="CanvasLayer/buttons"]
 
-[node name="btnskins" type="Button" parent="CanvasLayer/skins"]
+[node name="btnskins" type="Button" parent="CanvasLayer/buttons/skins"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -995,95 +996,76 @@ expand_icon = true
 [node name="skins menu" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("30_0xt4r")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/skins menu"]
+[node name="Label" type="Label" parent="CanvasLayer/skins menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 18.0
 offset_right = 640.0
-offset_bottom = 480.0
-color = Color(0, 0, 0, 0.490196)
-
-[node name="default colin" type="Node2D" parent="CanvasLayer/skins menu"]
-position = Vector2(125, 127)
-script = SubResource("GDScript_jh7g4")
-
-[node name="wiki" type="TextureRect" parent="CanvasLayer/skins menu/default colin"]
-offset_left = -136.0
-offset_top = -143.0
-offset_right = 147.0
-offset_bottom = 140.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("24_n7qjf")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/skins menu/default colin"]
-offset_left = -87.0
-offset_top = -94.0
-offset_right = 98.0
-offset_bottom = 78.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("30_hxmmw")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/skins menu/default colin"]
-offset_left = -90.0
-offset_top = 82.0
-offset_right = 100.0
-offset_bottom = 119.0
-pivot_offset = Vector2(141, 141)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "обычный Колин"
+theme_override_font_sizes/font_size = 32
+text = "название костюма"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/skins menu/default colin"]
-offset_left = -100.0
-offset_top = -107.0
-offset_right = 111.0
-offset_bottom = 124.0
-pivot_offset = Vector2(141, 141)
+[node name="Label2" type="Label" parent="CanvasLayer/skins menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 422.0
+offset_right = 640.0
+offset_bottom = 445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = ". . ."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="arrow1" type="Node2D" parent="CanvasLayer/skins menu"]
+position = Vector2(125, 240)
+script = ExtResource("31_0xt4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/skins menu/arrow1"]
+position = Vector2(-30, -5)
+scale = Vector2(4, 4)
+texture = ExtResource("31_hxmmw")
+
+[node name="Button" type="Button" parent="CanvasLayer/skins menu/arrow1"]
+offset_left = -90.0
+offset_top = -57.0
+offset_right = 19.0
+offset_bottom = 47.0
 flat = true
 
-[node name="v1" type="Node2D" parent="CanvasLayer/skins menu"]
-position = Vector2(307, 150)
-script = SubResource("GDScript_jh7g4")
+[node name="arrow2" type="Node2D" parent="CanvasLayer/skins menu"]
+position = Vector2(565, 240)
+script = ExtResource("31_0xt4r")
+pluspos = Vector2(-25, 0)
 
-[node name="wiki" type="TextureRect" parent="CanvasLayer/skins menu/v1"]
-offset_left = -136.0
-offset_top = -143.0
-offset_right = 147.0
-offset_bottom = 140.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("24_n7qjf")
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/skins menu/arrow2"]
+position = Vector2(-30, -5)
+scale = Vector2(4, 4)
+texture = ExtResource("31_hxmmw")
+flip_h = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/skins menu/v1"]
-offset_left = -87.0
-offset_top = -94.0
-offset_right = 98.0
-offset_bottom = 78.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("31_0xt4r")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/skins menu/v1"]
-offset_left = -90.0
-offset_top = 82.0
-offset_right = 100.0
-offset_bottom = 119.0
-pivot_offset = Vector2(141, 141)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "V1 из ULTRAKILL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/skins menu/v1"]
-offset_left = -100.0
-offset_top = -107.0
-offset_right = 111.0
-offset_bottom = 124.0
-pivot_offset = Vector2(141, 141)
+[node name="Button" type="Button" parent="CanvasLayer/skins menu/arrow2"]
+offset_left = -79.0
+offset_top = -57.0
+offset_right = 30.0
+offset_bottom = 47.0
 flat = true
 
 [node name="btnexit" type="Button" parent="CanvasLayer/skins menu"]
@@ -1092,18 +1074,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = 416.0
-offset_right = 95.0
-offset_bottom = 447.0
+offset_left = 205.0
+offset_top = 360.0
+offset_right = 410.0
+offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(102, 15)
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "выйти"
+text = "сохранить и выйти"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 

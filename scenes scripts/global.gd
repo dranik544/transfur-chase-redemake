@@ -4,10 +4,13 @@ var brokenboxes: int = 0
 var brokendoors: int = 0
 var touchedslimes: int = 0
 
-var colinskin: String = ""
+var colinskin: String = "colin"
 
 signal navibakereq()
 
 
 func _ready() -> void:
-	Global.colinskin = SavingManager.load()
+	colinskin = SavingManager.load("skins")
+
+func _process(delta: float) -> void:
+	pass
