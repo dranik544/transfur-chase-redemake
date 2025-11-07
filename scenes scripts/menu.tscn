@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=63 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites materials/bg3.png" id="2_60p26"]
@@ -19,10 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://0tbvf24pf65v" path="res://sprites materials/stats1.png" id="16_t6ycr"]
 [ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="17_fjnfi"]
 [ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites materials/icon2.png" id="17_xh7j4"]
+[ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="17_ype5m"]
+[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://sprites materials/wallmesh1.tres" id="18_238qo"]
 [ext_resource type="Texture2D" uid="uid://dbodagrsvlewc" path="res://sprites materials/logo4.png" id="18_eogbu"]
 [ext_resource type="AudioStream" uid="uid://84y2eokrfi0a" path="res://sounds music/menu1.wav" id="19_efmc1"]
 [ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites materials/icon5.png" id="19_fhf2g"]
+[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://sprites materials/wallmesh2.tres" id="19_ype5m"]
 [ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites materials/icon3.png" id="20_n7qjf"]
+[ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="21_hjmwg"]
 [ext_resource type="Texture2D" uid="uid://bkm67ortvsxe" path="res://sprites materials/icon4.png" id="21_jh7g4"]
 [ext_resource type="Texture2D" uid="uid://cljlcdbjoypmr" path="res://sprites materials/icon6.png" id="22_ybihx"]
 [ext_resource type="Texture2D" uid="uid://blqnewv0rphba" path="res://sprites materials/icon7.png" id="24_4l3ii"]
@@ -136,7 +140,124 @@ func _ready() -> void:
 func ttimeout():
 	flip_h = not flip_h
 	$Timer.wait_time = randf_range(2, 10)
+
+func playanim():
+	$AnimationPlayer.play(\"newdress\")
 "
+
+[sub_resource type="Animation" id="Animation_238qo"]
+resource_name = "newdress"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(0.4, 1.6, 0.4, 1.6, 1),
+"update": 0,
+"values": [Vector3(0, 1.04, 0), Vector3(0, 1.5, 0), Vector3(0, 1.04, 0), Vector3(0, 1.5, 0), Vector3(0, 1.04, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(0.4, 1.6, 0.4, 1.6, 0.4),
+"update": 0,
+"values": [Vector3(6, 6, 6), Vector3(6, 5.5, 6), Vector3(6, 6, 6), Vector3(6, 5.5, 6), Vector3(6, 6, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ype5m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.04, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6, 6, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjmwg"]
+_data = {
+&"RESET": SubResource("Animation_ype5m"),
+&"newdress": SubResource("Animation_238qo")
+}
+
+[sub_resource type="QuadMesh" id="QuadMesh_hjmwg"]
+material = ExtResource("5_eeftm")
+size = Vector2(10, 8)
+center_offset = Vector3(-5, 0, 0)
 
 [sub_resource type="Animation" id="Animation_efmc1"]
 length = 0.001
@@ -349,233 +470,201 @@ far = 25.0
 
 [node name="room1 1" type="Node3D" parent="."]
 
-[node name="room1" type="CSGBox3D" parent="room1 1" groups=["navi"]]
-use_collision = true
-size = Vector3(10, 0.1, 8)
-material = ExtResource("5_eeftm")
-
-[node name="door" parent="room1 1/room1" instance=ExtResource("6_dst00")]
+[node name="door" parent="room1 1" instance=ExtResource("6_dst00")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 2)
 
-[node name="wall" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
-use_collision = true
-size = Vector3(10, 3, 0.1)
-material = ExtResource("4_2epkg")
-
-[node name="wall2" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
-use_collision = true
-size = Vector3(10, 3, 0.1)
-material = ExtResource("4_2epkg")
-
-[node name="wall3" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1.5, 0)
-use_collision = true
-size = Vector3(8, 3, 0.1)
-material = ExtResource("4_2epkg")
-
-[node name="wall5" type="CSGBox3D" parent="room1 1/room1/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 0)
-operation = 2
-use_collision = true
-size = Vector3(2, 2, 0.1)
-material = ExtResource("4_2epkg")
-
-[node name="wall4" type="CSGBox3D" parent="room1 1/room1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 1.5, 0)
-use_collision = true
-size = Vector3(8, 3, 0.1)
-material = ExtResource("4_2epkg")
-
-[node name="tubes4" type="Node3D" parent="room1 1/room1"]
+[node name="tubes4" type="Node3D" parent="room1 1"]
 transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 1.30353, 3.06407)
 
-[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/tubes4"]
 transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_0b3bo")
 
-[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes4/mesh1"]
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/tubes4/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes4/mesh1"]
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/tubes4/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/tubes4"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes4"]
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/tubes4"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes4"]
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/tubes4"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 visible = false
 shaded = true
 texture_filter = 2
 texture = ExtResource("7_a6jpe")
 
-[node name="tubes5" type="Node3D" parent="room1 1/room1"]
+[node name="tubes5" type="Node3D" parent="room1 1"]
 transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 0.687653, 1.7845)
 
-[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/tubes5"]
 transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_0b3bo")
 
-[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes5/mesh1"]
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/tubes5/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes5/mesh1"]
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/tubes5/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/tubes5"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes5"]
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/tubes5"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes5"]
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/tubes5"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 visible = false
 shaded = true
 texture_filter = 2
 texture = ExtResource("7_a6jpe")
 
-[node name="tubes6" type="Node3D" parent="room1 1/room1"]
+[node name="tubes6" type="Node3D" parent="room1 1"]
 transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 4.74357, 1.82196, 0.917071)
 
-[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/tubes6"]
 transform = Transform3D(-4.37114e-08, -1.4, 0, 1, -6.1196e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_0b3bo")
 
-[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/tubes6/mesh1"]
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/tubes6/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, -1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/tubes6/mesh1"]
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/tubes6/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_tkf0x")
 skeleton = NodePath("../..")
 
-[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/tubes6"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/tubes6"]
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/tubes6"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.4, 0, -0.15)
 mesh = SubResource("CylinderMesh_tkf0x")
 skeleton = NodePath("../mesh1")
 
-[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1/tubes6"]
+[node name="Sprite3D" type="Sprite3D" parent="room1 1/tubes6"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 visible = false
 shaded = true
 texture_filter = 2
 texture = ExtResource("7_a6jpe")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room1 1/room1"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="room1 1"]
 transform = Transform3D(-3.27835e-08, 7.99361e-15, -0.75, 0, 0.75, 7.99361e-15, 0.75, 3.49412e-22, -3.27835e-08, 4.9, 0.554353, 3.35123)
 mesh = SubResource("QuadMesh_eeftm")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room1 1/room1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="room1 1"]
 transform = Transform3D(-3.27835e-08, -0.75, 3.27835e-08, 0, -3.27835e-08, -0.75, 0.75, -3.27835e-08, 1.43301e-15, 4.9, 0.628967, -3.38341)
 mesh = SubResource("BoxMesh_4j3ub")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="room1 1/room1"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="room1 1"]
 transform = Transform3D(-4.37114e-08, 5.40172e-14, -1, 4.37113e-08, 1, 5.21065e-14, 1, -4.37113e-08, -4.37114e-08, 0.5, 0.05, 1.5)
 mesh = SubResource("BoxMesh_4j3ub")
+skeleton = NodePath("")
 
-[node name="table1" type="StaticBody3D" parent="room1 1/room1"]
+[node name="table1" type="StaticBody3D" parent="room1 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
 collision_layer = 2
 collision_mask = 0
 
-[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1/table1"]
+[node name="mesh1" type="MeshInstance3D" parent="room1 1/table1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
 mesh = SubResource("BoxMesh_pa2cx")
 
-[node name="mesh2" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+[node name="mesh2" type="MeshInstance3D" parent="room1 1/table1/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.5, 1.4)
 mesh = SubResource("BoxMesh_yupse")
 skeleton = NodePath("../..")
 
-[node name="mesh3" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+[node name="mesh3" type="MeshInstance3D" parent="room1 1/table1/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.5, 1.4)
 mesh = SubResource("BoxMesh_yupse")
 skeleton = NodePath("../..")
 
-[node name="mesh4" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+[node name="mesh4" type="MeshInstance3D" parent="room1 1/table1/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, -0.5, -1.4)
 mesh = SubResource("BoxMesh_yupse")
 skeleton = NodePath("../..")
 
-[node name="mesh5" type="MeshInstance3D" parent="room1 1/room1/table1/mesh1"]
+[node name="mesh5" type="MeshInstance3D" parent="room1 1/table1/mesh1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.5, -1.4)
 mesh = SubResource("BoxMesh_yupse")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room1 1/room1/table1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="room1 1/table1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_iuk1j")
 
-[node name="csg1" type="CSGCylinder3D" parent="room1 1/room1"]
+[node name="csg1" type="CSGCylinder3D" parent="room1 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.3, -2)
 radius = 0.8
 height = 2.5
 sides = 14
 material = SubResource("StandardMaterial3D_pa2cx")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1/csg1"]
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/csg1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50757, -0.21143, 0)
 operation = 2
 size = Vector3(1, 3, 2)
 
-[node name="csg2" type="CSGCylinder3D" parent="room1 1/room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.2, -2)
+[node name="csg2" type="CSGCylinder3D" parent="room1 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.21, -2)
 radius = 0.9
 height = 0.2
 sides = 14
 material = ExtResource("4_2epkg")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1/csg2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/csg2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507568, -0.211426, 0)
 operation = 2
 size = Vector3(1, 3, 2)
 
-[node name="csg3" type="CSGCylinder3D" parent="room1 1/room1"]
+[node name="csg3" type="CSGCylinder3D" parent="room1 1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -2)
 radius = 0.9
 height = 0.2
 sides = 14
 material = ExtResource("4_2epkg")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/room1/csg3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="room1 1/csg3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.507568, -0.211426, 0)
 operation = 2
 size = Vector3(1, 3, 2)
 
-[node name="mesh1" type="MeshInstance3D" parent="room1 1/room1"]
+[node name="mesh1" type="MeshInstance3D" parent="room1 1"]
 transform = Transform3D(-4.2222e-08, -0.258819, -0.965926, -1.13133e-08, 0.965926, -0.258819, 1, 0, -4.37114e-08, 4.66238, 2, 2.70348)
 mesh = SubResource("QuadMesh_eogbu")
+skeleton = NodePath("")
 
-[node name="Sprite3D" type="Sprite3D" parent="room1 1/room1"]
+[node name="Sprite3D" type="Sprite3D" parent="room1 1"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.13732, 1.31493, -2.37024)
 billboard = 1
 shaded = true
@@ -583,7 +672,7 @@ alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("16_t6ycr")
 
-[node name="Sprite3D2" type="AnimatedSprite3D" parent="room1 1/room1"]
+[node name="Sprite3D2" type="AnimatedSprite3D" parent="room1 1"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.04, 0)
 billboard = 1
 shaded = true
@@ -594,9 +683,60 @@ animation = &"idle"
 autoplay = "idle"
 script = SubResource("GDScript_0xt4r")
 
-[node name="Timer" type="Timer" parent="room1 1/room1/Sprite3D2"]
+[node name="Timer" type="Timer" parent="room1 1/Sprite3D2"]
 wait_time = 2.0
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="room1 1/Sprite3D2"]
+libraries = {
+&"": SubResource("AnimationLibrary_hjmwg")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="room1 1/Sprite3D2"]
+stream = ExtResource("17_ype5m")
+pitch_scale = 1.25
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="room1 1/Sprite3D2"]
+stream = ExtResource("17_ype5m")
+pitch_scale = 1.25
+
+[node name="bottom" type="MeshInstance3D" parent="room1 1" groups=["navi"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 0, 0)
+mesh = SubResource("QuadMesh_hjmwg")
+skeleton = NodePath("../..")
+
+[node name="wall1" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+mesh = ExtResource("18_238qo")
+skeleton = NodePath("../bottom")
+
+[node name="wall2" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
+mesh = ExtResource("18_238qo")
+skeleton = NodePath("../bottom")
+
+[node name="wall3" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(-2.18557e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.37114e-08, -5, 1.5, -1.5)
+mesh = ExtResource("18_238qo")
+skeleton = NodePath("../bottom")
+
+[node name="wall4" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(-4.37114e-09, 0, 1, 0, 1, 0, -0.1, 0, -4.37114e-08, -5, 1.5, 3.5)
+mesh = ExtResource("18_238qo")
+skeleton = NodePath("../bottom")
+
+[node name="wall5" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -5, 2.50299, 2)
+mesh = ExtResource("19_ype5m")
+skeleton = NodePath("../bottom")
+
+[node name="wall6" type="MeshInstance3D" parent="room1 1"]
+transform = Transform3D(-3.49691e-08, 0, 1, 0, 1, 0, -0.8, 0, -4.37114e-08, 5, 1.5, 0)
+mesh = ExtResource("18_238qo")
+skeleton = NodePath("../bottom")
+
+[node name="savepoint1" parent="room1 1" instance=ExtResource("21_hjmwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -3.95)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

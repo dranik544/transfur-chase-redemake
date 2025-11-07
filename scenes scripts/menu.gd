@@ -44,7 +44,7 @@ func _input(event):
 		$"room1 1".rotate_y(event.relative.x * sens)
 		#centercam.rotate_y(-event.relative.x * sens)
 		centercam.rotate_x(-event.relative.y * sens)
-		#centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
+		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
 		driftcam += event.relative.x / 1000
 		driftcam = clamp(driftcam, -0.05, 0.05)
 	if Input.is_action_just_pressed("F1"):
@@ -56,12 +56,12 @@ func _physics_process(delta: float) -> void:
 	var mp = get_viewport().get_mouse_position()
 	var tr = 900
 	var sz = 1600
-	dinamicbtn(delta, $CanvasLayer/buttons/start, $"room1 1/room1/door", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/buttons/exit, $"room1 1/room1/MeshInstance3D", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/buttons/settings, $"room1 1/room1/MeshInstance3D2", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/buttons/tutorial, $"room1 1/room1/mesh1", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/room1/Sprite3D", 25, tr, sz, mp)
-	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/room1/Sprite3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/start, $"room1 1/door", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/exit, $"room1 1/MeshInstance3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/settings, $"room1 1/MeshInstance3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/tutorial, $"room1 1/mesh1", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/Sprite3D", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/Sprite3D2", 25, tr, sz, mp)
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

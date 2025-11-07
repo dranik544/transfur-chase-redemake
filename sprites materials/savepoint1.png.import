@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgjcgriy06bhg"
-path.s3tc="res://.godot/imported/colin7transfur.png-f5435ceae8dfed71a9fcc111e63021a9.s3tc.ctex"
+uid="uid://cmm1l44fa8je0"
+path.s3tc="res://.godot/imported/savepoint1.png-fbc26a492e4fef52241f012c1d0a09ca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sprites materials/V1 colin skin/colin7transfur.png"
-dest_files=["res://.godot/imported/colin7transfur.png-f5435ceae8dfed71a9fcc111e63021a9.s3tc.ctex"]
+source_file="res://sprites materials/savepoint1.png"
+dest_files=["res://.godot/imported/savepoint1.png-fbc26a492e4fef52241f012c1d0a09ca.s3tc.ctex"]
 
 [params]
 

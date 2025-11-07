@@ -7,8 +7,8 @@ var rooms2 = {
 	1: preload("res://scenes scripts/room_1_1.tscn"),
 }
 
-var room1size = Vector3(10, 0, 0)
-var room2size = Vector3(15, 0, 0)
+@export var room1size = Vector3(10, 0, 0)
+@export var room2size = Vector3(15, 0, 0)
 @export var loadrooms: int = 10
 
 
@@ -58,6 +58,7 @@ func spawnroom():
 		var nextroom: Node3D = sceneroom.instantiate()
 		nextroom.position = $spawnnextroom.position
 		add_child(nextroom)
+		nextroom.bakenavi()
 	
 	$spawnnextroom.position -= typeroompos
 	$detectspawnroom.position -= typeroompos

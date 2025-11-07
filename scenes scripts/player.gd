@@ -295,8 +295,6 @@ func _on_slidetimer_timeout() -> void:
 	$gui/slidebar/slidebar.visible = false
 
 func updateskin():
-	print(Global.colinskin)
-	
 	match Global.colinskin:
 		"colin":
 			$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
@@ -307,5 +305,8 @@ func updateskin():
 		"hank":
 			$gui/colinbg.texture = load("res://sprites materials/hank colin skin/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://sprites materials/hank_player_skin.tres")
+		null:
+			$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
 	
 	$Sprite3D.play("idle")
