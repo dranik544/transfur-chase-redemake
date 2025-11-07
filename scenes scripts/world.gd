@@ -4,7 +4,7 @@ var rooms1 = {
 	1: preload("res://scenes scripts/room_1_1.tscn"),
 }
 var rooms2 = {
-	1: preload("res://scenes scripts/room_1_1.tscn"),
+	1: preload("res://scenes scripts/room_2_1.tscn"),
 }
 
 @export var room1size = Vector3(10, 0, 0)
@@ -42,7 +42,7 @@ func _on_timer_timeout() -> void:
 
 func spawnroom():
 	var numroom: int = randi_range(1, 1)
-	var typeroom: int = randi_range(1, 1)
+	var typeroom: int = randi_range(1, 2)
 	var sceneroom: PackedScene
 	var typeroompos
 	

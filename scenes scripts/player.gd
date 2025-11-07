@@ -129,10 +129,13 @@ func _physics_process(delta: float) -> void:
 			if itemscene:
 				var item = itemscene.instantiate()
 				get_parent().add_child(item)
+				item.global_position = global_position
 				
-				if item.ischangehp:
-					health += item.changehp
-					item.queue_free()
+				item.use($".")
+				
+				#if item.ischangehp:
+					#health += item.changehp
+					#item.queue_free()
 				
 				itemsprite = null
 				$gui/invtexture.texture = load("res://sprites materials/nullinv1.png")

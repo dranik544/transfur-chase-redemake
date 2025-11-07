@@ -24,7 +24,8 @@ size = Vector3(10, 3, 10)
 
 [node name="room1 1" type="Node3D"]
 script = ExtResource("1_ks1wj")
-NumBoxes1 = 4
+NumBoxes1 = 2
+NumBoxes3 = 0
 NumBoxes4 = 0
 NumBasket1 = 1
 

@@ -31,7 +31,7 @@ func btnrightpressed():
 
 
 func updateskin(save: bool, enablecurskin: bool):
-	if enablecurskin: Global.colinskin = listskins[curskin]
+	if enablecurskin: Global.colinskin = listskins[curskin]; $"../../room1 1/Sprite3D2/effect1".play()
 	
 	match Global.colinskin:
 		"colin":
@@ -66,6 +66,6 @@ func updateskin(save: bool, enablecurskin: bool):
 			(отсылка на Madness Combat)
 			(даётся за прохождение 2-ой локации)"
 	
-	if save: SavingManager.save("skins", Global.colinskin); colin.playanim()
+	if save: SavingManager.save("skins", Global.colinskin); colin.playanim();
 	
 	colin.play("idle")
