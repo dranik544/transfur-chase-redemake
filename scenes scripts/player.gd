@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 4.5
 var freecam: bool = true
 var hit: bool = false
 var taunt: bool = false
-var health: int = 5
+var health: float = 5.0
 var guie = false
 var slimebasepos = Vector2.ZERO
 var slimetimepos = 0.0
@@ -33,6 +33,9 @@ var camfollow: bool = false
 var camfollowpos: Vector3 = Vector3.ZERO
 var camfollowpluspos: float = 0.0
 var camscalewheel = 0.0
+@export var latexpunchsound1: AudioStream = preload("res://sounds music/latexpunch2.mp3")
+@export var latexpunchsound2: AudioStream = preload("res://sounds music/latexpunch3.mp3")
+
 
 
 func _ready():
@@ -138,14 +141,14 @@ func _physics_process(delta: float) -> void:
 					#item.queue_free()
 				
 				itemsprite = null
-				$gui/invtexture.texture = load("res://sprites materials/nullinv1.png")
+				$gui/invtexture.texture = load("res://sprites/nullinv1.png")
 				itemscene = null
 				itemkg = 0.0
 				itemtype = "Тип предмета"
 				$gui/Label.text = itemtype
 				isinv = false
 	
-	if health < 3:
+	if health < 3.0:
 		$gui/slime.position = slimebasepos + Vector2(
 			sin(slimetimepos) * 10, #randf_range(-1, 1),
 			sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
@@ -157,7 +160,7 @@ func _physics_process(delta: float) -> void:
 		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	else:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
-	if health <= 0:
+	if health <= 0.0:
 		$Sprite3D.animation = "transfur"
 		var tween = create_tween()
 		tween.tween_property($"center camera/cam", "size", 0, 4)
@@ -202,6 +205,8 @@ func _physics_process(delta: float) -> void:
 		slidespeed = lerp(slidespeed, slidespeedminus, 10 * delta)
 		var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
 		enemy.collision_layer = false
+		if !$slide.playing:
+			$slide.play()
 	else:
 		if !taunt:
 			$CollisionShape3D.disabled = false
@@ -209,6 +214,7 @@ func _physics_process(delta: float) -> void:
 				await get_tree().physics_frame
 			$CollisionShape3D2.disabled = true
 		isslide = false
+		$slide.stop()
 	
 	cam.size = lerp(cam.size, camscale + camscalewheel, 5 * delta)
 	$gui/slimecolor.color = lerp($gui/slimecolor.color, Color(1.0, 1.0, 1.0, 0.0), 1 * delta)
@@ -218,6 +224,8 @@ func _physics_process(delta: float) -> void:
 			if !taunt:
 				$Sprite3D.play("run")
 				camscale = lerp(camscale, 11.0, 10 * delta)
+				if !$steps.playing:
+					$steps.play()
 			else:
 				$Sprite3D.play("taunt run")
 				camscale = lerp(camscale, 11.0, 11 * delta)
@@ -225,6 +233,7 @@ func _physics_process(delta: float) -> void:
 			velocity.z = lerp(velocity.z, direction.z * speed, 9 * delta)
 		else:
 			if !taunt:
+				$steps.stop()
 				$Sprite3D.play("idle")
 				camscale = lerp(camscale, 9.0, 10 * delta)
 			else:
@@ -232,12 +241,19 @@ func _physics_process(delta: float) -> void:
 				camscale = lerp(camscale, 8.5, 10 * delta)
 			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), 15 * delta)
 			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), 15 * delta)
+	
 	if Input.is_action_just_pressed("A"):
 		$Sprite3D.flip_h = true
 		$gui/colinbg.flip_h = true
+		if Global.colinskin == "muha":
+			$Sprite3D.flip_h = not $Sprite3D.flip_h
+			$gui/colinbg.flip_h = not $gui/colinbg.flip_h
 	elif Input.is_action_just_pressed("D"):
 		$Sprite3D.flip_h = false
 		$gui/colinbg.flip_h = false
+		if Global.colinskin == "muha":
+			$Sprite3D.flip_h = not $Sprite3D.flip_h
+			$gui/colinbg.flip_h = not $gui/colinbg.flip_h
 	
 	#if $"center camera/Camera3D/RayCast3D".is_colliding():
 		#var collider = $"center camera/Camera3D/RayCast3D".get_collider()
@@ -253,18 +269,32 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
-		minushealth()
+		minushealth(1.0)
+		
+		var random = randi_range(1, 2)
+		match random:
+			1: $latexpunch.stream = latexpunchsound1
+			2: $latexpunch.stream = latexpunchsound2
+		$latexpunch.play()
+	if body.is_in_group("small enemy"):
+		minushealth(0.25)
+		
+		var random = randi_range(1, 2)
+		match random:
+			1: $latexpunch.stream = latexpunchsound1
+			2: $latexpunch.stream = latexpunchsound2
+		$latexpunch.play()
 	if body.is_in_group("broke") and isslide:
 		Global.brokenboxes += 1
 		body.queue_free()
 		slidespeedminus -= randf_range(1.0, 2.5)
 	if body.is_in_group("slime") and !isslide:
-		minushealth()
+		minushealth(0.5)
 		speed -= randf_range(4.0, 5.0)
 		body.touched()
 
-func minushealth():
-	health -= 1
+func minushealth(num):
+	health -= num
 	$gui/slime.scale = Vector2(1.5, 1.5)
 	camscale += randf_range(-10.0, -7.5)
 	$gui/slimecolor.color = Color(1.0, 1.0, 1.0, randf_range(0.5, 0.8))
@@ -273,7 +303,7 @@ func minushealth():
 	for i in slimeenum:
 		var slimee = TextureRect.new()
 		var randomslimee = randi_range(1, 4)
-		var spriteslimee: Texture = load("res://sprites materials/slimee" + str(randomslimee) + ".png")
+		var spriteslimee: Texture = load("res://sprites/slimee" + str(randomslimee) + ".png")
 		slimee.texture = spriteslimee
 		slimee.custom_minimum_size = Vector2(
 			randf_range(25, 100),
@@ -300,16 +330,25 @@ func _on_slidetimer_timeout() -> void:
 func updateskin():
 	match Global.colinskin:
 		"colin":
-			$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
-			$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
+			$gui/colinbg.texture = load("res://sprites/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")
 		"V1":
-			$gui/colinbg.texture = load("res://sprites materials/V1 colin skin/colin bg1.png")
-			$Sprite3D.sprite_frames = load("res://sprites materials/v1_player_skin.tres")
+			$gui/colinbg.texture = load("res://sprites/V1 colin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/v1_player_skin.tres")
 		"hank":
-			$gui/colinbg.texture = load("res://sprites materials/hank colin skin/colin bg1.png")
-			$Sprite3D.sprite_frames = load("res://sprites materials/hank_player_skin.tres")
+			$gui/colinbg.texture = load("res://sprites/hank colin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/hank_player_skin.tres")
+		"nightmare colin":
+			$gui/colinbg.texture = load("res://sprites/nightmare colin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/nightmare_player_skin.tres")
+		"necoarc":
+			$gui/colinbg.texture = load("res://sprites/neco arc skin/colin bg 1.png")
+			$Sprite3D.sprite_frames = load("res://skins/necoarc_player_skin.tres")
+		"muha":
+			$gui/colinbg.texture = load("res://sprites/muha skin/colin bg 1.png")
+			$Sprite3D.sprite_frames = load("res://skins/muha_player_skin.tres")
 		null:
-			$gui/colinbg.texture = load("res://sprites materials/colin bg1.png")
-			$Sprite3D.sprite_frames = load("res://sprites materials/player_sprite.tres")
+			$gui/colinbg.texture = load("res://sprites/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")
 	
 	$Sprite3D.play("idle")

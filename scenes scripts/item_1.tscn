@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bo1djaqkbljmv"]
 
-[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites materials/Cat.png" id="1_20erf"]
+[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="1_20erf"]
 [ext_resource type="Script" uid="uid://birrl14afv5hp" path="res://scenes scripts/item_1.gd" id="1_kbc05"]
-[ext_resource type="Texture2D" uid="uid://bmwmxjymgkfpb" path="res://sprites materials/очёртчтонетаксэтимкотомблять.png" id="2_7oafq"]
-[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites materials/pickitem1.png" id="2_okf5b"]
+[ext_resource type="Texture2D" uid="uid://bmwmxjymgkfpb" path="res://sprites/очёртчтонетаксэтимкотомблять.png" id="2_7oafq"]
+[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="2_okf5b"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="3_4me82"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_okf5b"]

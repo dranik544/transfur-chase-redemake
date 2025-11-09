@@ -34,6 +34,8 @@ func hit(damage: float):
 	hp -= damage
 	$Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
 	$Sprite3D.modulate = HitColor
+	
+	$AudioStreamPlayer3D.play()
 	if hp <= 0:
 		Global.brokendoors += 1
 		freeze = false

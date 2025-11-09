@@ -19,6 +19,8 @@ func touched():
 	Global.touchedslimes -= 1
 	n += randf_range(10.0, 12.5)
 	$Timer.start(randf_range(2.0, 3.0))
+	
+	$touched.play()
 
 func _on_timer_timeout() -> void:
 	if canBeEnemy:

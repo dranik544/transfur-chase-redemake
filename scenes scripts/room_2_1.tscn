@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_ipnbu"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_2rcfo"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="3_va8b4"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="3_va8b4"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="4_72qif"]
 [ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="5_qw4xf"]
-[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://sprites materials/wallmesh1.tres" id="6_k5j0q"]
-[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://sprites materials/wallmesh2.tres" id="7_kyc51"]
+[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://wallmesh/wallmesh1.tres" id="6_k5j0q"]
+[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://wallmesh/wallmesh2.tres" id="7_kyc51"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_va8b4")

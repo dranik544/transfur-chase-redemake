@@ -12,7 +12,7 @@ extends RigidBody3D
 
 @export_category("effects")
 @export var effectscene: PackedScene = preload("res://scenes scripts/effect_1.tscn")
-@export var ieffecttexture: Texture = preload("res://sprites materials/icon8.png")
+@export var ieffecttexture: Texture = preload("res://sprites/icon8.png")
 @export var iscaletexture: Vector2 = Vector2(0.25, 0.25)
 @export var iamounttexture: int = 12
 

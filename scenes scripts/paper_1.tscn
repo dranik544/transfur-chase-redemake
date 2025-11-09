@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4iblfdwkgip0"]
 
-[ext_resource type="Texture2D" uid="uid://rgq32l8m3u21" path="res://sprites materials/paper2.png" id="1_otesp"]
+[ext_resource type="Texture2D" uid="uid://rgq32l8m3u21" path="res://sprites/paper2.png" id="1_otesp"]
 
 [node name="paper1" type="Node3D"]
 

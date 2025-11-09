@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bi5m4wyed2s30"]
 
-[ext_resource type="Texture2D" uid="uid://b8aa7uqb7g4u4" path="res://sprites materials/provoda1.png" id="1_47aa6"]
+[ext_resource type="Texture2D" uid="uid://b8aa7uqb7g4u4" path="res://sprites/provoda1.png" id="1_47aa6"]
 
 [node name="cabels1" type="Node3D"]
 

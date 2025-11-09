@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bn8xuieh107l3"
+path="res://.godot/imported/punch_door.ogg-bd45e37b0c097ed7c3a982cb5291654f.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds music/punch_door.ogg"
+dest_files=["res://.godot/imported/punch_door.ogg-bd45e37b0c097ed7c3a982cb5291654f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7babhoh2ybad"
+path="res://.godot/imported/doorpunch.mp3-eb613cf2134f3ed5b7b72ce3aa45110e.mp3str"
+
+[deps]
+
+source_file="res://sounds music/doorpunch.mp3"
+dest_files=["res://.godot/imported/doorpunch.mp3-eb613cf2134f3ed5b7b72ce3aa45110e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

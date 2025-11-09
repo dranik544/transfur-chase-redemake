@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl4t1c72nwk4m"
+path="res://.godot/imported/latexpunch3.mp3-a626a7dd27454dca45f0db3eeda7fbb3.mp3str"
+
+[deps]
+
+source_file="res://sounds music/latexpunch3.mp3"
+dest_files=["res://.godot/imported/latexpunch3.mp3-a626a7dd27454dca45f0db3eeda7fbb3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

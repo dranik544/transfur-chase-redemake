@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://chn6wexphktmt"]
 
-[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites materials/slime2.png" id="1_flbdl"]
+[ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="1_flbdl"]
 
 [node name="gui" type="CanvasLayer"]
 

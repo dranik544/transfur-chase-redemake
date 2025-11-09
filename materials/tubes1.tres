@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://b4ocrtjpxpn4k"]
+
+[ext_resource type="Texture2D" uid="uid://biwk3e2gtflmm" path="res://sprites/tubes1.png" id="1_dbytf"]
+[ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites/bg4.png" id="2_fjbm2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yj71"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.1
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_0yj71")
+albedo_texture = ExtResource("1_dbytf")
+metallic = 1.0
+metallic_texture = ExtResource("2_fjbm2")
+uv1_triplanar = true
+texture_filter = 2

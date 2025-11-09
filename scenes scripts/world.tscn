@@ -1,19 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=22 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="1_ouu2o"]
-[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites materials/bg3.png" id="2_y5apx"]
+[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_y5apx"]
 [ext_resource type="PackedScene" uid="uid://c33iojhyr4ddn" path="res://scenes scripts/room_1_1.tscn" id="3_55rg2"]
-[ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites materials/bg2.png" id="6_7evke"]
+[ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_7evke"]
 [ext_resource type="PackedScene" uid="uid://dpsuhojkxbdha" path="res://scenes scripts/vent_1.tscn" id="6_y5apx"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="8_53xst"]
 [ext_resource type="PackedScene" uid="uid://bo1djaqkbljmv" path="res://scenes scripts/item_1.tscn" id="9_sjbx3"]
 [ext_resource type="PackedScene" uid="uid://ckgad4iixpkk8" path="res://scenes scripts/table_1.tscn" id="10_txncy"]
 [ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="12_rf126"]
-[ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites materials/icon1.png" id="13_sivfs"]
+[ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="13_sivfs"]
 [ext_resource type="PackedScene" uid="uid://bno1l2146nsh2" path="res://scenes scripts/item_2.tscn" id="15_alufl"]
+[ext_resource type="PackedScene" uid="uid://bq2jhn6xnpmfv" path="res://scenes scripts/small_enemy_1.tscn" id="16_qeca7"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifjlx"]
@@ -62,6 +63,7 @@ shadow_enabled = true
 
 [node name="enemy1" parent="." instance=ExtResource("7_soo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -3)
+canmove = false
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -182,6 +184,9 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -3)
 selfscene = ExtResource("15_alufl")
 type = ""
+
+[node name="small enemy 1" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19019, 0.230713, -0.504761)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="detectspawnroom" to="." method="_on_detectspawnroom_body_entered"]

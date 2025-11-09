@@ -1,0 +1,129 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://58lfc4ffls7k"]
+
+[ext_resource type="Texture2D" uid="uid://b81w1vi5atscl" path="res://sprites/colin8.png" id="1_6t8bf"]
+[ext_resource type="Texture2D" uid="uid://c68e5j7a27qq0" path="res://sprites/colin9.png" id="2_2dftc"]
+[ext_resource type="Texture2D" uid="uid://ct0jw0gnu3h11" path="res://sprites/hank colin skin/colin1idle.png" id="3_6t8bf"]
+[ext_resource type="Texture2D" uid="uid://cf38qhqt1pejx" path="res://sprites/hank colin skin/colin2idle.png" id="4_2dftc"]
+[ext_resource type="Texture2D" uid="uid://cy5j1sxigrv44" path="res://sprites/hank colin skin/colin1run.png" id="5_cdia3"]
+[ext_resource type="Texture2D" uid="uid://suytvfkb2b6n" path="res://sprites/hank colin skin/colin2run.png" id="6_gva3g"]
+[ext_resource type="Texture2D" uid="uid://djkaqxrwtxt6i" path="res://sprites/hank colin skin/colin1slide.png" id="7_n5kk8"]
+[ext_resource type="Texture2D" uid="uid://ckdmidhdv62km" path="res://sprites/hank colin skin/colin2slide.png" id="8_an55g"]
+[ext_resource type="Texture2D" uid="uid://i3vvmsf5l4qd" path="res://sprites/hank colin skin/colin2taunt.png" id="9_2nvoc"]
+[ext_resource type="Texture2D" uid="uid://ckk71hb8s4j4b" path="res://sprites/hank colin skin/colin1taunt.png" id="10_fujo8"]
+[ext_resource type="Texture2D" uid="uid://0ki2cap0pt4l" path="res://sprites/hank colin skin/colin3taunt.png" id="11_2ngbt"]
+[ext_resource type="Texture2D" uid="uid://cr0xc5dwrla6i" path="res://sprites/hank colin skin/colin1transfur.png" id="12_3dh4u"]
+[ext_resource type="Texture2D" uid="uid://f0euixhrua74" path="res://sprites/hank colin skin/colin2transfur.png" id="13_mkvie"]
+[ext_resource type="Texture2D" uid="uid://pxrsss6yk5ft" path="res://sprites/hank colin skin/colin3transfur.png" id="14_5htry"]
+[ext_resource type="Texture2D" uid="uid://dfhom70620ly8" path="res://sprites/hank colin skin/colin4transfur.png" id="15_hkj52"]
+[ext_resource type="Texture2D" uid="uid://0ee3wohcrcim" path="res://sprites/hank colin skin/colin5transfur.png" id="16_7s0f6"]
+[ext_resource type="Texture2D" uid="uid://cim5gr1qctdx2" path="res://sprites/hank colin skin/colin6transfur.png" id="17_o6wk3"]
+[ext_resource type="Texture2D" uid="uid://g4um341f5m6p" path="res://sprites/hank colin skin/colin7transfur.png" id="18_nkg64"]
+[ext_resource type="Texture2D" uid="uid://dmgkmed6w4dwf" path="res://sprites/hank colin skin/colin8transfur.png" id="19_cmmkm"]
+[ext_resource type="Texture2D" uid="uid://b14dtrju5rp2h" path="res://sprites/hank colin skin/colin9transfur.png" id="20_bgjko"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6t8bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2dftc")
+}],
+"loop": true,
+"name": &"crawl run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6t8bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2dftc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_cdia3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6t8bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gva3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2dftc")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_n5kk8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_an55g")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2nvoc")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fujo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2nvoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2ngbt")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_3dh4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mkvie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5htry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hkj52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7s0f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o6wk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_nkg64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_cmmkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_bgjko")
+}],
+"loop": false,
+"name": &"transfur",
+"speed": 4.0
+}]

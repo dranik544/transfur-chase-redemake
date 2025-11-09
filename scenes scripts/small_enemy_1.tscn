@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq2jhn6xnpmfv"]
+
+[ext_resource type="Texture2D" uid="uid://dus528dkpma80" path="res://sprites/small slime 1.png" id="1_5tdja"]
+[ext_resource type="Script" uid="uid://bvlrwnte3offw" path="res://scenes scripts/small_enemy_1.gd" id="1_yl0xk"]
+[ext_resource type="Texture2D" uid="uid://4nayrbybffe2" path="res://sprites/small slime 2.png" id="2_yl0xk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5tdja"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28iu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5tdja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yl0xk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="small enemy 1" type="CharacterBody3D"]
+script = ExtResource("1_yl0xk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CapsuleShape3D_5tdja")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.32, 0)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_28iu3")
+animation = &"idle"
+autoplay = "idle"

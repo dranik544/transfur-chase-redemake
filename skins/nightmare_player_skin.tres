@@ -1,0 +1,129 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://bxf3xcfa8apvf"]
+
+[ext_resource type="Texture2D" uid="uid://b81w1vi5atscl" path="res://sprites/colin8.png" id="1_bvqjx"]
+[ext_resource type="Texture2D" uid="uid://c68e5j7a27qq0" path="res://sprites/colin9.png" id="2_kmxa2"]
+[ext_resource type="Texture2D" uid="uid://nsy4fwk288d5" path="res://sprites/nightmare colin/colin1idle.png" id="3_bvqjx"]
+[ext_resource type="Texture2D" uid="uid://b18aiquen4li4" path="res://sprites/nightmare colin/colin2idle.png" id="4_kmxa2"]
+[ext_resource type="Texture2D" uid="uid://bf7w6n0k88sih" path="res://sprites/nightmare colin/colin1run.png" id="5_4dfy4"]
+[ext_resource type="Texture2D" uid="uid://cyfqs7pv7df13" path="res://sprites/nightmare colin/colin2run.png" id="6_0kpg2"]
+[ext_resource type="Texture2D" uid="uid://bilm4m6bkm07b" path="res://sprites/nightmare colin/colin1slide.png" id="7_ykius"]
+[ext_resource type="Texture2D" uid="uid://bq0c8ucyjwav2" path="res://sprites/nightmare colin/colin2slide.png" id="8_wfpqk"]
+[ext_resource type="Texture2D" uid="uid://byipd8lbaw5i4" path="res://sprites/nightmare colin/colin1taunt.png" id="9_gvqw3"]
+[ext_resource type="Texture2D" uid="uid://cqljkt61ywnbp" path="res://sprites/nightmare colin/colin2taunt.png" id="10_smd8a"]
+[ext_resource type="Texture2D" uid="uid://c7qfaadbipbs0" path="res://sprites/nightmare colin/colin3taunt.png" id="11_88mu4"]
+[ext_resource type="Texture2D" uid="uid://bg3sa7dqlr48n" path="res://sprites/nightmare colin/colin1transfur.png" id="12_bvqjx"]
+[ext_resource type="Texture2D" uid="uid://vsq685e0qcd8" path="res://sprites/nightmare colin/colin2transfur.png" id="13_kmxa2"]
+[ext_resource type="Texture2D" uid="uid://cy3bikuk5vscm" path="res://sprites/nightmare colin/colin3transfur.png" id="14_4dfy4"]
+[ext_resource type="Texture2D" uid="uid://oslgk7i2ep4v" path="res://sprites/nightmare colin/colin4transfur.png" id="15_0kpg2"]
+[ext_resource type="Texture2D" uid="uid://hsfy2mtix2dw" path="res://sprites/nightmare colin/colin5transfur.png" id="16_ykius"]
+[ext_resource type="Texture2D" uid="uid://do532v66q53p3" path="res://sprites/nightmare colin/colin6transfur.png" id="17_wfpqk"]
+[ext_resource type="Texture2D" uid="uid://b1e4cupmhr2nq" path="res://sprites/nightmare colin/colin7transfur.png" id="18_gvqw3"]
+[ext_resource type="Texture2D" uid="uid://dqdelnf3ljyvn" path="res://sprites/nightmare colin/colin8transfur.png" id="19_smd8a"]
+[ext_resource type="Texture2D" uid="uid://bnwxiy74ksh7n" path="res://sprites/nightmare colin/colin9transfur.png" id="20_88mu4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bvqjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kmxa2")
+}],
+"loop": true,
+"name": &"crawl run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bvqjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kmxa2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4dfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bvqjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0kpg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kmxa2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ykius")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wfpqk")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_gvqw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_smd8a")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_88mu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_smd8a")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_bvqjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kmxa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4dfy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_0kpg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ykius")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wfpqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gvqw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_smd8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_88mu4")
+}],
+"loop": false,
+"name": &"transfur",
+"speed": 4.0
+}]

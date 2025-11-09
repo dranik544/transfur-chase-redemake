@@ -1,11 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpsuhojkxbdha"]
+[gd_scene load_steps=17 format=3 uid="uid://dpsuhojkxbdha"]
 
 [ext_resource type="Script" uid="uid://13tfdve6tc0f" path="res://scenes scripts/vent_1.gd" id="1_86coe"]
-[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites materials/vent1.png" id="1_p4sqs"]
-[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites materials/box1.png" id="2_p4sqs"]
-[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites materials/bg1.png" id="3_86coe"]
-[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites materials/vent2.png" id="5_gpv4y"]
-[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites materials/Cat.png" id="6_ys87n"]
+[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites/vent1.png" id="1_p4sqs"]
+[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites/box1.png" id="2_p4sqs"]
+[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites/bg1.png" id="3_86coe"]
+[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites/vent2.png" id="5_gpv4y"]
+[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="6_ys87n"]
+[ext_resource type="AudioStream" uid="uid://baxrmlydy3quv" path="res://sounds music/openvent1.mp3" id="7_lfnx1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfnx1"]
 albedo_texture = ExtResource("1_p4sqs")
@@ -207,5 +208,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 visible = false
 billboard = 1
 texture = ExtResource("6_ys87n")
+
+[node name="open" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_lfnx1")
+pitch_scale = 1.2
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

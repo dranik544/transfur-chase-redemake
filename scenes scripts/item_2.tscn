@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bno1l2146nsh2"]
 
 [ext_resource type="Script" uid="uid://birrl14afv5hp" path="res://scenes scripts/item_1.gd" id="1_rg4mv"]
-[ext_resource type="Texture2D" uid="uid://seoh1ek7ciij" path="res://sprites materials/healitem1.png" id="3_ptsyo"]
-[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites materials/pickitem1.png" id="4_m3lis"]
+[ext_resource type="Texture2D" uid="uid://seoh1ek7ciij" path="res://sprites/healitem1.png" id="3_ptsyo"]
+[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="4_m3lis"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="5_4wmb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_okf5b"]
@@ -74,9 +74,10 @@ _data = {
 size = Vector3(2, 2, 2)
 
 [node name="item2" type="RigidBody3D"]
+mass = 0.1
 script = ExtResource("1_rg4mv")
 selfsprite = ExtResource("3_ptsyo")
-selfkg = 0.25
+selfkg = 0.1
 type = "Пополняет здоровье"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

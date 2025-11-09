@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_to8p3"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="2_6v7ms"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_kmeno"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="2_vqnbl"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="3_vqnbl"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="2_vqnbl"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="3_vqnbl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
 size = Vector3(10, 3, 20)

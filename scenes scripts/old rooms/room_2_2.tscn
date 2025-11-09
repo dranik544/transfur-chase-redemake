@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqag8cd3s6ukh"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_dm82l"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="2_dv1yl"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="2_dv1yl"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_r8ybb"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="3_r8ybb"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="4_87ntx"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="4_87ntx"]
 [ext_resource type="PackedScene" uid="uid://cv1e7gj4cs4es" path="res://scenes scripts/box_3.tscn" id="5_w11x1"]
 [ext_resource type="PackedScene" uid="uid://b24olo70jj02w" path="res://scenes scripts/box_1.tscn" id="6_135gk"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="8_r8ybb"]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_8yipn"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_wbmxo"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="3_ic7h4"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="3_ic7h4"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="4_c7uha"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="5_0af8a"]
-[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="6_hgt75"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="5_0af8a"]
+[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites/wall2.png" id="6_hgt75"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxyrb"]
 albedo_texture = ExtResource("6_hgt75")

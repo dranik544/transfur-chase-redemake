@@ -11,6 +11,7 @@ var autodelete = false
 @export var NumBasket1: int = 2
 @export var NumSlime1: int = 2
 @export var NumCabels1: int = 10
+@export var NumVents1: int = 1
 @export var SceneBox1: PackedScene = preload("res://scenes scripts/box_1.tscn")
 @export var SceneBox2: PackedScene = preload("res://scenes scripts/box_2.tscn")
 @export var SceneBox3: PackedScene = preload("res://scenes scripts/box_3.tscn")
@@ -18,6 +19,7 @@ var autodelete = false
 @export var SceneBasket1: PackedScene = preload("res://scenes scripts/basket_1.tscn")
 @export var SceneSlime1: PackedScene = preload("res://scenes scripts/slime_1.tscn")
 @export var SceneCabels1: PackedScene = preload("res://scenes scripts/cabels_1.tscn")
+@export var SceneVent1: PackedScene = preload("res://scenes scripts/vent_1.tscn")
 var isplayerbeeninroom: bool = false
 @export var boxposy: float = 1
 var canbake: bool = false
@@ -38,14 +40,16 @@ func _ready():
 			NumBoxes4 += randi_range(-1, 1)
 			NumBasket1 += randi_range(-1, 1)
 			NumSlime1 += randi_range(-1, 1)
+			NumVents1 += randi_range(-1, 0)
 		spawnbox(SceneBox1, NumBoxes1, boxposy)
 		spawnbox(SceneBox2, NumBoxes2, boxposy)
 		spawnbox(SceneBox3, NumBoxes3, boxposy)
 		spawnbox(SceneBox4, NumBoxes4, boxposy)
 		spawnbox(SceneBasket1, NumBasket1, boxposy)
 		spawnbox(SceneSlime1, NumSlime1, 0.0)
+		spawnbox(SceneVent1, NumVents1, 0.0, false)
 	if Cabels:
-		spawnbox(SceneCabels1, NumCabels1, 3.0)
+		spawnbox(SceneCabels1, NumCabels1, 3.0, false)
 	
 	var areacam = Area3D.new()
 	var collcam = CollisionShape3D.new()
@@ -70,7 +74,7 @@ func _ready():
 	
 	bakenavi()
 
-func spawnbox(typebox: PackedScene, count: int, posy: float):
+func spawnbox(typebox: PackedScene, count: int, posy: float, enablerotation: bool = true):
 	for i in count:
 		var box = typebox.instantiate()
 		$NavigationRegion3D.add_child(box)
@@ -81,7 +85,8 @@ func spawnbox(typebox: PackedScene, count: int, posy: float):
 			posy,
 			randf_range(-posboxz, posboxz)
 		)
-		box.rotation = Vector3(0, randf_range(-90, 90), 0)
+		if enablerotation:
+			box.rotation = Vector3(0, randf_range(-90, 90), 0)
 
 func _on_timer_timeout() -> void:
 	if autodelete:

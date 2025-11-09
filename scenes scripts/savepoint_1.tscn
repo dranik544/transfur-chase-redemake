@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://ccm4d0awreshf"]
 
-[ext_resource type="Texture2D" uid="uid://cmm1l44fa8je0" path="res://sprites materials/savepoint1.png" id="1_cb5pq"]
-[ext_resource type="Texture2D" uid="uid://c2pr2xrftn3nb" path="res://sprites materials/savepoint2.png" id="2_ka4hm"]
-[ext_resource type="Texture2D" uid="uid://bmync8scgxs5a" path="res://sprites materials/savepoint3.png" id="3_ka4hm"]
+[ext_resource type="Texture2D" uid="uid://cmm1l44fa8je0" path="res://sprites/savepoint1.png" id="1_cb5pq"]
+[ext_resource type="Texture2D" uid="uid://c2pr2xrftn3nb" path="res://sprites/savepoint2.png" id="2_ka4hm"]
+[ext_resource type="Texture2D" uid="uid://bmync8scgxs5a" path="res://sprites/savepoint3.png" id="3_ka4hm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npot0"]
 albedo_texture = ExtResource("1_cb5pq")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://d15h6sm1ybfa7"]
 
-[ext_resource type="Texture2D" uid="uid://bdxpcty4f53td" path="res://sprites materials/basket3.png" id="1_akoqu"]
-[ext_resource type="Texture2D" uid="uid://3t44tp8s8fan" path="res://sprites materials/basket2.png" id="2_akoqu"]
+[ext_resource type="Texture2D" uid="uid://bdxpcty4f53td" path="res://sprites/basket3.png" id="1_akoqu"]
+[ext_resource type="Texture2D" uid="uid://3t44tp8s8fan" path="res://sprites/basket2.png" id="2_akoqu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_akoqu"]
 size = Vector3(1, 0.1, 1)

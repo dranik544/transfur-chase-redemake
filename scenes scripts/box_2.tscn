@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://kjde5ai2vtwd"]
 
-[ext_resource type="Material" uid="uid://ccsh8a16efj6o" path="res://sprites materials/box_2.tres" id="1_f0xtx"]
-[ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://sprites materials/box_1.tres" id="2_8866s"]
+[ext_resource type="Material" uid="uid://ccsh8a16efj6o" path="res://materials/box_2.tres" id="1_f0xtx"]
+[ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://materials/box_1.tres" id="2_8866s"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_1d18w"]
 material = ExtResource("1_f0xtx")

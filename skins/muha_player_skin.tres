@@ -1,0 +1,119 @@
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://c45rimmvn5wgp"]
+
+[ext_resource type="Texture2D" uid="uid://b81w1vi5atscl" path="res://sprites/colin8.png" id="1_5qe47"]
+[ext_resource type="Texture2D" uid="uid://c68e5j7a27qq0" path="res://sprites/colin9.png" id="2_kpcmv"]
+[ext_resource type="Texture2D" uid="uid://bye1ulvxx3lqv" path="res://sprites/muha skin/colin1idle.png" id="3_rjvu1"]
+[ext_resource type="Texture2D" uid="uid://iwfp0pfedqlf" path="res://sprites/muha skin/colin2idle.png" id="4_nap8b"]
+[ext_resource type="Texture2D" uid="uid://bwctva5uolwb4" path="res://sprites/muha skin/colin1run.png" id="5_thd1l"]
+[ext_resource type="Texture2D" uid="uid://bw25gf8liml1f" path="res://sprites/muha skin/colin2run.png" id="6_6p2mt"]
+[ext_resource type="Texture2D" uid="uid://p4pquwv4npf6" path="res://sprites/muha skin/colin3run.png" id="7_rijfp"]
+[ext_resource type="Texture2D" uid="uid://c0vypc2h2ad6t" path="res://sprites/muha skin/colin4run.png" id="8_3gxpq"]
+[ext_resource type="Texture2D" uid="uid://s0b17dty2fpy" path="res://sprites/muha skin/colin1slide.png" id="9_2igvf"]
+[ext_resource type="Texture2D" uid="uid://dhrbscegqag1r" path="res://sprites/muha skin/colin2slide.png" id="10_1f1q4"]
+[ext_resource type="Texture2D" uid="uid://bu7g88ua6vcwp" path="res://sprites/muha skin/colin1taunt.png" id="11_so8os"]
+[ext_resource type="Texture2D" uid="uid://dbr3tuqb54wow" path="res://sprites/muha skin/colin2taunt.png" id="12_rroel"]
+[ext_resource type="Texture2D" uid="uid://xg5yyb4b7f5y" path="res://sprites/muha skin/colin3taunt.png" id="13_pk1pd"]
+[ext_resource type="Texture2D" uid="uid://bwlf4rgm4vg8x" path="res://sprites/muha skin/colin4taunt.png" id="14_seiyk"]
+[ext_resource type="Texture2D" uid="uid://dblt6e00gvsmx" path="res://sprites/muha skin/colin1transfur.png" id="15_uulrm"]
+[ext_resource type="Texture2D" uid="uid://cg1htsw8lwtub" path="res://sprites/muha skin/colin2transfur.png" id="16_5qe47"]
+[ext_resource type="Texture2D" uid="uid://dgai3hjoahvav" path="res://sprites/muha skin/colin3transfur.png" id="17_kpcmv"]
+[ext_resource type="Texture2D" uid="uid://dmcow62b2av1p" path="res://sprites/muha skin/colin4transfur.png" id="18_xn2q8"]
+[ext_resource type="Texture2D" uid="uid://bqimj1eqsnjqw" path="res://sprites/muha skin/colin5transfur.png" id="19_rjvu1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5qe47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kpcmv")
+}],
+"loop": true,
+"name": &"crawl run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rjvu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nap8b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_thd1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6p2mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rijfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3gxpq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2igvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1f1q4")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_so8os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rroel")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_pk1pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_seiyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_so8os")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_uulrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_5qe47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kpcmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xn2q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rjvu1")
+}],
+"loop": false,
+"name": &"transfur",
+"speed": 4.0
+}]

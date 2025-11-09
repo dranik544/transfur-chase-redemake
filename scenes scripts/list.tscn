@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4iwupm88yfpt"]
 
 [ext_resource type="Script" uid="uid://caoi2q76a3v5u" path="res://scenes scripts/list.gd" id="1_du4s0"]
-[ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites materials/list2.png" id="1_uqltq"]
+[ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="1_uqltq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_du4s0"]
 radius = 0.1

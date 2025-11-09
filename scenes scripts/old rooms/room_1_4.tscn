@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_o0s5h"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_p5fdi"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="3_bs7px"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="3_bs7px"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="4_t1jjn"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="5_dn0m1"]
-[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites materials/wall2.png" id="6_vhlly"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="5_dn0m1"]
+[ext_resource type="Texture2D" uid="uid://csnkkruhe1cm3" path="res://sprites/wall2.png" id="6_vhlly"]
 [ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="7_p5fdi"]
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="8_bs7px"]
 [ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="8_t1jjn"]

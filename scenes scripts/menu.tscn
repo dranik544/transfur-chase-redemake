@@ -1,44 +1,44 @@
 [gd_scene load_steps=65 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
-[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites materials/bg3.png" id="2_60p26"]
-[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://sprites materials/wall1.tres" id="4_2epkg"]
-[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://sprites materials/bottom1.tres" id="5_eeftm"]
+[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
+[ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="4_2epkg"]
+[ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="5_eeftm"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
-[ext_resource type="Material" uid="uid://b4ocrtjpxpn4k" path="res://sprites materials/tubes1.tres" id="6_ewvr7"]
-[ext_resource type="Texture2D" uid="uid://v00ip7n66d3" path="res://sprites materials/tubes2.png" id="7_a6jpe"]
-[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites materials/vent2.png" id="8_0b3bo"]
-[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites materials/box1.png" id="9_7tfu8"]
-[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites materials/vent1.png" id="10_eeftm"]
-[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites materials/bg1.png" id="11_dst00"]
-[ext_resource type="Material" uid="uid://o7cpf4hkj4oa" path="res://sprites materials/table1.tres" id="12_fhf2g"]
-[ext_resource type="Texture2D" uid="uid://c6s3tc2wgpjel" path="res://sprites materials/bottom2.png" id="13_4j3ub"]
-[ext_resource type="Texture2D" uid="uid://dl5wintagfnav" path="res://sprites materials/tv1.png" id="14_eaxk7"]
-[ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites materials/bg4.png" id="15_k8css"]
+[ext_resource type="Material" uid="uid://b4ocrtjpxpn4k" path="res://materials/tubes1.tres" id="6_ewvr7"]
+[ext_resource type="Texture2D" uid="uid://v00ip7n66d3" path="res://sprites/tubes2.png" id="7_a6jpe"]
+[ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites/vent2.png" id="8_0b3bo"]
+[ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites/box1.png" id="9_7tfu8"]
+[ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites/vent1.png" id="10_eeftm"]
+[ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites/bg1.png" id="11_dst00"]
+[ext_resource type="Material" uid="uid://o7cpf4hkj4oa" path="res://materials/table1.tres" id="12_fhf2g"]
+[ext_resource type="Texture2D" uid="uid://c6s3tc2wgpjel" path="res://sprites/bottom2.png" id="13_4j3ub"]
+[ext_resource type="Texture2D" uid="uid://dl5wintagfnav" path="res://sprites/tv1.png" id="14_eaxk7"]
+[ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites/bg4.png" id="15_k8css"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="16_k8css"]
-[ext_resource type="Texture2D" uid="uid://0tbvf24pf65v" path="res://sprites materials/stats1.png" id="16_t6ycr"]
-[ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://sprites materials/player_sprite.tres" id="17_fjnfi"]
-[ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites materials/icon2.png" id="17_xh7j4"]
+[ext_resource type="Texture2D" uid="uid://0tbvf24pf65v" path="res://sprites/stats1.png" id="16_t6ycr"]
+[ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://skins/player_sprite.tres" id="17_fjnfi"]
+[ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites/icon2.png" id="17_xh7j4"]
 [ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="17_ype5m"]
-[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://sprites materials/wallmesh1.tres" id="18_238qo"]
-[ext_resource type="Texture2D" uid="uid://dbodagrsvlewc" path="res://sprites materials/logo4.png" id="18_eogbu"]
+[ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://wallmesh/wallmesh1.tres" id="18_238qo"]
+[ext_resource type="Texture2D" uid="uid://dbodagrsvlewc" path="res://sprites/logo4.png" id="18_eogbu"]
 [ext_resource type="PackedScene" uid="uid://bewdxkieq3xq8" path="res://scenes scripts/effect_1.tscn" id="18_ibtf3"]
-[ext_resource type="Texture2D" uid="uid://bulnoxux73tms" path="res://sprites materials/icon9.png" id="19_08117"]
+[ext_resource type="Texture2D" uid="uid://bulnoxux73tms" path="res://sprites/icon9.png" id="19_08117"]
 [ext_resource type="AudioStream" uid="uid://84y2eokrfi0a" path="res://sounds music/menu1.wav" id="19_efmc1"]
-[ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites materials/icon5.png" id="19_fhf2g"]
-[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://sprites materials/wallmesh2.tres" id="19_ype5m"]
-[ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites materials/icon3.png" id="20_n7qjf"]
+[ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites/icon5.png" id="19_fhf2g"]
+[ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://wallmesh/wallmesh2.tres" id="19_ype5m"]
+[ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites/icon3.png" id="20_n7qjf"]
 [ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="21_hjmwg"]
-[ext_resource type="Texture2D" uid="uid://bkm67ortvsxe" path="res://sprites materials/icon4.png" id="21_jh7g4"]
-[ext_resource type="Texture2D" uid="uid://cljlcdbjoypmr" path="res://sprites materials/icon6.png" id="22_ybihx"]
-[ext_resource type="Texture2D" uid="uid://blqnewv0rphba" path="res://sprites materials/icon7.png" id="24_4l3ii"]
-[ext_resource type="Texture2D" uid="uid://cs8cnw4wo2bd7" path="res://sprites materials/photo1.png" id="24_n7qjf"]
-[ext_resource type="Texture2D" uid="uid://c2xsylkcx2gq2" path="res://sprites materials/screenshot2.png" id="25_ybihx"]
-[ext_resource type="Texture2D" uid="uid://3oyxxfydk52x" path="res://sprites materials/wiki1.png" id="26_bhk6r"]
-[ext_resource type="Texture2D" uid="uid://bcujvutljhqce" path="res://sprites materials/wiki2.png" id="27_bhk6r"]
+[ext_resource type="Texture2D" uid="uid://bkm67ortvsxe" path="res://sprites/icon4.png" id="21_jh7g4"]
+[ext_resource type="Texture2D" uid="uid://cljlcdbjoypmr" path="res://sprites/icon6.png" id="22_ybihx"]
+[ext_resource type="Texture2D" uid="uid://blqnewv0rphba" path="res://sprites/icon7.png" id="24_4l3ii"]
+[ext_resource type="Texture2D" uid="uid://cs8cnw4wo2bd7" path="res://sprites/photo1.png" id="24_n7qjf"]
+[ext_resource type="Texture2D" uid="uid://c2xsylkcx2gq2" path="res://sprites/screenshot2.png" id="25_ybihx"]
+[ext_resource type="Texture2D" uid="uid://3oyxxfydk52x" path="res://sprites/wiki1.png" id="26_bhk6r"]
+[ext_resource type="Texture2D" uid="uid://bcujvutljhqce" path="res://sprites/wiki2.png" id="27_bhk6r"]
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
-[ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites materials/arrow1.png" id="31_hxmmw"]
+[ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -412,11 +412,11 @@ _data = {
 script/source = "extends Node2D
 
 @export var list = {
-	1: preload(\"res://sprites materials/photo1.png\"),
-	2: preload(\"res://sprites materials/photo2.png\"),
-	3: preload(\"res://sprites materials/photo3.png\"),
-	4: preload(\"res://sprites materials/photo4.png\"),
-	5: preload(\"res://sprites materials/photo5.png\"),
+	1: preload(\"res://sprites/photo1.png\"),
+	2: preload(\"res://sprites/photo2.png\"),
+	3: preload(\"res://sprites/photo3.png\"),
+	4: preload(\"res://sprites/photo4.png\"),
+	5: preload(\"res://sprites/photo5.png\"),
 }
 @export var maxlist = 5
 var defscale
@@ -683,6 +683,7 @@ texture_filter = 2
 sprite_frames = ExtResource("17_fjnfi")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.754713
 script = SubResource("GDScript_0xt4r")
 
 [node name="Timer" type="Timer" parent="room1 1/Sprite3D2"]
@@ -1160,6 +1161,25 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
 text = "название костюма"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/skins menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 41.0
+offset_right = 640.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 10
+text = "имя автора костюма"
 horizontal_alignment = 1
 vertical_alignment = 1
 

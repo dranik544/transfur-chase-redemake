@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bewdxkieq3xq8"]
+[gd_scene load_steps=15 format=3 uid="uid://bewdxkieq3xq8"]
 
 [ext_resource type="Script" uid="uid://bfi564sn20v5w" path="res://scenes scripts/effect_1.gd" id="1_ebgmw"]
-[ext_resource type="Texture2D" uid="uid://cm88bv01c07ad" path="res://sprites materials/icon8.png" id="1_gyygj"]
+[ext_resource type="Texture2D" uid="uid://cm88bv01c07ad" path="res://sprites/icon8.png" id="1_gyygj"]
 
 [sub_resource type="Curve" id="Curve_ebgmw"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.989726, 0), 0.0, 0.0, 0, 0]
@@ -21,10 +21,10 @@ curve = SubResource("Curve_6jp87")
 particle_flag_disable_z = true
 direction = Vector3(1, 1, 0)
 spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 5.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
-damping_max = 1.0
+damping_max = 0.5
 scale_min = 0.1
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_3xin0")
@@ -42,8 +42,37 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_6jp87")
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_3xin0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.517123, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ctbcx"]
+curve = SubResource("Curve_3xin0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u024r"]
+particle_flag_align_y = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ctbcx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv003"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e5cc2"]
+material = SubResource("StandardMaterial3D_mv003")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 4
+
 [node name="effect1" type="Node3D"]
 script = ExtResource("1_ebgmw")
+effecttexture = ExtResource("1_gyygj")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
@@ -51,8 +80,16 @@ amount = 16
 lifetime = 0.75
 one_shot = true
 speed_scale = 1.1
-explosiveness = 0.8
-fixed_fps = 20
-fract_delta = false
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ebgmw")
 draw_pass_1 = SubResource("QuadMesh_3xin0")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u024r")
+draw_pass_1 = SubResource("CylinderMesh_e5cc2")
