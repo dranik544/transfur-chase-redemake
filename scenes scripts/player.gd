@@ -118,9 +118,9 @@ func _physics_process(delta: float) -> void:
 	hit = Input.is_action_pressed("F")
 	pick = Input.is_action_pressed("E")
 	
-	var camitem = get_viewport().get_camera_3d()
-	var directionitem = -camitem.global_transform.basis.z
-	var throwpos = (camitem.global_transform.basis.z / 0.75)
+	#var camitem = get_viewport().get_camera_3d()
+	#var directionitem = -camitem.global_transform.basis.z
+	#var throwpos = (camitem.global_transform.basis.z / 0.75)
 	
 	if isinv:
 		if itemsprite:
@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 				get_parent().add_child(item)
 				item.global_position = global_position
 				
-				item.use($".")
+				item.use()
 				
 				#if item.ischangehp:
 					#health += item.changehp
@@ -341,6 +341,9 @@ func updateskin():
 		"nightmare colin":
 			$gui/colinbg.texture = load("res://sprites/nightmare colin/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://skins/nightmare_player_skin.tres")
+		"new year colin":
+			$gui/colinbg.texture = load("res://sprites/new year colin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/new_year_colin_skin.tres")
 		"necoarc":
 			$gui/colinbg.texture = load("res://sprites/neco arc skin/colin bg 1.png")
 			$Sprite3D.sprite_frames = load("res://skins/necoarc_player_skin.tres")

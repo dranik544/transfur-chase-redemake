@@ -8,7 +8,7 @@ extends Node2D
 	"gold colin",
 	"hank",
 	"necoarc",
-	"muha"
+	"muha",
 ]
 var curskin = 0
 var curskinset
@@ -55,7 +55,7 @@ func updateskin(save: bool, enablecurskin: bool):
 			(даётся на событие Хеллоуин)"
 			$Label3.text = "автор: TheNamelessDeity"
 		"new year colin":
-			colin.sprite_frames = load("res://skins/player_sprite.tres")
+			colin.sprite_frames = load("res://skins/new_year_colin_skin.tres")
 			$Label.text = "праздничный Колин"
 			$Label2.text = "а ты уже нарядил свою ёлку?
 			(даётся на событие Новый год)"

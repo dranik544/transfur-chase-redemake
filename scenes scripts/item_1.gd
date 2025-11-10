@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export_category("default")
 @export var selfsprite: CompressedTexture2D
-@export var selfscene: PackedScene = preload("res://scenes scripts/item_1.tscn")
+@export var selfscene: PackedScene
 @export var selfkg: float = 0.75
 @export var type: String
 
@@ -17,6 +17,11 @@ extends RigidBody3D
 @export var iamounttexture: int = 12
 
 
+func _ready():
+	if selfscene == null:
+		var selfscenepath = get_scene_file_path()
+		selfscene = load(selfscenepath)
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		if $hint:
@@ -29,16 +34,16 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		if $hint:
 			$hint.visible = false
 
-func pick(body):
-	body.isinv = true
-	body.itemsprite = selfsprite
-	body.itemscene = selfscene
-	body.itemtype = type
-	body.itemkg = selfkg
+func pick(player):
+	player.isinv = true
+	player.itemsprite = selfsprite
+	player.itemscene = selfscene
+	player.itemtype = type
+	player.itemkg = selfkg
 	
 	queue_free()
 
-func use(player):
+func use(player = get_tree().get_first_node_in_group("player")):
 	if ischangehp:
 		player.health += changehp
 	
