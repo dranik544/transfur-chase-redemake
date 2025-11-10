@@ -14,3 +14,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if Input.is_action_pressed("CTRL+Q"):
+			get_tree().quit()

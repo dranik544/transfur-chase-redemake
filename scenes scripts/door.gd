@@ -1,18 +1,24 @@
-extends RigidBody3D
+extends StaticBody3D
 
 @export var hp: float = 0
 @export var HitColor: Color
 
 
 func _ready():
-	freeze = true
+	$door1.freeze = true
+	$door2.freeze = true
+	
+	$Timer.timeout.connect(time_for_DIEEE_MUHAHAHAHAHAHAHA)
+	
 	if hp == 0:
 		hp = randf_range(0, 2)
 	add_to_group("door")
 
 func _process(delta):
-	$Sprite3D.scale = lerp($Sprite3D.scale, Vector3(6.0, 6.0, 6.0), 10 * delta)
-	$Sprite3D.modulate = lerp($Sprite3D.modulate, Color(1.0, 1.0, 1.0, 1.0), 10 * delta)
+	$door1/Sprite3D.scale = lerp($door1/Sprite3D.scale, Vector3(6.0, 6.0, 6.0), 10 * delta)
+	$door2/Sprite3D.scale = lerp($door2/Sprite3D.scale, Vector3(6.0, 6.0, 6.0), 10 * delta)
+	$door1/Sprite3D.modulate = lerp($door1/Sprite3D.modulate, Color(1.0, 1.0, 1.0, 1.0), 10 * delta)
+	$door2/Sprite3D.modulate = lerp($door2/Sprite3D.modulate, Color(1.0, 1.0, 1.0, 1.0), 10 * delta)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -32,14 +38,27 @@ func hit(damage: float):
 	if damage == null:
 		damage = 1
 	hp -= damage
-	$Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
-	$Sprite3D.modulate = HitColor
+	$door1/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
+	$door2/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
+	$door1/Sprite3D.modulate = HitColor
+	$door2/Sprite3D.modulate = HitColor
 	
 	$AudioStreamPlayer3D.play()
 	if hp <= 0:
 		Global.brokendoors += 1
-		freeze = false
-		collision_layer = false
+		$door1.freeze = false
+		$door2.freeze = false
+		
+		$door1.collision_layer = false
+		$door2.collision_layer = false
+		
 		$hint.queue_free()
 		$Area3D.queue_free()
-		apply_impulse(Vector3(-7.5, 10, 0), Vector3.ZERO)
+		
+		var impulsevec = Vector3(-2, 0.5, 0)
+		$door1.apply_impulse(impulsevec, Vector3.ZERO)
+		$door2.apply_impulse(impulsevec, Vector3.ZERO)
+		$Timer.start()
+
+func time_for_DIEEE_MUHAHAHAHAHAHAHA():
+	queue_free()

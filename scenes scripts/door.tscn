@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8fhprlvt2e6o"]
+[gd_scene load_steps=12 format=3 uid="uid://c8fhprlvt2e6o"]
 
 [ext_resource type="Script" uid="uid://bv7mewpa6o6v4" path="res://scenes scripts/door.gd" id="1_klrmd"]
 [ext_resource type="Texture2D" uid="uid://wlc0vobifhai" path="res://sprites/hint1.png" id="1_mcdff"]
-[ext_resource type="Texture2D" uid="uid://d3ar7kktjhbop" path="res://sprites/door1.png" id="1_xdy0x"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="3_44nab"]
+[ext_resource type="Texture2D" uid="uid://c5sytqsu4qak5" path="res://sprites/door2.png" id="5_apbo6"]
 [ext_resource type="AudioStream" uid="uid://bn8xuieh107l3" path="res://sounds music/punch_door.ogg" id="5_dkhs6"]
+[ext_resource type="Texture2D" uid="uid://c20753l0qqb4" path="res://sprites/door3.png" id="6_apbo6"]
 
 [sub_resource type="Animation" id="Animation_44nab"]
 length = 0.001
@@ -67,16 +68,13 @@ _data = {
 &"idle": SubResource("Animation_klrmd")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xdy0x"]
-size = Vector3(1.9, 1.9, 0.1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_mcdff"]
 size = Vector3(2, 2, 2)
 
-[node name="door" type="RigidBody3D"]
-mass = 25.0
-gravity_scale = 1.5
-continuous_cd = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdy0x"]
+size = Vector3(0.9, 1.9, 0.1)
+
+[node name="door" type="StaticBody3D"]
 script = ExtResource("1_klrmd")
 HitColor = Color(1.66954e-07, 0.101463, 0.0414815, 1)
 
@@ -102,15 +100,6 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_xdy0x")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
-shaded = true
-texture_filter = 2
-texture = ExtResource("1_xdy0x")
-
 [node name="Area3D" type="Area3D" parent="." groups=["door"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -121,6 +110,34 @@ stream = ExtResource("5_dkhs6")
 volume_db = -4.0
 max_db = 4.0
 pitch_scale = 0.9
+
+[node name="door1" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.497131, 0, 0)
+shape = SubResource("BoxShape3D_xdy0x")
+
+[node name="Sprite3D" type="Sprite3D" parent="door1"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shaded = true
+texture_filter = 2
+texture = ExtResource("5_apbo6")
+
+[node name="door2" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_xdy0x")
+
+[node name="Sprite3D" type="Sprite3D" parent="door2"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shaded = true
+texture_filter = 2
+texture = ExtResource("6_apbo6")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

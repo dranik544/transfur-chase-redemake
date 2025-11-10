@@ -77,7 +77,6 @@ size = Vector3(2, 2, 2)
 mass = 0.1
 script = ExtResource("1_rg4mv")
 selfsprite = ExtResource("3_ptsyo")
-selfscene = null
 selfkg = 5.0
 type = "Пополняет здоровье"
 
