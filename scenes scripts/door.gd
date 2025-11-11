@@ -55,9 +55,10 @@ func hit(damage: float):
 		$hint.queue_free()
 		$Area3D.queue_free()
 		
-		var impulsevec = Vector3(-2, 0.5, 0)
-		$door1.apply_impulse(impulsevec, Vector3.ZERO)
-		$door2.apply_impulse(impulsevec, Vector3.ZERO)
+		var impulsevec1 = Vector3(-2, 0.5, -1)
+		var impulsevec2 = Vector3(-2, 0.5, 1)
+		$door1.apply_impulse(impulsevec1, Vector3.ZERO)
+		$door2.apply_impulse(impulsevec2, Vector3.ZERO)
 		$Timer.start()
 
 func time_for_DIEEE_MUHAHAHAHAHAHAHA():

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c68e5j7a27qq0"
-path.s3tc="res://.godot/imported/colin9.png-a81fc61738b4e3aac13cca8059451273.s3tc.ctex"
+path="res://.godot/imported/colin9.png-a81fc61738b4e3aac13cca8059451273.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/colin9.png"
-dest_files=["res://.godot/imported/colin9.png-a81fc61738b4e3aac13cca8059451273.s3tc.ctex"]
+dest_files=["res://.godot/imported/colin9.png-a81fc61738b4e3aac13cca8059451273.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

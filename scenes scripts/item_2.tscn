@@ -77,7 +77,7 @@ size = Vector3(2, 2, 2)
 mass = 0.1
 script = ExtResource("1_rg4mv")
 selfsprite = ExtResource("3_ptsyo")
-selfkg = 5.0
+selfkg = 0.1
 type = "Пополняет здоровье"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

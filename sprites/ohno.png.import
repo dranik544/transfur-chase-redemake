@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bte5tpfhq0mwn"
-path="res://.godot/imported/colin5transfur.png-b5f60cafbfa5c80d4189b849e7b20099.ctex"
+uid="uid://cbhup0lvsqa51"
+path="res://.godot/imported/ohno.png-e4a8c9246c8f37c7a0d04467e74e5743.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/colin5transfur.png"
-dest_files=["res://.godot/imported/colin5transfur.png-b5f60cafbfa5c80d4189b849e7b20099.ctex"]
+source_file="res://sprites/ohno.png"
+dest_files=["res://.godot/imported/ohno.png-e4a8c9246c8f37c7a0d04467e74e5743.ctex"]
 
 [params]
 

@@ -11,7 +11,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		if !isopen:
 			$AnimationPlayer.play("open")
 			$open.play()
-			$CollisionShape3D.queue_free()
+			if $CollisionShape3D:
+				$CollisionShape3D.queue_free()
 			
 			var randomitem = randi_range(3, 3)
 			match randomitem:

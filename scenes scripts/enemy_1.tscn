@@ -18,6 +18,8 @@ target_desired_distance = 0.5
 avoidance_enabled = true
 height = 0.6
 radius = 0.36
+neighbor_distance = 1.0
+use_3d_avoidance = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)

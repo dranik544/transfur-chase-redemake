@@ -35,7 +35,9 @@ var camfollowpluspos: float = 0.0
 var camscalewheel = 0.0
 @export var latexpunchsound1: AudioStream = preload("res://sounds music/latexpunch2.mp3")
 @export var latexpunchsound2: AudioStream = preload("res://sounds music/latexpunch3.mp3")
-
+var defposspr: Vector3 = Vector3.ZERO
+var isthereenemy: bool = false
+@export var shakeIfThereEnemy: float = 20
 
 
 func _ready():
@@ -43,7 +45,7 @@ func _ready():
 	slimebasepos = $gui/slime.position
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
-	print(cam, centercam)
+	defposspr = $Sprite3D.position
 	
 	if Global.colinskin != "":
 		updateskin()
@@ -98,6 +100,22 @@ func _physics_process(delta: float) -> void:
 		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.25, 5 * delta))
 	else:
 		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.0, 5 * delta))
+	
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		var disttoenemy = global_position.distance_to(enemy.global_position)
+		if disttoenemy <= 3:
+			$Sprite3D.position = defposspr + Vector3(
+				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000)
+			)
+			$sh.emitting = true
+			
+			break
+		else:
+			$Sprite3D.position = defposspr
+			$sh.emitting = false
 	
 	if Input.is_action_pressed("CTRL"):
 		if !isslide:

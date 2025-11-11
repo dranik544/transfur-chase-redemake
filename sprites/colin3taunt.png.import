@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccyiuvmuay8uu"
-path.s3tc="res://.godot/imported/colin3taunt.png-42f7fb565a12d33b9f77e861aea8c32a.s3tc.ctex"
+path="res://.godot/imported/colin3taunt.png-42f7fb565a12d33b9f77e861aea8c32a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/colin3taunt.png"
-dest_files=["res://.godot/imported/colin3taunt.png-42f7fb565a12d33b9f77e861aea8c32a.s3tc.ctex"]
+dest_files=["res://.godot/imported/colin3taunt.png-42f7fb565a12d33b9f77e861aea8c32a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

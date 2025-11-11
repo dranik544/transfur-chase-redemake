@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4fbk5bsuj2pj"
-path.s3tc="res://.godot/imported/colin6transfur.png-8d2ec2fba3eb92a8bb834f018565c8f8.s3tc.ctex"
+path="res://.godot/imported/colin6transfur.png-8d2ec2fba3eb92a8bb834f018565c8f8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/colin6transfur.png"
-dest_files=["res://.godot/imported/colin6transfur.png-8d2ec2fba3eb92a8bb834f018565c8f8.s3tc.ctex"]
+dest_files=["res://.godot/imported/colin6transfur.png-8d2ec2fba3eb92a8bb834f018565c8f8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1jh8h6xs5l5n"
-path.s3tc="res://.godot/imported/colin2idle.png-b602bf6796300d7ade1e1e99dadd18ce.s3tc.ctex"
+path="res://.godot/imported/colin2idle.png-b602bf6796300d7ade1e1e99dadd18ce.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/colin2idle.png"
-dest_files=["res://.godot/imported/colin2idle.png-b602bf6796300d7ade1e1e99dadd18ce.s3tc.ctex"]
+dest_files=["res://.godot/imported/colin2idle.png-b602bf6796300d7ade1e1e99dadd18ce.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

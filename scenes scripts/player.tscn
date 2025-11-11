@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=20 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="SpriteFrames" uid="uid://1qycunsw3suq" path="res://skins/new_year_colin_skin.tres" id="2_h5cnr"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
 [ext_resource type="AudioStream" uid="uid://cemgmgav0lfm2" path="res://sounds music/latexpunch2.mp3" id="9_h5cnr"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="9_v6gaw"]
+[ext_resource type="Texture2D" uid="uid://cbhup0lvsqa51" path="res://sprites/ohno.png" id="11_lodc7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
 radius = 0.3
@@ -22,6 +23,34 @@ height = 0.56
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6gaw"]
 radius = 0.35
 height = 0.75
+
+[sub_resource type="Curve" id="Curve_6rr08"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_nccrc"]
+curve = SubResource("Curve_6rr08")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlnr4"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.5
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_nccrc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jtgo"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("11_lodc7")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_hb04b"]
+material = SubResource("StandardMaterial3D_8jtgo")
 
 [node name="player" type="CharacterBody3D"]
 collision_mask = 3
@@ -156,6 +185,15 @@ volume_db = 3.0
 
 [node name="latexpunch" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_h5cnr")
+
+[node name="sh" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 3
+lifetime = 0.5
+speed_scale = 0.6
+process_material = SubResource("ParticleProcessMaterial_tlnr4")
+draw_pass_1 = SubResource("QuadMesh_hb04b")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="gui/slidebar/slidetimer" to="." method="_on_slidetimer_timeout"]
