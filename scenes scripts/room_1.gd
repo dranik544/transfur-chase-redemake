@@ -66,6 +66,7 @@ func _ready():
 	var navibridge: StaticBody3D = navibridgeScene.instantiate()
 	$NavigationRegion3D/StaticBody3D.add_child(navibridge)
 	navibridge.position = Vector3(-$NavigationRegion3D/StaticBody3D/bottom.mesh.size.x, 0, 0)
+	
 	$Area3D/CollisionShape3D.shape.size = Vector3(
 		$NavigationRegion3D/StaticBody3D/bottom.mesh.size.x,
 		3.0,

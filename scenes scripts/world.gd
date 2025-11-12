@@ -2,7 +2,7 @@ extends Node3D
 
 var rooms1 = {
 	1: preload("res://scenes scripts/room_1_1.tscn"),
-	2: preload("res://scenes scripts/room_1_1.tscn"),
+	2: preload("res://scenes scripts/rooms/sroom_1_1.tscn"),
 }
 var rooms2 = {
 	1: preload("res://scenes scripts/room_2_1.tscn"),

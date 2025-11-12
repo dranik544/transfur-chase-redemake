@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=22 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="SpriteFrames" uid="uid://1qycunsw3suq" path="res://skins/new_year_colin_skin.tres" id="2_h5cnr"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
 [ext_resource type="Texture2D" uid="uid://b7k16svsdf4gs" path="res://sprites/colin bg1.png" id="7_f74ev"]
 [ext_resource type="AudioStream" uid="uid://dtl35rnlvj3ci" path="res://sounds music/run_default.ogg" id="7_q0em8"]
+[ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="8_6rr08"]
+[ext_resource type="Script" uid="uid://dy8l1imwdm7o6" path="res://scenes scripts/pause_menu.gd" id="8_nccrc"]
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
 [ext_resource type="AudioStream" uid="uid://cemgmgav0lfm2" path="res://sounds music/latexpunch2.mp3" id="9_h5cnr"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="9_v6gaw"]
@@ -108,7 +110,22 @@ pivot_offset = Vector2(320, 240)
 texture = ExtResource("9_v6gaw")
 metadata/_edit_use_anchors_ = true
 
-[node name="slidebar" type="ProgressBar" parent="gui"]
+[node name="slimecolor" type="ColorRect" parent="gui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="colinbg" type="Sprite2D" parent="gui"]
+position = Vector2(67, -70)
+scale = Vector2(4, 4)
+texture = ExtResource("7_f74ev")
+
+[node name="gui" type="Node2D" parent="gui"]
+
+[node name="slidebar" type="ProgressBar" parent="gui/gui"]
 offset_left = 95.0
 offset_top = 390.0
 offset_right = 218.0
@@ -117,10 +134,10 @@ step = 0.1
 value = 100.0
 show_percentage = false
 
-[node name="slidetimer" type="Timer" parent="gui/slidebar"]
+[node name="slidetimer" type="Timer" parent="gui/gui/slidebar"]
 wait_time = 5.0
 
-[node name="slidebar" type="ProgressBar" parent="gui/slidebar"]
+[node name="slidebar" type="ProgressBar" parent="gui/gui/slidebar"]
 visible = false
 modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 0
@@ -132,29 +149,21 @@ show_percentage = false
 indeterminate = true
 editor_preview_indeterminate = false
 
-[node name="slimecolor" type="ColorRect" parent="gui"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="inv" type="TextureRect" parent="gui"]
+[node name="inv" type="TextureRect" parent="gui/gui"]
 offset_left = 10.0
 offset_top = 390.0
 offset_right = 90.0
 offset_bottom = 470.0
 texture = ExtResource("4_0amtw")
 
-[node name="invtexture" type="TextureRect" parent="gui"]
+[node name="invtexture" type="TextureRect" parent="gui/gui"]
 offset_left = 10.0
 offset_top = 390.0
 offset_right = 90.0
 offset_bottom = 470.0
 texture = ExtResource("5_ndhvj")
 
-[node name="Label" type="Label" parent="gui"]
+[node name="Label" type="Label" parent="gui/gui"]
 offset_left = 95.0
 offset_top = 447.0
 offset_right = 227.0
@@ -166,10 +175,46 @@ theme_override_fonts/font = ExtResource("6_511js")
 text = "тип предмета"
 vertical_alignment = 2
 
-[node name="colinbg" type="Sprite2D" parent="gui"]
-position = Vector2(67, -70)
-scale = Vector2(4, 4)
-texture = ExtResource("7_f74ev")
+[node name="pause menu" type="Node2D" parent="gui"]
+process_mode = 3
+visible = false
+z_index = 5
+position = Vector2(320, 240)
+script = ExtResource("8_nccrc")
+
+[node name="pause menu" type="TextureRect" parent="gui/pause menu"]
+modulate = Color(1, 1, 1, 0.294118)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_6rr08")
+
+[node name="Label" type="Label" parent="gui/pause menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -11.5
+offset_right = 66.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 64
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -196,5 +241,5 @@ process_material = SubResource("ParticleProcessMaterial_tlnr4")
 draw_pass_1 = SubResource("QuadMesh_hb04b")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="timeout" from="gui/slidebar/slidetimer" to="." method="_on_slidetimer_timeout"]
+[connection signal="timeout" from="gui/gui/slidebar/slidetimer" to="." method="_on_slidetimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

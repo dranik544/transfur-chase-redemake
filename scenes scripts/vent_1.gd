@@ -14,7 +14,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			if $CollisionShape3D:
 				$CollisionShape3D.queue_free()
 			
-			var randomitem = randi_range(3, 3)
+			var randomitem = randi_range(1, 3)
 			match randomitem:
 				1:
 					var obj: CharacterBody3D = enemyScene.instantiate()

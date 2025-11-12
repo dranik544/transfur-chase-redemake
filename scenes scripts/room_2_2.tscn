@@ -37,123 +37,122 @@ NumVents1 = 2
 navigation_mesh = ExtResource("2_r8ybb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 
 [node name="bottom" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" groups=["navi"]]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.5, 0, 0)
 mesh = SubResource("QuadMesh_v056k")
 skeleton = NodePath("../..")
 
 [node name="bottomcoll" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1, 0, -1.5, -4.37114e-08, -5, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1, 0, -1.5, -4.37114e-08, -7.5, 0, 0)
 shape = SubResource("BoxShape3D_ejhko")
 
 [node name="door" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("4_w11x1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.5, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15, 1, 0)
 
 [node name="tubes" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -7.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 2, -7.05)
 
 [node name="tubes2" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10, 1.5, -7.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -12.5, 1.5, -7.2)
 
 [node name="tubes3" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.1, 2, 7.05)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.6, 2, 7.05)
 
 [node name="tubes4" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -7.1, 1.5, 7.2)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -9.6, 1.5, 7.2)
 
 [node name="tubes5" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.7, -7.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 1.7, -7.05)
 
 [node name="tubes6" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.7, 1.2, -7.2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.2, 1.2, -7.2)
 
 [node name="tubes7" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.1, 2.2, 7.05)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6, 2.2, 7.05)
 
 [node name="tubes8" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.7, 1.2, 7.2)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -1.8, 1.2, 7.2)
 
 [node name="tubes9" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2.15, 1.5, -4.35)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -0.35, 1.5, -4.35)
 
 [node name="tubes10" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 1.7, 4.95)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5, 1.7, 4.95)
 
 [node name="tubes11" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_135gk")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2.15, 1.2, 1.95)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -0.35, 1.2, 1.95)
 
 [node name="wall1" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 7.5)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.5, 7.5)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 7.5)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.5, 7.5)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -7.5)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.5, -7.5)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -7.5)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.5, -7.5)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -12.5, 1.5, -4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -15, 1.5, -4.2)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -12.5, 1.5, -4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -15, 1.5, -4.2)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -12.5, 1.5, 4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -15, 1.5, 4.2)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -12.5, 1.5, 4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -15, 1.5, 4.2)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall5" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -12.5, 2.50299, 0)
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -15, 2.50299, 0)
 mesh = ExtResource("7_6dak3")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll5" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -12.5, 2.50299, 0)
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -15, 2.50299, 0)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall6" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, 2.4, 1.5, -4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -0.0999999, 1.5, -4.2)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll6" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, 2.4, 1.5, -4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -0.0999999, 1.5, -4.2)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall7" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, 2.4, 1.5, 4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -0.0999999, 1.5, 4.2)
 mesh = ExtResource("6_o2nsv")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll7" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, 2.4, 1.5, 4.2)
+transform = Transform3D(-2.84124e-08, 0, 1, 0, 1, 0, -0.65, 0, -4.37114e-08, -0.0999999, 1.5, 4.2)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall8" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, 2.4, 2.50299, 0)
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -0.0999999, 2.50299, 0)
 mesh = ExtResource("7_6dak3")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll8" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, 2.4, 2.50299, 0)
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -0.0999999, 2.50299, 0)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="Timer" type="Timer" parent="."]

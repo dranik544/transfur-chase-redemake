@@ -142,8 +142,8 @@ func _physics_process(delta: float) -> void:
 	
 	if isinv:
 		if itemsprite:
-			$gui/invtexture.texture = itemsprite
-			$gui/Label.text = itemtype
+			$gui/gui/invtexture.texture = itemsprite
+			$gui/gui/Label.text = itemtype
 			#$gui/invtexture.scale = Vector2(2.0, 2.0)
 			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
 		if Input.is_action_just_pressed("LCM"):
@@ -159,11 +159,11 @@ func _physics_process(delta: float) -> void:
 					#item.queue_free()
 				
 				itemsprite = null
-				$gui/invtexture.texture = load("res://sprites/nullinv1.png")
+				$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
 				itemscene = null
 				itemkg = 0.0
 				itemtype = "Тип предмета"
-				$gui/Label.text = itemtype
+				$gui/gui/Label.text = itemtype
 				isinv = false
 	
 	if health < 3.0:
@@ -202,11 +202,11 @@ func _physics_process(delta: float) -> void:
 		slidespeed = MaxSlideSpeed
 		slidespeedminus = MaxSlideSpeed
 		$Timer.start()
-		$gui/slidebar/slidetimer.start()
+		$gui/gui/slidebar/slidetimer.start()
 		var tweenslidebar = create_tween()
-		$gui/slidebar.value = 0.0
-		tweenslidebar.tween_property($gui/slidebar, "value", 100.0, $gui/slidebar/slidetimer.wait_time)
-		$gui/slidebar/slidebar.visible = true
+		$gui/gui/slidebar.value = 0.0
+		tweenslidebar.tween_property($gui/gui/slidebar, "value", 100.0, $gui/gui/slidebar/slidetimer.wait_time)
+		$gui/gui/slidebar/slidebar.visible = true
 		isslide = true
 		slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -343,7 +343,7 @@ func _on_timer_timeout() -> void:
 
 func _on_slidetimer_timeout() -> void:
 	canslide = true
-	$gui/slidebar/slidebar.visible = false
+	$gui/gui/slidebar/slidebar.visible = false
 
 func updateskin():
 	match Global.colinskin:
