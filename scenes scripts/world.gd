@@ -1,12 +1,12 @@
 extends Node3D
 
 var rooms1 = {
-	1: preload("res://scenes scripts/room_1_1.tscn"),
-	2: preload("res://scenes scripts/rooms/sroom_1_1.tscn"),
+	1: preload("res://scenes scripts/rooms/sroom_1_1.tscn"),
+	2: preload("res://scenes scripts/rooms/sroom_1_2.tscn"),
 }
 var rooms2 = {
 	1: preload("res://scenes scripts/room_2_1.tscn"),
-	2: preload("res://scenes scripts/room_2_2.tscn"),
+	2: preload("res://scenes scripts/rooms/sroom_2_1.tscn"),
 }
 
 @export var room1size = Vector3(10, 0, 0)
@@ -26,6 +26,8 @@ func _ready():
 		o += 1
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
 	#$navi.bake_navigation_mesh()
+	await get_tree().physics_frame
+	spawnroom(false, load("res://scenes scripts/rooms/sroom_1_1.tscn"))
 	$CanvasLayer.queue_free()
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
@@ -42,7 +44,7 @@ func _on_timer_timeout() -> void:
 	#if body.is_in_group("player"):
 		#$navi.bake_navigation_mesh()
 
-func spawnroom():
+func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, 2)
 	var typeroom: int = randi_range(1, 2)
 	var sceneroom: PackedScene
@@ -56,11 +58,15 @@ func spawnroom():
 			sceneroom = rooms2.get(numroom)
 			typeroompos = room2size
 	
-	if sceneroom:
+	if sceneroom and randomroom:
 		var nextroom: Node3D = sceneroom.instantiate()
 		nextroom.position = $spawnnextroom.position
 		add_child(nextroom)
 		nextroom.bakenavi()
+	if !randomroom and scenesroom:
+		var sroom: Node3D = scenesroom.instantiate()
+		sroom.position = $spawnnextroom.position
+		add_child(sroom)
 	
 	$spawnnextroom.position -= typeroompos
 	$detectspawnroom.position -= typeroompos

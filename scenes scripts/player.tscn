@@ -188,33 +188,58 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -320.0
-offset_top = -240.0
+offset_top = -316.0
 offset_right = 320.0
-offset_bottom = 400.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_6rr08")
 
-[node name="Label" type="Label" parent="gui/pause menu"]
+[node name="labels" type="Node2D" parent="gui/pause menu"]
+
+[node name="Label" type="Label" parent="gui/pause menu/labels"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -11.5
-offset_right = 66.0
-offset_bottom = 11.5
+offset_left = -117.5
+offset_top = -66.0
+offset_right = 117.5
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 64
-text = "PAUSED"
+theme_override_font_sizes/font_size = 54
+text = "ИГРА ОСТАНОВЛЕНА"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="gui/pause menu/labels"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -7.0
+offset_right = 100.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 16
+text = "рестарт - R
+выйти в меню - Q
+продолжить - ESC
+выйти из игры - CTRL+Q"
+horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

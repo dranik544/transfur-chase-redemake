@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2pr2xrftn3nb"
-path="res://.godot/imported/savepoint2.png-71ffaaa79f44c797de495c76771ba380.ctex"
+uid="uid://c3llgeyap0b5a"
+path="res://.godot/imported/icon10.png-15b73cf840615deb29d7a475c889ef4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/savepoint2.png"
-dest_files=["res://.godot/imported/savepoint2.png-71ffaaa79f44c797de495c76771ba380.ctex"]
+source_file="res://sprites/icon10.png"
+dest_files=["res://.godot/imported/icon10.png-15b73cf840615deb29d7a475c889ef4d.ctex"]
 
 [params]
 

@@ -33,6 +33,7 @@ func _ready():
 	$"CanvasLayer/stats menu/btnexit".pressed.connect(btnstatsexitpressed)
 	$CanvasLayer/buttons/skins/btnskins.pressed.connect(btnskinspressed)
 	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
+	$CanvasLayer/buttons/waaa/btnwaaa.pressed.connect(btnwaaapressed)
 	
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
@@ -62,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	dinamicbtn(delta, $CanvasLayer/buttons/tutorial, $"room1 1/mesh1", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/Sprite3D", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/Sprite3D2", 25, tr, sz, mp)
+	dinamicbtn(delta, $CanvasLayer/buttons/waaa, $"room1 1/Sprite3D3", 25, tr / 8, sz / 8, mp)
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -100,6 +102,21 @@ func btnskinsmouseexited():$CanvasLayer/text/Label.text = ". . ."
 
 func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false
 func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true
+func btnwaaapressed():
+	var random = randi_range(1, 5)
+	match random:
+		1:
+			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowFat3.wav")
+		2:
+			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup3.wav")
+		3:
+			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup5.wav")
+		4:
+			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort1.wav")
+		5:
+			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort3.wav")
+	
+	$"room1 1/Sprite3D3/AudioStreamPlayer3D".play()
 func btnskinspressed():
 	$"CanvasLayer/skins menu".visible = true
 	$CanvasLayer/buttons.visible = false

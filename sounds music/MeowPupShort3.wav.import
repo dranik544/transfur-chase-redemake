@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3y80c5vllwwt"
+path="res://.godot/imported/MeowPupShort3.wav-5a4148157632ceee307614070a24441b.sample"
+
+[deps]
+
+source_file="res://sounds music/MeowPupShort3.wav"
+dest_files=["res://.godot/imported/MeowPupShort3.wav-5a4148157632ceee307614070a24441b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

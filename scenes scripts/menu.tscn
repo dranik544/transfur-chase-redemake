@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=69 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -16,8 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://dl5wintagfnav" path="res://sprites/tv1.png" id="14_eaxk7"]
 [ext_resource type="Texture2D" uid="uid://ofwygsdqciex" path="res://sprites/bg4.png" id="15_k8css"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="16_k8css"]
+[ext_resource type="Texture2D" uid="uid://b4vcdsvpliynp" path="res://sprites/cat waaaa.png" id="16_rwdqi"]
 [ext_resource type="Texture2D" uid="uid://0tbvf24pf65v" path="res://sprites/stats1.png" id="16_t6ycr"]
+[ext_resource type="AudioStream" uid="uid://dvurnuhqj6ob1" path="res://sounds music/MeowPup3.wav" id="17_4w1wx"]
 [ext_resource type="SpriteFrames" uid="uid://bjurr00mwx14r" path="res://skins/player_sprite.tres" id="17_fjnfi"]
+[ext_resource type="Texture2D" uid="uid://seoh1ek7ciij" path="res://sprites/healitem1.png" id="17_i05ob"]
 [ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites/icon2.png" id="17_xh7j4"]
 [ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="17_ype5m"]
 [ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://wallmesh/wallmesh1.tres" id="18_238qo"]
@@ -39,6 +42,7 @@
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
+[ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -667,12 +671,31 @@ mesh = SubResource("QuadMesh_eogbu")
 skeleton = NodePath("")
 
 [node name="Sprite3D" type="Sprite3D" parent="room1 1"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.13732, 1.31493, -2.37024)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.33732, 1.31493, -2.07024)
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("16_t6ycr")
+
+[node name="Sprite3D3" type="Sprite3D" parent="room1 1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.51232, 1.41493, -1.17024)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("16_rwdqi")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="room1 1/Sprite3D3"]
+stream = ExtResource("17_4w1wx")
+
+[node name="Sprite3D4" type="Sprite3D" parent="room1 1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.63732, 1.31493, -2.87024)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("17_i05ob")
 
 [node name="Sprite3D2" type="AnimatedSprite3D" parent="room1 1"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.04, 0)
@@ -887,6 +910,28 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
 text = "костюмы"
 icon = ExtResource("24_4l3ii")
+expand_icon = true
+
+[node name="waaa" type="Node2D" parent="CanvasLayer/buttons"]
+
+[node name="btnwaaa" type="Button" parent="CanvasLayer/buttons/waaa"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -15.5
+offset_right = 15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+icon = ExtResource("33_i05ob")
 expand_icon = true
 
 [node name="text" type="Node2D" parent="CanvasLayer"]
