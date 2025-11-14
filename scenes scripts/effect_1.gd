@@ -7,14 +7,17 @@ extends Node3D
 
 
 func _ready() -> void:
-	if effecttexture and scaletexture:
-		if $GPUParticles3D.draw_pass_1.material:
-			$GPUParticles3D.draw_pass_1.material.albedo_texture = effecttexture
-			$GPUParticles3D.draw_pass_1.size = scaletexture
-			$GPUParticles3D.amount = amounttexture
-			$GPUParticles3D2.amount = amounttexture / 2
-			$GPUParticles3D2.draw_pass_1.material.albedo_color = coloreffect
+	seteffect(effecttexture, scaletexture, amounttexture, coloreffect)
 	#$GPUParticles3D.emitting
+
+func seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect):
+	if neffecttexture and nscaletexture:
+		if $GPUParticles3D.draw_pass_1.material:
+			$GPUParticles3D.draw_pass_1.material.albedo_texture = neffecttexture
+			$GPUParticles3D.draw_pass_1.size = nscaletexture
+			$GPUParticles3D.amount = namounttexture
+			$GPUParticles3D2.amount = namounttexture / 2
+			$GPUParticles3D2.draw_pass_1.material.albedo_color = ncoloreffect
 
 func play():
 	#$GPUParticles3D.emitting = true

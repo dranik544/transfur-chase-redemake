@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://kjde5ai2vtwd"]
+[gd_scene load_steps=7 format=3 uid="uid://kjde5ai2vtwd"]
 
 [ext_resource type="Material" uid="uid://ccsh8a16efj6o" path="res://materials/box_2.tres" id="1_f0xtx"]
+[ext_resource type="Script" uid="uid://d1luq06hc6iro" path="res://scenes scripts/box_1.gd" id="1_kjp6m"]
 [ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://materials/box_1.tres" id="2_8866s"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_1d18w"]
@@ -16,6 +17,8 @@ size = Vector3(1, 2, 1)
 [node name="box2" type="RigidBody3D" groups=["broke"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mass = 2.5
+script = ExtResource("1_kjp6m")
+bscaletexture = Vector2(0.5, 0.5)
 
 [node name="mesh1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)

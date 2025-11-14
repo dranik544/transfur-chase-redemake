@@ -3,7 +3,7 @@ extends Node3D
 var centercam
 var cam
 var freecam: bool = false
-var sens: float = 0.01
+var sens: float = 0.002
 var driftcam: float = 0
 var camsize: float = 15.0
 

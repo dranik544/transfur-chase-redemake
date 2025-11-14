@@ -23,7 +23,6 @@ var autodelete = false
 var isplayerbeeninroom: bool = false
 @export var boxposy: float = 1
 var canbake: bool = false
-var camposx: float = 0.0
 @export var navibridgeScene: PackedScene = preload("res://scenes scripts/navibridge.tscn")
 
 @export_category("Not Added")
@@ -51,17 +50,29 @@ func _ready():
 	if Cabels:
 		spawnbox(SceneCabels1, NumCabels1, 3.0, false)
 	
-	var areacam = Area3D.new()
-	var collcam = CollisionShape3D.new()
-	add_child(areacam)
-	areacam.add_child(collcam)
-	collcam.shape = load("res://BoxShapes/collcam1.tres")
-	areacam.position.x = -0.5
+	#next room cam zone
+	var areacamn = Area3D.new()
+	var collcamn = CollisionShape3D.new()
+	add_child(areacamn)
+	areacamn.add_child(collcamn)
+	collcamn.shape = load("res://BoxShapes/collcam1.tres")
+	areacamn.position.x = -0.5
 	
-	if areacam:
-		areacam.body_entered.connect(camzoneentered)
-		areacam.body_exited.connect(camzoneexited)
-	camposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
+	if areacamn:
+		areacamn.body_entered.connect(camzoneNentered)
+		areacamn.body_exited.connect(camzoneNexited)
+	
+	#back room cam zone
+	var areacamb = Area3D.new()
+	var collcamb = CollisionShape3D.new()
+	add_child(areacamb)
+	areacamb.add_child(collcamb)
+	collcamb.shape = load("res://BoxShapes/collcam1.tres")
+	areacamb.position.x = -$NavigationRegion3D/StaticBody3D/bottom.mesh.size.x + 0.5
+	
+	if areacamb:
+		areacamb.body_entered.connect(camzoneBentered)
+		areacamb.body_exited.connect(camzoneBexited)
 	
 	var navibridge: StaticBody3D = navibridgeScene.instantiate()
 	$NavigationRegion3D/StaticBody3D.add_child(navibridge)
@@ -111,19 +122,33 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		#autodelete = false
 		#isplayerbeeninroom = true
 		canbake = true
-		#bakenavi()
+		bakenavi()
 		Global.navibakereq.disconnect(bakenavi)
 
 func bakenavi():
 	await get_tree().physics_frame
 	$NavigationRegion3D.bake_navigation_mesh()
 
-func camzoneentered(body):
+func camzoneNentered(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
-		body.camfollowupdate(true, curcamposx - 0.5)
+		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
+		#body.camfollowupdate(true, global_position.x - curcamposx)
 
-func camzoneexited(body):
+func camzoneNexited(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
-		body.camfollowupdate(false, curcamposx - 0.5)
+		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
+		body.camfollowupdate(false, global_position.x - curcamposx, global_position.y - curcamposy)
+
+func camzoneBentered(body):
+	if body.is_in_group("player"):
+		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
+		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
+		#body.camfollowupdate(true, global_position.x + -curcamposx)
+
+func camzoneBexited(body):
+	if body.is_in_group("player"):
+		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
+		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
+		body.camfollowupdate(false, global_position.x + -curcamposx, global_position.y + -curcamposy)

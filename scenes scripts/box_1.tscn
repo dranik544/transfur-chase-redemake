@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b24olo70jj02w"]
+[gd_scene load_steps=5 format=3 uid="uid://b24olo70jj02w"]
 
+[ext_resource type="Script" uid="uid://d1luq06hc6iro" path="res://scenes scripts/box_1.gd" id="1_dl2dy"]
 [ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://materials/box_1.tres" id="1_wl8xf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wl8xf"]
@@ -9,6 +10,8 @@ material = ExtResource("1_wl8xf")
 
 [node name="box1" type="RigidBody3D" groups=["broke"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_dl2dy")
+bscaletexture = Vector2(0.5, 0.5)
 
 [node name="mesh1" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_wl8xf")

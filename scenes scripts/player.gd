@@ -47,8 +47,7 @@ func _ready():
 	cam = centercam.get_node("cam")
 	defposspr = $Sprite3D.position
 	
-	if Global.colinskin != "":
-		updateskin()
+	updateskin()
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -69,11 +68,12 @@ func _unhandled_input(event):
 		camscalewheel -= 0.75
 	camscalewheel = clampf(camscalewheel, -2.5, 7.5)
 
-func camfollowupdate(canfollow: bool, camposx = 0.0):
+func camfollowupdate(canfollow: bool, camposx = 0.0, camposy = 0.0):
 	camfollow = canfollow
 	if !canfollow:
-		camfollowpos = centercam.global_position
-		camfollowpos.x = centercam.global_position.x - camposx
+		camfollowpos = Vector3(camposx, centercam.global_position.y, centercam.global_position.z)
+		#camfollowpos = centercam.global_position
+		#camfollowpos.x = centercam.global_position.x - camposx
 	else:
 		camfollowpluspos = 0.0
 
@@ -86,9 +86,9 @@ func _physics_process(delta: float) -> void:
 		freecam = true
 	
 	if camfollow:
-		centercam.global_position = lerp(centercam.global_position, global_position, 5 * delta)
+		centercam.global_position = lerp(centercam.global_position, global_position, 6 * delta)
 	else:
-		centercam.global_position = lerp(centercam.global_position, camfollowpos, 5 * delta)
+		centercam.global_position = lerp(centercam.global_position, camfollowpos, 6 * delta)
 	
 	cam.rotation.z += driftcam
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
@@ -221,8 +221,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = slidevelocity.x
 		velocity.z = slidevelocity.z
 		slidespeed = lerp(slidespeed, slidespeedminus, 10 * delta)
-		var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
-		enemy.collision_layer = false
+		
+		for enemy in enemies:
+			enemy.collision_layer = false
 		if !$slide.playing:
 			$slide.play()
 	else:
@@ -231,6 +232,9 @@ func _physics_process(delta: float) -> void:
 			if not is_queued_for_deletion() and get_tree():
 				await get_tree().physics_frame
 			$CollisionShape3D2.disabled = true
+			
+			for enemy in enemies:
+				enemy.collision_layer = true
 		isslide = false
 		$slide.stop()
 	
@@ -304,7 +308,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		$latexpunch.play()
 	if body.is_in_group("broke") and isslide:
 		Global.brokenboxes += 1
-		body.queue_free()
+		
+		body.broke()
 		slidespeedminus -= randf_range(1.0, 2.5)
 	if body.is_in_group("slime") and !isslide:
 		minushealth(0.5)

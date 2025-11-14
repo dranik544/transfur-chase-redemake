@@ -25,6 +25,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					tween.tween_property(obj, "global_position:y", 0.8, 1.0)
 					await tween.finished
 					obj.set_physics_process(true)
+					obj.exitfromvent()
 					#enemy.global_position = global_position + Vector3(0, 0.8, 0)
 				2:
 					var obj: RigidBody3D = item2Scene.instantiate()

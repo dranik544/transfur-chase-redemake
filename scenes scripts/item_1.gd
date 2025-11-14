@@ -15,6 +15,7 @@ extends RigidBody3D
 @export var ieffecttexture: Texture = preload("res://sprites/icon8.png")
 @export var iscaletexture: Vector2 = Vector2(0.25, 0.25)
 @export var iamounttexture: int = 12
+@export var icoloreffect: Color = Color(1.0, 1.0, 1.0)
 
 
 func _ready():
@@ -50,9 +51,12 @@ func use(player = get_tree().get_first_node_in_group("player")):
 	var effect = effectscene.instantiate()
 	get_parent().add_child(effect)
 	effect.global_position = global_position
-	effect.amounttexture = iamounttexture
-	effect.effecttexture = ieffecttexture
-	effect.scaletexture = iscaletexture
+	
+	#effect.amounttexture = iamounttexture
+	#effect.effecttexture = ieffecttexture
+	#effect.scaletexture = iscaletexture
+	
+	effect.seteffect(ieffecttexture, iscaletexture, iamounttexture, icoloreffect)
 	effect.play()
 	
 	queue_free()
