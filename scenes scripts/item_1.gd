@@ -48,6 +48,8 @@ func use(player = get_tree().get_first_node_in_group("player")):
 	if ischangehp:
 		player.health += changehp
 	
+	Global.useditems += 1
+	
 	var effect = effectscene.instantiate()
 	get_parent().add_child(effect)
 	effect.global_position = global_position

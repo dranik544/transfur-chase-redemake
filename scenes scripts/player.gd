@@ -227,7 +227,7 @@ func _physics_process(delta: float) -> void:
 		if !$slide.playing:
 			$slide.play()
 	else:
-		if !taunt:
+		if !taunt and !$RayCast3D.is_colliding():
 			$CollisionShape3D.disabled = false
 			if not is_queued_for_deletion() and get_tree():
 				await get_tree().physics_frame
@@ -292,6 +292,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
 		minushealth(1.0)
+		Global.hitsfromenemies -= 1
 		
 		var random = randi_range(1, 2)
 		match random:
@@ -300,6 +301,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		$latexpunch.play()
 	if body.is_in_group("small enemy"):
 		minushealth(0.25)
+		Global.hitsfromenemies -= 1
 		
 		var random = randi_range(1, 2)
 		match random:

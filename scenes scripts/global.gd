@@ -3,6 +3,9 @@ extends Node
 var brokenboxes: int = 0
 var brokendoors: int = 0
 var touchedslimes: int = 0
+var hitsfromenemies: int = 0
+var openvents: int = 0
+var useditems: int = 0
 
 var colinskin: String = "colin"
 var listskins = [
@@ -17,6 +20,8 @@ var listskins = [
 	{"name": "solider", "unlocked": false},
 ]
 
+var recordpoints: int = 0
+
 signal navibakereq()
 
 
@@ -25,8 +30,11 @@ func _ready() -> void:
 		SavingManager.save("skins", colinskin)
 	if SavingManager.load("skinlist") == null:
 		SavingManager.save("skinlist", listskins)
+	if SavingManager.load("recordpoints") == null:
+		SavingManager.save("recordpoints", recordpoints)
 	colinskin = SavingManager.load("skins")
 	listskins = SavingManager.load("skinlist")
+	recordpoints = SavingManager.load("recordpoints")
 
 func _process(delta: float) -> void:
 	pass

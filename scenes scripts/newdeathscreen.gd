@@ -4,13 +4,22 @@ var time: float = 0.0
 
 
 func _ready():
-	$label.text = "бр бр патапим
+	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems
+	if points > Global.recordpoints:
+		Global.recordpoints = points
+	SavingManager.save("recordpoints", Global.recordpoints)
+	
+	$label.text = "ты сдулся!
 	
 	сломано коробок: " + str(Global.brokenboxes) + "
 	выломано дверей: " + str(Global.brokendoors) + "
 	тронуто луж: " + str(Global.touchedslimes) + "
+	получил лещей: " + str(Global.hitsfromenemies) + "
+	открыто люков: " + str(Global.openvents) + "
+	использовано предметов: " + str(Global.useditems) + "
 	
-	итого: " + str(Global.brokendoors + Global.brokendoors + Global.touchedslimes)
+	итого: " + str(points)
+	
 
 func _process(delta):
 	time += delta

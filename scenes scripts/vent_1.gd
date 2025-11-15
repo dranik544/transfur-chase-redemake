@@ -45,4 +45,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					obj.set_physics_process(true)
 					#enemy.global_position = global_position + Vector3(0, 0.8, 0)
 			
+			Global.openvents += 1
 			isopen = true
