@@ -1347,7 +1347,7 @@ text = "сохранить и выйти"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
-[node name="lock" type="Sprite2D" parent="CanvasLayer"]
+[node name="lock" type="Sprite2D" parent="CanvasLayer/skins menu"]
 visible = false
 position = Vector2(320, 240)
 scale = Vector2(4, 4)

@@ -7,6 +7,8 @@ var hitsfromenemies: int = 0
 var openvents: int = 0
 var useditems: int = 0
 
+var iswinter: bool = false
+
 var colinskin: String = "colin"
 var listskins = [
 	{"name": "colin", "unlocked": true},
@@ -26,15 +28,27 @@ signal navibakereq()
 
 
 func _ready() -> void:
+	var now = Time.get_datetime_dict_from_system()
+	iswinter = now.month == Time.Month.MONTH_DECEMBER or now.month == Time.Month.MONTH_JANUARY
+	
+	iswinter = false
+	
 	if SavingManager.load("skins") == null:
 		SavingManager.save("skins", colinskin)
 	if SavingManager.load("skinlist") == null:
 		SavingManager.save("skinlist", listskins)
 	if SavingManager.load("recordpoints") == null:
 		SavingManager.save("recordpoints", recordpoints)
+	if SavingManager.load("curskin") == null:
+		SavingManager.save("curskin", 0)
 	colinskin = SavingManager.load("skins")
 	listskins = SavingManager.load("skinlist")
 	recordpoints = SavingManager.load("recordpoints")
+	
+	if iswinter:
+		listskins[3]["unlocked"] = true
+	else:
+		listskins[3]["unlocked"] = false
 
 func _process(delta: float) -> void:
 	pass

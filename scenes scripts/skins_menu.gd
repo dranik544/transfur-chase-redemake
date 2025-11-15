@@ -22,7 +22,11 @@ func btnrightpressed():
 	updateskin(false, true)
 
 
-func updateskin(save: bool, enablecurskin: bool):
+func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
+	if loadcurskin:
+		curskin = SavingManager.load("curskin")
+		if !Global.listskins[curskin]["unlocked"]:
+			curskin = 0
 	if enablecurskin: Global.colinskin = Global.listskins[curskin]["name"]; $"../../room1 1/Sprite3D2/effect1".play()
 	
 	match Global.colinskin:
@@ -81,10 +85,11 @@ func updateskin(save: bool, enablecurskin: bool):
 			$Label2.text = "пережил многое."
 			$Label3.text = "автор: TheNamelessDeity"
 	
-	$"../lock".visible = !Global.listskins[curskin]["unlocked"]
+	$lock.visible = !Global.listskins[curskin]["unlocked"]
 	$btnexit.disabled = !Global.listskins[curskin]["unlocked"]
 	
 	if save: SavingManager.save("skins", Global.colinskin); colin.playanim();
-	if save: SavingManager.save("skinlist", Global.listskins)
+	#if save: SavingManager.save("skinlist", Global.listskins)
+	SavingManager.save("curskin", curskin)
 	
 	colin.play("idle")

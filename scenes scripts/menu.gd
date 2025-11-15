@@ -38,7 +38,7 @@ func _ready():
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
 	
-	$"CanvasLayer/skins menu".updateskin(false, false)
+	$"CanvasLayer/skins menu".updateskin(false, true, true)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
