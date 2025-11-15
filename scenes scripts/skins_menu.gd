@@ -1,15 +1,5 @@
 extends Node2D
 
-@export var listskins = [
-	"colin",
-	"V1",
-	"nightmare colin",
-	"new year colin",
-	"gold colin",
-	"hank",
-	"necoarc",
-	"muha",
-]
 var curskin = 0
 var curskinset
 @onready var colin = $"../../room1 1/Sprite3D2"
@@ -22,18 +12,18 @@ func _ready() -> void:
 func btnleftpressed():
 	curskin -= 1
 	if curskin < 0:
-		curskin = listskins.size() - 1
+		curskin = Global.listskins.size() - 1
 	updateskin(false, true)
 
 func btnrightpressed():
 	curskin += 1
-	if curskin >= listskins.size():
+	if curskin >= Global.listskins.size():
 		curskin = 0
 	updateskin(false, true)
 
 
 func updateskin(save: bool, enablecurskin: bool):
-	if enablecurskin: Global.colinskin = listskins[curskin]; $"../../room1 1/Sprite3D2/effect1".play()
+	if enablecurskin: Global.colinskin = Global.listskins[curskin]["name"]; $"../../room1 1/Sprite3D2/effect1".play()
 	
 	match Global.colinskin:
 		"colin":
@@ -85,7 +75,16 @@ func updateskin(save: bool, enablecurskin: bool):
 			$Label.text = "Муха Груша"
 			$Label2.text = "мяу"
 			$Label3.text = "автор: Paper_Shaverma (Захар М.)"
+		"solider":
+			colin.sprite_frames = load("res://skins/solider_colin_skin.tres")
+			$Label.text = "Солдат"
+			$Label2.text = "пережил многое."
+			$Label3.text = "автор: TheNamelessDeity"
+	
+	$"../lock".visible = !Global.listskins[curskin]["unlocked"]
+	$btnexit.disabled = !Global.listskins[curskin]["unlocked"]
 	
 	if save: SavingManager.save("skins", Global.colinskin); colin.playanim();
+	if save: SavingManager.save("skinlist", Global.listskins)
 	
 	colin.play("idle")

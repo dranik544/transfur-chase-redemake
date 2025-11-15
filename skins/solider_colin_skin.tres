@@ -1,0 +1,125 @@
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://cia6is7ersjd0"]
+
+[ext_resource type="Texture2D" uid="uid://b81w1vi5atscl" path="res://sprites/colin8.png" id="1_y8rdw"]
+[ext_resource type="Texture2D" uid="uid://c68e5j7a27qq0" path="res://sprites/colin9.png" id="2_dbip5"]
+[ext_resource type="Texture2D" uid="uid://cvdycyy7u3id1" path="res://sprites/solider skin/colin1idle.png" id="3_iwtor"]
+[ext_resource type="Texture2D" uid="uid://ccnynk0ytue2w" path="res://sprites/solider skin/colin2idle.png" id="4_y8rdw"]
+[ext_resource type="Texture2D" uid="uid://hdt0r5kclu0k" path="res://sprites/solider skin/colin1run.png" id="5_dbip5"]
+[ext_resource type="Texture2D" uid="uid://btli7or14xc0b" path="res://sprites/solider skin/colin2run.png" id="6_n6hpv"]
+[ext_resource type="Texture2D" uid="uid://c8a6d55ateq42" path="res://sprites/solider skin/colin1slide.png" id="7_filvb"]
+[ext_resource type="Texture2D" uid="uid://de5fdtsxofy4f" path="res://sprites/solider skin/colin2slide.png" id="8_elaml"]
+[ext_resource type="Texture2D" uid="uid://bu35b428yusoo" path="res://sprites/solider skin/colin1taunt.png" id="9_j7f52"]
+[ext_resource type="Texture2D" uid="uid://buttavfx8exsg" path="res://sprites/solider skin/colin2taunt.png" id="10_brnru"]
+[ext_resource type="Texture2D" uid="uid://dkw6rbk13g21g" path="res://sprites/solider skin/colin3taunt.png" id="11_ax2ym"]
+[ext_resource type="Texture2D" uid="uid://bnpw7nh8i4or4" path="res://sprites/solider skin/colin1transfur.png" id="12_f2omn"]
+[ext_resource type="Texture2D" uid="uid://cjtj11ufk4ma4" path="res://sprites/solider skin/colin3transfur.png" id="13_r4s4v"]
+[ext_resource type="Texture2D" uid="uid://bf2a63dnfw02m" path="res://sprites/solider skin/colin4transfur.png" id="14_ccwck"]
+[ext_resource type="Texture2D" uid="uid://bk6lge2opl533" path="res://sprites/solider skin/colin5transfur.png" id="15_84cud"]
+[ext_resource type="Texture2D" uid="uid://cwjniqj8d7ule" path="res://sprites/solider skin/colin6transfur.png" id="16_q60bl"]
+[ext_resource type="Texture2D" uid="uid://dqxivvirupgke" path="res://sprites/solider skin/colin7transfur.png" id="17_m2nay"]
+[ext_resource type="Texture2D" uid="uid://dfy62q7l4t1bl" path="res://sprites/solider skin/colin8transfur.png" id="18_l66oy"]
+[ext_resource type="Texture2D" uid="uid://x6yoisovpy2m" path="res://sprites/solider skin/colin9transfur.png" id="19_lkd0w"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y8rdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dbip5")
+}],
+"loop": true,
+"name": &"crawl run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iwtor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y8rdw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dbip5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_iwtor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n6hpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y8rdw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_filvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_elaml")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_j7f52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_brnru")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_j7f52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ax2ym")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_f2omn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_r4s4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ccwck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_84cud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_q60bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_m2nay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_l66oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_lkd0w")
+}],
+"loop": false,
+"name": &"transfur",
+"speed": 4.0
+}]

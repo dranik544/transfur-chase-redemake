@@ -373,6 +373,9 @@ func updateskin():
 		"muha":
 			$gui/colinbg.texture = load("res://sprites/muha skin/colin bg 1.png")
 			$Sprite3D.sprite_frames = load("res://skins/muha_player_skin.tres")
+		"solider":
+			$gui/colinbg.texture = load("res://sprites/solider skin/colin bg 1.png")
+			$Sprite3D.sprite_frames = load("res://skins/solider_colin_skin.tres")
 		null:
 			$gui/colinbg.texture = load("res://sprites/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")

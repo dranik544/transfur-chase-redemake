@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=21 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
-[ext_resource type="SpriteFrames" uid="uid://1qycunsw3suq" path="res://skins/new_year_colin_skin.tres" id="2_h5cnr"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
 [ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites/nullinv1.png" id="5_ndhvj"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
@@ -86,8 +85,7 @@ billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = ExtResource("2_h5cnr")
-animation = &"idle"
+animation = &"transfur"
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=71 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
 [ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
+[ext_resource type="Texture2D" uid="uid://cu38coc8wpwp6" path="res://sprites/lock1.png" id="43_oarhb"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -454,6 +455,21 @@ func btnmouseentered():
 func btnmouseexited():
 	curscale = defscale
 	currotate = defrotate
+"
+
+[sub_resource type="GDScript" id="GDScript_oarhb"]
+script/source = "extends Sprite2D
+
+var time: float = 0.0
+var defpos
+
+
+func _ready() -> void:
+	defpos = position
+
+func _process(delta: float) -> void:
+	time += delta
+	position.y = defpos.y + sin(time * 2) * 10
 "
 
 [node name="menu" type="Node3D"]
@@ -1302,6 +1318,13 @@ theme_override_fonts/font = ExtResource("16_k8css")
 text = "сохранить и выйти"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
+
+[node name="lock" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(320, 240)
+scale = Vector2(4, 4)
+texture = ExtResource("43_oarhb")
+script = SubResource("GDScript_oarhb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
