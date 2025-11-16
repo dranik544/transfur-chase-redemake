@@ -103,19 +103,20 @@ func _physics_process(delta: float) -> void:
 	
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
-		var disttoenemy = global_position.distance_to(enemy.global_position)
-		if disttoenemy <= 3:
-			$Sprite3D.position = defposspr + Vector3(
-				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
-				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
-				randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000)
-			)
-			$sh.emitting = true
-			
-			break
-		else:
-			$Sprite3D.position = defposspr
-			$sh.emitting = false
+		if enemy:
+			var disttoenemy = global_position.distance_to(enemy.global_position)
+			if disttoenemy <= 3:
+				$Sprite3D.position = defposspr + Vector3(
+					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000)
+				)
+				$sh.emitting = true
+				
+				break
+			else:
+				$Sprite3D.position = defposspr
+				$sh.emitting = false
 	
 	if Input.is_action_pressed("CTRL"):
 		if !isslide:
@@ -223,7 +224,8 @@ func _physics_process(delta: float) -> void:
 		slidespeed = lerp(slidespeed, slidespeedminus, 10 * delta)
 		
 		for enemy in enemies:
-			enemy.collision_layer = false
+			if enemy:
+				enemy.collision_layer = false
 		if !$slide.playing:
 			$slide.play()
 	else:
@@ -234,7 +236,8 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D2.disabled = true
 			
 			for enemy in enemies:
-				enemy.collision_layer = true
+				if enemy:
+					enemy.collision_layer = true
 		isslide = false
 		$slide.stop()
 	
@@ -345,7 +348,8 @@ func _on_timer_timeout() -> void:
 	isslide = false
 	await get_tree().physics_frame
 	var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
-	enemy.collision_layer = true
+	if enemy:
+		enemy.collision_layer = true
 	Global.navibakereq
 
 func _on_slidetimer_timeout() -> void:

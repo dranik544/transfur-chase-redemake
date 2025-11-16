@@ -20,13 +20,13 @@
 panorama = ExtResource("2_y5apx")
 filter = false
 
-[sub_resource type="Sky" id="Sky_txncy"]
+[sub_resource type="Sky" id="Sky_alufl"]
 sky_material = SubResource("PanoramaSkyMaterial_ifjlx")
 
 [sub_resource type="Environment" id="Environment_55rg2"]
 background_mode = 2
 background_color = Color(0.490196, 0.490196, 0.490196, 1)
-sky = SubResource("Sky_txncy")
+sky = SubResource("Sky_alufl")
 ambient_light_source = 2
 ambient_light_color = Color(0.789172, 0.789172, 0.789172, 1)
 tonemap_mode = 2
@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
+loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")

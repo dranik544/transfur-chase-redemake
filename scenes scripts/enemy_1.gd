@@ -10,6 +10,9 @@ var hasentered = false
 func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
+	
+	if Global.iswinter:
+		$Sprite3D.sprite_frames = load("res://skins/newyear_enemy_sprite.tres")
 
 func _physics_process(delta):
 	var nextloc = $NavigationAgent3D.get_next_path_position()

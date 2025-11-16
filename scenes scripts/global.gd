@@ -45,10 +45,7 @@ func _ready() -> void:
 	listskins = SavingManager.load("skinlist")
 	recordpoints = SavingManager.load("recordpoints")
 	
-	if iswinter:
-		listskins[3]["unlocked"] = true
-	else:
-		listskins[3]["unlocked"] = false
+	listskins[3]["unlocked"] = iswinter
 
 func _process(delta: float) -> void:
 	pass

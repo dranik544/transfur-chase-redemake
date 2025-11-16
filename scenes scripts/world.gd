@@ -27,7 +27,7 @@ func _ready():
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
 	#$navi.bake_navigation_mesh()
 	await get_tree().physics_frame
-	spawnroom(false, load("res://scenes scripts/rooms/sroom_1_1.tscn"))
+	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
@@ -58,7 +58,7 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 			sceneroom = rooms2.get(numroom)
 			typeroompos = room2size
 	
-	if sceneroom and randomroom:
+	if !sceneroom and randomroom:
 		var nextroom: Node3D = sceneroom.instantiate()
 		nextroom.position = $spawnnextroom.position
 		add_child(nextroom)

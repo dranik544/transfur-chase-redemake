@@ -25,6 +25,12 @@ var isplayerbeeninroom: bool = false
 var canbake: bool = false
 @export var navibridgeScene: PackedScene = preload("res://scenes scripts/navibridge.tscn")
 
+@export_category("End Rooms")
+@export var isendroom1: bool = false
+@export var neededenvironment: Environment = preload("res://materials/endroom1.tres")
+@export var colorlight: Color = Color(0.991, 0.857, 0.842)
+
+
 @export_category("Not Added")
 @export var MinNumBoxes: int = 6
 @export var MaxNumBoxes: int = 14
@@ -114,7 +120,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		#queue_free()
 		canbake = false
 		Global.navibakereq.connect(bakenavi)
-		$NavigationRegion3D.bake_navigation_mesh()
+		bakenavi()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -124,10 +130,26 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		canbake = true
 		bakenavi()
 		Global.navibakereq.disconnect(bakenavi)
+		if isendroom1:
+			var env: WorldEnvironment = get_parent().get_node("WorldEnvironment")
+			var tufflightbro: DirectionalLight3D = get_parent().get_node("DirectionalLight3D")
+			
+			var sceneflash: PackedScene = load("res://scenes scripts/flash.tscn")
+			var flash: CanvasLayer = sceneflash.instantiate()
+			get_parent().add_child(flash)
+			flash.flash()
+			
+			env.environment = neededenvironment
+			tufflightbro.light_color = colorlight
+			
+			var enemies = get_tree().get_nodes_in_group("enemy")
+			for enemy in enemies: enemy.queue_free()
+
 
 func bakenavi():
 	await get_tree().physics_frame
-	$NavigationRegion3D.bake_navigation_mesh()
+	if !isendroom1:
+		$NavigationRegion3D.bake_navigation_mesh()
 
 func camzoneNentered(body):
 	if body.is_in_group("player"):

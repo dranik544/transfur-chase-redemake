@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://nin5s7psw8wd"]
+
+[ext_resource type="Texture2D" uid="uid://ifllpf6xdb0c" path="res://sprites/wall3.png" id="1_t6yvs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeop8"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.1
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("1_t6yvs")
+uv1_scale = Vector3(1, 0.34, 1)
+uv1_offset = Vector3(0, -0.01, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

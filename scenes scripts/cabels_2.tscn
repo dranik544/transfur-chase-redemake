@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl38kx6c4srqv"]
+
+[ext_resource type="Texture2D" uid="uid://bltux800km67b" path="res://sprites/cabels.png" id="1_4lden"]
+
+[node name="cabels1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.5, 0)
+billboard = 2
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("1_4lden")

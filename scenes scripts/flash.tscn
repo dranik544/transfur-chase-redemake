@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://drbtmcmt00eu2"]
+
+[sub_resource type="GDScript" id="GDScript_i16nq"]
+script/source = "extends CanvasLayer
+
+
+func flash():
+	var TUFFTWIN = create_tween()
+	TUFFTWIN.tween_property($ColorRect, \"color\", Color(1.0, 1.0, 1.0, 0.0), 1)
+	#await TUFFTWIN.TWEEN_PAUSE_STOP
+	#queue_free()
+"
+
+[node name="flash" type="CanvasLayer"]
+script = SubResource("GDScript_i16nq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
