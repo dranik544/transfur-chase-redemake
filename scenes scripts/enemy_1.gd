@@ -5,6 +5,7 @@ var canmove: bool = false
 var curspeed = 3.5
 var speeddist = 0.0
 var hasentered = false
+var framess: float = 0.0
 
 
 func _ready():
@@ -31,6 +32,15 @@ func _physics_process(delta):
 			$Sprite3D.flip_h = false
 		elif velocity.x < 0:
 			$Sprite3D.flip_h = true
+	
+	if velocity.length() < 0.75 and canmove:
+		framess += 1
+		
+		if framess > 75:
+			velocity += transform.basis.x * -4.0
+			framess = 0
+	else:
+		framess = 0
 	
 	#if $RayCast3D.is_colliding():
 		#speed = 1.5

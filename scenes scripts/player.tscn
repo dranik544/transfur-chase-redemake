@@ -257,7 +257,7 @@ stream = ExtResource("9_h5cnr")
 [node name="sh" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
-amount = 3
+amount = 4
 lifetime = 0.5
 speed_scale = 0.6
 process_material = SubResource("ParticleProcessMaterial_tlnr4")

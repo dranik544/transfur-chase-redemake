@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=73 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://c2xsylkcx2gq2" path="res://sprites/screenshot2.png" id="25_ybihx"]
 [ext_resource type="Texture2D" uid="uid://3oyxxfydk52x" path="res://sprites/wiki1.png" id="26_bhk6r"]
 [ext_resource type="Texture2D" uid="uid://bcujvutljhqce" path="res://sprites/wiki2.png" id="27_bhk6r"]
+[ext_resource type="PackedScene" uid="uid://b4xk86hcbhv6u" path="res://scenes scripts/cube_1.tscn" id="27_sr01d"]
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
@@ -793,6 +794,9 @@ skeleton = NodePath("../bottom")
 
 [node name="savepoint1" parent="room1 1" instance=ExtResource("21_hjmwg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -3.95)
+
+[node name="cube1" parent="room1 1" instance=ExtResource("27_sr01d")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -3.1, 1.2, -2.9)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

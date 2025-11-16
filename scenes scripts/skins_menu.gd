@@ -84,6 +84,17 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			$Label.text = "Солдат"
 			$Label2.text = "пережил многое."
 			$Label3.text = "автор: TheNamelessDeity"
+		"yay basket ^w^":
+			colin.sprite_frames = load("res://skins/basket_colin_skin.tres")
+			$Label.text = "Колин с мусорной корзиной"
+			$Label2.text = "- ВОУ ЧУВАК ЭТО РЕАЛЬНО КРУТОЙ БАГ ХАХАХА"
+			$Label3.text = "автор: TheNamelessDeity
+			придумал: Tapoksila"
+		"paladin":
+			colin.sprite_frames = load("res://skins/paladin_skin.tres")
+			$Label.text = "паладин"
+			$Label2.text = "могучий рыцарь, охранявший лабораторию."
+			$Label3.text = "автор: TheNamelessDeity"
 	
 	$lock.visible = !Global.listskins[curskin]["unlocked"]
 	$btnexit.disabled = !Global.listskins[curskin]["unlocked"]

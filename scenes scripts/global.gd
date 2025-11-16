@@ -20,6 +20,8 @@ var listskins = [
 	{"name": "necoarc", "unlocked": false},
 	{"name": "muha", "unlocked": false},
 	{"name": "solider", "unlocked": false},
+	{"name": "yay basket ^w^", "unlocked": true},
+	{"name": "paladin", "unlocked": true},
 ]
 
 var recordpoints: int = 0
@@ -42,7 +44,11 @@ func _ready() -> void:
 	if SavingManager.load("curskin") == null:
 		SavingManager.save("curskin", 0)
 	colinskin = SavingManager.load("skins")
-	listskins = SavingManager.load("skinlist")
+	
+	for skin in listskins:
+		if SavingManager.load("skinlist").has(skin["name"]):
+			skin["unlocked"] = SavingManager.load("skinlist")[skin["name"]]
+	
 	recordpoints = SavingManager.load("recordpoints")
 	
 	listskins[3]["unlocked"] = iswinter

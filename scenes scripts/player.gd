@@ -117,6 +117,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Sprite3D.position = defposspr
 				$sh.emitting = false
+		else:
+			$Sprite3D.position = defposspr
+			$sh.emitting = false
 	
 	if Input.is_action_pressed("CTRL"):
 		if !isslide:
@@ -382,6 +385,12 @@ func updateskin():
 		"solider":
 			$gui/colinbg.texture = load("res://sprites/solider skin/colin bg 1.png")
 			$Sprite3D.sprite_frames = load("res://skins/solider_colin_skin.tres")
+		"yay basket ^w^":
+			$gui/colinbg.texture = load("res://sprites/colin basket skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/basket_colin_skin.tres")
+		"paladin":
+			$gui/colinbg.texture = load("res://sprites/paladin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/paladin_skin.tres")
 		null:
 			$gui/colinbg.texture = load("res://sprites/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")

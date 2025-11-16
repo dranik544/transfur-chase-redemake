@@ -22,7 +22,7 @@ func _ready():
 	$CanvasLayer.visible = true
 	for i in loadrooms:
 		await get_tree().physics_frame
-		spawnroom()
+		spawnroom(true, null)
 		o += 1
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
 	#$navi.bake_navigation_mesh()
@@ -58,7 +58,7 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 			sceneroom = rooms2.get(numroom)
 			typeroompos = room2size
 	
-	if !sceneroom and randomroom:
+	if randomroom:
 		var nextroom: Node3D = sceneroom.instantiate()
 		nextroom.position = $spawnnextroom.position
 		add_child(nextroom)
