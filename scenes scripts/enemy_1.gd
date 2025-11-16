@@ -6,6 +6,10 @@ var curspeed = 3.5
 var speeddist = 0.0
 var hasentered = false
 var framess: float = 0.0
+var framessl: float = 0.0
+var ultratuffpower: float = 3.0
+var timess: float = 80.0
+var timessl: float = 600.0
 
 
 func _ready():
@@ -33,14 +37,24 @@ func _physics_process(delta):
 		elif velocity.x < 0:
 			$Sprite3D.flip_h = true
 	
-	if velocity.length() < 0.75 and canmove:
+	if velocity.length() < 0.8 and canmove:
 		framess += 1
+		framessl += 1
 		
-		if framess > 75:
-			velocity += transform.basis.x * -4.0
+		if framess > timess:
+			velocity += transform.basis.x * -ultratuffpower
 			framess = 0
+			ultratuffpower += 0.2
+			timess -= 5
+		if framessl > timessl:
+			framessl = 0
+			framess = 0
+			timess = 80
+			sleep()
 	else:
 		framess = 0
+		timess = 0
+		ultratuffpower = 3.0
 	
 	#if $RayCast3D.is_colliding():
 		#speed = 1.5
@@ -57,6 +71,13 @@ func _physics_process(delta):
 func exitfromvent():
 	canmove = true
 	hasentered = true
+	$AnimationPlayer.play("RESET")
+
+func sleep():
+	canmove = false
+	hasentered = false
+	velocity = Vector3(0.0, 0.0, 0.0)
+	$AnimationPlayer.play("sleep")
 
 func areaplayerentered(body):
 	if body.is_in_group("player") and !hasentered:

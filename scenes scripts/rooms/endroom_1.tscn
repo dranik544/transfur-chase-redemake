@@ -20,7 +20,7 @@ center_offset = Vector3(-5, 0, 0)
 size = Vector3(12, 10, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v056k"]
-size = Vector3(10, 3, 0.1)
+size = Vector3(12, 3, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hs0m"]
 albedo_texture = ExtResource("7_sxflw")
