@@ -31,6 +31,7 @@ func _ready():
 	$CanvasLayer.queue_free()
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
+	$music.play()
 	#$Timer.start()
 
 #func _process(delta):

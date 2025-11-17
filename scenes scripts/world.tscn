@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=29 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bno1l2146nsh2" path="res://scenes scripts/item_2.tscn" id="15_alufl"]
 [ext_resource type="PackedScene" uid="uid://bq2jhn6xnpmfv" path="res://scenes scripts/small_enemy_1.tscn" id="16_qeca7"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="16_rginh"]
+[ext_resource type="AudioStream" uid="uid://1kb27p53hlpj" path="res://sounds music/Waterflame - Run!.mp3" id="17_rginh"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifjlx"]
@@ -244,6 +245,11 @@ lifetime = 7.5
 randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_jvjns")
 draw_pass_1 = SubResource("QuadMesh_53xst")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_rginh")
+volume_db = -0.5
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="detectspawnroom" to="." method="_on_detectspawnroom_body_entered"]

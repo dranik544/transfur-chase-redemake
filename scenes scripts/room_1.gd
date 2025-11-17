@@ -144,6 +144,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			
 			var enemies = get_tree().get_nodes_in_group("enemy")
 			for enemy in enemies: enemy.queue_free()
+			
+			get_parent().get_node("music").stop()
 
 
 func bakenavi():

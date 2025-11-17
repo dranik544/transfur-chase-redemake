@@ -11,6 +11,8 @@ var ultratuffpower: float = 3.0
 var timess: float = 80.0
 var timessl: float = 600.0
 
+@export var nerf: float = 4.0
+
 
 func _ready():
 	add_to_group("enemy")
@@ -29,7 +31,7 @@ func _physics_process(delta):
 	
 	targetpos(player.global_transform.origin)
 	
-	speeddist = 0.0 + global_position.distance_to(player.global_position) / 10
+	speeddist = 0.0 + global_position.distance_to(player.global_position) / nerf
 	speeddist = clampf(speeddist, 0.0, 25.0)
 	
 	if velocity.length() > 0:
@@ -39,7 +41,7 @@ func _physics_process(delta):
 		elif velocity.x < 0:
 			$Sprite3D.flip_h = true
 	
-	if velocity.length() < 0.8 and canmove:
+	if velocity.length() < 0.65 and canmove:
 		framess += 1
 		framessl += 1
 		
@@ -48,8 +50,9 @@ func _physics_process(delta):
 		if framess > timess:
 			velocity += transform.basis.x * -ultratuffpower
 			framess = 0
-			ultratuffpower += 0.2
+			ultratuffpower += 0.5
 			timess -= 2
+			timess = clamp(timess, 20, 80)
 		if framessl > timessl:
 			framessl = 0
 			framess = 0
@@ -57,7 +60,7 @@ func _physics_process(delta):
 			sleep()
 	else:
 		framess = 0
-		timess = 0
+		timess = 80
 		ultratuffpower = 3.0
 		$wha.visible = false
 	
