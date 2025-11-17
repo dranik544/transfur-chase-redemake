@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm47t1jmae1n2"]
+
+[ext_resource type="Texture2D" uid="uid://ccc8e8soeqvtt" path="res://sprites/tapoksila.jpg" id="1_8mpxu"]
+
+[sub_resource type="GDScript" id="GDScript_a8rmb"]
+script/source = "extends Node2D
+
+var time: float = 0.0
+
+
+func _process(delta: float) -> void:
+	time += delta
+	$TextureRect.position = Vector2(-219, -93) + Vector2(
+		sin(time * 10) * 50,
+		sin(time * 5) * 50
+	)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	Global.iswinter = $CheckButton.toggle_mode
+
+
+func _on_button_pressed() -> void:
+	for skin in Global.listskins:
+		Global.listskins[skin[\"unlocked\"]] = true
+		SavingManager.save(\"skinlist\", Global.listskins)
+
+
+func _on_text_edit_text_changed() -> void:
+	var r
+	r = int($TextEdit.text)
+	Global.recordpoints = r
+	SavingManager.save(\"recordpoints\", Global.recordpoints)
+"
+
+[node name="TAPOKSILA ПУЛЬТ ЯДЕРКИ ПЭЭЭАААЬУЬЧУЧУ" type="Node2D"]
+script = SubResource("GDScript_a8rmb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = -93.0
+offset_right = 789.0
+offset_bottom = 547.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8mpxu")
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 55.0
+offset_top = 36.0
+offset_right = 207.0
+offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "НОВЫЙ ГОД "
+
+[node name="Button" type="Button" parent="."]
+offset_left = 17.0
+offset_top = 116.0
+offset_right = 295.0
+offset_bottom = 213.0
+text = "ВСЕЕЕЕ СКИНЫЫЫЫЫЫ"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 39.0
+offset_top = 254.0
+offset_right = 598.0
+offset_bottom = 299.0
+placeholder_text = "КАКОЙ РЕКОРД ТЫ ХОЧЕШЬ (ТОЛЬКО ЦИФРЫ ИНАЧЕ ПИЗДЕЦ)"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 41.0
+offset_top = 438.0
+offset_right = 396.0
+offset_bottom = 461.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 5
+theme_override_constants/paragraph_spacing = 5
+theme_override_constants/outline_size = 50
+text = "ЕСЛИ  ТЫ НЕ ТАПОКСИЛА ТО ВЫЙДИ НАХУЙ"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

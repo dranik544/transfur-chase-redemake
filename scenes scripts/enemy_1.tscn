@@ -1,10 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://2dxmbjms8yyd"]
+[gd_scene load_steps=18 format=3 uid="uid://2dxmbjms8yyd"]
 
 [ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_o3cwx"]
 [ext_resource type="SpriteFrames" uid="uid://d01pvqt8ch6th" path="res://skins/enemy_sprite.tres" id="2_aut8l"]
 [ext_resource type="Texture2D" uid="uid://de3pqx74rhpr" path="res://sprites/wha.png" id="3_v0kmx"]
 [ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="4_1yp71"]
 [ext_resource type="Texture2D" uid="uid://dc5ktxjip0t0h" path="res://sprites/sleep1.png" id="5_7kort"]
+[ext_resource type="Texture2D" uid="uid://bugg15efsvuin" path="res://sprites/noirealdontknowwhereilocated1.png" id="6_obsaw"]
+[ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="7_aiaj5"]
+[ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="8_nulj7"]
+[ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="9_q0jfm"]
+[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="10_aiaj5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
 radius = 0.36
@@ -54,7 +59,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/3/path = NodePath("boing:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -142,7 +147,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/3/path = NodePath("boing:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -236,6 +241,26 @@ _data = {
 &"sleep": SubResource("Animation_w80d6")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_nulj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_obsaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aiaj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nulj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q0jfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
 [node name="enemy1" type="CharacterBody3D"]
 collision_mask = 3
 collision_priority = 0.8
@@ -286,7 +311,7 @@ billboard = 1
 texture_filter = 2
 texture = ExtResource("3_v0kmx")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="boing" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_1yp71")
 volume_db = 2.0
 max_db = 4.0
@@ -297,3 +322,17 @@ visible = false
 billboard = 1
 texture_filter = 2
 texture = ExtResource("5_7kort")
+
+[node name="wha" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.4, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_nulj7")
+autoplay = "default"
+frame_progress = 0.299114
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_aiaj5")
+volume_db = 5.0
+max_db = 6.0

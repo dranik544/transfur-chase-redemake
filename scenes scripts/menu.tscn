@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=82 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -40,11 +40,13 @@
 [ext_resource type="Texture2D" uid="uid://3oyxxfydk52x" path="res://sprites/wiki1.png" id="26_bhk6r"]
 [ext_resource type="Texture2D" uid="uid://bcujvutljhqce" path="res://sprites/wiki2.png" id="27_bhk6r"]
 [ext_resource type="PackedScene" uid="uid://b4xk86hcbhv6u" path="res://scenes scripts/cube_1.tscn" id="27_sr01d"]
+[ext_resource type="Texture2D" uid="uid://dbigakhp3aon2" path="res://sprites/elka1.png" id="28_un3na"]
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
 [ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
 [ext_resource type="Texture2D" uid="uid://cu38coc8wpwp6" path="res://sprites/lock1.png" id="43_oarhb"]
+[ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="46_i763c"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -127,7 +129,7 @@ albedo_texture = ExtResource("13_4j3ub")
 roughness = 0.0
 texture_filter = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xh7j4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sr01d"]
 albedo_texture = ExtResource("14_eaxk7")
 metallic = 0.15
 metallic_specular = 1.0
@@ -135,7 +137,7 @@ metallic_texture = ExtResource("15_k8css")
 texture_filter = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_eogbu"]
-material = SubResource("StandardMaterial3D_xh7j4")
+material = SubResource("StandardMaterial3D_sr01d")
 size = Vector2(1.5, 1)
 
 [sub_resource type="GDScript" id="GDScript_0xt4r"]
@@ -266,6 +268,15 @@ _data = {
 material = ExtResource("5_eeftm")
 size = Vector2(10, 8)
 center_offset = Vector3(-5, 0, 0)
+
+[sub_resource type="GDScript" id="GDScript_8lcj0"]
+script/source = "extends Node3D
+
+
+func _ready() -> void:
+	if !Global.iswinter:
+		queue_free()
+"
 
 [sub_resource type="Animation" id="Animation_efmc1"]
 length = 0.001
@@ -480,6 +491,57 @@ func _process(delta: float) -> void:
 	time += delta
 	position.y = defpos.y + sin(time * 2) * 10
 "
+
+[sub_resource type="GDScript" id="GDScript_un3na"]
+script/source = "extends Node3D
+
+var player
+
+
+func _ready() -> void:
+	if !Global.iswinter:
+		queue_free()
+	
+	player = get_tree().get_first_node_in_group(\"player\")
+
+func _process(delta: float) -> void:
+	if player:
+		global_position = player.global_position
+"
+
+[sub_resource type="Curve" id="Curve_8lcj0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.9), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 8.65251, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_ixu3i"]
+curve = SubResource("Curve_8lcj0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ogb1n"]
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 20)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -2, 0)
+damping_min = 0.2
+damping_max = 0.5
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_ixu3i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_llgq5"]
+transparency = 1
+albedo_texture = ExtResource("46_i763c")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_o23wf"]
+material = SubResource("StandardMaterial3D_llgq5")
+size = Vector2(0.5, 0.5)
 
 [node name="menu" type="Node3D"]
 script = ExtResource("1_tnq6k")
@@ -797,6 +859,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -3.95)
 
 [node name="cube1" parent="room1 1" instance=ExtResource("27_sr01d")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -3.1, 1.2, -2.9)
+
+[node name="elka" type="Node3D" parent="room1 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = SubResource("GDScript_8lcj0")
+
+[node name="elka1" type="Sprite3D" parent="room1 1/elka"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.2, 0)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("28_un3na")
+
+[node name="elka2" type="Sprite3D" parent="room1 1/elka"]
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, 1.2, 0)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("28_un3na")
+
+[node name="elka3" type="Sprite3D" parent="room1 1/elka"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 1.2, 0)
+visible = false
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("28_un3na")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1361,3 +1450,15 @@ script = SubResource("GDScript_oarhb")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
 autoplay = true
+
+[node name="snow effect" type="Node3D" parent="."]
+script = SubResource("GDScript_un3na")
+
+[node name="snow" type="GPUParticles3D" parent="snow effect"]
+transparency = 0.1
+cast_shadow = 0
+amount = 256
+lifetime = 7.5
+randomness = 0.05
+process_material = SubResource("ParticleProcessMaterial_ogb1n")
+draw_pass_1 = SubResource("QuadMesh_o23wf")

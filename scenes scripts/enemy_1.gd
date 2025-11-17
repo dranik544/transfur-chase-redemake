@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 3.5
+@export var speed = 4.5
 var canmove: bool = false
 var curspeed = 3.5
 var speeddist = 0.0
@@ -16,6 +16,8 @@ func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
 	
+	sleep()
+	
 	if Global.iswinter:
 		$Sprite3D.sprite_frames = load("res://skins/newyear_enemy_sprite.tres")
 
@@ -27,8 +29,8 @@ func _physics_process(delta):
 	
 	targetpos(player.global_transform.origin)
 	
-	speeddist = 0.0 + global_position.distance_to(player.global_position) / 50
-	speeddist = clampf(speeddist, 0.0, 10.0)
+	speeddist = 0.0 + global_position.distance_to(player.global_position) / 10
+	speeddist = clampf(speeddist, 0.0, 25.0)
 	
 	if velocity.length() > 0:
 		$Sprite3D.play("run")
@@ -41,11 +43,13 @@ func _physics_process(delta):
 		framess += 1
 		framessl += 1
 		
+		$wha.visible = true
+		
 		if framess > timess:
 			velocity += transform.basis.x * -ultratuffpower
 			framess = 0
 			ultratuffpower += 0.2
-			timess -= 5
+			timess -= 2
 		if framessl > timessl:
 			framessl = 0
 			framess = 0
@@ -55,6 +59,7 @@ func _physics_process(delta):
 		framess = 0
 		timess = 0
 		ultratuffpower = 3.0
+		$wha.visible = false
 	
 	#if $RayCast3D.is_colliding():
 		#speed = 1.5
@@ -71,12 +76,14 @@ func _physics_process(delta):
 func exitfromvent():
 	canmove = true
 	hasentered = true
+	collision_layer = true
 	$AnimationPlayer.play("RESET")
 
 func sleep():
 	canmove = false
 	hasentered = false
 	velocity = Vector3(0.0, 0.0, 0.0)
+	collision_layer = false
 	$AnimationPlayer.play("sleep")
 
 func areaplayerentered(body):
@@ -84,7 +91,12 @@ func areaplayerentered(body):
 		hasentered = true
 		$AnimationPlayer.play("its colin!")
 		await $AnimationPlayer.animation_finished
+		collision_layer = true
 		canmove = true
+		
+		#$AudioStreamPlayer3D2.play()
+		#$Sprite3D.scale.y -= 3.0
+		#sleep()
 
 func targetpos(target):
 	#$NavigationAgent3D.target_position = target
