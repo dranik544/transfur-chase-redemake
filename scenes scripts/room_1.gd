@@ -30,6 +30,9 @@ var canbake: bool = false
 @export var neededenvironment: Environment = preload("res://materials/endroom1.tres")
 @export var colorlight: Color = Color(0.991, 0.857, 0.842)
 
+@export_category("Size Room")
+@export var autoSize: bool = true
+@export var manualSize: Vector3
 
 @export_category("Not Added")
 @export var MinNumBoxes: int = 6
@@ -37,6 +40,9 @@ var canbake: bool = false
 
 
 func _ready():
+	if autoSize:
+		manualSize.x = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x
+	
 	if RandomBox:
 		if RandomNumBoxes:
 			NumBoxes1 += randi_range(-1, 1)
@@ -91,6 +97,9 @@ func _ready():
 	)
 	
 	bakenavi()
+
+func getsize():
+	return manualSize
 
 func spawnbox(typebox: PackedScene, count: int, posy: float, enablerotation: bool = true):
 	for i in count:

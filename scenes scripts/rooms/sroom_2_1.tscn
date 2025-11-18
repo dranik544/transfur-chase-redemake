@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dyw7bqxi0duix"]
+[gd_scene load_steps=17 format=3 uid="uid://dyw7bqxi0duix"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_40ps2"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_h7ver"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cv1e7gj4cs4es" path="res://scenes scripts/box_3.tscn" id="8_mgf7c"]
 [ext_resource type="PackedScene" uid="uid://rlv6x1sbjgi0" path="res://scenes scripts/box_4.tscn" id="9_2c12t"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="10_2c12t"]
+[ext_resource type="PackedScene" uid="uid://b24olo70jj02w" path="res://scenes scripts/box_1.tscn" id="11_5r6qs"]
+[ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="12_xay2c"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_o7tiv")
@@ -215,7 +217,7 @@ transform = Transform3D(-0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, -0.984808
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -0.463581, 1.6, 2.43267)
 
 [node name="box11" parent="NavigationRegion3D/boxes2" instance=ExtResource("9_2c12t")]
-transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, -1.57426, 0.5, 6.68025)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -1.55683, 0.5, 6.87949)
 
 [node name="box12" parent="NavigationRegion3D/boxes2" instance=ExtResource("9_2c12t")]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.3, 0.5, -6.4)
@@ -229,6 +231,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2, 0, 3.1)
 [node name="slime2" parent="NavigationRegion3D" instance=ExtResource("10_2c12t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4, 0, 4.3)
 
+[node name="box1" parent="NavigationRegion3D" instance=ExtResource("11_5r6qs")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -11.5, 0.5, -5)
+
+[node name="box2" parent="NavigationRegion3D" instance=ExtResource("11_5r6qs")]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -2.1, 0.5, 4.1)
+
+[node name="box3" parent="NavigationRegion3D" instance=ExtResource("11_5r6qs")]
+transform = Transform3D(-0.0871557, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871557, -8.8, 0.5, -6.6)
+
+[node name="slime3" parent="NavigationRegion3D" instance=ExtResource("10_2c12t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, -4.2)
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
@@ -238,6 +252,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ccg18")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -7, 14, 9)
+
+[node name="enemy1" parent="." instance=ExtResource("12_xay2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.9, 4.3)
+randomspawn = 4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

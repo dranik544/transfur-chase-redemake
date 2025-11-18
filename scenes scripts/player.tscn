@@ -56,6 +56,7 @@ material = SubResource("StandardMaterial3D_8jtgo")
 [node name="player" type="CharacterBody3D"]
 collision_mask = 3
 script = ExtResource("1_ydash")
+health = 99.0
 BakeAfterSlide = true
 
 [node name="center camera" type="Node3D" parent="."]

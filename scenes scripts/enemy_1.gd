@@ -11,12 +11,18 @@ var ultratuffpower: float = 3.0
 var timess: float = 80.0
 var timessl: float = 600.0
 
-@export var nerf: float = 4.0
+@export var nerf: float = 3.0
+@export var randomspawn: int = 0
 
 
 func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
+	
+	if randomspawn != 0:
+		var random: int = randi_range(0, randomspawn)
+		if randomspawn != random:
+			queue_free()
 	
 	sleep()
 	
@@ -29,7 +35,8 @@ func _physics_process(delta):
 	var newvelocity = (nextloc - curloc).normalized() * curspeed
 	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
 	
-	targetpos(player.global_transform.origin)
+	if player:
+		targetpos(player.global_transform.origin)
 	
 	speeddist = 0.0 + global_position.distance_to(player.global_position) / nerf
 	speeddist = clampf(speeddist, 0.0, 25.0)

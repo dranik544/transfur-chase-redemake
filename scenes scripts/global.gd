@@ -51,6 +51,7 @@ func _ready() -> void:
 	
 	recordpoints = SavingManager.load("recordpoints")
 	
+	iswinter = true
 	listskins[3]["unlocked"] = iswinter
 
 func _process(delta: float) -> void:
