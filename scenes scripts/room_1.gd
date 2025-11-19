@@ -155,6 +155,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			for enemy in enemies: enemy.queue_free()
 			
 			get_parent().get_node("music").stop()
+			
+			$CanvasLayer.start()
 
 
 func bakenavi():
