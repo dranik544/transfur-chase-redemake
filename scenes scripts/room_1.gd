@@ -157,6 +157,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			get_parent().get_node("music").stop()
 			
 			$CanvasLayer.start()
+			
+			$Area3D.queue_free()
 
 
 func bakenavi():

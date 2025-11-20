@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cts7cpb4613r7"
+path="res://.godot/imported/introtfsrd.mp3-22a7808ab9a73fe355ce63edd5553ed2.mp3str"
+
+[deps]
+
+source_file="res://sounds music/introtfsrd.mp3"
+dest_files=["res://.godot/imported/introtfsrd.mp3-22a7808ab9a73fe355ce63edd5553ed2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

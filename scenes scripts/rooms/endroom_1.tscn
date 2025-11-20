@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btdikxgrrynh0"]
+[gd_scene load_steps=25 format=3 uid="uid://btdikxgrrynh0"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_sxflw"]
 [ext_resource type="PackedScene" uid="uid://dl38kx6c4srqv" path="res://scenes scripts/cabels_2.tscn" id="2_op5hc"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b4xk86hcbhv6u" path="res://scenes scripts/cube_1.tscn" id="13_b4xcx"]
 [ext_resource type="Script" uid="uid://ccxdhx4qeor15" path="res://scenes scripts/dialogsystem.tres.gd" id="14_1nov8"]
 [ext_resource type="PackedScene" uid="uid://bo6e3yrcl0lo1" path="res://scenes scripts/dialog.tscn" id="14_rxdwu"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="15_uhton"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_exsa0")
@@ -182,6 +183,32 @@ shape = SubResource("BoxShape3D_ccg18")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("14_1nov8")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 51.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_top = 429.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect2"]
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 19.0
+offset_right = 305.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("15_uhton")
+text = "нажмите ENTER для продолжения"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="dialog" parent="CanvasLayer" instance=ExtResource("14_rxdwu")]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo6e3yrcl0lo1"]
+[gd_scene load_steps=5 format=3 uid="uid://bo6e3yrcl0lo1"]
 
 [ext_resource type="Script" uid="uid://ijqwe8fung1v" path="res://scenes scripts/dialog.gd" id="1_eh5xs"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="1_g65i6"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="2_eh5xs"]
+[ext_resource type="Texture2D" uid="uid://bbh1vciup32hy" path="res://sprites/dialog3.png" id="3_lkdqn"]
 
 [node name="dialog" type="MarginContainer"]
 offset_right = 117.0
@@ -13,17 +14,24 @@ script = ExtResource("1_eh5xs")
 layout_mode = 2
 texture = ExtResource("1_g65i6")
 region_rect = Rect2(0, 0, 32, 32)
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = -12.0
+offset_right = 61.0
+texture = ExtResource("3_lkdqn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_bottom = 3
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2

@@ -30,14 +30,30 @@ var posd: Vector3 = Vector3.ZERO
 	["ага, а ты что думал?
 	я их создал и управляю
 	ими только чтобы потроллить
-	чувачка! бэбэбэ!", "tv"],
+	чувачка! бэ-бэ-бэ!", "tv"],
 	
 	["а ты кто вообще?
 	где ты находишься?", "pl"],
 	
 	["...", "tv"],
 	
-	["???", "pl"]
+	["???", "pl"],
+	
+	["...", "tv"],
+	
+	["ну, сколько там осталось
+	до конца минуты молчания?", "pl"],
+	
+	["Cвязь потеряна, для большей информации обратитесь
+	в службу поддержки ihsioK TV по ссылке https://ihsioktv.by/tv/help/,
+	опишите вашу проблему и ждите ответа на ваш
+	номер телефона. с уважением, ihsioK TV!", "tv"],
+	
+	["ДА ЧТОБ ТЕБЯ!!!", "pl"],
+	
+	["ЛОШАРАААА! ХА-ХА!!!", "tv"],
+	
+	["", ""]
 ]
 
 
@@ -46,22 +62,37 @@ func start():
 	
 	pl = get_tree().current_scene.get_node("player")
 	cam = pl.get_node("center camera").get_node("cam")
+	pl.get_node("gui").get_node("gui").visible = false
+	
 	updatedialog()
 
-func updatedialog():
+func updatedialog(updonlyposd: bool = false):
 	if curd <= dialogs.size():
 		match dialogs[curd][1]:
 			"tv":
 				posd = $"../NavigationRegion3D/StaticBody3D/mesh1".global_position
 			"pl":
 				posd = pl.global_position
-		$dialog.settext(dialogs[curd][0])
+			"":
+				return
+		
+		if !updonlyposd:
+			$dialog.settext(dialogs[curd][0])
 
 func _process(delta: float) -> void:
 	if posd:
 		$dialog.global_position = cam.unproject_position(posd)
 		$dialog.global_position.x -= $dialog.size.x / 2
-		$dialog.global_position.y += $dialog.size.y
+		$dialog.global_position.y += 24
+		
+		var sizew = get_viewport().get_window().size
+		$dialog.global_position.x = clamp($dialog.global_position.x, 5, sizew.x - $dialog.size.x - 5)
+		$dialog.global_position.y = clamp($dialog.global_position.y, 5, sizew.y - $dialog.size.y - 5)
+		
+		updatedialog(true)
+		
+		if curd >= dialogs.size() - 1:
+			get_tree().change_scene_to_file("res://scenes scripts/end.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ENTER"):

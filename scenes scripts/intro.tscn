@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dujr7duno3wh4" path="res://sprites/logo2.jpg" id="1_asbl3"]
 [ext_resource type="Texture2D" uid="uid://bbv04h7dloqaj" path="res://sprites/logo1.png" id="2_1w7ov"]
-[ext_resource type="PackedScene" uid="uid://bvqdyq2tfhg3y" path="res://scenes scripts/menu.tscn" id="2_w15nf"]
+[ext_resource type="PackedScene" uid="uid://csjyl2g7tpqqk" path="res://scenes scripts/animintro.tscn" id="2_rtwky"]
 [ext_resource type="AudioStream" uid="uid://0bkghsydjk4w" path="res://sounds music/intro2.mp3" id="3_mdt4h"]
 [ext_resource type="AudioStream" uid="uid://dg5ahlckoiw6j" path="res://sounds music/intro1.mp3" id="4_20ddy"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_rtwky"]
@@ -12,6 +12,10 @@ script/source = "extends Node2D
 
 func changescene(scene: PackedScene):
 	get_tree().change_scene_to_packed(scene)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_anything_pressed():
+		get_tree().change_scene_to_file(\"res://scenes scripts/animintro.tscn\")
 "
 
 [sub_resource type="Animation" id="Animation_1w7ov"]
@@ -171,10 +175,10 @@ tracks/4/path = NodePath("bg2:color")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.4, 2.5, 2.76667),
-"transitions": PackedFloat32Array(1, 1e-05, 1, 1),
+"times": PackedFloat32Array(0, 2.4, 2.5, 2.76667, 5, 5.36667),
+"transitions": PackedFloat32Array(1, 1e-05, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -186,7 +190,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(5.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("2_w15nf")],
+"args": [ExtResource("2_rtwky")],
 "method": &"changescene"
 }]
 }
@@ -269,9 +273,10 @@ libraries = {
 autoplay = "start"
 
 [node name="logo2" type="TextureRect" parent="."]
-offset_top = -104.0
-offset_right = 254.0
-offset_bottom = -1.0
+offset_left = 195.0
+offset_top = 175.0
+offset_right = 449.0
+offset_bottom = 278.0
 pivot_offset = Vector2(127, 51)
 texture = ExtResource("2_1w7ov")
 

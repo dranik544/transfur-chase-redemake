@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc63i4npaugbw"
+path="res://.godot/imported/dekobe-danger.mp3-85010251078e269ebb10551572fcd197.mp3str"
+
+[deps]
+
+source_file="res://sounds music/dekobe-danger.mp3"
+dest_files=["res://.godot/imported/dekobe-danger.mp3-85010251078e269ebb10551572fcd197.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
