@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=28 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -37,9 +37,6 @@ fog_mode = 1
 fog_light_color = Color(0.490196, 0.490196, 0.490196, 1)
 fog_density = 1.0
 fog_depth_begin = 100.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ktiys"]
-size = Vector3(1, 1, 10)
 
 [sub_resource type="GDScript" id="GDScript_rf126"]
 script/source = "extends TextureRect
@@ -105,7 +102,6 @@ size = Vector2(0.5, 0.5)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")
@@ -127,9 +123,6 @@ pixel_size = 0.03
 fixed_size = true
 texture_filter = 2
 texture = ExtResource("6_7evke")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
 
 [node name="room1" parent="." instance=ExtResource("3_55rg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
@@ -187,12 +180,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -4.95)
 
 [node name="spawnnextroom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
-
-[node name="detectspawnroom" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="detectspawnroom"]
-shape = SubResource("BoxShape3D_ktiys")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -252,6 +239,3 @@ draw_pass_1 = SubResource("QuadMesh_53xst")
 stream = ExtResource("17_rginh")
 volume_db = -0.5
 parameters/looping = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="detectspawnroom" to="." method="_on_detectspawnroom_body_entered"]

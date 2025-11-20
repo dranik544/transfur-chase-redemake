@@ -46,4 +46,4 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					#enemy.global_position = global_position + Vector3(0, 0.8, 0)
 			
 			Global.openvents += 1
-			isopen = true
+		isopen = true

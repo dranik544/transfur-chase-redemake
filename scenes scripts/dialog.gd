@@ -1,7 +1,8 @@
 extends MarginContainer
 
 var tween = create_tween()
-var typingtime: float = 1.0
+@export var typingspeed: int = 25
+var typingtime: float = 0.2
 
 
 func settext(dtext: String):
@@ -15,7 +16,7 @@ func settext(dtext: String):
 	#global_position.x -= size.x / 2
 	#global_position.y -= size.y + 24
 	
-	typingtime = 0.5 + dtext.length() / 20
+	typingtime = 0.2 + dtext.length() / typingspeed
 	
 	tween = create_tween()
 	tween.tween_property($MarginContainer/Label, "visible_ratio", 1.0, typingtime)

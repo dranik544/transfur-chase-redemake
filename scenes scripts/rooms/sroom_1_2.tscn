@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vva0cm14rwvr"]
+[gd_scene load_steps=18 format=3 uid="uid://vva0cm14rwvr"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_lue3a"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_3vygc"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="5_pgld5"]
 [ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://wallmesh/wallmesh1.tres" id="6_ko0i6"]
 [ext_resource type="BoxMesh" uid="uid://bndmef5ylovtd" path="res://wallmesh/wallmesh2.tres" id="7_3m6wo"]
+[ext_resource type="Texture2D" uid="uid://d204q2hs8jyeq" path="res://sprites/box6.png" id="8_eakbu"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="8_hm6ry"]
+[ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="8_obnxo"]
+[ext_resource type="Texture2D" uid="uid://ckrwqrwqvl5i5" path="res://sprites/board1.png" id="8_u44se"]
 [ext_resource type="PackedScene" uid="uid://b24olo70jj02w" path="res://scenes scripts/box_1.tscn" id="9_u1uwt"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="10_lsglk"]
 
@@ -107,6 +110,56 @@ skeleton = NodePath("../bottom")
 [node name="wallcoll5" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -10, 2.50299, 0)
 shape = SubResource("BoxShape3D_v056k")
+
+[node name="dec" type="Node3D" parent="NavigationRegion3D/StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.6, 0.02, -3.4)
+axis = 1
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_obnxo")
+
+[node name="Sprite3D2" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.5, 0.02, 1.5)
+axis = 1
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_obnxo")
+
+[node name="Sprite3D3" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.8, 0.02, 3.2)
+axis = 1
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_obnxo")
+
+[node name="Sprite3D4" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(2.89778, 0.776457, 0, -0.776457, 2.89778, 0, 0, 0, 3, -1.7, 1.5, -4.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_eakbu")
+
+[node name="Sprite3D5" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(-0.776457, -2.89778, 0, 2.89778, -0.776457, 0, 0, 0, 3, -2.8, 2.1, -4.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_eakbu")
+
+[node name="Sprite3D6" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.3, 1.9, -4.88)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_u44se")
 
 [node name="slime1" parent="NavigationRegion3D" instance=ExtResource("8_hm6ry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)

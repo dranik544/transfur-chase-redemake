@@ -7,7 +7,7 @@
 
 [node name="dialog" type="MarginContainer"]
 offset_right = 117.0
-offset_bottom = 26.0
+offset_bottom = 24.0
 script = ExtResource("1_eh5xs")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

@@ -6,8 +6,9 @@ extends Node3D
 	2: preload("res://scenes scripts/rooms/sroom_1_2.tscn"),
 	3: preload("res://scenes scripts/rooms/sroom_1_3.tscn"),
 	4: preload("res://scenes scripts/rooms/sroom_2_1.tscn"),
+	5: preload("res://scenes scripts/rooms/sroom_2_2.tscn"),
 }
-@export var loadrooms: int = 10
+@export var loadrooms: int = 40
 
 
 func _ready():
@@ -29,23 +30,12 @@ func _ready():
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
 	$music.play()
-	#$Timer.start()
-
-#func _process(delta):
-	#get_tree().call_group("enemy", "targetpos", $player.global_transform.origin)
-
-func _on_timer_timeout() -> void:
-	spawnroom()
-	#$navi.bake_navigation_mesh()
-
-#func _on_detectspawnroom_body_entered(body: Node3D) -> void:
-	#if body.is_in_group("player"):
-		#$navi.bake_navigation_mesh()
 
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, rooms.size())
 	var sceneroom: PackedScene
 	var roompos
+	var doorpos
 	
 	sceneroom = rooms.get(numroom)
 	
@@ -65,4 +55,3 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		roompos = sroom.getsize()
 	
 	$spawnnextroom.position -= roompos
-	$detectspawnroom.position -= roompos

@@ -35,10 +35,12 @@ func _physics_process(delta):
 	var newvelocity = (nextloc - curloc).normalized() * curspeed
 	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
 	
-	if player:
+	if player and canmove:
 		targetpos(player.global_transform.origin)
-	
-	speeddist = 0.0 + global_position.distance_to(player.global_position) / nerf
+		
+		speeddist = 0.0 + global_position.distance_to(player.global_position) / nerf
+		if global_position.distance_to(player.global_position) / nerf > 75.0:
+			queue_free()
 	speeddist = clampf(speeddist, 0.0, 25.0)
 	
 	if velocity.length() > 0:
@@ -49,22 +51,23 @@ func _physics_process(delta):
 			$Sprite3D.flip_h = true
 	
 	if velocity.length() < 0.65 and canmove:
-		framess += 1
-		framessl += 1
-		
-		$wha.visible = true
-		
-		if framess > timess:
-			velocity += transform.basis.x * -ultratuffpower
-			framess = 0
-			ultratuffpower += 0.5
-			timess -= 2
-			timess = clamp(timess, 20, 80)
-		if framessl > timessl:
-			framessl = 0
-			framess = 0
-			timess = 80
-			sleep()
+		if global_position.distance_to(player.global_position) / nerf < 2.5:
+			framess += 1
+			framessl += 1
+			
+			$wha.visible = true
+			
+			if framess > timess:
+				velocity += transform.basis.x * -ultratuffpower
+				framess = 0
+				ultratuffpower += 0.5
+				timess -= 2
+				timess = clamp(timess, 20, 80)
+			if framessl > timessl:
+				framessl = 0
+				framess = 0
+				timess = 80
+				sleep()
 	else:
 		framess = 0
 		timess = 80
@@ -78,10 +81,10 @@ func _physics_process(delta):
 	
 	if global_position.y != 0.9:
 		global_position.y = 0.9
-	curspeed = lerp(curspeed, speed + speeddist, 2 * delta)
+	curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
 	if canmove:
 		velocity = velocity.move_toward(newvelocity, 0.5)
-	move_and_slide()
+		move_and_slide()
 
 func exitfromvent():
 	canmove = true

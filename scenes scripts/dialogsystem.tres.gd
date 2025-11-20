@@ -85,9 +85,9 @@ func _process(delta: float) -> void:
 		$dialog.global_position.x -= $dialog.size.x / 2
 		$dialog.global_position.y += 24
 		
-		var sizew = get_viewport().get_window().size
-		$dialog.global_position.x = clamp($dialog.global_position.x, 5, sizew.x - $dialog.size.x - 5)
-		$dialog.global_position.y = clamp($dialog.global_position.y, 5, sizew.y - $dialog.size.y - 5)
+		var sizew = Vector2(640, 480)
+		$dialog.global_position.x = clamp($dialog.global_position.x, 10, sizew.x - $dialog.size.x - 10)
+		$dialog.global_position.y = clamp($dialog.global_position.y, 10, sizew.y - $dialog.size.y - 10)
 		
 		updatedialog(true)
 		

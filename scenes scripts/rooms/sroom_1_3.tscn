@@ -115,7 +115,7 @@ shape = SubResource("BoxShape3D_v056k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0, -1.2)
 
 [node name="box3" parent="NavigationRegion3D/boxes" instance=ExtResource("8_p3qon")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -1.3, 0, -0.3)
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -1.3, 0, -0.3)
 
 [node name="box4" parent="NavigationRegion3D/boxes" instance=ExtResource("9_wwdrf")]
 transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0.9, 0.5, 0.1)
@@ -132,14 +132,11 @@ transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 
 [node name="box8" parent="NavigationRegion3D/boxes" instance=ExtResource("9_wwdrf")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.2, 0.5, -3.1)
 
-[node name="box9" parent="NavigationRegion3D/boxes" instance=ExtResource("9_wwdrf")]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -3.5, 0.5, -0.5)
-
-[node name="box10" parent="NavigationRegion3D/boxes" instance=ExtResource("9_wwdrf")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -4.3, 0.5, -1.5)
+[node name="box11" parent="NavigationRegion3D/boxes" instance=ExtResource("9_wwdrf")]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 2, 1.5, -1.7)
 
 [node name="vent1" parent="NavigationRegion3D" instance=ExtResource("10_y1u2i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4, 0.05, -3.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.05, -3.5)
 
 [node name="slime1" parent="NavigationRegion3D" instance=ExtResource("11_lhuoj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 3.2)
@@ -149,6 +146,12 @@ transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 
 
 [node name="box3" parent="NavigationRegion3D" instance=ExtResource("12_2m1ed")]
 transform = Transform3D(0.984807, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984807, -8.1, 0.5, 2.6)
+
+[node name="slime2" parent="NavigationRegion3D" instance=ExtResource("11_lhuoj")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -8.4, 0, -2.2)
+
+[node name="slime3" parent="NavigationRegion3D" instance=ExtResource("11_lhuoj")]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, -9.3, 0, -3)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -162,6 +165,10 @@ shape = SubResource("BoxShape3D_ccg18")
 
 [node name="enemy1" parent="." instance=ExtResource("13_wwdrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.9, -2.9)
+randomspawn = 4
+
+[node name="enemy2" parent="." instance=ExtResource("13_wwdrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9, -4)
 randomspawn = 4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
