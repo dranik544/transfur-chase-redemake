@@ -156,12 +156,19 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			
 			get_parent().get_node("music").stop()
 			
-			if !Global.checkachievement(0):
+			if Global.unlockachievement(0):
 				var ach = get_tree().current_scene.get_node("notification")
 				ach.display(Global.achievements[0]["name"],
 				Global.achievements[0]["desc"],
 				load("res://sprites/icon12.png"))
-			Global.unlockachievement(0)
+				
+			var player = get_tree().get_first_node_in_group("player")
+			if player.health < 2:
+				if Global.unlockachievement(5):
+					var ach = get_tree().current_scene.get_node("notification")
+					ach.display(Global.achievements[5]["name"],
+					Global.achievements[5]["desc"],
+					load("res://sprites/icon12.png"))
 			
 			$CanvasLayer.start()
 			$Area3D.queue_free()

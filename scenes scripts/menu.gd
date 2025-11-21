@@ -40,18 +40,17 @@ func _ready():
 	
 	$"CanvasLayer/skins menu".updateskin(false, true, true)
 	
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(0.5).timeout
 	$notification.display("сейчас играет - Unknown,
 	hostile environment", "эмбиент от
 	TheNamelessDeity", load("res://sprites/icon3.png"), 4)
 		
 	if Global.iswinter:
 		print(Global.checkachievement(4))
-		if !Global.checkachievement(4):
+		if Global.unlockachievement(4):
 			$notification.display(Global.achievements[4]["name"],
 			Global.achievements[4]["desc"],
 			load("res://sprites/icon12.png"))
-		Global.unlockachievement(4)
 		
 		$notification.display("ура, новый год!", "сейчас в игре проходит
 		событие Новый Год, вам
@@ -131,11 +130,10 @@ func btnwaaapressed():
 		5: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort3.wav")
 	$"room1 1/Sprite3D3/AudioStreamPlayer3D".play()
 	
-	if !Global.checkachievement(1):
+	if Global.unlockachievement(1):
 		$notification.display(Global.achievements[1]["name"],
 		Global.achievements[1]["desc"],
 		load("res://sprites/icon12.png"))
-	Global.unlockachievement(1)
 
 func btnskinspressed():
 	$"CanvasLayer/skins menu".visible = true

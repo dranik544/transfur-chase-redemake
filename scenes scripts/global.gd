@@ -66,22 +66,29 @@ func _ready() -> void:
 		SavingManager.save("achievements", achievements)
 	colinskin = SavingManager.load("skins")
 	
-	for skin in listskins:
-		if SavingManager.load("skinlist").has(skin["name"]):
-			skin["unlocked"] = SavingManager.load("skinlist")[skin["name"]]
+	if SavingManager.load("skinlist") != null:
+		for i in range(listskins.size()):
+			if i < SavingManager.load("skinlist").size():
+				listskins[i]["unlocked"] = SavingManager.load("skinlist")[i]["unlocked"]
 	
-	for ach in achievements:
-		if SavingManager.load("achievements").has(ach["name"]):
-			ach["unlocked"] = SavingManager.load("achievements")[ach["name"]]
+	if SavingManager.load("achievements") != null:
+		for i in range(achievements.size()):
+			if i < SavingManager.load("achievements").size():
+				achievements[i]["unlocked"] = SavingManager.load("achievements")[i]["unlocked"]
 	
 	recordpoints = SavingManager.load("recordpoints")
 	
+	iswinter = true
 	listskins[3]["unlocked"] = iswinter
+	
+	print(achievements)
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:
 		achievements[id]["unlocked"] = true
 		SavingManager.save("achievements", achievements)
+		return true
+	return false
 func checkachievement(id: int):
 	return achievements[id]["unlocked"]
 

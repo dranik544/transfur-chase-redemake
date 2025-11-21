@@ -8,8 +8,8 @@ var hasentered = false
 var framess: float = 0.0
 var framessl: float = 0.0
 var ultratuffpower: float = 3.0
-var timess: float = 80.0
-var timessl: float = 600.0
+var timess: float = 55.0
+var timessl: float = 475.0
 
 @export var nerf: float = 3.0
 @export var randomspawn: int = 0
@@ -40,7 +40,7 @@ func _physics_process(delta):
 		targetpos(player.global_transform.origin)
 		
 		speeddist = 0.0 + playerdist / nerf
-		if playerdist / nerf > 36.0:
+		if playerdist / nerf > 32.5:
 			queue_free()
 	speeddist = clampf(speeddist, 0.0, 25.0)
 	
@@ -51,27 +51,39 @@ func _physics_process(delta):
 		elif velocity.x < 0:
 			$Sprite3D.flip_h = true
 	
-	if velocity.length() < 0.65 and canmove:
+	if velocity.length() < 0.7 and canmove:
 		if playerdist > 1.5:
 			framess += 1
 			framessl += 1
 			
 			$wha.visible = true
+			$NavigationAgent3D.simplify_path = true
+			
+			curspeed += 1.0
+			var direction = (global_position - player.global_position).normalized()
 			
 			if framess > timess:
-				velocity += transform.basis.x * -ultratuffpower
+				velocity += direction * ultratuffpower
 				framess = 0
-				ultratuffpower += 0.5
+				ultratuffpower += 0.75
 				timess -= 2
 				timess = clamp(timess, 20, 80)
+			
 			if framessl > timessl:
+				$NavigationAgent3D.avoidance_enabled = false
+				velocity += direction * ultratuffpower * 2
+				
+				await get_tree().create_timer(3.5).timeout
 				framessl = 0
 				framess = 0
-				timess = 80
+				timess = 55
 				sleep()
 	else:
+		$NavigationAgent3D.avoidance_enabled = true
+		$NavigationAgent3D.simplify_path = false
+		framessl = 0
 		framess = 0
-		timess = 80
+		timess = 55
 		ultratuffpower = 3.0
 		$wha.visible = false
 	
@@ -90,14 +102,12 @@ func _physics_process(delta):
 func exitfromvent():
 	canmove = true
 	hasentered = true
-	collision_layer = true
 	$AnimationPlayer.play("RESET")
 
 func sleep():
 	canmove = false
 	hasentered = false
 	velocity = Vector3(0.0, 0.0, 0.0)
-	collision_layer = false
 	$AnimationPlayer.play("sleep")
 
 func areaplayerentered(body):
@@ -105,7 +115,6 @@ func areaplayerentered(body):
 		hasentered = true
 		$AnimationPlayer.play("its colin!")
 		await $AnimationPlayer.animation_finished
-		collision_layer = true
 		canmove = true
 		
 		#$AudioStreamPlayer3D2.play()

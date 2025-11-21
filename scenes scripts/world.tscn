@@ -103,7 +103,7 @@ size = Vector2(0.5, 0.5)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 5
+loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")
@@ -243,8 +243,3 @@ volume_db = -0.5
 parameters/looping = true
 
 [node name="notification" parent="." instance=ExtResource("18_kvnqr")]
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

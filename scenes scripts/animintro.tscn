@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csjyl2g7tpqqk"]
+[gd_scene load_steps=14 format=3 uid="uid://csjyl2g7tpqqk"]
 
 [ext_resource type="Texture2D" uid="uid://drdhkacq8jdwp" path="res://sprites/introimage2.png" id="1_i4wsf"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="1_n5emn"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c7babhoh2ybad" path="res://sounds music/doorpunch.mp3" id="6_nxi7l"]
 [ext_resource type="AudioStream" uid="uid://bnnr86njkggo" path="res://sounds music/toggle1.mp3" id="7_wrw31"]
 [ext_resource type="AudioStream" uid="uid://cts7cpb4613r7" path="res://sounds music/introtfsrd.mp3" id="8_wrw31"]
+[ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="9_qxyfo"]
 
 [sub_resource type="GDScript" id="GDScript_nxi7l"]
 script/source = "extends Node2D
@@ -19,6 +20,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func changescene():
 	get_tree().change_scene_to_file(\"res://scenes scripts/menu.tscn\")
+
+func _ready() -> void:
+	await get_tree().create_timer(0.5).timeout
+	$notification.display(\"сейчас играет - No life\", \"автор эмбиента - 
+	TheNamelessDeity\", load(\"res://sprites/icon3.png\"), 4)
 "
 
 [sub_resource type="Animation" id="Animation_i4wsf"]
@@ -426,3 +432,5 @@ stream = ExtResource("7_wrw31")
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_wrw31")
 autoplay = true
+
+[node name="notification" parent="." instance=ExtResource("9_qxyfo")]

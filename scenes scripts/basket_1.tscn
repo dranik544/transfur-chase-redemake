@@ -12,15 +12,14 @@ func _ready() -> void:
 
 func q(body):
 	if body.is_in_group(\"player\"):
-		if !Global.checkachievement(2):
+		if Global.unlockachievement(2):
 			var ach = get_tree().current_scene.get_node(\"notification\")
 			ach.display(Global.achievements[2][\"name\"],
 			Global.achievements[2][\"desc\"],
 			load(\"res://sprites/icon12.png\"))
-		Global.unlockachievement(2)
-		Global.listskins[9][\"unlocked\"] = true
-		SavingManager.save(\"skinlist\", Global.listskins)
-		Global.listskins = SavingManager.load(\"skinlist\")
+			Global.listskins[9][\"unlocked\"] = true
+			SavingManager.save(\"skinlist\", Global.listskins)
+			Global.listskins = SavingManager.load(\"skinlist\")
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_akoqu"]

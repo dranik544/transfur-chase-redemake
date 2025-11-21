@@ -1468,3 +1468,5 @@ process_material = SubResource("ParticleProcessMaterial_ogb1n")
 draw_pass_1 = SubResource("QuadMesh_o23wf")
 
 [node name="notification" parent="." instance=ExtResource("48_8lcj0")]
+offset_right = 128.0
+offset_bottom = 52.0
