@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddq7tmo8xynb"]
+[gd_scene load_steps=7 format=3 uid="uid://ddq7tmo8xynb"]
 
 [ext_resource type="Script" uid="uid://dpkf5mdyptxxd" path="res://scenes scripts/newdeathscreen.gd" id="1_36kbc"]
 [ext_resource type="Texture2D" uid="uid://cwjispanxvl4q" path="res://sprites/deathscreen3.png" id="1_sxofj"]
 [ext_resource type="Texture2D" uid="uid://dl34jfb68v2jl" path="res://sprites/deathscreen2.png" id="2_36kbc"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_8w1qj"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="5_36hd4"]
+[ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="6_fp0uh"]
 
 [node name="newdeathscreen" type="Node2D"]
 script = ExtResource("1_36kbc")
@@ -76,3 +77,5 @@ scale = Vector2(2.5, 2.5)
 pivot_offset = Vector2(320, 240)
 texture = ExtResource("5_36hd4")
 metadata/_edit_use_anchors_ = true
+
+[node name="notification" parent="." instance=ExtResource("6_fp0uh")]

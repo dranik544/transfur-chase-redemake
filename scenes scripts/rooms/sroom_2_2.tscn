@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci6qg84vydphe"]
+[gd_scene load_steps=18 format=3 uid="uid://ci6qg84vydphe"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_18u2r"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_6fby2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dpsuhojkxbdha" path="res://scenes scripts/vent_1.tscn" id="9_cwoc0"]
 [ext_resource type="PackedScene" uid="uid://rlv6x1sbjgi0" path="res://scenes scripts/box_4.tscn" id="10_1wwap"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="10_cwoc0"]
+[ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="13_garaq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_fpd0n")
@@ -232,6 +233,9 @@ shape = SubResource("BoxShape3D_ccg18")
 [node name="enemy1" parent="." instance=ExtResource("10_cwoc0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.9, -3)
 randomspawn = 6
+
+[node name="basket1" parent="." instance=ExtResource("13_garaq")]
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -1, 0.5, -3.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

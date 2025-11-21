@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-@export var speed = 6.0
+@export var speed = 6.25
 const JUMP_VELOCITY = 4.5
 @export var sens: float = 0.002
 var freecam: bool = true

@@ -39,6 +39,25 @@ func _ready():
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
 	
 	$"CanvasLayer/skins menu".updateskin(false, true, true)
+	
+	await get_tree().create_timer(2.5).timeout
+	$notification.display("сейчас играет - Unknown,
+	hostile environment", "эмбиент от
+	TheNamelessDeity", load("res://sprites/icon3.png"), 4)
+		
+	if Global.iswinter:
+		print(Global.checkachievement(4))
+		if !Global.checkachievement(4):
+			$notification.display(Global.achievements[4]["name"],
+			Global.achievements[4]["desc"],
+			load("res://sprites/icon12.png"))
+		Global.unlockachievement(4)
+		
+		$notification.display("ура, новый год!", "сейчас в игре проходит
+		событие Новый Год, вам
+		доступен новогодний костюм.
+		это событие можно отключить
+		в настройках.", load("res://sprites/new year colin skin/colin1idle.png"), 10)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -105,18 +124,19 @@ func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLay
 func btnwaaapressed():
 	var random = randi_range(1, 5)
 	match random:
-		1:
-			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowFat3.wav")
-		2:
-			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup3.wav")
-		3:
-			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup5.wav")
-		4:
-			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort1.wav")
-		5:
-			$"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort3.wav")
-	
+		1: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowFat3.wav")
+		2: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup3.wav")
+		3: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPup5.wav")
+		4: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort1.wav")
+		5: $"room1 1/Sprite3D3/AudioStreamPlayer3D".stream = load("res://sounds music/MeowPupShort3.wav")
 	$"room1 1/Sprite3D3/AudioStreamPlayer3D".play()
+	
+	if !Global.checkachievement(1):
+		$notification.display(Global.achievements[1]["name"],
+		Global.achievements[1]["desc"],
+		load("res://sprites/icon12.png"))
+	Global.unlockachievement(1)
+
 func btnskinspressed():
 	$"CanvasLayer/skins menu".visible = true
 	$CanvasLayer/buttons.visible = false

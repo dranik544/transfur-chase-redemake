@@ -1,7 +1,27 @@
-[gd_scene load_steps=15 format=3 uid="uid://d15h6sm1ybfa7"]
+[gd_scene load_steps=17 format=3 uid="uid://d15h6sm1ybfa7"]
 
 [ext_resource type="Texture2D" uid="uid://bdxpcty4f53td" path="res://sprites/basket3.png" id="1_akoqu"]
 [ext_resource type="Texture2D" uid="uid://3t44tp8s8fan" path="res://sprites/basket2.png" id="2_akoqu"]
+
+[sub_resource type="GDScript" id="GDScript_akoqu"]
+script/source = "extends RigidBody3D
+
+
+func _ready() -> void:
+	$Area3D.body_entered.connect(q)
+
+func q(body):
+	if body.is_in_group(\"player\"):
+		if !Global.checkachievement(2):
+			var ach = get_tree().current_scene.get_node(\"notification\")
+			ach.display(Global.achievements[2][\"name\"],
+			Global.achievements[2][\"desc\"],
+			load(\"res://sprites/icon12.png\"))
+		Global.unlockachievement(2)
+		Global.listskins[9][\"unlocked\"] = true
+		SavingManager.save(\"skinlist\", Global.listskins)
+		Global.listskins = SavingManager.load(\"skinlist\")
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_akoqu"]
 size = Vector3(1, 0.1, 1)
@@ -49,9 +69,13 @@ material = SubResource("StandardMaterial3D_ex2hc")
 size = Vector2(0.8, 0.8)
 orientation = 1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_akoqu"]
+radius = 0.2
+
 [node name="basket1" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
+script = SubResource("GDScript_akoqu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
@@ -117,3 +141,9 @@ mesh = SubResource("QuadMesh_8cm2m")
 transform = Transform3D(1, -6.47961e-08, 8.44439e-08, -6.47961e-08, -1, -7.38232e-15, 8.44439e-08, 1.60772e-22, -1, 0, 0, 0)
 mesh = SubResource("QuadMesh_3s6dn")
 skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("SphereShape3D_akoqu")

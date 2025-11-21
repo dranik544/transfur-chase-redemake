@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=83 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
 [ext_resource type="Texture2D" uid="uid://cu38coc8wpwp6" path="res://sprites/lock1.png" id="43_oarhb"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="46_i763c"]
+[ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -1465,3 +1466,5 @@ lifetime = 7.5
 randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_ogb1n")
 draw_pass_1 = SubResource("QuadMesh_o23wf")
+
+[node name="notification" parent="." instance=ExtResource("48_8lcj0")]

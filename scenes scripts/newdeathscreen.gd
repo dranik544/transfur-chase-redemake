@@ -7,6 +7,11 @@ func _ready():
 	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems
 	if points > Global.recordpoints:
 		Global.recordpoints = points
+		
+		$notification.display("новый рекорд!", "поздравляю, вы побили свой
+		прошлый рекорд! он будет
+		записан во вкладке Статистики.", load("res://sprites/icon11.png"), 7)
+	
 	SavingManager.save("recordpoints", Global.recordpoints)
 	
 	$label.text = "ты сдулся!
@@ -18,7 +23,8 @@ func _ready():
 	открыто люков: " + str(Global.openvents) + "
 	использовано предметов: " + str(Global.useditems) + "
 	
-	итого: " + str(points)
+	итого: " + str(points) + "
+	лучший рекорд: " + str(SavingManager.load("recordpoints"))
 	
 
 func _process(delta):

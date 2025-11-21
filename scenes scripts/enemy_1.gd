@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 4.5
+@export var speed = 4.75
 var canmove: bool = false
 var curspeed = 3.5
 var speeddist = 0.0
@@ -34,12 +34,13 @@ func _physics_process(delta):
 	var curloc = global_transform.origin
 	var newvelocity = (nextloc - curloc).normalized() * curspeed
 	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
+	var playerdist = global_position.distance_to(player.global_position)
 	
 	if player and canmove:
 		targetpos(player.global_transform.origin)
 		
-		speeddist = 0.0 + global_position.distance_to(player.global_position) / nerf
-		if global_position.distance_to(player.global_position) / nerf > 75.0:
+		speeddist = 0.0 + playerdist / nerf
+		if playerdist / nerf > 36.0:
 			queue_free()
 	speeddist = clampf(speeddist, 0.0, 25.0)
 	
@@ -51,7 +52,7 @@ func _physics_process(delta):
 			$Sprite3D.flip_h = true
 	
 	if velocity.length() < 0.65 and canmove:
-		if global_position.distance_to(player.global_position) / nerf < 2.5:
+		if playerdist > 1.5:
 			framess += 1
 			framessl += 1
 			

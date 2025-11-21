@@ -30,6 +30,9 @@ func _ready():
 	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
 	$music.play()
+	
+	$notification.display("Сейчас играет - Run!", "автор музыки:
+	WatewrFlame", load("res://sprites/icon2.png"), 3)
 
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, rooms.size())
