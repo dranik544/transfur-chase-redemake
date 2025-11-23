@@ -4,7 +4,17 @@ var time: float = 0.0
 
 
 func _ready():
-	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems
+	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems + Global.unsleepenemies
+	
+	Global.generalstats[0] += Global.brokenboxes
+	Global.generalstats[1] += Global.brokendoors
+	Global.generalstats[2] += Global.touchedslimes
+	Global.generalstats[3] += Global.hitsfromenemies
+	Global.generalstats[4] += Global.openvents
+	Global.generalstats[5] += Global.useditems
+	Global.generalstats[6] += Global.unsleepenemies
+	SavingManager.save("generalstats", Global.generalstats)
+	
 	if points > Global.recordpoints:
 		Global.recordpoints = points
 		
@@ -22,6 +32,7 @@ func _ready():
 	получил лещей: " + str(Global.hitsfromenemies) + "
 	открыто люков: " + str(Global.openvents) + "
 	использовано предметов: " + str(Global.useditems) + "
+	пробуждено врагов: " + str(Global.unsleepenemies) + "
 	
 	итого: " + str(points) + "
 	лучший рекорд: " + str(SavingManager.load("recordpoints"))

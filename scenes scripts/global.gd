@@ -6,6 +6,16 @@ var touchedslimes: int = 0
 var hitsfromenemies: int = 0
 var openvents: int = 0
 var useditems: int = 0
+var unsleepenemies: int = 0
+var generalstats = [
+	0, #broken boxes
+	0, #broken doors
+	0, #touched slimes
+	0, #hits from enemies
+	0, #open vents
+	0, #used items
+	0, #unsleep enemies
+]
 
 var iswinter: bool = false
 
@@ -25,7 +35,8 @@ var listskins = [
 ]
 
 var achievements = [
-	{"name": "пройти 1 локацию", "desc": "завершить 1 локацию любым способом.", "unlocked": false}, #id: 0
+	{"name": "пройти 1 локацию", "desc": "завершить 1 локацию
+	любым способом.", "unlocked": false}, #id: 0
 	
 	{"name": "WAAAA!", "desc": "нажать на
 	слизне-кота в меню.", "unlocked": false}, #id: 1
@@ -41,9 +52,21 @@ var achievements = [
 	
 	{"name": "на волоске от смерти", "desc": "завершить локацию будучи
 	почти трансфурмированным", "unlocked": false}, #id: 5
+	
+	{"name": "в этой игре есть
+	скольжение?!", "desc": "завершить локацию не
+	использовав скольжение", "unlocked": false}, #id: 6
 ]
 
 var recordpoints: int = 0
+
+var settings = {
+	"soundvolume": 100.0,
+	"musicvolume": 75.0,
+	"effects": true,
+	"cabels": true,
+	"winterevent": true
+}
 
 signal navibakereq()
 
@@ -64,6 +87,10 @@ func _ready() -> void:
 		SavingManager.save("curskin", 0)
 	if SavingManager.load("achievements") == null:
 		SavingManager.save("achievements", achievements)
+	if SavingManager.load("generalstats") == null:
+		SavingManager.save("generalstats", generalstats)
+	if SavingManager.load("settings") == null:
+		SavingManager.save("settings", settings)
 	colinskin = SavingManager.load("skins")
 	
 	if SavingManager.load("skinlist") != null:
@@ -76,12 +103,14 @@ func _ready() -> void:
 			if i < SavingManager.load("achievements").size():
 				achievements[i]["unlocked"] = SavingManager.load("achievements")[i]["unlocked"]
 	
+	for i in range(generalstats.size()):
+		if i < SavingManager.load("generalstats").size():
+			generalstats[i] = SavingManager.load("generalstats")[i]
+	
 	recordpoints = SavingManager.load("recordpoints")
 	
-	iswinter = true
-	listskins[3]["unlocked"] = iswinter
-	
-	print(achievements)
+	if settings["winterevent"]:
+		listskins[3]["unlocked"] = iswinter
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:
@@ -91,6 +120,7 @@ func unlockachievement(id: int):
 	return false
 func checkachievement(id: int):
 	return achievements[id]["unlocked"]
+
 
 func _process(delta: float) -> void:
 	pass

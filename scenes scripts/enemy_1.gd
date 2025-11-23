@@ -116,6 +116,7 @@ func areaplayerentered(body):
 		$AnimationPlayer.play("its colin!")
 		await $AnimationPlayer.animation_finished
 		canmove = true
+		Global.unsleepenemies += 1
 		
 		#$AudioStreamPlayer3D2.play()
 		#$Sprite3D.scale.y -= 3.0

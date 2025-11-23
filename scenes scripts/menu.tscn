@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=87 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
@@ -45,9 +45,13 @@
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
 [ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
+[ext_resource type="Script" uid="uid://bqhfwhqctx66v" path="res://scenes scripts/stats menu.tres.gd" id="38_lk0fw"]
+[ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="38_o23wf"]
+[ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="39_lk0fw"]
 [ext_resource type="Texture2D" uid="uid://cu38coc8wpwp6" path="res://sprites/lock1.png" id="43_oarhb"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="46_i763c"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
+[ext_resource type="Script" uid="uid://neol3tevslhf" path="res://scenes scripts/settings_menu.gd" id="49_rd0ur"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
 panorama = ExtResource("2_60p26")
@@ -426,6 +430,14 @@ _data = {
 &"start": SubResource("Animation_eogbu")
 }
 
+[sub_resource type="GDScript" id="GDScript_sr01d"]
+script/source = "extends Label
+
+
+func _ready() -> void:
+	text = \"лучший рекорд: \" + str(Global.recordpoints)
+"
+
 [sub_resource type="GDScript" id="GDScript_jh7g4"]
 script/source = "extends Node2D
 
@@ -468,14 +480,6 @@ func btnmouseentered():
 func btnmouseexited():
 	curscale = defscale
 	currotate = defrotate
-"
-
-[sub_resource type="GDScript" id="GDScript_sr01d"]
-script/source = "extends Label
-
-
-func _ready() -> void:
-	text = \"лучший рекорд: \" + str(Global.recordpoints)
 "
 
 [sub_resource type="GDScript" id="GDScript_oarhb"]
@@ -542,7 +546,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_o23wf"]
 material = SubResource("StandardMaterial3D_llgq5")
-size = Vector2(0.5, 0.5)
+size = Vector2(0.2, 0.2)
 
 [node name="menu" type="Node3D"]
 script = ExtResource("1_tnq6k")
@@ -957,7 +961,6 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-disabled = true
 text = "настройки"
 icon = ExtResource("20_n7qjf")
 expand_icon = true
@@ -1005,7 +1008,6 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-disabled = true
 text = "статистика"
 icon = ExtResource("22_ybihx")
 expand_icon = true
@@ -1148,143 +1150,13 @@ libraries = {
 autoplay = "start"
 
 [node name="stats menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+script = ExtResource("38_lk0fw")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats menu"]
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 0.490196)
-
-[node name="wiki locs" type="Node2D" parent="CanvasLayer/stats menu"]
-position = Vector2(125, 127)
-script = SubResource("GDScript_jh7g4")
-
-[node name="wiki" type="TextureRect" parent="CanvasLayer/stats menu/wiki locs"]
-offset_left = -136.0
-offset_top = -143.0
-offset_right = 147.0
-offset_bottom = 140.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("24_n7qjf")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/stats menu/wiki locs"]
-offset_left = -87.0
-offset_top = -94.0
-offset_right = 98.0
-offset_bottom = 78.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("25_ybihx")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/stats menu/wiki locs"]
-offset_left = -90.0
-offset_top = 82.0
-offset_right = 100.0
-offset_bottom = 119.0
-pivot_offset = Vector2(141, 141)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "информация
-об локациях"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/stats menu/wiki locs"]
-offset_left = -100.0
-offset_top = -107.0
-offset_right = 111.0
-offset_bottom = 124.0
-pivot_offset = Vector2(141, 141)
-flat = true
-
-[node name="wiki enemies" type="Node2D" parent="CanvasLayer/stats menu"]
-position = Vector2(497, 127)
-script = SubResource("GDScript_jh7g4")
-
-[node name="wiki" type="TextureRect" parent="CanvasLayer/stats menu/wiki enemies"]
-offset_left = -136.0
-offset_top = -143.0
-offset_right = 147.0
-offset_bottom = 140.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("24_n7qjf")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/stats menu/wiki enemies"]
-offset_left = -87.0
-offset_top = -94.0
-offset_right = 98.0
-offset_bottom = 78.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("26_bhk6r")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/stats menu/wiki enemies"]
-offset_left = -90.0
-offset_top = 82.0
-offset_right = 100.0
-offset_bottom = 119.0
-pivot_offset = Vector2(141, 141)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "информация о
-противниках"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/stats menu/wiki enemies"]
-offset_left = -100.0
-offset_top = -107.0
-offset_right = 111.0
-offset_bottom = 124.0
-pivot_offset = Vector2(141, 141)
-flat = true
-
-[node name="wiki3" type="Node2D" parent="CanvasLayer/stats menu"]
-position = Vector2(315, 171)
-script = SubResource("GDScript_jh7g4")
-
-[node name="wiki" type="TextureRect" parent="CanvasLayer/stats menu/wiki3"]
-offset_left = -136.0
-offset_top = -143.0
-offset_right = 147.0
-offset_bottom = 140.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("24_n7qjf")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/stats menu/wiki3"]
-offset_left = -87.0
-offset_top = -94.0
-offset_right = 98.0
-offset_bottom = 78.0
-pivot_offset = Vector2(141, 141)
-texture = ExtResource("27_bhk6r")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/stats menu/wiki3"]
-offset_left = -90.0
-offset_top = 82.0
-offset_right = 100.0
-offset_bottom = 119.0
-pivot_offset = Vector2(141, 141)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "ваши рекорды
-и достижения"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/stats menu/wiki3"]
-offset_left = -100.0
-offset_top = -107.0
-offset_right = 111.0
-offset_bottom = 124.0
-pivot_offset = Vector2(141, 141)
-flat = true
 
 [node name="btnexit" type="Button" parent="CanvasLayer/stats menu"]
 anchors_preset = 8
@@ -1308,6 +1180,654 @@ icon = ExtResource("19_fhf2g")
 expand_icon = true
 
 [node name="Label" type="Label" parent="CanvasLayer/stats menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = 417.0
+offset_right = 640.0
+offset_bottom = 449.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 26
+text = "лучший рекорд:"
+vertical_alignment = 1
+script = SubResource("GDScript_sr01d")
+
+[node name="scc" type="ScrollContainer" parent="CanvasLayer/stats menu"]
+offset_right = 640.0
+offset_bottom = 412.0
+
+[node name="hboxc" type="HBoxContainer" parent="CanvasLayer/stats menu/scc"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="vboxc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ach1" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach3" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach4" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach5" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach6" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ach7" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="vboxc2" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = "общая статистика:
+
+
+всего сломано коробок:
+всего сломано дверей:
+всего тронутых луж:
+всего "
+horizontal_alignment = 1
+
+[node name="OLDstats menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OLDstats menu"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="wiki locs" type="Node2D" parent="CanvasLayer/OLDstats menu"]
+position = Vector2(125, 127)
+script = SubResource("GDScript_jh7g4")
+
+[node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki locs"]
+offset_left = -136.0
+offset_top = -143.0
+offset_right = 147.0
+offset_bottom = 140.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("24_n7qjf")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki locs"]
+offset_left = -87.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = 78.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("25_ybihx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki locs"]
+offset_left = -90.0
+offset_top = 82.0
+offset_right = 100.0
+offset_bottom = 119.0
+pivot_offset = Vector2(141, 141)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "информация
+об локациях"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki locs"]
+offset_left = -100.0
+offset_top = -107.0
+offset_right = 111.0
+offset_bottom = 124.0
+pivot_offset = Vector2(141, 141)
+flat = true
+
+[node name="wiki enemies" type="Node2D" parent="CanvasLayer/OLDstats menu"]
+position = Vector2(497, 127)
+script = SubResource("GDScript_jh7g4")
+
+[node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+offset_left = -136.0
+offset_top = -143.0
+offset_right = 147.0
+offset_bottom = 140.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("24_n7qjf")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+offset_left = -87.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = 78.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("26_bhk6r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+offset_left = -90.0
+offset_top = 82.0
+offset_right = 100.0
+offset_bottom = 119.0
+pivot_offset = Vector2(141, 141)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "информация о
+противниках"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+offset_left = -100.0
+offset_top = -107.0
+offset_right = 111.0
+offset_bottom = 124.0
+pivot_offset = Vector2(141, 141)
+flat = true
+
+[node name="wiki3" type="Node2D" parent="CanvasLayer/OLDstats menu"]
+position = Vector2(315, 171)
+script = SubResource("GDScript_jh7g4")
+
+[node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki3"]
+offset_left = -136.0
+offset_top = -143.0
+offset_right = 147.0
+offset_bottom = 140.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("24_n7qjf")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki3"]
+offset_left = -87.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = 78.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("27_bhk6r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki3"]
+offset_left = -90.0
+offset_top = 82.0
+offset_right = 100.0
+offset_bottom = 119.0
+pivot_offset = Vector2(141, 141)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "ваши рекорды
+и достижения"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki3"]
+offset_left = -100.0
+offset_top = -107.0
+offset_right = 111.0
+offset_bottom = 124.0
+pivot_offset = Vector2(141, 141)
+flat = true
+
+[node name="btnexit" type="Button" parent="CanvasLayer/OLDstats menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 416.0
+offset_right = 95.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "выйти"
+icon = ExtResource("19_fhf2g")
+expand_icon = true
+
+[node name="Label" type="Label" parent="CanvasLayer/OLDstats menu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1451,6 +1971,147 @@ scale = Vector2(4, 4)
 texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
+[node name="settings menu" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("49_rd0ur")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/settings menu"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="btnexit" type="Button" parent="CanvasLayer/settings menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 416.0
+offset_right = 95.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "выйти"
+icon = ExtResource("19_fhf2g")
+expand_icon = true
+
+[node name="scc" type="ScrollContainer" parent="CanvasLayer/settings menu"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 635.0
+offset_bottom = 407.0
+
+[node name="vboxc" type="VBoxContainer" parent="CanvasLayer/settings menu/scc"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="soundandmusic" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 32
+text = "звуки и музыка"
+vertical_alignment = 1
+
+[node name="soundtext" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = "
+громкость звука"
+vertical_alignment = 1
+
+[node name="soundslider" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="soundtext2" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = "
+громкость музыки"
+vertical_alignment = 1
+
+[node name="soundslider2" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+step = 5.0
+value = 75.0
+
+[node name="graphics" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 32
+text = "
+
+графика"
+vertical_alignment = 1
+
+[node name="effects" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "частицы и эффекты"
+
+[node name="cabels" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "висящие провода"
+
+[node name="events" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 32
+text = "
+
+события"
+vertical_alignment = 1
+
+[node name="winterevent" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "новогоднее событие"
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
 autoplay = true
@@ -1461,12 +2122,11 @@ script = SubResource("GDScript_un3na")
 [node name="snow" type="GPUParticles3D" parent="snow effect"]
 transparency = 0.1
 cast_shadow = 0
-amount = 256
+amount = 512
 lifetime = 7.5
 randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_ogb1n")
 draw_pass_1 = SubResource("QuadMesh_o23wf")
 
 [node name="notification" parent="." instance=ExtResource("48_8lcj0")]
-offset_right = 128.0
-offset_bottom = 52.0
+visible = false

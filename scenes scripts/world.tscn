@@ -99,11 +99,10 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_53xst"]
 material = SubResource("StandardMaterial3D_rginh")
-size = Vector2(0.5, 0.5)
+size = Vector2(0.2, 0.2)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_55rg2")
@@ -231,7 +230,7 @@ script = SubResource("GDScript_qeca7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 transparency = 0.1
 cast_shadow = 0
-amount = 256
+amount = 512
 lifetime = 4.0
 randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_jvjns")
