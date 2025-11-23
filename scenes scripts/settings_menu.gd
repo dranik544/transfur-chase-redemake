@@ -3,6 +3,8 @@ extends Node2D
 
 func _ready() -> void:
 	$scc/vboxc/winterevent.disabled = not Global.iswinter
+	
+	$scc/vboxc/cabels.toggle_mode = Global.settings["cabels"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value

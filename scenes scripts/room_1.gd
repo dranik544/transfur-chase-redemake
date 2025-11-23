@@ -59,7 +59,7 @@ func _ready():
 		spawnbox(SceneBasket1, NumBasket1, boxposy)
 		spawnbox(SceneSlime1, NumSlime1, 0.0)
 		spawnbox(SceneVent1, NumVents1, 0.0, false)
-	if Cabels:
+	if Cabels and Global.settings["cabels"]:
 		spawnbox(SceneCabels1, NumCabels1, 3.0, false)
 	
 	#next room cam zone

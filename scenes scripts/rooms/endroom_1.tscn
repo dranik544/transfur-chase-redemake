@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://btdikxgrrynh0"]
+[gd_scene load_steps=27 format=3 uid="uid://btdikxgrrynh0"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_sxflw"]
 [ext_resource type="PackedScene" uid="uid://dl38kx6c4srqv" path="res://scenes scripts/cabels_2.tscn" id="2_op5hc"]
@@ -50,6 +50,9 @@ size = Vector2(1.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
 size = Vector3(10, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r10y8"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="endroom 1" type="Node3D"]
 script = ExtResource("1_sxflw")
@@ -120,7 +123,7 @@ mesh = ExtResource("5_sxflw")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -12, 1.5, -2.98)
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -12, 1.5, -2.68)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
@@ -129,7 +132,7 @@ mesh = ExtResource("5_sxflw")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -12, 1.5, 3.02)
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -12, 1.5, 2.62)
 shape = SubResource("BoxShape3D_v056k")
 
 [node name="wall5" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
@@ -167,9 +170,6 @@ transform = Transform3D(0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 
 transform = Transform3D(-1, 1.13133e-08, 8.59334e-08, -1.13133e-08, 0.965926, -0.258819, -8.59334e-08, -0.258819, -0.965926, -10, 2.1, 4.8)
 mesh = SubResource("QuadMesh_rxdwu")
 skeleton = NodePath("")
-
-[node name="cube1" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("13_b4xcx")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -11.3, 2.12664, -2.9)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -215,6 +215,16 @@ vertical_alignment = 1
 
 [node name="basket1" parent="." instance=ExtResource("17_r10y8")]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -4.1, 0.5, 3.8)
+
+[node name="cube" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.2, -4)
+mass = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube"]
+shape = SubResource("BoxShape3D_r10y8")
+
+[node name="cube1" parent="cube" instance=ExtResource("13_b4xcx")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
