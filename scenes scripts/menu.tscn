@@ -1645,6 +1645,68 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
+[node name="ach8" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
 [node name="vboxc2" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
 layout_mode = 2
 size_flags_horizontal = 8

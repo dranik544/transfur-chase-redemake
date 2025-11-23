@@ -24,6 +24,8 @@ func _ready():
 		if randomspawn != random:
 			queue_free()
 	
+	checkenemies()
+	
 	sleep()
 	
 	if Global.iswinter:
@@ -37,8 +39,6 @@ func _physics_process(delta):
 	var playerdist = global_position.distance_to(player.global_position)
 	
 	if player and canmove:
-		targetpos(player.global_transform.origin)
-		
 		speeddist = 0.0 + playerdist / nerf
 		if playerdist / nerf > 32.5:
 			queue_free()
@@ -98,13 +98,19 @@ func _physics_process(delta):
 	if canmove:
 		velocity = velocity.move_toward(newvelocity, 0.5)
 		move_and_slide()
+	
+	if player and canmove:
+		targetpos(player.global_transform.origin)
+	checkenemies()
 
 func exitfromvent():
+	add_to_group("unsleep enemy")
 	canmove = true
 	hasentered = true
 	$AnimationPlayer.play("RESET")
 
 func sleep():
+	remove_from_group("unsleep enemy")
 	canmove = false
 	hasentered = false
 	velocity = Vector3(0.0, 0.0, 0.0)
@@ -116,6 +122,7 @@ func areaplayerentered(body):
 		$AnimationPlayer.play("its colin!")
 		await $AnimationPlayer.animation_finished
 		canmove = true
+		add_to_group("unsleep enemy")
 		Global.unsleepenemies += 1
 		
 		#$AudioStreamPlayer3D2.play()
@@ -124,4 +131,17 @@ func areaplayerentered(body):
 
 func targetpos(target):
 	#$NavigationAgent3D.target_position = target
+	await get_tree().create_timer(0.15).timeout
 	$NavigationAgent3D.set_target_position(target)
+
+func checkenemies():
+	var enemies = get_tree().get_nodes_in_group("unsleep enemy")
+	if enemies.size() > 10:
+		if Global.unlockachievement(7):
+			var ach = get_tree().current_scene.get_node("notification")
+			ach.display(Global.achievements[7]["name"],
+			Global.achievements[7]["desc"],
+			load("res://sprites/icon12.png"))
+		
+		for i in range(enemies.size() - 10):
+			enemies[i].queue_free()

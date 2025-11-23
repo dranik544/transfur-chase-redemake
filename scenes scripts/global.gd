@@ -56,6 +56,9 @@ var achievements = [
 	{"name": "в этой игре есть
 	скольжение?!", "desc": "завершить локацию не
 	использовав скольжение", "unlocked": false}, #id: 6
+	
+	{"name": "стая на хвосте", "desc": "набрать 10+ не
+	спящих врагов", "unlocked": false}, #id: 7
 ]
 
 var recordpoints: int = 0

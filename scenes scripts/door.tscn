@@ -112,6 +112,7 @@ max_db = 4.0
 pitch_scale = 0.9
 
 [node name="door1" type="RigidBody3D" parent="."]
+mass = 25.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.497131, 0, 0)
@@ -124,6 +125,7 @@ texture_filter = 2
 texture = ExtResource("5_apbo6")
 
 [node name="door2" type="RigidBody3D" parent="."]
+mass = 25.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
