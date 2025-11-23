@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyw7bqxi0duix"]
+[gd_scene load_steps=21 format=3 uid="uid://dyw7bqxi0duix"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_40ps2"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_h7ver"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cv1e7gj4cs4es" path="res://scenes scripts/box_3.tscn" id="8_mgf7c"]
 [ext_resource type="PackedScene" uid="uid://rlv6x1sbjgi0" path="res://scenes scripts/box_4.tscn" id="9_2c12t"]
 [ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="9_e5iq8"]
+[ext_resource type="Texture2D" uid="uid://bavd3imn64vx0" path="res://sprites/hueta.png" id="9_p7bax"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="10_2c12t"]
 [ext_resource type="PackedScene" uid="uid://b24olo70jj02w" path="res://scenes scripts/box_1.tscn" id="11_5r6qs"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="12_xay2c"]
@@ -202,6 +203,14 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("9_e5iq8")
+
+[node name="Sprite3D" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0.8, -4.7)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("9_p7bax")
 
 [node name="boxes1" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0)

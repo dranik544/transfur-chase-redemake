@@ -7,6 +7,8 @@ extends Node3D
 	3: preload("res://scenes scripts/rooms/sroom_1_3.tscn"),
 	4: preload("res://scenes scripts/rooms/sroom_2_1.tscn"),
 	5: preload("res://scenes scripts/rooms/sroom_2_2.tscn"),
+	6: preload("res://scenes scripts/rooms/sroom_1_4.tscn"),
+	7: preload("res://scenes scripts/rooms/sroom_2_3.tscn")
 }
 @export var loadrooms: int = 40
 

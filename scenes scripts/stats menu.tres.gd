@@ -59,13 +59,13 @@ func _ready() -> void:
 	
 	if total < 0:
 		recomend = "позорно!"
-	elif total >= 0 and total < 20:
+	elif total >= 0 and total < 35:
 		recomend = "даже моя бабушка играет лучше"
-	elif total >= 20 and total < 40:
+	elif total >= 35 and total < 75:
 		recomend = "неплохо!"
-	elif total >= 40 and total < 65:
+	elif total >= 75 and total < 150:
 		recomend = "отлично!"
-	elif total >= 65:
+	elif total >= 150:
 		recomend = "великолепно!"
 	
 	$scc/hboxc/vboxc2/Label.text = "
