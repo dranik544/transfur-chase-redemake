@@ -545,6 +545,9 @@ environment = ExtResource("2_1qjkn")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 25.0
 
 [node name="center camera" type="Node3D" parent="."]
 
@@ -2119,6 +2122,21 @@ text = "
 
 графика"
 vertical_alignment = 1
+
+[node name="windowmode" type="OptionButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+selected = 0
+item_count = 2
+popup/item_0/text = "полноэкранный режим"
+popup/item_0/id = 0
+popup/item_1/text = "оконный режим"
+popup/item_1/id = 1
 
 [node name="effects" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2

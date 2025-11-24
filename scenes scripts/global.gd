@@ -68,7 +68,8 @@ var settings = {
 	"musicvolume": 75.0,
 	"effects": true,
 	"cabels": true,
-	"winterevent": true
+	"winterevent": true,
+	"windowmode": 0
 }
 
 signal navibakereq()
@@ -126,6 +127,10 @@ func unlockachievement(id: int):
 func checkachievement(id: int):
 	return achievements[id]["unlocked"]
 
+func updatewindowmode():
+	match settings["windowmode"]:
+		0: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		1: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _process(delta: float) -> void:
 	pass
