@@ -10,6 +10,8 @@
 [sub_resource type="GDScript" id="GDScript_1w7ov"]
 script/source = "extends Node2D
 
+
+
 func changescene(scene: PackedScene):
 	get_tree().change_scene_to_packed(scene)
 
@@ -273,10 +275,9 @@ libraries = {
 autoplay = "start"
 
 [node name="logo2" type="TextureRect" parent="."]
-offset_left = 195.0
-offset_top = 175.0
-offset_right = 449.0
-offset_bottom = 278.0
+offset_top = -104.0
+offset_right = 254.0
+offset_bottom = -1.0
 pivot_offset = Vector2(127, 51)
 texture = ExtResource("2_1w7ov")
 

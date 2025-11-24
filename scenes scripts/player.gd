@@ -66,7 +66,7 @@ func _unhandled_input(event):
 		camscalewheel += 0.75
 	if event.is_action_pressed("CCM UP"):
 		camscalewheel -= 0.75
-	camscalewheel = clampf(camscalewheel, -2.5, 7.5)
+	camscalewheel = clampf(camscalewheel, -2.5, 9.0)
 
 func camfollowupdate(canfollow: bool, camposx = 0.0, camposy = 0.0):
 	camfollow = canfollow

@@ -1,7 +1,7 @@
-[gd_scene load_steps=87 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=86 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
-[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="2_60p26"]
+[ext_resource type="Environment" uid="uid://d1a7cqh3cfx5o" path="res://materials/defworld1.tres" id="2_1qjkn"]
 [ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="4_2epkg"]
 [ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="5_eeftm"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://seoh1ek7ciij" path="res://sprites/healitem1.png" id="17_i05ob"]
 [ext_resource type="Texture2D" uid="uid://dqvs8km42bsyo" path="res://sprites/icon2.png" id="17_xh7j4"]
 [ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="17_ype5m"]
+[ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="18_1qjkn"]
 [ext_resource type="BoxMesh" uid="uid://cyog1sitkt8s5" path="res://wallmesh/wallmesh1.tres" id="18_238qo"]
 [ext_resource type="Texture2D" uid="uid://dbodagrsvlewc" path="res://sprites/logo4.png" id="18_eogbu"]
 [ext_resource type="PackedScene" uid="uid://bewdxkieq3xq8" path="res://scenes scripts/effect_1.tscn" id="18_ibtf3"]
@@ -52,42 +53,29 @@
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="46_i763c"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
 [ext_resource type="Script" uid="uid://neol3tevslhf" path="res://scenes scripts/settings_menu.gd" id="49_rd0ur"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
-panorama = ExtResource("2_60p26")
-filter = false
-
-[sub_resource type="Sky" id="Sky_y5apx"]
-sky_material = SubResource("PanoramaSkyMaterial_ewvr7")
-
-[sub_resource type="Environment" id="Environment_a6jpe"]
-background_mode = 2
-background_color = Color(0.490196, 0.490196, 0.490196, 1)
-sky = SubResource("Sky_y5apx")
-ambient_light_source = 2
-ambient_light_color = Color(0.789172, 0.789172, 0.789172, 1)
-tonemap_mode = 2
-glow_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.490196, 0.490196, 0.490196, 1)
-fog_density = 1.0
-fog_depth_begin = 100.0
+[ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="51_g2umq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0b3bo"]
 material = ExtResource("6_ewvr7")
 top_radius = 0.2
 bottom_radius = 0.2
+radial_segments = 8
+rings = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_tkf0x"]
 material = ExtResource("6_ewvr7")
 radius = 0.2
 height = 0.4
+radial_segments = 8
+rings = 8
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tkf0x"]
 material = ExtResource("6_ewvr7")
 top_radius = 0.2
 bottom_radius = 0.16
 height = 0.5
+radial_segments = 8
+rings = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys87n"]
 albedo_texture = ExtResource("8_0b3bo")
@@ -504,7 +492,7 @@ var player
 
 
 func _ready() -> void:
-	if !Global.iswinter:
+	if !Global.iswinter or !Global.settings[\"effects\"]:
 		queue_free()
 	
 	player = get_tree().get_first_node_in_group(\"player\")
@@ -552,7 +540,7 @@ size = Vector2(0.2, 0.2)
 script = ExtResource("1_tnq6k")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_a6jpe")
+environment = ExtResource("2_1qjkn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
@@ -564,7 +552,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 9)
 keep_aspect = 0
 projection = 1
-far = 25.0
+far = 20.0
 
 [node name="room1 1" type="Node3D" parent="."]
 
@@ -780,6 +768,7 @@ texture = ExtResource("16_rwdqi")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="room1 1/Sprite3D3"]
 stream = ExtResource("17_4w1wx")
+script = ExtResource("18_1qjkn")
 
 [node name="Sprite3D4" type="Sprite3D" parent="room1 1"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.63732, 1.31493, -2.87024)
@@ -810,13 +799,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_hjmwg")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="room1 1/Sprite3D2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="room1 1/Sprite3D2"]
 stream = ExtResource("17_ype5m")
 pitch_scale = 1.25
+script = ExtResource("18_1qjkn")
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="room1 1/Sprite3D2"]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer3D" parent="room1 1/Sprite3D2"]
 stream = ExtResource("17_ype5m")
 pitch_scale = 1.25
+script = ExtResource("18_1qjkn")
 
 [node name="effect1" parent="room1 1/Sprite3D2" instance=ExtResource("18_ibtf3")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -2047,9 +2038,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
+offset_left = 11.0
 offset_top = 416.0
-offset_right = 95.0
+offset_right = 213.0
 offset_bottom = 447.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -2058,7 +2049,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "выйти"
+text = "сохранить и выйти"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
@@ -2095,10 +2086,12 @@ vertical_alignment = 1
 
 [node name="soundslider" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
+min_value = -100.0
+max_value = 1000.0
 step = 5.0
 value = 100.0
 
-[node name="soundtext2" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+[node name="musictext" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -2109,8 +2102,9 @@ text = "
 громкость музыки"
 vertical_alignment = 1
 
-[node name="soundslider2" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
+[node name="musicslider" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
+min_value = -100.0
 step = 5.0
 value = 75.0
 
@@ -2174,9 +2168,21 @@ theme_override_font_sizes/font_size = 18
 button_pressed = true
 text = "новогоднее событие"
 
+[node name="events2" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "при изменении может
+потребоваться перезагрузка"
+vertical_alignment = 1
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
 autoplay = true
+script = ExtResource("51_g2umq")
 
 [node name="snow effect" type="Node3D" parent="."]
 script = SubResource("GDScript_un3na")

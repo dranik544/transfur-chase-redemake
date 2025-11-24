@@ -72,6 +72,7 @@ var settings = {
 }
 
 signal navibakereq()
+signal updatesoundandmusic()
 
 
 func _ready() -> void:
@@ -110,6 +111,7 @@ func _ready() -> void:
 		if i < SavingManager.load("generalstats").size():
 			generalstats[i] = SavingManager.load("generalstats")[i]
 	
+	settings = SavingManager.load("settings")
 	recordpoints = SavingManager.load("recordpoints")
 	
 	if settings["winterevent"]:

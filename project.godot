@@ -25,12 +25,19 @@ config/icon="res://icon.svg"
 Global="*res://scenes scripts/global.gd"
 SavingManager="*res://scenes scripts/SavingManager.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=480
 window/size/mode=3
+window/size/resizable=false
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=2
 mouse_cursor/custom_image="uid://cgex4eyy5tsn1"
 
 [importer_defaults]
@@ -161,6 +168,8 @@ ENTER={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+lights_and_shadows/directional_shadow/size=2056
+lights_and_shadows/directional_shadow/size.mobile=1024
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 textures/default_filters/use_nearest_mipmap_filter=true
@@ -171,3 +180,4 @@ environment/ssil/quality=1
 environment/ssil/blur_passes=0
 textures/decals/filter=2
 textures/light_projectors/filter=2
+lights_and_shadows/tighter_shadow_caster_culling=false

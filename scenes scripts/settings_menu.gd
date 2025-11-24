@@ -2,14 +2,26 @@ extends Node2D
 
 
 func _ready() -> void:
-	$scc/vboxc/winterevent.disabled = not Global.iswinter
+	$btnexit.pressed.connect(btnexitpressed)
 	
-	$scc/vboxc/cabels.toggle_mode = Global.settings["cabels"]
+	$scc/vboxc/winterevent.disabled = true
+	
+	$scc/vboxc/cabels.button_pressed = Global.settings["cabels"]
+	$scc/vboxc/effects.button_pressed = Global.settings["effects"]
+	$scc/vboxc/soundslider.value = Global.settings["soundvolume"]
+	$scc/vboxc/musicslider.value = Global.settings["musicvolume"]
+	$scc/vboxc/winterevent.button_pressed = Global.settings["winterevent"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
-	Global.settings["musicvolume"] = $scc/vboxc/soundandmusic.value
-	Global.settings["effects"] = $scc/vboxc/effects.toggle_mode
-	Global.settings["cabels"] = $scc/vboxc/cabels.toggle_mode
-	Global.settings["winterevent"] = $scc/vboxc/winterevent.toggle_mode
+	Global.settings["musicvolume"] = $scc/vboxc/musicslider.value
+	Global.settings["effects"] = $scc/vboxc/effects.button_pressed
+	Global.settings["cabels"] = $scc/vboxc/cabels.button_pressed
+	Global.settings["winterevent"] = $scc/vboxc/winterevent.button_pressed
+	
+	Global.updatesoundandmusic.emit()
+	
 	SavingManager.save("settings", Global.settings)
+
+func btnexitpressed():
+	updatesettings()

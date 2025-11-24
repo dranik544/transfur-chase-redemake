@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=22 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
 [ext_resource type="AudioStream" uid="uid://cemgmgav0lfm2" path="res://sounds music/latexpunch2.mp3" id="9_h5cnr"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="9_v6gaw"]
+[ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="10_nccrc"]
 [ext_resource type="Texture2D" uid="uid://cbhup0lvsqa51" path="res://sprites/ohno.png" id="11_lodc7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
@@ -65,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 keep_aspect = 0
 projection = 1
 size = 13.0
-far = 50.0
+far = 45.0
 
 [node name="RayCast3D" type="RayCast3D" parent="center camera/cam"]
 transform = Transform3D(1, 0, 0, 0, -8.9407e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)
@@ -246,13 +247,16 @@ one_shot = true
 [node name="steps" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_q0em8")
 volume_db = 3.0
+script = ExtResource("10_nccrc")
 
 [node name="slide" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_q0em8")
 volume_db = 3.0
+script = ExtResource("10_nccrc")
 
 [node name="latexpunch" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_h5cnr")
+script = ExtResource("10_nccrc")
 
 [node name="sh" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

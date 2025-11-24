@@ -21,5 +21,6 @@ func seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect):
 
 func play():
 	#$GPUParticles3D.emitting = true
-	$GPUParticles3D.restart()
-	$GPUParticles3D2.restart()
+	if Global.settings["effects"]:
+		$GPUParticles3D.restart()
+		$GPUParticles3D2.restart()
