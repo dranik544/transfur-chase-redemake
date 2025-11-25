@@ -75,6 +75,8 @@ var settings = {
 signal navibakereq()
 signal updatesoundandmusic()
 signal punchpl()
+signal hitdoor(damage)
+signal pickupitem(player)
 
 
 func _ready() -> void:

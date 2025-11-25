@@ -153,25 +153,26 @@ func punching():
 	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
 	var direction = (global_position - player.global_position).normalized()
 	
-	if global_position.distance_to(player.global_position) < 2.5:
-		canpunch = false
-		collision_layer = false
-		canmove = false
-		velocity = direction * 7.5
-		move_and_slide()
-		$wha.visible = true
-		
-		var timer = 0.0
-		while timer < 0.3:
-			velocity = velocity.lerp(Vector3.ZERO, 0.05)
+	if canpunch:
+		if global_position.distance_to(player.global_position) < 2.5:
+			canpunch = false
+			collision_layer = false
+			canmove = false
+			velocity = direction * 7.5
 			move_and_slide()
-			await get_tree().create_timer(0.01).timeout
-			timer += 0.01
-		
-		$wha.visible = false
-		collision_layer = true
-		canmove = true
-		$Timer.start()
+			$wha.visible = true
+			
+			var timer = 0.0
+			while timer < 0.3:
+				velocity = velocity.lerp(Vector3.ZERO, 0.05)
+				move_and_slide()
+				await get_tree().create_timer(0.01).timeout
+				timer += 0.01
+			
+			$wha.visible = false
+			collision_layer = true
+			canmove = true
+			$Timer.start()
 
 func _on_timer_timeout() -> void:
 	canpunch = true

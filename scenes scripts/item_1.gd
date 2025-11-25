@@ -22,27 +22,30 @@ func _ready():
 	if selfscene == null:
 		var selfscenepath = get_scene_file_path()
 		selfscene = load(selfscenepath)
+	
+	Global.pickupitem.connect(pick)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		if $hint:
 			$hint.visible = true
-		if body.pick and !body.isinv:
-			pick(body)
+		#if body.pick and !body.isinv:
+			#pick(body)
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		if $hint:
 			$hint.visible = false
 
-func pick(player):
-	player.isinv = true
-	player.itemsprite = selfsprite
-	player.itemscene = selfscene
-	player.itemtype = type
-	player.itemkg = selfkg
-	
-	queue_free()
+func pick(player = get_tree().get_first_node_in_group("player")):
+	if global_position.distance_to(player.global_position) < 1.5:
+		player.isinv = true
+		player.itemsprite = selfsprite
+		player.itemscene = selfscene
+		player.itemtype = type
+		player.itemkg = selfkg
+		
+		queue_free()
 
 func use(player = get_tree().get_first_node_in_group("player")):
 	if ischangehp:

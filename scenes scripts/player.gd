@@ -70,6 +70,10 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("SHIFT"):
 		Global.punchpl.emit()
+	if event.is_action_pressed("F"):
+		Global.hitdoor.emit(1)
+	if event.is_action_pressed("E"):
+		Global.pickupitem.emit(self)
 
 func camfollowupdate(canfollow: bool, camposx = 0.0, camposy = 0.0):
 	camfollow = canfollow
