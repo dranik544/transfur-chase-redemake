@@ -341,3 +341,8 @@ frame_progress = 0.299114
 stream = ExtResource("10_aiaj5")
 volume_db = 5.0
 max_db = 6.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

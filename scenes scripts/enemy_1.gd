@@ -10,6 +10,7 @@ var framessl: float = 0.0
 var ultratuffpower: float = 3.0
 var timess: float = 55.0
 var timessl: float = 475.0
+var canpunch: bool = true
 
 @export var nerf: float = 3.0
 @export var randomspawn: int = 0
@@ -18,6 +19,7 @@ var timessl: float = 475.0
 func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
+	Global.punchpl.connect(punching)
 	
 	if randomspawn != 0:
 		var random: int = randi_range(0, randomspawn)
@@ -72,8 +74,9 @@ func _physics_process(delta):
 			if framessl > timessl:
 				$NavigationAgent3D.avoidance_enabled = false
 				velocity += direction * ultratuffpower * 2
+				transform.basis += direction * ultratuffpower
 				
-				await get_tree().create_timer(3.5).timeout
+				await get_tree().create_timer(2.5).timeout
 				framessl = 0
 				framess = 0
 				timess = 55
@@ -101,7 +104,6 @@ func _physics_process(delta):
 	
 	if player and canmove:
 		targetpos(player.global_transform.origin)
-	checkenemies()
 
 func exitfromvent():
 	add_to_group("unsleep enemy")
@@ -124,6 +126,7 @@ func areaplayerentered(body):
 		canmove = true
 		add_to_group("unsleep enemy")
 		Global.unsleepenemies += 1
+		checkenemies()
 		
 		#$AudioStreamPlayer3D2.play()
 		#$Sprite3D.scale.y -= 3.0
@@ -145,3 +148,30 @@ func checkenemies():
 		
 		for i in range(enemies.size() - 10):
 			enemies[i].queue_free()
+
+func punching():
+	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
+	var direction = (global_position - player.global_position).normalized()
+	
+	if global_position.distance_to(player.global_position) < 2.5:
+		canpunch = false
+		collision_layer = false
+		canmove = false
+		velocity = direction * 7.5
+		move_and_slide()
+		$wha.visible = true
+		
+		var timer = 0.0
+		while timer < 0.3:
+			velocity = velocity.lerp(Vector3.ZERO, 0.05)
+			move_and_slide()
+			await get_tree().create_timer(0.01).timeout
+			timer += 0.01
+		
+		$wha.visible = false
+		collision_layer = true
+		canmove = true
+		$Timer.start()
+
+func _on_timer_timeout() -> void:
+	canpunch = true
