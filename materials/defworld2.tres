@@ -1,9 +1,9 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://d1a7cqh3cfx5o"]
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://c3pmcy4eose3s"]
 
-[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="1_6insa"]
+[ext_resource type="Texture2D" uid="uid://c6hxc7p7m8fys" path="res://sprites/bg3.png" id="1_vatjr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ewvr7"]
-panorama = ExtResource("1_6insa")
+panorama = ExtResource("1_vatjr")
 filter = false
 
 [sub_resource type="Sky" id="Sky_y5apx"]
@@ -15,5 +15,7 @@ background_color = Color(0.490196, 0.490196, 0.490196, 1)
 sky = SubResource("Sky_y5apx")
 ambient_light_source = 2
 ambient_light_color = Color(0.789172, 0.789172, 0.789172, 1)
+tonemap_mode = 4
+tonemap_exposure = 1.2
+glow_enabled = true
 fog_mode = 1
-fog_density = 1.0

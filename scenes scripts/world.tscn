@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=28 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -19,6 +19,20 @@
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="18_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="18_kvnqr"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
+
+[sub_resource type="GDScript" id="GDScript_ixu3i"]
+script/source = "extends WorldEnvironment
+
+func _ready() -> void:
+	if Global.settings[\"beauty\"]:
+		environment.tonemap_mode = Environment.TONE_MAPPER_AGX
+		environment.tonemap_exposure = 1.2
+		environment.glow_enabled = true
+	else:
+		environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
+		environment.tonemap_exposure = 1.0
+		environment.glow_enabled = false
+"
 
 [sub_resource type="GDScript" id="GDScript_rf126"]
 script/source = "extends TextureRect
@@ -84,10 +98,11 @@ size = Vector2(0.2, 0.2)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 10
+loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ixu3i")
+script = SubResource("GDScript_ixu3i")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
@@ -97,7 +112,7 @@ directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 25.0
 
 [node name="enemy1" parent="." instance=ExtResource("7_soo4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -1)
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

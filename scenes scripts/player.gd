@@ -38,6 +38,8 @@ var camscalewheel = 0.0
 var defposspr: Vector3 = Vector3.ZERO
 var isthereenemy: bool = false
 @export var shakeIfThereEnemy: float = 20
+var oneshot: bool = true
+var noslide: bool = true
 
 
 func _ready():
@@ -220,6 +222,8 @@ func _physics_process(delta: float) -> void:
 		$gui/gui/slidebar/slidebar.visible = true
 		isslide = true
 		slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		noslide = false
 	
 	if isslide:
 		if !taunt:
@@ -312,6 +316,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			1: $latexpunch.stream = latexpunchsound1
 			2: $latexpunch.stream = latexpunchsound2
 		$latexpunch.play()
+		
+		oneshot = false
 	if body.is_in_group("small enemy"):
 		minushealth(0.25)
 		Global.hitsfromenemies -= 1
@@ -321,6 +327,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			1: $latexpunch.stream = latexpunchsound1
 			2: $latexpunch.stream = latexpunchsound2
 		$latexpunch.play()
+		
+		oneshot = false
 	if body.is_in_group("broke") and isslide:
 		Global.brokenboxes += 1
 		
@@ -330,6 +338,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		minushealth(0.5)
 		speed -= randf_range(4.0, 5.0)
 		body.touched()
+		
+		oneshot = false
 
 func minushealth(num):
 	health -= num

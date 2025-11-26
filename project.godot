@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="TransFur Chase DEMAKE"
+config/version="000.001"
 config/tags=PackedStringArray("dranik544")
 run/main_scene="uid://cmvf6gdw38n03"
 config/features=PackedStringArray("4.4", "Forward Plus")
@@ -18,7 +19,7 @@ boot_splash/bg_color=Color(0.0987284, 0.0987284, 0.0987284, 1)
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="uid://dbodagrsvlewc"
-config/icon="res://icon.svg"
+config/icon="uid://kuqnwei0t7yp"
 
 [autoload]
 
@@ -180,3 +181,4 @@ environment/ssil/blur_passes=0
 textures/decals/filter=2
 textures/light_projectors/filter=2
 lights_and_shadows/tighter_shadow_caster_culling=false
+environment/defaults/default_clear_color=Color(0.118581, 0.118581, 0.118581, 1)

@@ -1,7 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cusattjn2rljb"]
+[gd_scene load_steps=7 format=3 uid="uid://cusattjn2rljb"]
 
 [ext_resource type="Material" uid="uid://b4ocrtjpxpn4k" path="res://materials/tubes1.tres" id="1_rhp0h"]
 [ext_resource type="Texture2D" uid="uid://v00ip7n66d3" path="res://sprites/tubes2.png" id="2_tkf0x"]
+
+[sub_resource type="GDScript" id="GDScript_tkf0x"]
+script/source = "extends Node3D
+
+
+func _ready() -> void:
+	if !Global.settings[\"tubes\"]: queue_free()
+"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_garsy"]
 material = ExtResource("1_rhp0h")
@@ -26,6 +34,7 @@ radial_segments = 8
 rings = 8
 
 [node name="tubes" type="Node3D"]
+script = SubResource("GDScript_tkf0x")
 
 [node name="mesh1" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

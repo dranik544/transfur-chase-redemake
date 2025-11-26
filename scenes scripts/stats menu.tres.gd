@@ -11,7 +11,7 @@ func _ready() -> void:
 	setach($scc/hboxc/vboxc/ach2,
 	Global.achievements[1]["name"],
 	Global.achievements[1]["desc"],
-	null,
+	load("res://sprites/cat waaaa.png"),
 	Global.achievements[1]["unlocked"])
 	
 	setach($scc/hboxc/vboxc/ach3,
@@ -59,14 +59,16 @@ func _ready() -> void:
 	
 	if total < 0:
 		recomend = "позорно!"
-	elif total >= 0 and total < 35:
+	elif total >= 0 and total < 75:
 		recomend = "даже моя бабушка играет лучше"
-	elif total >= 35 and total < 75:
+	elif total >= 75 and total < 120:
 		recomend = "неплохо!"
-	elif total >= 75 and total < 150:
+	elif total >= 120 and total < 275:
 		recomend = "отлично!"
-	elif total >= 150:
+	elif total >= 275 and total < 750:
 		recomend = "великолепно!"
+	elif total >= 750:
+		recomend = "ты бог игры!"
 	
 	$scc/hboxc/vboxc2/Label.text = "
 	общая статистика:

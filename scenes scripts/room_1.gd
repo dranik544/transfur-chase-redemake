@@ -169,6 +169,18 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					ach.display(Global.achievements[5]["name"],
 					Global.achievements[5]["desc"],
 					load("res://sprites/icon12.png"))
+			if player.oneshot:
+				if Global.unlockachievement(3):
+					var ach = get_tree().current_scene.get_node("notification")
+					ach.display(Global.achievements[3]["name"],
+					Global.achievements[3]["desc"],
+					load("res://sprites/icon12.png"))
+			if player.noslide:
+				if Global.unlockachievement(6):
+					var ach = get_tree().current_scene.get_node("notification")
+					ach.display(Global.achievements[6]["name"],
+					Global.achievements[6]["desc"],
+					load("res://sprites/icon12.png"))
 			
 			$CanvasLayer.start()
 			$Area3D.queue_free()

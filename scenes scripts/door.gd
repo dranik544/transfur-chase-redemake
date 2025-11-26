@@ -2,6 +2,7 @@ extends StaticBody3D
 
 @export var hp: float = 0
 @export var HitColor: Color
+var canhit: bool = true
 
 
 func _ready():
@@ -13,7 +14,7 @@ func _ready():
 	$Timer.timeout.connect(time_for_DIEEE_MUHAHAHAHAHAHAHA)
 	
 	if hp == 0:
-		hp = randf_range(0, 2)
+		hp = randi_range(0, 3)
 	add_to_group("door")
 
 func _process(delta):
@@ -41,32 +42,40 @@ func hit(damage: float):
 		damage = 1
 	
 	var player = get_tree().get_first_node_in_group("player")
-	if global_position.distance_to(player.global_position) < 1.5:
-		hp -= damage
-		$door1/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
-		$door2/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
-		$door1/Sprite3D.modulate = HitColor
-		$door2/Sprite3D.modulate = HitColor
-		
-		$AudioStreamPlayer3D.play()
-		if hp <= 0:
-			Global.brokendoors += 1
-			$door1.freeze = false
-			$door2.freeze = false
+	if canhit:
+		if global_position.distance_to(player.global_position) < 1.5:
+			canhit = false
+			hp -= damage
+			$door1/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
+			$door2/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
+			$door1/Sprite3D.modulate = HitColor
+			$door2/Sprite3D.modulate = HitColor
 			
-			$door1.collision_layer = false
-			$door2.collision_layer = false
+			$AudioStreamPlayer3D.play()
+			if hp <= 0:
+				Global.brokendoors += 1
+				$door1.freeze = false
+				$door2.freeze = false
+				
+				$door1.collision_layer = false
+				$door2.collision_layer = false
+				
+				if $hint:
+					$hint.queue_free()
+				if $Area3D:
+					$Area3D.queue_free()
+				
+				var impulsevec1 = Vector3(-2, 0.5, -1)
+				var impulsevec2 = Vector3(-2, 0.5, 1)
+				$door1.apply_impulse(impulsevec1, Vector3.ZERO)
+				$door2.apply_impulse(impulsevec2, Vector3.ZERO)
+				$Timer.start()
 			
-			if $hint:
-				$hint.queue_free()
-			if $Area3D:
-				$Area3D.queue_free()
-			
-			var impulsevec1 = Vector3(-2, 0.5, -1)
-			var impulsevec2 = Vector3(-2, 0.5, 1)
-			$door1.apply_impulse(impulsevec1, Vector3.ZERO)
-			$door2.apply_impulse(impulsevec2, Vector3.ZERO)
-			$Timer.start()
+			$Timer2.start()
 
 func time_for_DIEEE_MUHAHAHAHAHAHAHA():
 	queue_free()
+
+func _on_timer_2_timeout() -> void:
+	if hp > 0:
+		canhit = true

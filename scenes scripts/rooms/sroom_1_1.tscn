@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rrkxa4etguse"]
+[gd_scene load_steps=21 format=3 uid="uid://rrkxa4etguse"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_awxh7"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_damx2"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="12_vui8y"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="13_2sh2w"]
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="15_uwwuu"]
+[ext_resource type="PackedScene" uid="uid://cutw3d7h6xf8y" path="res://scenes scripts/enemy_2.tscn" id="16_g4hg8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_ohkjx")
@@ -151,9 +152,6 @@ texture = ExtResource("8_qg236")
 [node name="box1" parent="NavigationRegion3D" instance=ExtResource("8_umqhg")]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -3.5, 0.6, -4.1)
 
-[node name="box2" parent="NavigationRegion3D" instance=ExtResource("8_umqhg")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -2.9, 0.6, 1.7)
-
 [node name="box3" parent="NavigationRegion3D" instance=ExtResource("8_umqhg")]
 transform = Transform3D(0.766045, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766045, -4.7, 0.6, -2.1)
 
@@ -203,6 +201,10 @@ randomspawn = 4
 
 [node name="basket1" parent="." instance=ExtResource("15_uwwuu")]
 transform = Transform3D(0.819152, 0, -0.573576, 0, 1, 0, 0.573576, 0, 0.819152, -8.3, 0.5, 3.3)
+
+[node name="enemy2" parent="." instance=ExtResource("16_g4hg8")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -3, 0.9, 1.7)
+randomspawn = 3
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

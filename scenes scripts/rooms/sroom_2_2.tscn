@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ci6qg84vydphe"]
+[gd_scene load_steps=20 format=3 uid="uid://ci6qg84vydphe"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_18u2r"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_6fby2"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="10_cwoc0"]
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="13_garaq"]
 [ext_resource type="PackedScene" uid="uid://bq2jhn6xnpmfv" path="res://scenes scripts/small_enemy_1.tscn" id="14_21ptq"]
+[ext_resource type="PackedScene" uid="uid://cutw3d7h6xf8y" path="res://scenes scripts/enemy_2.tscn" id="15_6yful"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_fpd0n")
@@ -188,6 +189,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -1)
 [node name="box6" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_fpd0n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
 
+[node name="box7" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_fpd0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+
+[node name="box8" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_fpd0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 2)
+
 [node name="vent1" parent="NavigationRegion3D" instance=ExtResource("9_cwoc0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.05, -3.5)
 
@@ -240,6 +247,10 @@ transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195
 
 [node name="small enemy 1" parent="." instance=ExtResource("14_21ptq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+
+[node name="enemy2" parent="." instance=ExtResource("15_6yful")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9, 0.5)
+randomspawn = 4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

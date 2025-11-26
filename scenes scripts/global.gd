@@ -69,7 +69,9 @@ var settings = {
 	"effects": true,
 	"cabels": true,
 	"winterevent": true,
-	"windowmode": 0
+	"windowmode": 0,
+	"tubes": true,
+	"beauty": true
 }
 
 signal navibakereq()

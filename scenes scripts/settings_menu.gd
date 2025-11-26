@@ -5,6 +5,7 @@ func _ready() -> void:
 	$btnexit.pressed.connect(btnexitpressed)
 	
 	$scc/vboxc/winterevent.disabled = true
+	$scc/vboxc/winterevent.button_pressed = true
 	
 	$scc/vboxc/cabels.button_pressed = Global.settings["cabels"]
 	$scc/vboxc/effects.button_pressed = Global.settings["effects"]
@@ -12,6 +13,8 @@ func _ready() -> void:
 	$scc/vboxc/musicslider.value = Global.settings["musicvolume"]
 	$scc/vboxc/winterevent.button_pressed = Global.settings["winterevent"]
 	$scc/vboxc/windowmode.selected = Global.settings["windowmode"]
+	$scc/vboxc/tubes.button_pressed = Global.settings["tubes"]
+	$scc/vboxc/beauty.button_pressed = Global.settings["beauty"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -20,8 +23,8 @@ func updatesettings():
 	Global.settings["cabels"] = $scc/vboxc/cabels.button_pressed
 	Global.settings["winterevent"] = $scc/vboxc/winterevent.button_pressed
 	Global.settings["windowmode"] = $scc/vboxc/windowmode.selected
-	
-	print(Global.settings["windowmode"])
+	Global.settings["tubes"] = $scc/vboxc/tubes.button_pressed
+	Global.settings["beauty"] = $scc/vboxc/beauty.button_pressed
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()

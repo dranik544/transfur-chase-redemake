@@ -1,23 +1,39 @@
-[gd_scene load_steps=19 format=3 uid="uid://2dxmbjms8yyd"]
+[gd_scene load_steps=22 format=3 uid="uid://cutw3d7h6xf8y"]
 
-[ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_o3cwx"]
-[ext_resource type="SpriteFrames" uid="uid://d01pvqt8ch6th" path="res://skins/enemy_sprite.tres" id="2_aut8l"]
-[ext_resource type="Texture2D" uid="uid://de3pqx74rhpr" path="res://sprites/wha.png" id="3_v0kmx"]
-[ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="4_1yp71"]
-[ext_resource type="Texture2D" uid="uid://dc5ktxjip0t0h" path="res://sprites/sleep1.png" id="5_7kort"]
-[ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="5_nulj7"]
-[ext_resource type="Texture2D" uid="uid://bugg15efsvuin" path="res://sprites/noirealdontknowwhereilocated1.png" id="6_obsaw"]
-[ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="7_aiaj5"]
-[ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="8_nulj7"]
-[ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="9_q0jfm"]
-[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="10_aiaj5"]
+[ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_cbs1w"]
+[ext_resource type="Texture2D" uid="uid://de3pqx74rhpr" path="res://sprites/wha.png" id="3_ornni"]
+[ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="4_fbyil"]
+[ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="5_a2i1v"]
+[ext_resource type="Texture2D" uid="uid://bugg15efsvuin" path="res://sprites/noirealdontknowwhereilocated1.png" id="7_j110a"]
+[ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="8_oumjp"]
+[ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="9_7cipx"]
+[ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="10_e8x1w"]
+[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="11_cf6kb"]
+[ext_resource type="Texture2D" uid="uid://ceetneqox2chf" path="res://sprites/box3.png" id="12_1b53v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
 radius = 0.36
 height = 0.72
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_aut8l"]
-radius = 4.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ornni"]
+albedo_texture = ExtResource("12_1b53v")
+uv1_scale = Vector3(3, 2, 3)
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_cbs1w"]
+material = SubResource("StandardMaterial3D_ornni")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbyil"]
+albedo_texture = ExtResource("12_1b53v")
+uv1_scale = Vector3(1, 0.5, 1)
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_a2i1v"]
+material = SubResource("StandardMaterial3D_fbyil")
+size = Vector2(1, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ckxts"]
+radius = 2.5
 
 [sub_resource type="Animation" id="Animation_h7li6"]
 length = 0.001
@@ -186,27 +202,28 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_obsaw")
+"texture": ExtResource("7_j110a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_aiaj5")
+"texture": ExtResource("8_oumjp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_nulj7")
+"texture": ExtResource("9_7cipx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_q0jfm")
+"texture": ExtResource("10_e8x1w")
 }],
 "loop": true,
 "name": &"default",
 "speed": 4.0
 }]
 
-[node name="enemy1" type="CharacterBody3D"]
+[node name="enemy2" type="CharacterBody3D"]
 collision_mask = 3
 collision_priority = 0.8
-script = ExtResource("1_o3cwx")
-speed = 4.0
+script = ExtResource("1_cbs1w")
+speed = 2.5
+nerf = 6.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.5
@@ -226,9 +243,23 @@ billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-sprite_frames = ExtResource("2_aut8l")
-animation = &"run"
+animation = &""
 autoplay = "sleep"
+
+[node name="box" type="MeshInstance3D" parent="Sprite3D"]
+transform = Transform3D(0.166667, 0, 0, 0, 0.166667, 0, 0, 0, 0.166667, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_cbs1w")
+skeleton = NodePath("../..")
+
+[node name="box2" type="MeshInstance3D" parent="Sprite3D"]
+transform = Transform3D(-0.166667, -1.4074e-08, 3.77111e-09, 4.98339e-09, -0.014526, 0.166032, -1.36918e-08, 0.166032, 0.014526, 0, -0.133333, 0.116667)
+mesh = SubResource("QuadMesh_a2i1v")
+skeleton = NodePath("../..")
+
+[node name="box3" type="MeshInstance3D" parent="Sprite3D"]
+transform = Transform3D(0.166667, 0, 0, 0, -0.0289414, 0.164135, 0, -0.164135, -0.0289414, 0, -0.133333, -0.116667)
+mesh = SubResource("QuadMesh_a2i1v")
+skeleton = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.4, 0)
@@ -240,7 +271,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_aut8l")
+shape = SubResource("SphereShape3D_ckxts")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -253,20 +284,13 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, 0)
 visible = false
 billboard = 1
 texture_filter = 2
-texture = ExtResource("3_v0kmx")
+texture = ExtResource("3_ornni")
 
 [node name="boing" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_1yp71")
+stream = ExtResource("4_fbyil")
 volume_db = 2.0
 max_db = 4.0
-script = ExtResource("5_nulj7")
-
-[node name="sleep1" type="Sprite3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1, 0)
-visible = false
-billboard = 1
-texture_filter = 2
-texture = ExtResource("5_7kort")
+script = ExtResource("5_a2i1v")
 
 [node name="wha" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.4, 0)
@@ -278,7 +302,7 @@ autoplay = "default"
 frame_progress = 0.299114
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("10_aiaj5")
+stream = ExtResource("11_cf6kb")
 volume_db = 5.0
 max_db = 6.0
 
