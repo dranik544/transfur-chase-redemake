@@ -4,7 +4,6 @@ var isopen = false
 @export var enemyScene: PackedScene = preload("res://scenes scripts/enemy_1.tscn")
 @export var item2Scene: PackedScene = preload("res://scenes scripts/item_2.tscn")
 @export var smallEnemyScene: PackedScene = preload("res://scenes scripts/small_enemy_1.tscn")
-@export var onlyEnemy: bool = false
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -16,8 +15,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				$CollisionShape3D.queue_free()
 			
 			var randomitem = randi_range(1, 3)
-			if onlyEnemy:
-				randomitem = 1
 			
 			match randomitem:
 				1:

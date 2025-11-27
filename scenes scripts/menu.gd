@@ -16,6 +16,7 @@ func _ready():
 	$"CanvasLayer/stats menu".visible = false
 	$"CanvasLayer/skins menu".visible = false
 	$"CanvasLayer/settings menu".visible = false
+	$"CanvasLayer/tutorial menu".visible = false
 	
 	$CanvasLayer/buttons/start/btnstart.mouse_entered.connect(btnstartmouseentered)
 	$CanvasLayer/buttons/start/btnstart.mouse_exited.connect(btnstartmouseexited)
@@ -37,6 +38,8 @@ func _ready():
 	$CanvasLayer/buttons/skins/btnskins.pressed.connect(btnskinspressed)
 	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
 	$CanvasLayer/buttons/waaa/btnwaaa.pressed.connect(btnwaaapressed)
+	$CanvasLayer/buttons/tutorial/btntutorial.pressed.connect(btntutorialpressed)
+	$"CanvasLayer/tutorial menu/btnexit".pressed.connect(btntutorialexitpressed)
 	
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
@@ -151,6 +154,8 @@ func btnskinsexitpressed():
 	camsize = 15
 func btnsettingspressed(): $"CanvasLayer/settings menu".visible = true; $CanvasLayer/buttons.visible = false
 func btnsettingsexitpressed(): $"CanvasLayer/settings menu".visible = false; $CanvasLayer/buttons.visible = true
+func btntutorialpressed(): $"CanvasLayer/tutorial menu".visible = true; $CanvasLayer/buttons.visible = false
+func btntutorialexitpressed(): $"CanvasLayer/tutorial menu".visible = false; $CanvasLayer/buttons.visible = true
 
 func btnstartpressed():get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
 func btnexitpressed():get_tree().quit()

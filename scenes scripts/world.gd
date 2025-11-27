@@ -11,12 +11,14 @@ extends Node3D
 	7: preload("res://scenes scripts/rooms/sroom_2_3.tscn")
 }
 @export var loadrooms: int = 40
+var lastroom: int = 1
 
 
 func _ready():
 	var o: int = 0
 	await get_tree().physics_frame
 	$enemy1.set_physics_process(false)
+	$enemy2.set_physics_process(false)
 	$player.set_physics_process(false)
 	$CanvasLayer.visible = true
 	for i in loadrooms:
@@ -29,8 +31,9 @@ func _ready():
 	await get_tree().physics_frame
 	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
-	$enemy1.set_physics_process(true)
 	$player.set_physics_process(true)
+	$enemy1.set_physics_process(true)
+	$enemy2.set_physics_process(true)
 	$music.play()
 	
 	$notification.display("Сейчас играет - Run!", "автор музыки:
@@ -42,6 +45,10 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var roompos
 	var doorpos
 	
+	while numroom == lastroom:
+		numroom = randi_range(1, rooms.size())
+	
+	lastroom = numroom
 	sceneroom = rooms.get(numroom)
 	
 	if randomroom:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=87 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
-[ext_resource type="Environment" uid="uid://d1a7cqh3cfx5o" path="res://materials/defworld1.tres" id="2_1qjkn"]
+[ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_1qjkn"]
 [ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="4_2epkg"]
 [ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="5_eeftm"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
@@ -996,9 +996,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -59.0
+offset_left = -78.0
 offset_top = -15.5
-offset_right = 59.0
+offset_right = 78.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1007,8 +1007,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-disabled = true
-text = "обучение"
+text = "руководство"
 icon = ExtResource("21_jh7g4")
 expand_icon = true
 
@@ -2251,7 +2250,6 @@ text = "при изменении может
 vertical_alignment = 1
 
 [node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial menu"]
 offset_right = 640.0
@@ -2280,16 +2278,97 @@ icon = ExtResource("19_fhf2g")
 expand_icon = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/tutorial menu"]
-offset_right = 640.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 635.0
 offset_bottom = 412.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("16_k8css")
+theme_override_fonts/italics_font = ExtResource("16_k8css")
+theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "управление:
-"
+text = "[i]управление:[/i]
+
+
+W A S D - [img=center,32]sprites/colin1run.png[/img] ходьба
+SPACE (пробел) - [img=,32]sprites/colin1slide.png[/img] скольжение
+SHIFT - [img=center,24]sprites/icon10.png[/img] отталкивание врагов
+CTRL - [img=center,32]sprites/colin1taunt.png[/img] присядь
+E - [img=,30]sprites/pickitem1.png[/img] взять предмет
+F - [img=,30]sprites/hint1.png[/img] выломать дверь
+
+ЛКМ (левая кнопка мыши) - использование предмета
+ПКМ (правая кнопка мыши) - поворот камеры
+КМ (колёсико мыши) - увеличение/уменьшение камеры
+
+ESC - пауза
+CTRL+Q - выход из игры
+
+
+[i]интерфейс:[/i]
+
+
+[img=,24]sprites/nullinv1[/img] на экране видно ячейку инвентаря, текст \"тип предмета\" и шкалу [wave]скольжения[/wave].
+
+[img=center,32]sprites/inv1.png[/img] ячейка инвентаря - показывает какой сейчас у вас предмет (чем тяжелее предмет, тем медленее вы передвигаетесь)
+
+текст - указывает тип предмета, прочитав его можно понять что примерно делает этот предмет
+
+шкала [wave]скольжения[/wave] - указывает на то, сколько ещё осталось до восстановления [wave]скольжения[/wave]
+
+
+
+
+[center][i][pulse][tornado][shake]ОСНОВНУЮ ИНФОРМАЦИЮ ВЫ УЖЕ УЗНАЛИ ИЗ ПРОШЛЫХ ПУНКТОВ! 
+ОСТАЛЬНОЕ ЖЕЛАТЕЛЬНО ИЗУЧАТЬ САМОМУ ВО ВРЕМЯ ИГРЫ![/shake][/tornado][/pulse][/i][/center]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[i]враги:[/i]
+
+
+[img=,24]sprites/nullinv1[/img] враги могут [wave]засыпать[/wave], могут [wave]просыпаться[/wave], [pulse]ускоряться[/pulse] и [pulse]замедляться[/pulse], а также [shake]бить[/shake] с разной силой. если вас зажмут, то используйте SHIFT для [shake]отталкивания[/shake]
+
+[img=center,32]sprites/enemy1idle1.png[/img] обычный белый враг - преследует игрока, бьёт с обычной силой, засыпает и просыпается
+
+[img=center,22]sprites/small slime 1.png[/img] маленький кусок латекса - просто шастает от угла к углу, бьёт с маленькой силой
+
+[img=center,26]sprites/box3.png[/img] враг в коробке - преследует игрока с низкой скоростью, бьёт с обычной силой, легко отличить от настоящей коробки
+
+[i]объекты:[/i]
+
+
+[img=,24]sprites/door1.png[/img] дверь - есть по 1 штуке в каждой комнате, её можно выломать 1-3 [shake]ударами[/shake]
+
+[img=,24]sprites/vent1.png[/img] вентиляция - если подойти близко то он откроется, от туда может выскочить так и [rainbow]предмет[/rainbow], так и [shake]враг[/shake]
+
+          [tornado][rainbow]БУДЕТ ПОЗЖЕ[/rainbow][/tornado]
+
+[i]предметы:[/i]
+
+
+          [tornado][rainbow]БУДЕТ ПОЗЖЕ[/rainbow][/tornado]
+
+
+
+[right][i][wave]УДАЧИ![/wave][/i][/right]       "
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
