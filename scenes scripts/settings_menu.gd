@@ -15,6 +15,7 @@ func _ready() -> void:
 	$scc/vboxc/windowmode.selected = Global.settings["windowmode"]
 	$scc/vboxc/tubes.button_pressed = Global.settings["tubes"]
 	$scc/vboxc/beauty.button_pressed = Global.settings["beauty"]
+	$scc/vboxc/cammode.button_pressed = Global.settings["cammode"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -25,6 +26,7 @@ func updatesettings():
 	Global.settings["windowmode"] = $scc/vboxc/windowmode.selected
 	Global.settings["tubes"] = $scc/vboxc/tubes.button_pressed
 	Global.settings["beauty"] = $scc/vboxc/beauty.button_pressed
+	Global.settings["cammode"] = $scc/vboxc/cammode.button_pressed
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()

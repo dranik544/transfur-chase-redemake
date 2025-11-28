@@ -7,7 +7,7 @@ var speeddist = 0.0
 var hasentered = false
 var framess: float = 0.0
 var framessl: float = 0.0
-var ultratuffpower: float = 3.0
+var ultratuffpower: float = 6.0
 var timess: float = 55.0
 var timessl: float = 475.0
 var canpunch: bool = true
@@ -74,7 +74,6 @@ func _physics_process(delta):
 			if framessl > timessl:
 				$NavigationAgent3D.avoidance_enabled = false
 				velocity += direction * ultratuffpower * 2
-				transform.basis += direction * ultratuffpower
 				
 				await get_tree().create_timer(2.5).timeout
 				framessl = 0
@@ -87,7 +86,7 @@ func _physics_process(delta):
 		framessl = 0
 		framess = 0
 		timess = 55
-		ultratuffpower = 3.0
+		ultratuffpower = 6.0
 		$wha.visible = false
 	
 	#if $RayCast3D.is_colliding():
@@ -158,7 +157,7 @@ func punching():
 			canpunch = false
 			collision_layer = false
 			canmove = false
-			velocity = direction * 7.5
+			velocity = direction * 8.5
 			move_and_slide()
 			$wha.visible = true
 			

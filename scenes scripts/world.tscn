@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c33iojhyr4ddn" path="res://scenes scripts/room_1_1.tscn" id="3_55rg2"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_7evke"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
+[ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="10_5vyl4"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="13_sivfs"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="16_rginh"]
-[ext_resource type="AudioStream" uid="uid://1kb27p53hlpj" path="res://sounds music/Waterflame - Run!.mp3" id="17_rginh"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="18_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="18_kvnqr"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
@@ -94,6 +94,7 @@ size = Vector2(0.2, 0.2)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
+loadrooms = 35
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ixu3i")
@@ -204,7 +205,7 @@ process_material = SubResource("ParticleProcessMaterial_jvjns")
 draw_pass_1 = SubResource("QuadMesh_53xst")
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_rginh")
+stream = ExtResource("10_5vyl4")
 volume_db = -0.5
 parameters/looping = true
 script = ExtResource("18_ixu3i")

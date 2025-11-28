@@ -200,8 +200,8 @@ func camzoneNentered(body):
 func camzoneNexited(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
-		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
-		body.camfollowupdate(false, global_position.x - curcamposx, global_position.y - curcamposy)
+		var curcamposy = global_position.z
+		body.camfollowupdate(not Global.settings["cammode"], global_position.x - curcamposx, global_position.y - curcamposy)
 
 func camzoneBentered(body):
 	if body.is_in_group("player"):
@@ -212,5 +212,5 @@ func camzoneBentered(body):
 func camzoneBexited(body):
 	if body.is_in_group("player"):
 		var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
-		var curcamposy = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.y / 2.0
-		body.camfollowupdate(false, global_position.x + -curcamposx, global_position.y + -curcamposy)
+		var curcamposy = global_position.z
+		body.camfollowupdate(not Global.settings["cammode"], global_position.x + -curcamposx, global_position.y + -curcamposy)

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbbf3gxw7xke7"
-path.s3tc="res://.godot/imported/vent2.png-8672ede510199331537f0b6f61330785.s3tc.ctex"
+path="res://.godot/imported/vent2.png-8672ede510199331537f0b6f61330785.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/vent2.png"
-dest_files=["res://.godot/imported/vent2.png-8672ede510199331537f0b6f61330785.s3tc.ctex"]
+dest_files=["res://.godot/imported/vent2.png-8672ede510199331537f0b6f61330785.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

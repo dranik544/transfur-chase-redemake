@@ -62,7 +62,7 @@ func _ready():
 		событие Новый Год, вам
 		доступен новогодний костюм.
 		это событие можно отключить
-		в настройках.", load("res://sprites/new year colin skin/colin1idle.png"), 10)
+		в настройках.", load("res://sprites/new year colin skin/colin1idle.png"), 8)
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:

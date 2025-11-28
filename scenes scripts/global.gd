@@ -71,7 +71,8 @@ var settings = {
 	"winterevent": true,
 	"windowmode": 0,
 	"tubes": true,
-	"beauty": true
+	"beauty": true,
+	"cammode": true
 }
 
 signal navibakereq()
@@ -120,8 +121,7 @@ func _ready() -> void:
 	settings = SavingManager.load("settings")
 	recordpoints = SavingManager.load("recordpoints")
 	
-	if settings["winterevent"]:
-		listskins[3]["unlocked"] = iswinter
+	listskins[3]["unlocked"] = iswinter
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:

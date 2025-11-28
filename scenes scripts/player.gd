@@ -77,10 +77,10 @@ func _unhandled_input(event):
 	if event.is_action_pressed("E"):
 		Global.pickupitem.emit(self)
 
-func camfollowupdate(canfollow: bool, camposx = 0.0, camposy = 0.0):
+func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 	camfollow = canfollow
 	if !canfollow:
-		camfollowpos = Vector3(camposx, centercam.global_position.y, centercam.global_position.z)
+		camfollowpos = Vector3(camposx, centercam.global_position.y, camposz)
 		#camfollowpos = centercam.global_position
 		#camfollowpos.x = centercam.global_position.x - camposx
 	else:

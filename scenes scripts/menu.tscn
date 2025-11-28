@@ -2056,7 +2056,6 @@ texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
 [node name="settings menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("49_rd0ur")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/settings menu"]
@@ -2249,7 +2248,31 @@ text = "при изменении может
 потребоваться перезагрузка"
 vertical_alignment = 1
 
+[node name="input" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 32
+text = "звуки и музыка"
+vertical_alignment = 1
+
+[node name="cammode" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "камера \"от комнаты
+к комнате\""
+
 [node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial menu"]
 offset_right = 640.0
@@ -2287,10 +2310,13 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("16_k8css")
 theme_override_fonts/italics_font = ExtResource("16_k8css")
+theme_override_fonts/bold_font = ExtResource("16_k8css")
 theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
-text = "[i]управление:[/i]
+text = "[b][wave]ver: 0.0.0.1 demo[/wave][/b]
+[i]управление:[/i]
 
 
 W A S D - [img=center,32]sprites/colin1run.png[/img] ходьба
