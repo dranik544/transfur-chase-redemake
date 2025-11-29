@@ -2255,7 +2255,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "звуки и музыка"
+text = "управление"
 vertical_alignment = 1
 
 [node name="cammode" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]

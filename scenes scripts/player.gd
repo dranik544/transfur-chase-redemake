@@ -237,9 +237,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = slidevelocity.z
 		slidespeed = lerp(slidespeed, slidespeedminus, 10 * delta)
 		
-		for enemy in enemies:
-			if enemy:
-				enemy.collision_layer = false
+		set_collision_mask_value(2, false)
+		set_collision_mask_value(4, false)
+		$Area3D.set_collision_mask_value(2, false)
+		$Area3D.set_collision_mask_value(4, false)
 		if !$slide.playing:
 			$slide.play()
 	else:
@@ -249,9 +250,10 @@ func _physics_process(delta: float) -> void:
 				await get_tree().physics_frame
 			$CollisionShape3D2.disabled = true
 			
-			for enemy in enemies:
-				if enemy:
-					enemy.collision_layer = true
+			set_collision_mask_value(2, true)
+			set_collision_mask_value(4, true)
+			$Area3D.set_collision_mask_value(2, true)
+			$Area3D.set_collision_mask_value(4, true)
 		isslide = false
 		$slide.stop()
 	
@@ -368,8 +370,8 @@ func _on_timer_timeout() -> void:
 	isslide = false
 	await get_tree().physics_frame
 	var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
-	if enemy:
-		enemy.collision_layer = true
+	set_collision_mask_value(2, true)
+	$Area3D.set_collision_mask_value(2, true)
 	Global.navibakereq
 
 func _on_slidetimer_timeout() -> void:

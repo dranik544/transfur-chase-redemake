@@ -14,6 +14,7 @@ var canpunch: bool = true
 
 @export var nerf: float = 3.0
 @export var randomspawn: int = 0
+@export var ismimic: bool = false
 
 
 func _ready():
@@ -32,6 +33,12 @@ func _ready():
 	
 	if Global.iswinter:
 		$Sprite3D.sprite_frames = load("res://skins/newyear_enemy_sprite.tres")
+	
+	#var enemies = get_tree().get_nodes_in_group("enemies")
+	#if ismimic:
+		#for enemy in enemies:
+			#add_collision_exception_with(enemy)
+		
 
 func _physics_process(delta):
 	var nextloc = $NavigationAgent3D.get_next_path_position()
@@ -61,6 +68,9 @@ func _physics_process(delta):
 			$wha.visible = true
 			$NavigationAgent3D.simplify_path = true
 			
+			set_collision_layer_value(2, false)
+			set_collision_mask_value(2, false)
+			
 			curspeed += 1.0
 			var direction = (global_position - player.global_position).normalized()
 			
@@ -72,17 +82,20 @@ func _physics_process(delta):
 				timess = clamp(timess, 20, 80)
 			
 			if framessl > timessl:
-				$NavigationAgent3D.avoidance_enabled = false
 				velocity += direction * ultratuffpower * 2
+				set_collision_mask_value(1, false)
 				
 				await get_tree().create_timer(2.5).timeout
 				framessl = 0
 				framess = 0
 				timess = 55
+				set_collision_mask_value(1, true)
 				sleep()
-	else:
-		$NavigationAgent3D.avoidance_enabled = true
+	elif velocity.length() > 0.7 and canmove:
 		$NavigationAgent3D.simplify_path = false
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(2, true)
+		set_collision_mask_value(1, true)
 		framessl = 0
 		framess = 0
 		timess = 55
@@ -155,7 +168,10 @@ func punching():
 	if canpunch:
 		if global_position.distance_to(player.global_position) < 2.5:
 			canpunch = false
-			collision_layer = false
+			set_collision_layer_value(2, false)
+			set_collision_layer_value(4, false)
+			set_collision_mask_value(2, false)
+			set_collision_mask_value(4, false)
 			canmove = false
 			velocity = direction * 8.5
 			move_and_slide()
@@ -169,7 +185,10 @@ func punching():
 				timer += 0.01
 			
 			$wha.visible = false
-			collision_layer = true
+			set_collision_layer_value(2, true)
+			set_collision_layer_value(4, true)
+			set_collision_mask_value(2, true)
+			set_collision_mask_value(4, true)
 			canmove = true
 			$Timer.start()
 

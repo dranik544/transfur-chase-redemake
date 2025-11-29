@@ -254,9 +254,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 0.4)
 [node name="boxes5" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, -1.8)
 
-[node name="box2" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0.4)
-
 [node name="box3" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -0.6)
 
@@ -271,15 +268,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 0.4)
 
 [node name="box8" parent="NavigationRegion3D/boxes5" instance=ExtResource("9_ebipd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 0.4)
-
-[node name="box9" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 1.4)
-
-[node name="box10" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 2.4)
-
-[node name="box11" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 3.4)
 
 [node name="box12" parent="NavigationRegion3D/boxes5" instance=ExtResource("8_jlpcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 4.2)

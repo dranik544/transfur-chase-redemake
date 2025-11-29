@@ -59,7 +59,7 @@ radius = 0.65
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 5
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_ydash")
 BakeAfterSlide = true
 
@@ -100,7 +100,7 @@ collision_mask = 3
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
 collision_layer = 5
-collision_mask = 5
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_v6gaw")
