@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=24 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://c33iojhyr4ddn" path="res://scenes scripts/room_1_1.tscn" id="3_55rg2"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_7evke"]
+[ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="7_rf126"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
+[ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="8_alufl"]
 [ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="10_5vyl4"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="13_sivfs"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="16_rginh"]
@@ -125,6 +127,7 @@ texture = ExtResource("6_7evke")
 
 [node name="startroom1" parent="." instance=ExtResource("3_55rg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+RandomBox = false
 RandomNumBoxes = false
 NumBoxes1 = 1
 NumSlime1 = 1
@@ -135,6 +138,15 @@ NumVents1 = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="startroom1/c"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_5vyl4")
+
+[node name="box2" parent="startroom1" instance=ExtResource("7_rf126")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -7, 0.5, -3)
+
+[node name="box3" parent="startroom1" instance=ExtResource("7_rf126")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -8, 0.5, 3)
+
+[node name="basket1" parent="startroom1" instance=ExtResource("8_alufl")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, 0.6, -3)
 
 [node name="startroom2" parent="." instance=ExtResource("3_55rg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)

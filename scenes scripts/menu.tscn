@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=88 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_1qjkn"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://b4xk86hcbhv6u" path="res://scenes scripts/cube_1.tscn" id="27_sr01d"]
 [ext_resource type="Texture2D" uid="uid://dbigakhp3aon2" path="res://sprites/elka1.png" id="28_un3na"]
 [ext_resource type="Script" uid="uid://b8wnu1rcxpjf2" path="res://scenes scripts/skins_menu.gd" id="30_0xt4r"]
+[ext_resource type="SpriteFrames" uid="uid://c45rimmvn5wgp" path="res://skins/muha_player_skin.tres" id="30_u2d2k"]
 [ext_resource type="Script" uid="uid://b2uadd2kacxh8" path="res://scenes scripts/arrow skins menu.tres.gd" id="31_0xt4r"]
 [ext_resource type="Texture2D" uid="uid://dn8jqqde5ecit" path="res://sprites/arrow1.png" id="31_hxmmw"]
 [ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="33_i05ob"]
@@ -915,6 +916,16 @@ alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("28_un3na")
 
+[node name="gift" type="AnimatedSprite3D" parent="room1 1/elka"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.2, 0.4, 0.4)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = ExtResource("30_u2d2k")
+animation = &"idle"
+autoplay = "idle"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="buttons" type="Node2D" parent="CanvasLayer"]
@@ -1060,6 +1071,28 @@ expand_icon = true
 [node name="waaa" type="Node2D" parent="CanvasLayer/buttons"]
 
 [node name="btnwaaa" type="Button" parent="CanvasLayer/buttons/waaa"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -15.5
+offset_right = 15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+icon = ExtResource("33_i05ob")
+expand_icon = true
+
+[node name="muha gift" type="Node2D" parent="CanvasLayer/buttons"]
+
+[node name="btnmuha" type="Button" parent="CanvasLayer/buttons/muha gift"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2056,6 +2089,7 @@ texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
 [node name="settings menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("49_rd0ur")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/settings menu"]
@@ -2272,7 +2306,6 @@ text = "камера \"от комнаты
 к комнате\""
 
 [node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial menu"]
 offset_right = 640.0
@@ -2315,16 +2348,15 @@ theme_override_font_sizes/italics_font_size = 30
 theme_override_font_sizes/normal_font_size = 18
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
-text = "[b][wave]ver: 0.0.0.1 demo[/wave][/b]
+text = "[b][wave]ver: 0.0.0.2 demo[/wave][/b]
 [i]управление:[/i]
 
 
 W A S D - [img=center,32]sprites/colin1run.png[/img] ходьба
 SPACE (пробел) - [img=,32]sprites/colin1slide.png[/img] скольжение
-SHIFT - [img=center,24]sprites/icon10.png[/img] отталкивание врагов
 CTRL - [img=center,32]sprites/colin1taunt.png[/img] присядь
 E - [img=,30]sprites/pickitem1.png[/img] взять предмет
-F - [img=,30]sprites/hint1.png[/img] выломать дверь
+F - [img=,30]sprites/hint1.png[/img] выломать дверь и [img=center,24]sprites/icon10.png[/img] отталкивание врагов
 
 ЛКМ (левая кнопка мыши) - использование предмета
 ПКМ (правая кнопка мыши) - поворот камеры
@@ -2367,6 +2399,9 @@ CTRL+Q - выход из игры
 
 
 
+
+
+
 [i]враги:[/i]
 
 
@@ -2381,7 +2416,13 @@ CTRL+Q - выход из игры
 [i]объекты:[/i]
 
 
-[img=,24]sprites/door1.png[/img] дверь - есть по 1 штуке в каждой комнате, её можно выломать 1-3 [shake]ударами[/shake]
+[img=,24]sprites/door1.png[/img] дверь - есть по 1 штуке в каждой комнате, её можно выломать 1-3 [shake]ударами[/shake], можно также сломать скольжением
+
+[img=,24]sprites/box3.png[/img] коробка - есть почти в каждой комнате, можно сломать скольжением
+
+[img=,24]sprites/basket2.png[/img] мусорная корзина - есть не во всех комнатах, можно спокойно передвигать
+
+[img=,24]sprites/box6.png[/img] железная коробка - есть почти в каждой комнате, нельзя сломать
 
 [img=,24]sprites/vent1.png[/img] вентиляция - если подойти близко то он откроется, от туда может выскочить так и [rainbow]предмет[/rainbow], так и [shake]враг[/shake]
 
@@ -2389,6 +2430,9 @@ CTRL+Q - выход из игры
 
 [i]предметы:[/i]
 
+          [tornado][rainbow]БУДЕТ ПОЗЖЕ[/rainbow][/tornado]
+
+[i]локации:[/i]
 
           [tornado][rainbow]БУДЕТ ПОЗЖЕ[/rainbow][/tornado]
 

@@ -70,7 +70,7 @@ func _unhandled_input(event):
 		camscalewheel -= 0.75
 	camscalewheel = clampf(camscalewheel, -2.5, 9.0)
 	
-	if event.is_action_pressed("SHIFT"):
+	if event.is_action_pressed("F"):
 		Global.punchpl.emit()
 	if event.is_action_pressed("F"):
 		Global.hitdoor.emit(1)

@@ -246,7 +246,7 @@ randomspawn = 6
 transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -1, 0.5, -3.5)
 
 [node name="small enemy 1" parent="." instance=ExtResource("14_21ptq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, 4)
 
 [node name="enemy2" parent="." instance=ExtResource("15_6yful")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9, 0.5)

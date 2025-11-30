@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8fhprlvt2e6o"]
+[gd_scene load_steps=14 format=3 uid="uid://c8fhprlvt2e6o"]
 
 [ext_resource type="Script" uid="uid://bv7mewpa6o6v4" path="res://scenes scripts/door.gd" id="1_klrmd"]
 [ext_resource type="Texture2D" uid="uid://wlc0vobifhai" path="res://sprites/hint1.png" id="1_mcdff"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c5sytqsu4qak5" path="res://sprites/door2.png" id="5_apbo6"]
 [ext_resource type="AudioStream" uid="uid://bn8xuieh107l3" path="res://sounds music/punch_door.ogg" id="5_dkhs6"]
 [ext_resource type="Texture2D" uid="uid://c20753l0qqb4" path="res://sprites/door3.png" id="6_apbo6"]
+[ext_resource type="PackedScene" uid="uid://bewdxkieq3xq8" path="res://scenes scripts/effect_1.tscn" id="7_32u4a"]
+[ext_resource type="Texture2D" uid="uid://crm0i11j45wtg" path="res://sprites/box5.png" id="8_uwibe"]
 
 [sub_resource type="Animation" id="Animation_44nab"]
 length = 0.001
@@ -77,6 +79,10 @@ size = Vector3(0.9, 1.9, 0.1)
 [node name="door" type="StaticBody3D"]
 script = ExtResource("1_klrmd")
 HitColor = Color(1.66954e-07, 0.101463, 0.0414815, 1)
+neffecttexture = ExtResource("8_uwibe")
+nscaletexture = Vector2(0.01, 0.01)
+namounttexture = 20
+ncoloreffect = Color(0.466667, 0.529412, 0.541176, 1)
 
 [node name="hint" type="Sprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
@@ -145,6 +151,12 @@ one_shot = true
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="effect1" parent="." instance=ExtResource("7_32u4a")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+effecttexture = ExtResource("8_uwibe")
+amounttexture = 28
+coloreffect = Color(0.466529, 0.529549, 0.541268, 1)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

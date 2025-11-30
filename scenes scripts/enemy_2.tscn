@@ -220,10 +220,11 @@ animations = [{
 
 [node name="enemy2" type="CharacterBody3D"]
 collision_layer = 8
+collision_mask = 9
 collision_priority = 0.8
 script = ExtResource("1_cbs1w")
-speed = 3.75
-nerf = 3.75
+speed = 2.2
+nerf = 4.0
 ismimic = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

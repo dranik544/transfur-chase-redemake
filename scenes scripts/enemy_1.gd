@@ -16,7 +16,6 @@ var canpunch: bool = true
 @export var randomspawn: int = 0
 @export var ismimic: bool = false
 
-
 func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
@@ -28,17 +27,10 @@ func _ready():
 			queue_free()
 	
 	checkenemies()
-	
 	sleep()
 	
-	if Global.iswinter:
+	if Global.iswinter and !ismimic:
 		$Sprite3D.sprite_frames = load("res://skins/newyear_enemy_sprite.tres")
-	
-	#var enemies = get_tree().get_nodes_in_group("enemies")
-	#if ismimic:
-		#for enemy in enemies:
-			#add_collision_exception_with(enemy)
-		
 
 func _physics_process(delta):
 	var nextloc = $NavigationAgent3D.get_next_path_position()
@@ -68,8 +60,9 @@ func _physics_process(delta):
 			$wha.visible = true
 			$NavigationAgent3D.simplify_path = true
 			
-			set_collision_layer_value(2, false)
-			set_collision_mask_value(2, false)
+			if not ismimic:
+				set_collision_layer_value(2, false)
+				set_collision_mask_value(2, false)
 			
 			curspeed += 1.0
 			var direction = (global_position - player.global_position).normalized()
@@ -89,23 +82,23 @@ func _physics_process(delta):
 				framessl = 0
 				framess = 0
 				timess = 55
-				set_collision_mask_value(1, true)
+				#set_collision_mask_value(1, true)
 				sleep()
 	elif velocity.length() > 0.7 and canmove:
 		$NavigationAgent3D.simplify_path = false
-		set_collision_layer_value(2, true)
-		set_collision_mask_value(2, true)
-		set_collision_mask_value(1, true)
+		if ismimic:
+			set_collision_layer_value(4, true)
+			#set_collision_mask_value(1, true)
+		else:
+			set_collision_layer_value(2, true)
+			#set_collision_mask_value(1, true)
+			set_collision_mask_value(2, true)
+		
 		framessl = 0
 		framess = 0
 		timess = 55
 		ultratuffpower = 6.0
 		$wha.visible = false
-	
-	#if $RayCast3D.is_colliding():
-		#speed = 1.5
-	#else:
-		#speed = 3.5
 	
 	if global_position.y != 0.9:
 		global_position.y = 0.9
@@ -116,6 +109,43 @@ func _physics_process(delta):
 	
 	if player and canmove:
 		targetpos(player.global_transform.origin)
+
+func punching():
+	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
+	var direction = (global_position - player.global_position).normalized()
+	
+	if canpunch:
+		if global_position.distance_to(player.global_position) < 2.5:
+			canpunch = false
+			set_collision_layer_value(2, false)
+			set_collision_layer_value(4, false)
+			#set_collision_mask_value(1, false)
+			set_collision_mask_value(2, false)
+			set_collision_mask_value(4, false)
+			
+			canmove = false
+			velocity = direction * 8.5
+			move_and_slide()
+			$wha.visible = true
+			
+			var timer = 0.0
+			while timer < 0.3:
+				velocity = velocity.lerp(Vector3.ZERO, 0.05)
+				move_and_slide()
+				await get_tree().create_timer(0.01).timeout
+				timer += 0.01
+			
+			$wha.visible = false
+			if ismimic:
+				set_collision_layer_value(4, true)
+				#set_collision_mask_value(1, true)
+			else:
+				set_collision_layer_value(2, true)
+				#set_collision_mask_value(1, true)
+				set_collision_mask_value(2, true)
+			
+			canmove = true
+			$Timer.start()
 
 func exitfromvent():
 	add_to_group("unsleep enemy")
@@ -139,13 +169,8 @@ func areaplayerentered(body):
 		add_to_group("unsleep enemy")
 		Global.unsleepenemies += 1
 		checkenemies()
-		
-		#$AudioStreamPlayer3D2.play()
-		#$Sprite3D.scale.y -= 3.0
-		#sleep()
 
 func targetpos(target):
-	#$NavigationAgent3D.target_position = target
 	await get_tree().create_timer(0.15).timeout
 	$NavigationAgent3D.set_target_position(target)
 
@@ -160,37 +185,6 @@ func checkenemies():
 		
 		for i in range(enemies.size() - 10):
 			enemies[i].queue_free()
-
-func punching():
-	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
-	var direction = (global_position - player.global_position).normalized()
-	
-	if canpunch:
-		if global_position.distance_to(player.global_position) < 2.5:
-			canpunch = false
-			set_collision_layer_value(2, false)
-			set_collision_layer_value(4, false)
-			set_collision_mask_value(2, false)
-			set_collision_mask_value(4, false)
-			canmove = false
-			velocity = direction * 8.5
-			move_and_slide()
-			$wha.visible = true
-			
-			var timer = 0.0
-			while timer < 0.3:
-				velocity = velocity.lerp(Vector3.ZERO, 0.05)
-				move_and_slide()
-				await get_tree().create_timer(0.01).timeout
-				timer += 0.01
-			
-			$wha.visible = false
-			set_collision_layer_value(2, true)
-			set_collision_layer_value(4, true)
-			set_collision_mask_value(2, true)
-			set_collision_mask_value(4, true)
-			canmove = true
-			$Timer.start()
 
 func _on_timer_timeout() -> void:
 	canpunch = true

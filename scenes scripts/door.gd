@@ -4,6 +4,11 @@ extends StaticBody3D
 @export var HitColor: Color
 var canhit: bool = true
 
+@export var neffecttexture: Texture
+@export var nscaletexture: Vector2 = Vector2(0.25, 0.25)
+@export var namounttexture: int = 16
+@export var ncoloreffect: Color = Color(1.0, 1.0, 1.0)
+
 
 func _ready():
 	$door1.freeze = true
@@ -53,6 +58,8 @@ func hit(damage: float):
 			
 			$AudioStreamPlayer3D.play()
 			if hp <= 0:
+				$effect1.seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect)
+				
 				Global.brokendoors += 1
 				$door1.freeze = false
 				$door2.freeze = false
@@ -70,6 +77,8 @@ func hit(damage: float):
 				$door1.apply_impulse(impulsevec1, Vector3.ZERO)
 				$door2.apply_impulse(impulsevec2, Vector3.ZERO)
 				$Timer.start()
+				
+				$effect1.play()
 			
 			$Timer2.start()
 

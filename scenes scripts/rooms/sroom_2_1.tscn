@@ -312,10 +312,10 @@ randomspawn = 2
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -11.5, 0.5, 6.1)
 
 [node name="small enemy 1" parent="." instance=ExtResource("15_e5iq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.1, -4)
 
 [node name="small enemy 2" parent="." instance=ExtResource("15_e5iq8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.1, -6)
 
 [node name="enemy2" parent="." instance=ExtResource("17_wcgiq")]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -4.1, 0.9, 1.6)

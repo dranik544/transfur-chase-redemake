@@ -11,13 +11,12 @@ func _ready() -> void:
 	#$GPUParticles3D.emitting
 
 func seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect):
-	if neffecttexture and nscaletexture:
-		if $GPUParticles3D.draw_pass_1.material:
-			$GPUParticles3D.draw_pass_1.material.albedo_texture = neffecttexture
-			$GPUParticles3D.draw_pass_1.size = nscaletexture
-			$GPUParticles3D.amount = namounttexture
-			$GPUParticles3D2.amount = namounttexture / 2
-			$GPUParticles3D2.draw_pass_1.material.albedo_color = ncoloreffect
+	if $GPUParticles3D.draw_pass_1.material:
+		$GPUParticles3D.draw_pass_1.material.albedo_texture = neffecttexture
+		$GPUParticles3D.draw_pass_1.size = nscaletexture
+		$GPUParticles3D.amount = namounttexture
+		$GPUParticles3D2.amount = namounttexture / 2
+		$GPUParticles3D2.draw_pass_1.material.albedo_color = ncoloreffect
 
 func play():
 	#$GPUParticles3D.emitting = true

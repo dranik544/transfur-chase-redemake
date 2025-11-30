@@ -38,11 +38,15 @@ func _ready():
 	$CanvasLayer/buttons/skins/btnskins.pressed.connect(btnskinspressed)
 	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
 	$CanvasLayer/buttons/waaa/btnwaaa.pressed.connect(btnwaaapressed)
+	$"CanvasLayer/buttons/muha gift/btnmuha".pressed.connect(btnmuhapressed)
 	$CanvasLayer/buttons/tutorial/btntutorial.pressed.connect(btntutorialpressed)
 	$"CanvasLayer/tutorial menu/btnexit".pressed.connect(btntutorialexitpressed)
 	
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
+	
+	if Global.listskins[7]["unlocked"]:
+		$"room1 1/elka/gift".queue_free()
 	
 	$"CanvasLayer/skins menu".updateskin(false, true, true)
 	
@@ -88,6 +92,10 @@ func _physics_process(delta: float) -> void:
 	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/Sprite3D", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/Sprite3D2", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/waaa, $"room1 1/Sprite3D3", 25, tr / 8, sz / 8, mp)
+	if $"room1 1/elka/gift":
+		dinamicbtn(delta, $"CanvasLayer/buttons/muha gift", $"room1 1/elka/gift", 25, tr / 8, sz / 8, mp)
+	else:
+		$"CanvasLayer/buttons/muha gift".visible = false
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -140,6 +148,17 @@ func btnwaaapressed():
 		$notification.display(Global.achievements[1]["name"],
 		Global.achievements[1]["desc"],
 		load("res://sprites/icon12.png"))
+
+func btnmuhapressed():
+	Global.listskins[7]["unlocked"] = true
+	SavingManager.save("skinlist", Global.listskins)
+	$"room1 1/elka/gift".queue_free()
+	
+	$notification.display("получен новый костюм!",
+	"вы нашли костюм Муха Груши
+	под ёлкой, можете его примерить
+	в меню костюмов.",
+	load("res://sprites/icon7.png"))
 
 func btnskinspressed():
 	$"CanvasLayer/skins menu".visible = true

@@ -54,12 +54,12 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			$Label2.text = "а ты уже нарядил свою ёлку?
 			(даётся на событие Новый год)"
 			$Label3.text = "автор: TheNamelessDeity"
-		"gold colin":
-			colin.sprite_frames = load("res://skins/player_sprite.tres")
-			$Label.text = "ЗОЛОТОЙ КОЛИН"
-			$Label2.text = "чувак ты где его нашёл?!
-			(даётся за полное закрытие всех достижений)"
-			$Label3.text = "автор: TheNamelessDeity"
+		#"gold colin":
+			#colin.sprite_frames = load("res://skins/player_sprite.tres")
+			#$Label.text = "ЗОЛОТОЙ КОЛИН"
+			#$Label2.text = "чувак ты где его нашёл?!
+			#(даётся за полное закрытие всех достижений)"
+			#$Label3.text = "автор: TheNamelessDeity"
 		"hank":
 			colin.sprite_frames = load("res://skins/hank_player_skin.tres")
 			$Label.text = "Хэнк"
