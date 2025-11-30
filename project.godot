@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="TransFur Chase DEMAKE"
-config/version="0.0.0.2"
-config/tags=PackedStringArray("dranik544")
+config/version="0.0.0.3"
+config/tags=PackedStringArray("3d", "dranik544", "roguelike")
 run/main_scene="uid://cmvf6gdw38n03"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.0987284, 0.0987284, 0.0987284, 1)

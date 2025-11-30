@@ -72,7 +72,8 @@ var settings = {
 	"windowmode": 0,
 	"tubes": true,
 	"beauty": true,
-	"cammode": true
+	"cammode": true,
+	"shakescreen": true
 }
 
 signal navibakereq()
@@ -85,8 +86,6 @@ signal pickupitem(player)
 func _ready() -> void:
 	var now = Time.get_datetime_dict_from_system()
 	iswinter = now.month == Time.Month.MONTH_DECEMBER or now.month == Time.Month.MONTH_JANUARY
-	
-	iswinter = false
 	
 	if SavingManager.load("skins") == null:
 		SavingManager.save("skins", colinskin)
@@ -122,6 +121,8 @@ func _ready() -> void:
 	recordpoints = SavingManager.load("recordpoints")
 	
 	listskins[3]["unlocked"] = iswinter
+	
+	updatewindowmode()
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:

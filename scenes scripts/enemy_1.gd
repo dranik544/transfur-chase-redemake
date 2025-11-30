@@ -146,6 +146,7 @@ func punching():
 			
 			canmove = true
 			$Timer.start()
+			targetpos(get_tree().get_first_node_in_group("player").global_transform.origin)
 
 func exitfromvent():
 	add_to_group("unsleep enemy")

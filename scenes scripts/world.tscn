@@ -167,6 +167,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 RandomBox = false
 RandomNumBoxes = false
 
+[node name="box2" parent="room1" instance=ExtResource("7_rf126")]
+transform = Transform3D(0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, 0.5, -1.94361, 0.5, -2.22974)
+
+[node name="box3" parent="room1" instance=ExtResource("7_rf126")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -2.40687, 0.5, 2.2891)
+
+[node name="basket1" parent="room1" instance=ExtResource("8_alufl")]
+transform = Transform3D(0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, -6.64952, 0.6, 2.94063)
+
 [node name="spawnnextroom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
 

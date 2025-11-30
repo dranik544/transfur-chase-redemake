@@ -162,6 +162,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				Global.achievements[0]["desc"],
 				load("res://sprites/icon12.png"))
 				
+				Global.listskins[1]["unlocked"] = true
+				SavingManager.save("skinlist", Global.listskins)
+			
 			var player = get_tree().get_first_node_in_group("player")
 			if player.health < 2:
 				if Global.unlockachievement(5):

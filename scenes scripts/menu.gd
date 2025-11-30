@@ -152,7 +152,8 @@ func btnwaaapressed():
 func btnmuhapressed():
 	Global.listskins[7]["unlocked"] = true
 	SavingManager.save("skinlist", Global.listskins)
-	$"room1 1/elka/gift".queue_free()
+	if $"room1 1/elka/gift":
+		$"room1 1/elka/gift".queue_free()
 	
 	$notification.display("получен новый костюм!",
 	"вы нашли костюм Муха Груши

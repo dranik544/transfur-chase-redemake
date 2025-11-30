@@ -57,6 +57,8 @@ func hit(damage: float):
 			$door2/Sprite3D.modulate = HitColor
 			
 			$AudioStreamPlayer3D.play()
+			
+			player.startshake(10, 0.1)
 			if hp <= 0:
 				$effect1.seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect)
 				
@@ -77,6 +79,8 @@ func hit(damage: float):
 				$door1.apply_impulse(impulsevec1, Vector3.ZERO)
 				$door2.apply_impulse(impulsevec2, Vector3.ZERO)
 				$Timer.start()
+				
+				player.startshake(35, 0.35)
 				
 				$effect1.play()
 			

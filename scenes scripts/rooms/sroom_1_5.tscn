@@ -177,7 +177,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
 
 [node name="slime1" parent="NavigationRegion3D" instance=ExtResource("9_hbm4y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, -2.5)
 
 [node name="box4" parent="NavigationRegion3D" instance=ExtResource("9_hcesx")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1, 0.5, 4)
@@ -203,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 0.9, 3.2)
 randomspawn = 6
 
 [node name="enemy2" parent="." instance=ExtResource("11_cv0bx")]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -5.4, 0.9, -3)
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, -1.7, 0.9, -3.4)
 randomspawn = 5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

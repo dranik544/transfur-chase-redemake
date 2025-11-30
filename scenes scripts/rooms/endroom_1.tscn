@@ -217,7 +217,7 @@ vertical_alignment = 1
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -4.1, 0.5, 3.8)
 
 [node name="cube" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.2, -4)
 mass = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube"]
