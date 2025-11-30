@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://c33iojhyr4ddn" path="res://scenes scripts/room_1_1.tscn" id="3_55rg2"]
+[ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_alufl"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_7evke"]
 [ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="7_rf126"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
@@ -14,20 +15,6 @@
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="18_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="18_kvnqr"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="22_53xst"]
-
-[sub_resource type="GDScript" id="GDScript_ixu3i"]
-script/source = "extends WorldEnvironment
-
-func _ready() -> void:
-	if Global.settings[\"beauty\"]:
-		environment.tonemap_mode = Environment.TONE_MAPPER_AGX
-		environment.tonemap_exposure = 1.2
-		environment.glow_enabled = true
-	else:
-		environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
-		environment.tonemap_exposure = 1.0
-		environment.glow_enabled = false
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
 size = Vector3(0.2, 3, 10)
@@ -99,7 +86,7 @@ script = ExtResource("1_ktiys")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ixu3i")
-script = SubResource("GDScript_ixu3i")
+script = ExtResource("3_alufl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)

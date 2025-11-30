@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_1qjkn"]
+[ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_85f7e"]
 [ext_resource type="Material" uid="uid://bhayo8qapayg5" path="res://materials/wall1.tres" id="4_2epkg"]
 [ext_resource type="Material" uid="uid://bx6bxqa7wcar2" path="res://materials/bottom1.tres" id="5_eeftm"]
 [ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="6_dst00"]
@@ -55,20 +56,6 @@
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
 [ext_resource type="Script" uid="uid://neol3tevslhf" path="res://scenes scripts/settings_menu.gd" id="49_rd0ur"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="51_g2umq"]
-
-[sub_resource type="GDScript" id="GDScript_1qjkn"]
-script/source = "extends WorldEnvironment
-
-func _ready() -> void:
-	if Global.settings[\"beauty\"]:
-		environment.tonemap_mode = Environment.TONE_MAPPER_AGX
-		environment.tonemap_exposure = 1.2
-		environment.glow_enabled = true
-	else:
-		environment.tonemap_mode = Environment.TONE_MAPPER_LINEAR
-		environment.tonemap_exposure = 1.0
-		environment.glow_enabled = false
-"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0b3bo"]
 material = ExtResource("6_ewvr7")
@@ -556,7 +543,7 @@ script = ExtResource("1_tnq6k")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_1qjkn")
-script = SubResource("GDScript_1qjkn")
+script = ExtResource("3_85f7e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)

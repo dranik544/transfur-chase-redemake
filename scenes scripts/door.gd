@@ -58,7 +58,7 @@ func hit(damage: float):
 			
 			$AudioStreamPlayer3D.play()
 			
-			player.startshake(10, 0.1)
+			player.startshake(randf_range(5, 15), 0.1)
 			if hp <= 0:
 				$effect1.seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect)
 				
