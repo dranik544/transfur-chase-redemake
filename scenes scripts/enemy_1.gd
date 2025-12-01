@@ -51,6 +51,8 @@ func _physics_process(delta):
 			$Sprite3D.flip_h = false
 		elif velocity.x < 0:
 			$Sprite3D.flip_h = true
+		
+		$Sprite3D.speed_scale = velocity.length() / 5
 	
 	if velocity.length() < 0.7 and canmove:
 		if playerdist > 1.5:

@@ -2,6 +2,7 @@ extends StaticBody3D
 
 var time: float = 0.0
 var n: float = 0.5
+@export var speed: float = 2.0
 @export var canBeEnemy: bool = true
 @export var enemyScene: PackedScene = preload("res://scenes scripts/enemy_1.tscn")
 @export var slimesprites = {
@@ -13,10 +14,11 @@ var n: float = 0.5
 
 func _ready() -> void:
 	$Sprite3D.texture = slimesprites[randi_range(1, 3)]
+	speed = randf_range(1.75, 3.5)
 
 func _process(delta):
 	time += delta
-	n = lerp(n, 2.0, 1 * delta)
+	n = lerp(n, speed, 1 * delta)
 	$Sprite3D.scale = Vector3(4.0, 0, 4.0) + Vector3(
 		sin(time * n) * 0.5,
 		1,

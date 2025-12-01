@@ -22,8 +22,6 @@ func _ready():
 		прошлый рекорд! он будет
 		записан во вкладке Статистики.", load("res://sprites/icon11.png"), 7)
 	
-	SavingManager.save("recordpoints", Global.recordpoints)
-	
 	$label.text = "ты сдулся!
 	
 	сломано коробок: " + str(Global.brokenboxes) + "
@@ -37,6 +35,7 @@ func _ready():
 	итого: " + str(points) + "
 	лучший рекорд: " + str(SavingManager.load("recordpoints"))
 	
+	SavingManager.save("recordpoints", Global.recordpoints)
 
 func _process(delta):
 	time += delta
