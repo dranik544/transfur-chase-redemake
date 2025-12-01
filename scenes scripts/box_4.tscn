@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://rlv6x1sbjgi0"]
+[gd_scene load_steps=6 format=3 uid="uid://rlv6x1sbjgi0"]
 
 [ext_resource type="Texture2D" uid="uid://d204q2hs8jyeq" path="res://sprites/box6.png" id="1_gfdij"]
+[ext_resource type="Texture2D" uid="uid://dylgffjghdpg5" path="res://normalmaps/tubes1normalmap1.png" id="2_itww1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itww1"]
 albedo_texture = ExtResource("1_gfdij")
 metallic = 0.5
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("2_itww1")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 2

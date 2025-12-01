@@ -266,7 +266,7 @@ func _physics_process(delta: float) -> void:
 		isslide = true
 		slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		startshake(10, $gui/gui/slidebar/slidetimer.wait_time)
+		startshake(5, $gui/gui/slidebar/slidetimer.wait_time)
 		
 		noslide = false
 	

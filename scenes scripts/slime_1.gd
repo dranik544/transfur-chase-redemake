@@ -4,7 +4,15 @@ var time: float = 0.0
 var n: float = 0.5
 @export var canBeEnemy: bool = true
 @export var enemyScene: PackedScene = preload("res://scenes scripts/enemy_1.tscn")
+@export var slimesprites = {
+	1: preload("res://sprites/slime5.png"),
+	2: preload("res://sprites/slime6.png"),
+	3: preload("res://sprites/slime7.png")
+}
 
+
+func _ready() -> void:
+	$Sprite3D.texture = slimesprites[randi_range(1, 3)]
 
 func _process(delta):
 	time += delta

@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cutw3d7h6xf8y"]
+[gd_scene load_steps=24 format=3 uid="uid://cutw3d7h6xf8y"]
 
 [ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_cbs1w"]
+[ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://materials/box_1.tres" id="2_1b53v"]
 [ext_resource type="Texture2D" uid="uid://de3pqx74rhpr" path="res://sprites/wha.png" id="3_ornni"]
 [ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="4_fbyil"]
+[ext_resource type="Texture2D" uid="uid://du5ruwegnhr4d" path="res://normalmaps/box1normalmap2.png" id="4_ornni"]
 [ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="5_a2i1v"]
 [ext_resource type="Texture2D" uid="uid://bugg15efsvuin" path="res://sprites/noirealdontknowwhereilocated1.png" id="7_j110a"]
 [ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="8_oumjp"]
@@ -28,16 +30,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ornni"]
-albedo_texture = ExtResource("12_1b53v")
-uv1_scale = Vector3(3, 2, 3)
-texture_filter = 2
-
 [sub_resource type="BoxMesh" id="BoxMesh_cbs1w"]
-material = SubResource("StandardMaterial3D_ornni")
+material = ExtResource("2_1b53v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbyil"]
 albedo_texture = ExtResource("12_1b53v")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("4_ornni")
 uv1_scale = Vector3(1, 0.5, 1)
 texture_filter = 2
 

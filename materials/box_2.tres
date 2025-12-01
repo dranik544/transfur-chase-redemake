@@ -1,10 +1,14 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ccsh8a16efj6o"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://ccsh8a16efj6o"]
 
 [ext_resource type="Texture2D" uid="uid://nwu8oqaylpyb" path="res://sprites/box4.png" id="1_5artv"]
 [ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites/box1.png" id="2_tdvrs"]
+[ext_resource type="Texture2D" uid="uid://dthrve2mcw6dq" path="res://normalmaps/box2nomalmap1.png" id="3_qrthk"]
 
 [resource]
 albedo_texture = ExtResource("1_5artv")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("3_qrthk")
 detail_albedo = ExtResource("2_tdvrs")
 uv2_triplanar_sharpness = 0.535887
 texture_filter = 2

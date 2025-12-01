@@ -2,29 +2,29 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csdtwwjdhqjs8"
-path="res://.godot/imported/icon1.png-a03fdd6069998eee5b5c018a81901fbf.ctex"
+uid="uid://bmua7sm0v8dal"
+path="res://.godot/imported/slime6.png-d258cb4e1ef27154595267fc8098220e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/icon1.png"
-dest_files=["res://.godot/imported/icon1.png-a03fdd6069998eee5b5c018a81901fbf.ctex"]
+source_file="res://sprites/slime6.png"
+dest_files=["res://.godot/imported/slime6.png-d258cb4e1ef27154595267fc8098220e.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://sprites/icon1.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

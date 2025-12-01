@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpsuhojkxbdha"]
+[gd_scene load_steps=18 format=3 uid="uid://dpsuhojkxbdha"]
 
 [ext_resource type="Script" uid="uid://13tfdve6tc0f" path="res://scenes scripts/vent_1.gd" id="1_86coe"]
 [ext_resource type="Texture2D" uid="uid://dbog6c3k1lrrk" path="res://sprites/vent1.png" id="1_p4sqs"]
 [ext_resource type="Texture2D" uid="uid://8kekvjfavyi7" path="res://sprites/box1.png" id="2_p4sqs"]
 [ext_resource type="Texture2D" uid="uid://c4knyopcoxmh8" path="res://sprites/bg1.png" id="3_86coe"]
 [ext_resource type="Texture2D" uid="uid://dbbf3gxw7xke7" path="res://sprites/vent2.png" id="5_gpv4y"]
+[ext_resource type="Texture2D" uid="uid://dyrfdacyxty7n" path="res://normalmaps/vent1normalmap1.png" id="6_j52dw"]
 [ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="6_ys87n"]
 [ext_resource type="AudioStream" uid="uid://baxrmlydy3quv" path="res://sounds music/openvent1.mp3" id="7_lfnx1"]
 
@@ -166,6 +167,8 @@ size = Vector3(3, 0.1, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys87n"]
 albedo_texture = ExtResource("5_gpv4y")
+normal_enabled = true
+normal_texture = ExtResource("6_j52dw")
 detail_albedo = ExtResource("2_p4sqs")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
