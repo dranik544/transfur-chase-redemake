@@ -99,7 +99,7 @@ directional_shadow_max_distance = 25.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -1)
 
 [node name="enemy2" parent="." instance=ExtResource("7_soo4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.1, 0)
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

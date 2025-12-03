@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmvf6gdw38n03"]
+[gd_scene load_steps=12 format=3 uid="uid://cmvf6gdw38n03"]
 
 [ext_resource type="Texture2D" uid="uid://dujr7duno3wh4" path="res://sprites/logo2.jpg" id="1_asbl3"]
 [ext_resource type="Texture2D" uid="uid://bbv04h7dloqaj" path="res://sprites/logo1.png" id="2_1w7ov"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://0bkghsydjk4w" path="res://sounds music/intro2.mp3" id="3_mdt4h"]
 [ext_resource type="AudioStream" uid="uid://dg5ahlckoiw6j" path="res://sounds music/intro1.mp3" id="4_20ddy"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_rtwky"]
+[ext_resource type="Texture2D" uid="uid://ynhycmhcibys" path="res://sprites/boykisser.jpeg" id="7_rblpr"]
 
 [sub_resource type="GDScript" id="GDScript_1w7ov"]
 script/source = "extends Node2D
@@ -319,3 +320,11 @@ stream = ExtResource("4_20ddy")
 stream = ExtResource("3_mdt4h")
 volume_db = -5.0
 pitch_scale = 1.8
+
+[node name="я знаю что ты смотришь исходный код игры" type="TextureRect" parent="."]
+offset_left = -93.0
+offset_top = -96.0
+offset_right = -8.0
+offset_bottom = -9.0
+texture = ExtResource("7_rblpr")
+expand_mode = 1

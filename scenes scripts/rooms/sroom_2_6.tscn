@@ -29,6 +29,8 @@ size = Vector3(10, 3, 10)
 
 [node name="room2 6" type="Node3D"]
 script = ExtResource("1_f8mne")
+RandomBox = false
+RandomNumBoxes = false
 NumBoxes1 = 4
 NumBoxes2 = 2
 NumBoxes3 = 3

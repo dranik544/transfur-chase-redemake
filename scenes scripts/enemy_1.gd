@@ -66,6 +66,9 @@ func _physics_process(delta):
 				set_collision_layer_value(2, false)
 				set_collision_mask_value(2, false)
 			
+			if global_position.distance_to(player.global_position) > 5:
+				set_collision_mask_value(1, false)
+			
 			curspeed += 1.0
 			var direction = (global_position - player.global_position).normalized()
 			
@@ -95,6 +98,7 @@ func _physics_process(delta):
 			set_collision_layer_value(2, true)
 			#set_collision_mask_value(1, true)
 			set_collision_mask_value(2, true)
+			set_collision_mask_value(1, true)
 		
 		framessl = 0
 		framess = 0
