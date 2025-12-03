@@ -59,6 +59,10 @@ var achievements = [
 	
 	{"name": "стая на хвосте", "desc": "набрать 10+ не
 	спящих врагов", "unlocked": false}, #id: 7
+	
+	{"name": "тише едешь -
+	дальше будешь!", "desc": "не разбудить врагов
+	на 2 локации", "unlocked": false}, #id: 8
 ]
 
 var recordpoints: int = 0
@@ -73,10 +77,11 @@ var settings = {
 	"tubes": true,
 	"beauty": true,
 	"cammode": true,
-	"shakescreen": true
+	"shakescreen": true,
+	"light": true
 }
 
-signal navibakereq()
+signal navibake()
 signal updatesoundandmusic()
 signal punchpl()
 signal hitdoor(damage)
@@ -99,7 +104,7 @@ func _ready() -> void:
 		SavingManager.save("achievements", achievements)
 	if SavingManager.load("generalstats") == null:
 		SavingManager.save("generalstats", generalstats)
-	if SavingManager.load("settings") == null:
+	if SavingManager.load("settings") == null or settings.size() < SavingManager.load("settings").size():
 		SavingManager.save("settings", settings)
 	colinskin = SavingManager.load("skins")
 	

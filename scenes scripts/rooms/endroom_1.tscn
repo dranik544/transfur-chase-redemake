@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://btdikxgrrynh0"]
+[gd_scene load_steps=28 format=3 uid="uid://btdikxgrrynh0"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_sxflw"]
 [ext_resource type="PackedScene" uid="uid://dl38kx6c4srqv" path="res://scenes scripts/cabels_2.tscn" id="2_op5hc"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bo6e3yrcl0lo1" path="res://scenes scripts/dialog.tscn" id="14_rxdwu"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="15_uhton"]
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="17_r10y8"]
+[ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="18_ey4g4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_exsa0")
@@ -225,6 +226,14 @@ shape = SubResource("BoxShape3D_r10y8")
 
 [node name="cube1" parent="cube" instance=ExtResource("13_b4xcx")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 4, 0)
+light_color = Color(0.870588, 0, 0, 1)
+light_energy = 3.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("18_ey4g4")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

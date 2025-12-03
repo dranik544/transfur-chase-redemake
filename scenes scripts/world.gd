@@ -10,7 +10,9 @@ extends Node3D
 	6: preload("res://scenes scripts/rooms/sroom_1_4.tscn"),
 	7: preload("res://scenes scripts/rooms/sroom_2_3.tscn"),
 	8: preload("res://scenes scripts/rooms/sroom_2_4.tscn"),
-	9: preload("res://scenes scripts/rooms/sroom_1_5.tscn")
+	9: preload("res://scenes scripts/rooms/sroom_1_5.tscn"),
+	10: preload("res://scenes scripts/rooms/sroom_2_5.tscn"),
+	11: preload("res://scenes scripts/rooms/sroom_2_6.tscn"),
 }
 @export var loadrooms: int = 45
 var lastroom: int = 1
@@ -59,8 +61,6 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		add_child(nextroom)
 		
 		roompos = nextroom.getsize()
-		
-		nextroom.bakenavi()
 	elif !randomroom and scenesroom:
 		var sroom: Node3D = scenesroom.instantiate()
 		sroom.position = $spawnnextroom.position

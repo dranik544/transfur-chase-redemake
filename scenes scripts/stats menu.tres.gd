@@ -50,6 +50,12 @@ func _ready() -> void:
 	load("res://sprites/achievement7ic.png"),
 	Global.achievements[7]["unlocked"])
 	
+	setach($scc/hboxc/vboxc/ach9,
+	Global.achievements[8]["name"],
+	Global.achievements[8]["desc"],
+	load("res://sprites/achievement8ic.png"),
+	Global.achievements[8]["unlocked"])
+	
 	
 	var total = 0
 	var recomend

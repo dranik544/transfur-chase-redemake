@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=89 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_1qjkn"]
@@ -56,6 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
 [ext_resource type="Script" uid="uid://neol3tevslhf" path="res://scenes scripts/settings_menu.gd" id="49_rd0ur"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="51_g2umq"]
+[ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="57_mxc8c"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0b3bo"]
 material = ExtResource("6_ewvr7")
@@ -1749,6 +1750,68 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
+[node name="ach9" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+layout_mode = 2
+texture = ExtResource("38_o23wf")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 16
+text = "title"
+vertical_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc/vbc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 12
+text = "decription"
+vertical_alignment = 1
+
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("39_lk0fw")
+expand_mode = 1
+stretch_mode = 3
+
 [node name="vboxc2" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -2209,6 +2272,18 @@ theme_override_font_sizes/font_size = 18
 button_pressed = true
 text = "красивое окружение"
 
+[node name="light" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "освещение"
+
 [node name="effects" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -2458,3 +2533,10 @@ draw_pass_1 = SubResource("QuadMesh_o23wf")
 
 [node name="notification" parent="." instance=ExtResource("48_8lcj0")]
 visible = false
+
+[node name="light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 0)
+light_energy = 3.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("57_mxc8c")

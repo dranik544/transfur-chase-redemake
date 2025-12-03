@@ -43,6 +43,8 @@ func _ready():
 	if autoSize:
 		manualSize.x = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x
 	
+	$Timer.queue_free()
+	
 	if RandomBox:
 		if RandomNumBoxes:
 			NumBoxes1 += randi_range(-1, 1)
@@ -128,8 +130,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		#autodelete = true
 		#queue_free()
 		canbake = false
-		Global.navibakereq.connect(bakenavi)
-		bakenavi()
+		Global.navibake.disconnect(bakenavi)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -138,7 +139,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		#isplayerbeeninroom = true
 		canbake = true
 		bakenavi()
-		Global.navibakereq.disconnect(bakenavi)
+		Global.navibake.connect(bakenavi)
 		if isendroom1:
 			var env: WorldEnvironment = get_parent().get_node("WorldEnvironment")
 			var tufflightbro: DirectionalLight3D = get_parent().get_node("DirectionalLight3D")

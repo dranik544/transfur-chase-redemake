@@ -56,7 +56,6 @@ func _ready():
 	TheNamelessDeity", load("res://sprites/icon3.png"), 4)
 		
 	if Global.iswinter:
-		print(Global.checkachievement(4))
 		if Global.unlockachievement(4):
 			$notification.display(Global.achievements[4]["name"],
 			Global.achievements[4]["desc"],

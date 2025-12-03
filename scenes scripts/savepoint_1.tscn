@@ -1,11 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccm4d0awreshf"]
+[gd_scene load_steps=13 format=3 uid="uid://ccm4d0awreshf"]
 
 [ext_resource type="Texture2D" uid="uid://cmm1l44fa8je0" path="res://sprites/savepoint1.png" id="1_cb5pq"]
 [ext_resource type="Texture2D" uid="uid://c2pr2xrftn3nb" path="res://sprites/savepoint2.png" id="2_ka4hm"]
+[ext_resource type="Texture2D" uid="uid://bt84bm1y8l6jq" path="res://normalmaps/savepoint1normalmap1.png" id="2_xijg8"]
 [ext_resource type="Texture2D" uid="uid://bmync8scgxs5a" path="res://sprites/savepoint3.png" id="3_ka4hm"]
+[ext_resource type="Texture2D" uid="uid://cw5uypgmp0aop" path="res://normalmaps/savepoint2normalmap1.png" id="4_b6nrm"]
+[ext_resource type="Texture2D" uid="uid://blcisbbjqng50" path="res://normalmaps/savepoint3normalmap1.png" id="6_rx866"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npot0"]
 albedo_texture = ExtResource("1_cb5pq")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_xijg8")
 texture_filter = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_qcv3b"]
@@ -13,6 +19,9 @@ material = SubResource("StandardMaterial3D_npot0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xijg8"]
 albedo_texture = ExtResource("2_ka4hm")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("4_b6nrm")
 texture_filter = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_b6nrm"]
@@ -21,6 +30,9 @@ size = Vector2(0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcv3b"]
 albedo_texture = ExtResource("3_ka4hm")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("6_rx866")
 texture_filter = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_cb5pq"]

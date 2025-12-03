@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ds0sepy750oms"]
+[gd_scene load_steps=19 format=3 uid="uid://ds0sepy750oms"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_sm21d"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_f583u"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="11_lhuoj"]
 [ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="12_2m1ed"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="13_wwdrf"]
+[ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="14_y1u2i"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v056k"]
 material = ExtResource("3_6tmxl")
@@ -170,6 +171,13 @@ randomspawn = 4
 [node name="enemy2" parent="." instance=ExtResource("13_wwdrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9, -4)
 randomspawn = 4
+
+[node name="light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 4, 0)
+light_energy = 3.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("14_y1u2i")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

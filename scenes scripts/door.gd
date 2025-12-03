@@ -19,7 +19,7 @@ func _ready():
 	$Timer.timeout.connect(time_for_DIEEE_MUHAHAHAHAHAHAHA)
 	
 	if hp == 0:
-		hp = randi_range(0, 3)
+		hp = randi_range(1, 4)
 	add_to_group("door")
 
 func _process(delta):
@@ -74,8 +74,8 @@ func hit(damage: float):
 				if $Area3D:
 					$Area3D.queue_free()
 				
-				var impulsevec1 = Vector3(-2, 0.5, -1)
-				var impulsevec2 = Vector3(-2, 0.5, 1)
+				var impulsevec1 = Vector3(-3, 0.5, -1)
+				var impulsevec2 = Vector3(-3, 0.5, 1)
 				$door1.apply_impulse(impulsevec1, Vector3.ZERO)
 				$door2.apply_impulse(impulsevec2, Vector3.ZERO)
 				$Timer.start()

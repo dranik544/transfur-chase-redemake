@@ -425,7 +425,7 @@ func _on_timer_timeout() -> void:
 	var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
 	set_collision_mask_value(2, true)
 	$Area3D.set_collision_mask_value(2, true)
-	Global.navibakereq
+	Global.navibake.emit()
 
 func _on_slidetimer_timeout() -> void:
 	canslide = true

@@ -7,7 +7,7 @@
 [resource]
 albedo_texture = ExtResource("1_npd7s")
 normal_enabled = true
-normal_scale = 0.4
+normal_scale = 0.5
 normal_texture = ExtResource("3_gyqr1")
 detail_albedo = ExtResource("2_d401e")
 uv1_offset = Vector3(0.5, 0.5, 0.5)
