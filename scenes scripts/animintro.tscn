@@ -16,7 +16,7 @@ script/source = "extends Node2D
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if Input.is_anything_pressed():
-		get_tree().change_scene_to_file(\"res://scenes scripts/menu.tscn\")
+		ScreenTransition.changescene(\"res://scenes scripts/menu.tscn\", Color.BLACK, 1.0)
 
 func changescene():
 	get_tree().change_scene_to_file(\"res://scenes scripts/menu.tscn\")

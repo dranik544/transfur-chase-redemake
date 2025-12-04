@@ -176,5 +176,5 @@ func btnsettingsexitpressed(): $"CanvasLayer/settings menu".visible = false; $Ca
 func btntutorialpressed(): $"CanvasLayer/tutorial menu".visible = true; $CanvasLayer/buttons.visible = false
 func btntutorialexitpressed(): $"CanvasLayer/tutorial menu".visible = false; $CanvasLayer/buttons.visible = true
 
-func btnstartpressed():get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
+func btnstartpressed():ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.BLACK, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
 func btnexitpressed():get_tree().quit()

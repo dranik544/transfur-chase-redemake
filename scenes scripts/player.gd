@@ -241,7 +241,7 @@ func _physics_process(delta: float) -> void:
 		$"center camera/cam".look_at($Sprite3D.global_position)
 		await $Sprite3D.animation_finished
 		if not is_queued_for_deletion() and get_tree():
-			get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
+			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
 	
 	if not is_on_floor():

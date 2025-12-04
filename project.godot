@@ -26,6 +26,7 @@ config/windows_native_icon="res://icoooooo.ico"
 
 Global="*res://scenes scripts/global.gd"
 SavingManager="*res://scenes scripts/SavingManager.gd"
+ScreenTransition="*res://scenes scripts/ScreenTransition.gd"
 
 [display]
 

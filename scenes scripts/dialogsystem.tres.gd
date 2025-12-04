@@ -113,7 +113,7 @@ func _process(delta: float) -> void:
 		updatedialog(true)
 		
 		if curd >= dialogs.size() - 1:
-			get_tree().change_scene_to_file("res://scenes scripts/end.tscn")
+			ScreenTransition.changescene("res://scenes scripts/end.tscn", Color.BLACK, 0.25)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("ENTER"):

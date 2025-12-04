@@ -13,12 +13,12 @@ script/source = "extends Node2D
 
 
 
-func changescene(scene: PackedScene):
-	get_tree().change_scene_to_packed(scene)
+func changescene():
+	get_tree().change_scene_to_file(\"res://scenes scripts/animintro.tscn\")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_anything_pressed():
-		get_tree().change_scene_to_file(\"res://scenes scripts/animintro.tscn\")
+		ScreenTransition.changescene(\"res://scenes scripts/animintro.tscn\", Color.BLACK, 1.0)
 "
 
 [sub_resource type="Animation" id="Animation_1w7ov"]
