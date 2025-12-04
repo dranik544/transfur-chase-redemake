@@ -21,8 +21,9 @@ var lastroom: int = 1
 func _ready():
 	var o: int = 0
 	await get_tree().physics_frame
-	$enemy1.set_physics_process(false)
-	$enemy2.set_physics_process(false)
+	if $enemy1 and $enemy2:
+		$enemy1.set_physics_process(false)
+		$enemy2.set_physics_process(false)
 	$player.set_physics_process(false)
 	$CanvasLayer.visible = true
 	for i in loadrooms:
@@ -33,11 +34,16 @@ func _ready():
 		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
 	#$navi.bake_navigation_mesh()
 	await get_tree().physics_frame
+	
+	$CanvasLayer/Label.text = "Please, wait one more second."
+	await get_tree().create_timer(2.5).timeout
+	
 	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
 	$player.set_physics_process(true)
-	$enemy1.set_physics_process(true)
-	$enemy2.set_physics_process(true)
+	if $enemy1 and $enemy2:
+		$enemy1.set_physics_process(true)
+		$enemy2.set_physics_process(true)
 	$music.play()
 	
 	$notification.display("Сейчас играет - Run!", "автор музыки:

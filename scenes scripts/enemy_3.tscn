@@ -1,0 +1,290 @@
+[gd_scene load_steps=19 format=3 uid="uid://47uaksceiu82"]
+
+[ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_u4cxp"]
+[ext_resource type="SpriteFrames" uid="uid://cpntew6wwupps" path="res://skins/enemy_2_loc_sprite.tres" id="2_u4cxp"]
+[ext_resource type="Texture2D" uid="uid://de3pqx74rhpr" path="res://sprites/wha.png" id="3_pbabn"]
+[ext_resource type="AudioStream" uid="uid://d4hlvsgnqv8ys" path="res://sounds music/boinggggggg.mp3" id="4_ks1xg"]
+[ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="5_ei8dj"]
+[ext_resource type="Texture2D" uid="uid://dc5ktxjip0t0h" path="res://sprites/sleep1.png" id="6_8gh0d"]
+[ext_resource type="Texture2D" uid="uid://bugg15efsvuin" path="res://sprites/noirealdontknowwhereilocated1.png" id="7_0uhga"]
+[ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="8_ch1xs"]
+[ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="9_sph3f"]
+[ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="10_c3rke"]
+[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="11_yx5yd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
+radius = 0.36
+height = 0.72
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aut8l"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_h7li6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whatsap message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("whatsap message:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite3D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+
+[sub_resource type="Animation" id="Animation_1yp71"]
+resource_name = "its colin!"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whatsap message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("whatsap message:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667),
+"transitions": PackedFloat32Array(0.6, 1.6, 1),
+"update": 0,
+"values": [Vector3(0, 1.2, 0), Vector3(0, 1.9, 0), Vector3(0, 1.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(0.6, 1.41, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite3D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+
+[sub_resource type="Animation" id="Animation_w80d6"]
+resource_name = "sleep"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whatsap message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sleep"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7kort"]
+_data = {
+&"RESET": SubResource("Animation_h7li6"),
+&"its colin!": SubResource("Animation_1yp71"),
+&"sleep": SubResource("Animation_w80d6")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nulj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0uhga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ch1xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sph3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c3rke")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="enemy3" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+collision_priority = 0.8
+script = ExtResource("1_u4cxp")
+speed = 4.0
+isblackenemy = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.5
+avoidance_enabled = true
+height = 0.6
+radius = 0.36
+neighbor_distance = 0.45
+max_neighbors = 24
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)
+shape = SubResource("CapsuleShape3D_aut8l")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = ExtResource("2_u4cxp")
+animation = &"run"
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.4, 0)
+target_position = Vector3(0, -0.8, 0)
+collision_mask = 3
+
+[node name="Area3D" type="Area3D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_aut8l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7kort")
+}
+autoplay = "sleep"
+
+[node name="whatsap message" type="Sprite3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+texture = ExtResource("3_pbabn")
+
+[node name="boing" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ks1xg")
+volume_db = 2.0
+max_db = 4.0
+script = ExtResource("5_ei8dj")
+
+[node name="sleep1" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+texture = ExtResource("6_8gh0d")
+
+[node name="wha" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.4, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_nulj7")
+autoplay = "default"
+frame_progress = 0.299114
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_yx5yd")
+volume_db = 5.0
+max_db = 6.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

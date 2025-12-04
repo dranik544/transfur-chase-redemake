@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmvf6gdw38n03"]
+[gd_scene load_steps=11 format=3 uid="uid://cmvf6gdw38n03"]
 
 [ext_resource type="Texture2D" uid="uid://dujr7duno3wh4" path="res://sprites/logo2.jpg" id="1_asbl3"]
 [ext_resource type="Texture2D" uid="uid://bbv04h7dloqaj" path="res://sprites/logo1.png" id="2_1w7ov"]
-[ext_resource type="PackedScene" uid="uid://csjyl2g7tpqqk" path="res://scenes scripts/animintro.tscn" id="2_rtwky"]
 [ext_resource type="AudioStream" uid="uid://0bkghsydjk4w" path="res://sounds music/intro2.mp3" id="3_mdt4h"]
 [ext_resource type="AudioStream" uid="uid://dg5ahlckoiw6j" path="res://sounds music/intro1.mp3" id="4_20ddy"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_rtwky"]
@@ -193,7 +192,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(5.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("2_rtwky")],
+"args": [],
 "method": &"changescene"
 }]
 }
@@ -276,9 +275,10 @@ libraries = {
 autoplay = "start"
 
 [node name="logo2" type="TextureRect" parent="."]
-offset_top = -104.0
-offset_right = 254.0
-offset_bottom = -1.0
+offset_left = 195.0
+offset_top = 175.0
+offset_right = 449.0
+offset_bottom = 278.0
 pivot_offset = Vector2(127, 51)
 texture = ExtResource("2_1w7ov")
 

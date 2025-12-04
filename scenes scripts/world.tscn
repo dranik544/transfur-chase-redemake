@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=25 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="8_alufl"]
 [ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="10_5vyl4"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="13_sivfs"]
+[ext_resource type="PackedScene" uid="uid://47uaksceiu82" path="res://scenes scripts/enemy_3.tscn" id="16_qeca7"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="16_rginh"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="18_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="18_kvnqr"]
@@ -99,7 +100,7 @@ directional_shadow_max_distance = 25.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.1, -1)
 
 [node name="enemy2" parent="." instance=ExtResource("7_soo4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.1, 0)
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -210,3 +211,39 @@ parameters/looping = true
 script = ExtResource("18_ixu3i")
 
 [node name="notification" parent="." instance=ExtResource("18_kvnqr")]
+
+[node name="enemy3" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -4)
+
+[node name="enemy4" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -4)
+
+[node name="enemy5" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.9, -4)
+
+[node name="enemy6" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.9, -4)
+
+[node name="enemy7" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -3)
+
+[node name="enemy8" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -3)
+
+[node name="enemy9" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.9, -3)
+
+[node name="enemy10" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.9, -3)
+
+[node name="enemy11" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -2)
+
+[node name="enemy12" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -2)
+
+[node name="enemy13" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.9, -2)
+
+[node name="enemy14" parent="." instance=ExtResource("16_qeca7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.9, -2)

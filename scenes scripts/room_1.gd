@@ -98,7 +98,9 @@ func _ready():
 		$NavigationRegion3D/StaticBody3D/bottom.mesh.size.y
 	)
 	
-	bakenavi()
+	#if get_tree():
+		#await get_tree().create_timer(0.05).timeout
+	#bakenavi()
 
 func getsize():
 	return manualSize

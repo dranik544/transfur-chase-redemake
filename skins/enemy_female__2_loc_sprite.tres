@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://0sh0a6uqbaxj"]
+
+[ext_resource type="Texture2D" uid="uid://cfond1dn8eqs4" path="res://sprites/enemy 2 location/female/enemy1idle1.png" id="1_eu5h3"]
+[ext_resource type="Texture2D" uid="uid://bpa7rqt2vvlwe" path="res://sprites/enemy 2 location/female/enemy1run1.png" id="2_wasxu"]
+[ext_resource type="Texture2D" uid="uid://bbosd6tnvnmto" path="res://sprites/enemy 2 location/female/newyearenemy1idle1.png" id="3_8xgho"]
+[ext_resource type="Texture2D" uid="uid://biugebgtye64g" path="res://sprites/enemy 2 location/female/newyearenemy1run1.png" id="4_yoiua"]
+[ext_resource type="Texture2D" uid="uid://c222hjtyir0pp" path="res://sprites/enemy 2 location/female/sleepenemy1idle1.png" id="5_803dt"]
+[ext_resource type="Texture2D" uid="uid://bl8bmb3jkpwnr" path="res://sprites/enemy 2 location/female/sleepenemy1idle2.png" id="6_15qvy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eu5h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wasxu")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8xgho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yoiua")
+}],
+"loop": true,
+"name": &"run newyear",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_803dt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_15qvy")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 4.0
+}]

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://chxso7n61pfxu"]
+
+[ext_resource type="Texture2D" uid="uid://8fwro8hvo6l4" path="res://sprites/bottom3.png" id="1_yfwd8"]
+[ext_resource type="Texture2D" uid="uid://dsuh7f3tmv2vb" path="res://normalmaps/bottom1normalmap1.png" id="2_7p1mf"]
+
+[resource]
+albedo_texture = ExtResource("1_yfwd8")
+metallic = 0.5
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_7p1mf")
+uv1_triplanar = true
+texture_filter = 2
