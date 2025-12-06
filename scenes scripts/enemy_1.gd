@@ -37,6 +37,7 @@ func _ready():
 	
 	if Global.iswinter and !ismimic:
 		runanim = "run newyear"
+		sleepanim = "sleep newyear"
 	
 	sleep()
 
@@ -121,6 +122,7 @@ func _physics_process(delta):
 		targetpos(player.global_transform.origin)
 
 func punching():
+	if !get_tree(): return
 	var player = get_tree().get_first_node_in_group("player")
 	if !player or !canpunch or global_position.distance_to(player.global_position) > 2.5:
 		return

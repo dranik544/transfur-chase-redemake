@@ -41,4 +41,12 @@ animations = [{
 "loop": true,
 "name": &"sleep",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yglpi")
+}],
+"loop": true,
+"name": &"sleep newyear",
+"speed": 4.0
 }]

@@ -8,8 +8,8 @@ func _ready():
 	velocity = Vector3.FORWARD * speed
 
 func _physics_process(delta):
-	var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
-	var playerdist = global_position.distance_to(player.global_position)
+	#var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
+	#var playerdist = global_position.distance_to(player.global_position)
 	
 	#if playerdist < 17.5:
 	move_and_slide()

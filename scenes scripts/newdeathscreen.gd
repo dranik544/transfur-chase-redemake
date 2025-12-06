@@ -40,7 +40,7 @@ func _ready():
 func _process(delta):
 	time += delta
 	
-	
+	ScreenTransition.cleanup()
 	if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
 		ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
 	if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):

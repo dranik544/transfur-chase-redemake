@@ -21,10 +21,14 @@ var lastroom: int = 1
 func _ready():
 	var o: int = 0
 	await get_tree().physics_frame
+	
+	var player
+	if get_tree(): player = get_tree().get_first_node_in_group("player")
+	
 	if $enemy1 and $enemy2:
 		$enemy1.set_physics_process(false)
 		$enemy2.set_physics_process(false)
-	$player.set_physics_process(false)
+	if player: player.set_physics_process(false)
 	$CanvasLayer.visible = true
 	for i in loadrooms:
 		await get_tree().physics_frame
@@ -40,7 +44,7 @@ func _ready():
 	
 	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
-	$player.set_physics_process(true)
+	if player: player.set_physics_process(true)
 	if $enemy1 and $enemy2:
 		$enemy1.set_physics_process(true)
 		$enemy2.set_physics_process(true)
@@ -75,3 +79,6 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		roompos = sroom.getsize()
 	
 	$spawnnextroom.position -= roompos
+
+func _exit_tree() -> void:
+	queue_free()

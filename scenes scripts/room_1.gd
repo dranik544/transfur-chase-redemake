@@ -101,6 +101,8 @@ func _ready():
 	#if get_tree():
 		#await get_tree().create_timer(0.05).timeout
 	#bakenavi()
+	
+	add_to_group("rooms")
 
 func getsize():
 	return manualSize
@@ -133,6 +135,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		#queue_free()
 		canbake = false
 		Global.navibake.disconnect(bakenavi)
+		
+		add_to_group("roomsfordelete")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -142,6 +146,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		canbake = true
 		bakenavi()
 		Global.navibake.connect(bakenavi)
+		
+		remove_from_group("roomsfordelete")
+		
 		if isendroom1:
 			var env: WorldEnvironment = get_parent().get_node("WorldEnvironment")
 			var tufflightbro: DirectionalLight3D = get_parent().get_node("DirectionalLight3D")
