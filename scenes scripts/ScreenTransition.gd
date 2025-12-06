@@ -22,13 +22,12 @@ func changescene(scenepath: String, fadecolor: Color = Color.BLACK, time: float 
 	await get_tree().process_frame
 	
 	var tween = create_tween()
-	tween.tween_property(rect, "color:a", 1.0, time - 0.20)
+	tween.tween_property(rect, "color:a", 1.0, time - 0.10)
 	await tween.finished
 	cleanup()
-	await get_tree().process_frame
 	get_tree().change_scene_to_file(scenepath)
 	
-	await get_tree().create_timer(0.20).timeout
+	await get_tree().create_timer(0.10).timeout
 	canvas.queue_free()
 
 func cleanup():
