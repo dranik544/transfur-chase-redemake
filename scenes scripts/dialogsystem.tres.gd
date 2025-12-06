@@ -88,7 +88,7 @@ func start():
 	updatedialog()
 
 func updatedialog(updonlyposd: bool = false):
-	if curd <= dialogs.size():
+	if curd <= dialogs.size() - 1:
 		match dialogs[curd][1]:
 			"tv":
 				posd = $"../NavigationRegion3D/StaticBody3D/mesh1".global_position

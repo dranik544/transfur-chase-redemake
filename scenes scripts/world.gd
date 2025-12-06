@@ -17,10 +17,10 @@ extends Node3D
 @export var loadrooms: int = 45
 var lastroom: int = 1
 var grooms = [
-	$startroom1,
 	$startroom2,
 	$startroom3,
-	$startroom4
+	$startroom4,
+	$startroom1
 ]
 
 
