@@ -1,7 +1,7 @@
 extends Node
 
 @export var cleanup_enabled: bool = true
-@export var groups_to_cleanup: Array[String] = ["enemy", "unsleep enemy", "rooms", "broke", "door", "navi"]
+@export var groups_to_cleanup: Array[String] = ["enemy", "unsleep enemy", "rooms", "broke", "door", "navi", "world", "world"]
 
 
 func changescene(scenepath: String, fadecolor: Color = Color.BLACK, time: float = 0.5):
@@ -25,6 +25,7 @@ func changescene(scenepath: String, fadecolor: Color = Color.BLACK, time: float 
 	tween.tween_property(rect, "color:a", 1.0, time - 0.20)
 	await tween.finished
 	cleanup()
+	await get_tree().process_frame
 	get_tree().change_scene_to_file(scenepath)
 	
 	await get_tree().create_timer(0.20).timeout
@@ -40,8 +41,8 @@ func cleanup():
 	var players = get_tree().get_nodes_in_group("player")
 	for player in players:
 		if is_instance_valid(player):
-			player.remove_from_group("player")
 			player.queue_free()
+			player.remove_from_group("player")
 	
 	await get_tree().process_frame
 	await get_tree().process_frame

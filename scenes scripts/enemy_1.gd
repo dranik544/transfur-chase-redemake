@@ -40,6 +40,7 @@ func _ready():
 		sleepanim = "sleep newyear"
 	
 	sleep()
+	sleep()
 
 func _physics_process(delta):
 	var player = get_tree().get_first_node_in_group("player")
@@ -143,7 +144,8 @@ func punching():
 	while timer < 0.3:
 		velocity = velocity.lerp(Vector3.ZERO, 0.05)
 		move_and_slide()
-		await get_tree().create_timer(0.01).timeout
+		if get_tree():
+			await get_tree().create_timer(0.01).timeout
 		timer += 0.01
 	
 	$wha.visible = false
@@ -175,6 +177,7 @@ func sleep():
 	canunsleep = false
 	velocity = Vector3.ZERO
 	$AnimationPlayer.play("sleep")
+	$Sprite3D.play(sleepanim)
 
 func unsleep():
 	if isactive:

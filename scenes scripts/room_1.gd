@@ -135,8 +135,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		#queue_free()
 		canbake = false
 		Global.navibake.disconnect(bakenavi)
-		
-		add_to_group("roomsfordelete")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -144,10 +142,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		#autodelete = false
 		#isplayerbeeninroom = true
 		canbake = true
-		bakenavi()
+		#bakenavi()
 		Global.navibake.connect(bakenavi)
-		
-		remove_from_group("roomsfordelete")
 		
 		if isendroom1:
 			var env: WorldEnvironment = get_parent().get_node("WorldEnvironment")
@@ -203,6 +199,7 @@ func bakenavi():
 	await get_tree().physics_frame
 	if !isendroom1:
 		$NavigationRegion3D.bake_navigation_mesh()
+		await $NavigationRegion3D.bake_finished
 
 func camzoneNentered(body):
 	if body.is_in_group("player"):

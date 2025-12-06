@@ -16,6 +16,12 @@ extends Node3D
 }
 @export var loadrooms: int = 45
 var lastroom: int = 1
+var grooms = [
+	$startroom1,
+	$startroom2,
+	$startroom3,
+	$startroom4
+]
 
 
 func _ready():
@@ -39,8 +45,19 @@ func _ready():
 	#$navi.bake_navigation_mesh()
 	await get_tree().physics_frame
 	
+	o = 0
+	for i in grooms:
+		if i != null:
+			if i.has_node("NavigationRegion3D") and i.get_node("NavigationRegion3D") is NavigationRegion3D:
+				var navi: NavigationRegion3D = i.get_node("NavigationRegion3D")
+				navi.navigation_mesh = preload("res://navimesh/navimesh1.tres").duplicate()
+				navi.bake_navigation_mesh()
+				await navi.bake_finished
+			o += 1
+			$CanvasLayer/Label.text = "Generate Nav Meshes.. (" + str(o) + "/" + str(len(grooms)-1) + ")"
+	
 	$CanvasLayer/Label.text = "Please, wait one more second."
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
@@ -52,6 +69,8 @@ func _ready():
 	
 	$notification.display("Сейчас играет - Run!", "автор музыки:
 	WatewrFlame", load("res://sprites/icon2.png"), 3)
+	
+	add_to_group("world")
 
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, rooms.size())
@@ -70,6 +89,8 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		nextroom.position = $spawnnextroom.position
 		add_child(nextroom)
 		
+		grooms.push_back(nextroom)
+		
 		roompos = nextroom.getsize()
 	elif !randomroom and scenesroom:
 		var sroom: Node3D = scenesroom.instantiate()
@@ -79,6 +100,3 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		roompos = sroom.getsize()
 	
 	$spawnnextroom.position -= roompos
-
-func _exit_tree() -> void:
-	queue_free()

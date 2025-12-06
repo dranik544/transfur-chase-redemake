@@ -49,7 +49,7 @@ func hit(damage: float):
 	if !get_tree(): return
 	var player = get_tree().get_first_node_in_group("player")
 	if canhit:
-		if global_position.distance_to(player.global_position) < 1.5:
+		if global_position.distance_to(player.global_position) < 1.8:
 			canhit = false
 			hp -= damage
 			$door1/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
