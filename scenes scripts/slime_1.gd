@@ -43,3 +43,15 @@ func _on_timer_timeout() -> void:
 		tween.tween_property($Sprite3D, "scale", Vector3(0.0, 0.0, 0.0), randf_range(0.5, 2.0))
 		await tween.finished
 		queue_free()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		if !body.isslide:
+			body.minushealth(0.5)
+			body.speed -= randf_range(5, 6)
+			touched()
+			
+			body.oneshot = false
+			
+			body.startshake(20, 0.05)

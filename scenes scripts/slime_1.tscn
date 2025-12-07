@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://buyy3kfg4llnn"]
+[gd_scene load_steps=6 format=3 uid="uid://buyy3kfg4llnn"]
 
 [ext_resource type="Texture2D" uid="uid://d2ld5jbod2lqy" path="res://sprites/slime5.png" id="1_2bvpc"]
 [ext_resource type="Script" uid="uid://tx11v4qy0lc7" path="res://scenes scripts/slime_1.gd" id="1_vh1o2"]
@@ -8,9 +8,12 @@
 height = 0.15
 radius = 0.6
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n56ou"]
+height = 1.0
+
 [node name="slime1" type="StaticBody3D" groups=["slime"]]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 20
 script = ExtResource("1_vh1o2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -31,4 +34,12 @@ wait_time = 2.5
 stream = ExtResource("3_n56ou")
 volume_db = 2.0
 
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_n56ou")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
