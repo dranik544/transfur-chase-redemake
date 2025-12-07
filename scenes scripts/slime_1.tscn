@@ -5,13 +5,15 @@
 [ext_resource type="AudioStream" uid="uid://dxtrijvnpdlgd" path="res://sounds music/water_step.ogg" id="3_n56ou"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vh1o2"]
-height = 0.1
+height = 0.15
+radius = 0.6
 
 [node name="slime1" type="StaticBody3D" groups=["slime"]]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_vh1o2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00415134, -5.96046e-08, -0.0019269)
 shape = SubResource("CylinderShape3D_vh1o2")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

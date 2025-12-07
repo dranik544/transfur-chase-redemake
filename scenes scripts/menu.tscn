@@ -2394,7 +2394,9 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "управление"
+text = "
+
+управление"
 vertical_alignment = 1
 
 [node name="cammode" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2409,6 +2411,30 @@ theme_override_font_sizes/font_size = 18
 button_pressed = true
 text = "камера \"от комнаты
 к комнате\""
+
+[node name="gameplay" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 32
+text = "
+
+геймплей"
+vertical_alignment = 1
+
+[node name="betterai" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+button_pressed = true
+text = "умный ИИ врагов"
 
 [node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
 visible = false

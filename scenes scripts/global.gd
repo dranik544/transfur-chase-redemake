@@ -78,7 +78,8 @@ var settings = {
 	"beauty": true,
 	"cammode": true,
 	"shakescreen": true,
-	"light": true
+	"light": true,
+	"betterai": false
 }
 
 signal navibake()

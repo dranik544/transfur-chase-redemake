@@ -43,6 +43,16 @@ func _ready():
 	if autoSize:
 		manualSize.x = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x
 	
+	if $NavigationRegion3D is NavigationRegion3D:
+		var navmesh = $NavigationRegion3D.navigation_mesh
+		if navmesh:
+			if Global.settings["betterai"]:
+				navmesh.cell_size = 0.1
+				navmesh.cell_height = 0.35
+			else:
+				navmesh.cell_size = 0.35
+				navmesh.cell_height = 0.8
+	
 	$Timer.queue_free()
 	
 	if RandomBox:

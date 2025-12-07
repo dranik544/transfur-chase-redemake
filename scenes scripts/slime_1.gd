@@ -15,6 +15,7 @@ var n: float = 0.5
 func _ready() -> void:
 	$Sprite3D.texture = slimesprites[randi_range(1, 3)]
 	speed = randf_range(1.75, 3.5)
+	add_to_group("slime")
 
 func _process(delta):
 	time += delta

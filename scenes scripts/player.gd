@@ -352,6 +352,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("slime") and !isslide:
+		minushealth(0.5)
+		speed -= randf_range(4.0, 5.0)
+		body.touched()
+		
+		oneshot = false
+		
+		startshake(20, 0.05)
 	if body.is_in_group("enemy"):
 		minushealth(1.0)
 		Global.hitsfromenemies -= 1
@@ -385,14 +393,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		slidespeedminus -= randf_range(1.0, 2.5)
 		
 		startshake(30, 0.2)
-	if body.is_in_group("slime") and !isslide:
-		minushealth(0.5)
-		speed -= randf_range(4.0, 5.0)
-		body.touched()
-		
-		oneshot = false
-		
-		startshake(20, 0.05)
 
 func minushealth(num):
 	health -= num

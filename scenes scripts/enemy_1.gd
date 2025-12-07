@@ -19,8 +19,8 @@ var sleepanim = "sleep"
 var isfemale = false
 var playerinarea = false
 
-@export var health: float = 4.0
-var curhealth: float = 4.0
+@export var health: float = 5.0
+var curhealth: float = 5.0
 
 enum STATE {SLEEP, ACTIVE, PUNCH, STUNNED}
 var curstate: STATE = STATE.SLEEP
@@ -44,6 +44,7 @@ func _ready():
 		runanim = "run newyear"
 		sleepanim = "sleep newyear"
 	
+	if $Timer: $Timer.wait_time = 4.0
 	curhealth = health
 	
 	curstate = STATE.SLEEP
@@ -161,11 +162,10 @@ func _physics_process(delta):
 		
 		STATE.STUNNED:
 			velocity = Vector3.ZERO
-			$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-			$Sprite3D.rotation.x = deg_to_rad(-90.0)
 	
-	if global_position.y != 0.9:
-		global_position.y = 0.9
+	if curstate != STATE.STUNNED:
+		if global_position.y != 0.9:
+			global_position.y = 0.9
 	
 	move_and_slide()
 
@@ -198,12 +198,9 @@ func punching():
 		player.startshake(15, 0.2)
 	
 	curhealth -= 1.0
+	
 	if curhealth <= 0:
-		curstate = STATE.STUNNED
-		remove_from_group("unsleep enemy")
-		$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-		$Sprite3D.rotation.x = -90.0
-		return
+		stunn()
 	
 	var timer = 0.0
 	while timer < 0.3:
@@ -213,8 +210,21 @@ func punching():
 			await get_tree().create_timer(0.01).timeout
 		timer += 0.01
 	
-	curstate = STATE.ACTIVE
-	targetpos(player.global_transform.origin)
+	if curhealth > 0:
+		curstate = STATE.ACTIVE
+		targetpos(player.global_transform.origin)
+
+func stunn():
+	if not ismimic:
+		set_collision_layer_value(2, false)
+		set_collision_mask_value(2, false)
+	
+	curstate = STATE.STUNNED
+	remove_from_group("unsleep enemy")
+	$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	$Sprite3D.rotation.x = deg_to_rad(-90.0)
+	$Sprite3D.stop()
+	$Sprite3D.position.y = randf_range(-0.6, -0.7)
 
 func areaplayerentered(body):
 	if body.is_in_group("player"):
