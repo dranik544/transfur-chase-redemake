@@ -6,9 +6,7 @@ extends CharacterBody3D
 @export var ismimic = false
 @export var isblackenemy = false
 
-var canmove = false
 var canpunch = true
-var canunsleep = false
 var curspeed = 3.5
 var speeddist = 0.0
 var framess = 0.0
@@ -19,12 +17,12 @@ var timessl = 475.0
 var runanim = "run"
 var sleepanim = "sleep"
 var isfemale = false
-var isactive = false
+var playerinarea = false
 
 @export var health: float = 4.0
 var curhealth: float = 4.0
 
-enum STATE {ACTIVE, SLEEP, PUNCH, STUNNED}
+enum STATE {SLEEP, ACTIVE, PUNCH, STUNNED}
 var curstate: STATE = STATE.SLEEP
 
 func _ready():
@@ -32,6 +30,7 @@ func _ready():
 	$Area3D.body_entered.connect(areaplayerentered)
 	$Area3D.body_exited.connect(areaplayerexited)
 	Global.punchpl.connect(punching)
+	$Timer.timeout.connect(timertimeout)
 	
 	if randomspawn != 0 and randi_range(0, randomspawn) != randomspawn:
 		queue_free()
@@ -47,116 +46,164 @@ func _ready():
 	
 	curhealth = health
 	
-	sleep()
+	curstate = STATE.SLEEP
+	$Sprite3D.play(sleepanim)
+	velocity = Vector3.ZERO
 
 func _physics_process(delta):
+	if !get_tree(): return
 	var player = get_tree().get_first_node_in_group("player")
 	if !player:
 		return
-	var playerdist = global_position.distance_to(player.global_position)
 	
-	if canmove:
-		speeddist = clampf(0.0 + playerdist / nerf, 0.0, 25.0)
-		if playerdist / nerf > 32.5:
-			queue_free()
-	
-	if player.velocity.length() > 2.1 and canunsleep and curstate == STATE.SLEEP:
-		unsleep()
-	
-	if canmove:
-		var nextloc = $NavigationAgent3D.get_next_path_position()
-		var curloc = global_transform.origin
-		var newvelocity = (nextloc - curloc).normalized() * curspeed
+	match curstate:
+		STATE.SLEEP:
+			velocity = Vector3.ZERO
+			$Sprite3D.play(sleepanim)
+			
+			if playerinarea and player.velocity.length() > 2.1:
+				curstate = STATE.ACTIVE
+				$AnimationPlayer.play("its colin!")
+				await $AnimationPlayer.animation_finished
+				add_to_group("unsleep enemy")
+				Global.unsleepenemies += 1
+				checkenemies()
+				canpunch = true
 		
-		velocity = velocity.move_toward(newvelocity, 0.5)
-		move_and_slide()
-		
-		if velocity.length() > 0:
-			$Sprite3D.play(runanim)
-			$Sprite3D.flip_h = velocity.x < 0
-			$Sprite3D.speed_scale = velocity.length() / 5
-		
-		if velocity.length() < 0.7 and playerdist > 1.5:
-			framess += 1
-			framessl += 1
-			$wha.visible = true
-			$NavigationAgent3D.simplify_path = true
+		STATE.ACTIVE:
+			var playerdist = global_position.distance_to(player.global_position)
 			
-			if not ismimic:
-				set_collision_layer_value(2, false)
-				set_collision_mask_value(2, false)
+			speeddist = clampf(0.0 + playerdist / nerf, 0.0, 25.0)
+			if playerdist / nerf > 32.5:
+				queue_free()
 			
-			if playerdist > 5:
-				set_collision_mask_value(1, false)
+			var nextloc = $NavigationAgent3D.get_next_path_position()
+			var curloc = global_transform.origin
+			var newvelocity = (nextloc - curloc).normalized() * curspeed
 			
-			curspeed += 1.0
-			var direction = (global_position - player.global_position).normalized()
+			velocity = velocity.move_toward(newvelocity, 0.5)
 			
-			if framess > timess:
-				velocity += direction * ultratuffpower
-				framess = 0
-				ultratuffpower += 0.75
-				timess = clamp(timess - 2, 20, 80)
+			if velocity.length() > 0:
+				$Sprite3D.play(runanim)
+				$Sprite3D.flip_h = velocity.x < 0
+				$Sprite3D.speed_scale = velocity.length() / 5
+			else:
+				$Sprite3D.play(runanim)
+				$Sprite3D.speed_scale = 1.0
 			
-			if framessl > timessl:
-				velocity += direction * ultratuffpower * 2
-				set_collision_mask_value(1, false)
-				await get_tree().create_timer(2.5).timeout
+			if velocity.length() < 0.7 and playerdist > 1.5:
+				framess += 1
+				framessl += 1
+				$wha.visible = true
+				$NavigationAgent3D.simplify_path = true
+				
+				if not ismimic:
+					set_collision_layer_value(2, false)
+					set_collision_mask_value(2, false)
+				
+				if playerdist > 5:
+					set_collision_mask_value(1, false)
+				
+				curspeed += 1.0
+				var direction = (global_position - player.global_position).normalized()
+				
+				if framess > timess:
+					velocity += direction * ultratuffpower
+					framess = 0
+					ultratuffpower += 0.75
+					timess = clamp(timess - 2, 20, 80)
+				
+				if framessl > timessl:
+					velocity += direction * ultratuffpower * 2
+					set_collision_mask_value(1, false)
+					await get_tree().create_timer(2.5).timeout
+					framessl = 0
+					framess = 0
+					timess = 55
+					curstate = STATE.SLEEP
+					remove_from_group("unsleep enemy")
+					playerinarea = false
+					$Sprite3D.play(sleepanim)
+					velocity = Vector3.ZERO
+			elif velocity.length() > 0.7:
+				$NavigationAgent3D.simplify_path = false
+				if ismimic:
+					set_collision_layer_value(4, true)
+				else:
+					set_collision_layer_value(2, true)
+					set_collision_mask_value(2, true)
+					set_collision_mask_value(1, true)
+				
 				framessl = 0
 				framess = 0
 				timess = 55
-				sleep()
-		elif velocity.length() > 0.7:
-			$NavigationAgent3D.simplify_path = false
-			if ismimic:
-				set_collision_layer_value(4, true)
-			else:
-				set_collision_layer_value(2, true)
-				set_collision_mask_value(2, true)
-				set_collision_mask_value(1, true)
+				ultratuffpower = 6.0
+				$wha.visible = false
 			
-			framessl = 0
-			framess = 0
-			timess = 55
-			ultratuffpower = 6.0
-			$wha.visible = false
+			curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
+			
+			targetpos(player.global_transform.origin)
+		
+		STATE.PUNCH:
+			velocity = velocity.lerp(Vector3.ZERO, 0.1 * delta * 60)
+			$wha.visible = true
+			
+			if velocity.length() < 0.5:
+				curstate = STATE.ACTIVE
+				$wha.visible = false
+				if ismimic:
+					set_collision_layer_value(4, true)
+				else:
+					set_collision_layer_value(2, true)
+					set_collision_mask_value(2, true)
+				
+				$Timer.start()
+		
+		STATE.STUNNED:
+			velocity = Vector3.ZERO
+			$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+			$Sprite3D.rotation.x = deg_to_rad(-90.0)
 	
 	if global_position.y != 0.9:
 		global_position.y = 0.9
 	
-	curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
-	
-	if player and canmove:
-		targetpos(player.global_transform.origin)
+	move_and_slide()
 
 func punching():
-	if !get_tree(): return
+	if !get_tree() or !canpunch or curstate == STATE.STUNNED or curstate == STATE.SLEEP:
+		return
+	
 	var player = get_tree().get_first_node_in_group("player")
-	if !player or !canpunch or global_position.distance_to(player.global_position) > 2.5:
+	if !player or global_position.distance_to(player.global_position) > 2.5:
 		return
 	
 	curstate = STATE.PUNCH
 	canpunch = false
+	
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(4, false)
 	set_collision_mask_value(2, false)
 	set_collision_mask_value(4, false)
 	
-	canmove = false
 	var direction = (global_position - player.global_position).normalized()
 	velocity = direction * 8.5
-	move_and_slide()
+	
 	$wha.visible = true
 	if $punch:
 		$punch.play()
 	if $effect1:
 		$effect1.play()
+	
 	if player:
 		player.startshake(15, 0.2)
 	
 	curhealth -= 1.0
 	if curhealth <= 0:
-		stunned()
+		curstate = STATE.STUNNED
+		remove_from_group("unsleep enemy")
+		$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+		$Sprite3D.rotation.x = -90.0
+		return
 	
 	var timer = 0.0
 	while timer < 0.3:
@@ -166,66 +213,36 @@ func punching():
 			await get_tree().create_timer(0.01).timeout
 		timer += 0.01
 	
-	$wha.visible = false
-	if ismimic:
-		set_collision_layer_value(4, true)
-	else:
-		set_collision_layer_value(2, true)
-		set_collision_mask_value(2, true)
-	
-	canmove = true
-	
-	if curstate == STATE.PUNCH:
-		curstate = STATE.ACTIVE
-	
-	$Timer.start()
-	targetpos(get_tree().get_first_node_in_group("player").global_transform.origin)
+	curstate = STATE.ACTIVE
+	targetpos(player.global_transform.origin)
+
+func areaplayerentered(body):
+	if body.is_in_group("player"):
+		playerinarea = true
+
+func areaplayerexited(body):
+	if body.is_in_group("player"):
+		playerinarea = false
+		if curstate == STATE.SLEEP:
+			pass
+		elif curstate == STATE.ACTIVE:
+			var player = get_tree().get_first_node_in_group("player")
+			if player and global_position.distance_to(player.global_position) > 10.0:
+				curstate = STATE.SLEEP
+				remove_from_group("unsleep enemy")
+				$Sprite3D.play(sleepanim)
+				velocity = Vector3.ZERO
+
+func targetpos(target):
+	$NavigationAgent3D.set_target_position(target)
 
 func exitfromvent():
 	curstate = STATE.ACTIVE
 	add_to_group("unsleep enemy")
-	canmove = true
-	canunsleep = false
+	canpunch = true
 	Global.unsleepenemies += 1
 	$AnimationPlayer.play("RESET")
 	checkenemies()
-
-func sleep():
-	if curstate == STATE.ACTIVE:
-		curstate = STATE.SLEEP
-		remove_from_group("unsleep enemy")
-	
-	canmove = false
-	canunsleep = false
-	velocity = Vector3.ZERO
-	$AnimationPlayer.play("sleep")
-	$Sprite3D.play(sleepanim)
-
-func unsleep():
-	if curstate == STATE.ACTIVE:
-		return
-	
-	curstate = STATE.ACTIVE
-	canunsleep = false
-	$AnimationPlayer.play("its colin!")
-	await $AnimationPlayer.animation_finished
-	canmove = true
-	add_to_group("unsleep enemy")
-	Global.unsleepenemies += 1
-	checkenemies()
-
-func areaplayerentered(body):
-	if body.is_in_group("player") and curstate != STATE.ACTIVE:
-		canunsleep = true
-
-func areaplayerexited(body):
-	if body.is_in_group("player") and curstate != STATE.ACTIVE:
-		sleep()
-		canunsleep = false
-
-func targetpos(target):
-	await get_tree().create_timer(0.15).timeout
-	$NavigationAgent3D.set_target_position(target)
 
 func checkenemies():
 	var enemies = get_tree().get_nodes_in_group("unsleep enemy")
@@ -238,13 +255,5 @@ func checkenemies():
 			if i < enemies.size():
 				enemies[i].queue_free()
 
-func stunned():
-	curstate = STATE.STUNNED
-	canmove = false
-	canunsleep = false
-	$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-	$Sprite3D.rotation.x = -90.0
-	
-
-func _on_timer_timeout():
+func timertimeout():
 	canpunch = true
