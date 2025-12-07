@@ -109,6 +109,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		freecam = true
+	if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn") #res://doskapochteniya.tscn", Color.SLATE_GRAY, 0.2)
 	
 	if camfollow:
 		centercam.global_position = lerp(centercam.global_position, global_position, 6 * delta)

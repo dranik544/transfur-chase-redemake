@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck3yfi3tyqs1y"]
+
+[ext_resource type="Texture2D" uid="uid://cuf2wv5u6ibaq" path="res://sprites/КРАЙНЕ ПОТУЖНО.png" id="1_bxonb"]
+[ext_resource type="Texture2D" uid="uid://d2iuncm68hao4" path="res://sprites/ЖИРНЕЙШИЙ ПИДОР.png" id="2_xm7l3"]
+
+[node name="doskapochteniya" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 295.0
+offset_right = 259.0
+offset_bottom = 479.0
+texture = ExtResource("1_bxonb")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 19.0
+offset_top = -10.0
+offset_right = 640.0
+offset_bottom = 274.0
+texture = ExtResource("2_xm7l3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 305.0
+offset_top = 306.0
+offset_right = 345.0
+offset_bottom = 329.0
+text = "САМЫЙ ЖИРНЫЙ УЕБАН СВЕРХУ
+Ъ
+И СПАРВАВ"
