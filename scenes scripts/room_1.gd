@@ -47,11 +47,15 @@ func _ready():
 		var navmesh = $NavigationRegion3D.navigation_mesh
 		if navmesh:
 			if Global.settings["betterai"]:
-				navmesh.cell_size = 0.1
-				navmesh.cell_height = 0.35
+				navmesh.cell_size = 0.15
+				navmesh.cell_height = 0.1
+				navmesh.agent_radius = 0.4
+				navmesh.vertices_per_polygon = 6
 			else:
 				navmesh.cell_size = 0.35
 				navmesh.cell_height = 0.8
+				navmesh.agent_radius = 0.4
+				navmesh.vertices_per_polygon = 3
 	
 	$Timer.queue_free()
 	

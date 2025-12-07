@@ -79,7 +79,7 @@ var settings = {
 	"cammode": true,
 	"shakescreen": true,
 	"light": true,
-	"betterai": false
+	"betterai": false,
 }
 
 signal navibake()
@@ -93,6 +93,8 @@ func _ready() -> void:
 	var now = Time.get_datetime_dict_from_system()
 	iswinter = now.month == Time.Month.MONTH_DECEMBER or now.month == Time.Month.MONTH_JANUARY
 	
+	print(settings)
+	
 	if SavingManager.load("skins") == null:
 		SavingManager.save("skins", colinskin)
 	if SavingManager.load("skinlist") == null:
@@ -105,9 +107,11 @@ func _ready() -> void:
 		SavingManager.save("achievements", achievements)
 	if SavingManager.load("generalstats") == null:
 		SavingManager.save("generalstats", generalstats)
-	if SavingManager.load("settings") == null or settings.size() < SavingManager.load("settings").size():
+	if SavingManager.load("settings") == null or settings.size() != SavingManager.load("settings").size():
 		SavingManager.save("settings", settings)
 	colinskin = SavingManager.load("skins")
+	
+	print(settings)
 	
 	if SavingManager.load("skinlist") != null:
 		for i in range(listskins.size()):
