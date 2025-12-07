@@ -21,6 +21,12 @@ var sleepanim = "sleep"
 var isfemale = false
 var isactive = false
 
+@export var health: float = 4.0
+var curhealth: float = 4.0
+
+enum STATE {ACTIVE, SLEEP, PUNCH, STUNNED}
+var curstate: STATE = STATE.SLEEP
+
 func _ready():
 	add_to_group("enemy")
 	$Area3D.body_entered.connect(areaplayerentered)
@@ -39,7 +45,8 @@ func _ready():
 		runanim = "run newyear"
 		sleepanim = "sleep newyear"
 	
-	sleep()
+	curhealth = health
+	
 	sleep()
 
 func _physics_process(delta):
@@ -53,7 +60,7 @@ func _physics_process(delta):
 		if playerdist / nerf > 32.5:
 			queue_free()
 	
-	if player.velocity.length() > 2.1 and canunsleep and !isactive:
+	if player.velocity.length() > 2.1 and canunsleep and curstate == STATE.SLEEP:
 		unsleep()
 	
 	if canmove:
@@ -128,6 +135,7 @@ func punching():
 	if !player or !canpunch or global_position.distance_to(player.global_position) > 2.5:
 		return
 	
+	curstate = STATE.PUNCH
 	canpunch = false
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(4, false)
@@ -139,6 +147,16 @@ func punching():
 	velocity = direction * 8.5
 	move_and_slide()
 	$wha.visible = true
+	if $punch:
+		$punch.play()
+	if $effect1:
+		$effect1.play()
+	if player:
+		player.startshake(15, 0.2)
+	
+	curhealth -= 1.0
+	if curhealth <= 0:
+		stunned()
 	
 	var timer = 0.0
 	while timer < 0.3:
@@ -156,11 +174,15 @@ func punching():
 		set_collision_mask_value(2, true)
 	
 	canmove = true
+	
+	if curstate == STATE.PUNCH:
+		curstate = STATE.ACTIVE
+	
 	$Timer.start()
 	targetpos(get_tree().get_first_node_in_group("player").global_transform.origin)
 
 func exitfromvent():
-	isactive = true
+	curstate = STATE.ACTIVE
 	add_to_group("unsleep enemy")
 	canmove = true
 	canunsleep = false
@@ -169,8 +191,8 @@ func exitfromvent():
 	checkenemies()
 
 func sleep():
-	if isactive:
-		isactive = false
+	if curstate == STATE.ACTIVE:
+		curstate = STATE.SLEEP
 		remove_from_group("unsleep enemy")
 	
 	canmove = false
@@ -180,10 +202,10 @@ func sleep():
 	$Sprite3D.play(sleepanim)
 
 func unsleep():
-	if isactive:
+	if curstate == STATE.ACTIVE:
 		return
 	
-	isactive = true
+	curstate = STATE.ACTIVE
 	canunsleep = false
 	$AnimationPlayer.play("its colin!")
 	await $AnimationPlayer.animation_finished
@@ -193,11 +215,11 @@ func unsleep():
 	checkenemies()
 
 func areaplayerentered(body):
-	if body.is_in_group("player") and !isactive:
+	if body.is_in_group("player") and curstate != STATE.ACTIVE:
 		canunsleep = true
 
 func areaplayerexited(body):
-	if body.is_in_group("player") and !isactive:
+	if body.is_in_group("player") and curstate != STATE.ACTIVE:
 		sleep()
 		canunsleep = false
 
@@ -215,6 +237,14 @@ func checkenemies():
 		for i in range(enemies.size() - 10):
 			if i < enemies.size():
 				enemies[i].queue_free()
+
+func stunned():
+	curstate = STATE.STUNNED
+	canmove = false
+	canunsleep = false
+	$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	$Sprite3D.rotation.x = -90.0
+	
 
 func _on_timer_timeout():
 	canpunch = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cutw3d7h6xf8y"]
+[gd_scene load_steps=39 format=3 uid="uid://cutw3d7h6xf8y"]
 
 [ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_cbs1w"]
 [ext_resource type="Material" uid="uid://dxt76l4k84upw" path="res://materials/box_1.tres" id="2_1b53v"]
@@ -10,8 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="8_oumjp"]
 [ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="9_7cipx"]
 [ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="10_e8x1w"]
-[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="11_cf6kb"]
 [ext_resource type="Texture2D" uid="uid://ceetneqox2chf" path="res://sprites/box3.png" id="12_1b53v"]
+[ext_resource type="AudioStream" uid="uid://cl4t1c72nwk4m" path="res://sounds music/latexpunch3.mp3" id="12_ornni"]
+[ext_resource type="Script" uid="uid://bfi564sn20v5w" path="res://scenes scripts/effect_1.gd" id="13_a2i1v"]
+[ext_resource type="Texture2D" uid="uid://kbmbufy8at43" path="res://sprites/boxeffect1.png" id="14_gerhv"]
+[ext_resource type="Texture2D" uid="uid://cm88bv01c07ad" path="res://sprites/icon8.png" id="15_j110a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
 radius = 0.36
@@ -195,6 +198,72 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Curve" id="Curve_oumjp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.989726, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jp87"]
+curve = SubResource("Curve_oumjp")
+
+[sub_resource type="Curve" id="Curve_7cipx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34589, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3xin0"]
+curve = SubResource("Curve_7cipx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e8x1w"]
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+damping_max = 0.5
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3xin0")
+alpha_curve = SubResource("CurveTexture_6jp87")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jp87"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("15_j110a")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_cf6kb"]
+material = SubResource("StandardMaterial3D_6jp87")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_ckxts"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.517123, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ctbcx"]
+curve = SubResource("Curve_ckxts")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fx5iq"]
+particle_flag_align_y = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ctbcx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv003"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8f63w"]
+material = SubResource("StandardMaterial3D_mv003")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 4
+
 [node name="enemy2" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 9
@@ -280,12 +349,39 @@ sprite_frames = SubResource("SpriteFrames_nulj7")
 autoplay = "default"
 frame_progress = 0.299114
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_cf6kb")
+[node name="punch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_ornni")
 volume_db = 5.0
 max_db = 6.0
+script = ExtResource("5_a2i1v")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="effect1" type="Node3D" parent="."]
+script = ExtResource("13_a2i1v")
+effecttexture = ExtResource("14_gerhv")
+amounttexture = 8
+coloreffect = Color(0.753292, 0.553002, 0.294087, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e8x1w")
+draw_pass_1 = SubResource("QuadMesh_cf6kb")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fx5iq")
+draw_pass_1 = SubResource("CylinderMesh_8f63w")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

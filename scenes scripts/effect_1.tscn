@@ -7,14 +7,14 @@
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.989726, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_6jp87"]
+[sub_resource type="CurveTexture" id="CurveTexture_5rmb1"]
 curve = SubResource("Curve_ebgmw")
 
 [sub_resource type="Curve" id="Curve_6jp87"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34589, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_3xin0"]
+[sub_resource type="CurveTexture" id="CurveTexture_a5i1j"]
 curve = SubResource("Curve_6jp87")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebgmw"]
@@ -26,10 +26,10 @@ gravity = Vector3(0, 0, 0)
 damping_max = 0.5
 scale_min = 0.1
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_3xin0")
-alpha_curve = SubResource("CurveTexture_6jp87")
+scale_curve = SubResource("CurveTexture_a5i1j")
+alpha_curve = SubResource("CurveTexture_5rmb1")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jp87"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf8ce"]
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("1_gyygj")
@@ -38,14 +38,14 @@ billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_3xin0"]
-material = SubResource("StandardMaterial3D_6jp87")
+material = SubResource("StandardMaterial3D_gf8ce")
 size = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_3xin0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.517123, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ctbcx"]
+[sub_resource type="CurveTexture" id="CurveTexture_7850t"]
 curve = SubResource("Curve_3xin0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u024r"]
@@ -58,13 +58,13 @@ initial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_ctbcx")
+scale_curve = SubResource("CurveTexture_7850t")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv003"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi44p"]
 shading_mode = 0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e5cc2"]
-material = SubResource("StandardMaterial3D_mv003")
+material = SubResource("StandardMaterial3D_hi44p")
 top_radius = 0.1
 bottom_radius = 0.0
 radial_segments = 4

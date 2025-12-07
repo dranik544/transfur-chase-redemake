@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://47uaksceiu82"]
+[gd_scene load_steps=34 format=3 uid="uid://47uaksceiu82"]
 
 [ext_resource type="Script" uid="uid://btjp6fcx1p017" path="res://scenes scripts/enemy_1.gd" id="1_u4cxp"]
 [ext_resource type="SpriteFrames" uid="uid://cpntew6wwupps" path="res://skins/enemy_2_loc_sprite.tres" id="2_u4cxp"]
@@ -10,7 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://weo1i13molnq" path="res://sprites/noirealdontknowwhereilocated2.png" id="8_ch1xs"]
 [ext_resource type="Texture2D" uid="uid://p13eqdddi4nb" path="res://sprites/noirealdontknowwhereilocated3.png" id="9_sph3f"]
 [ext_resource type="Texture2D" uid="uid://b2qtkyntkg850" path="res://sprites/noirealdontknowwhereilocated4.png" id="10_c3rke"]
-[ext_resource type="AudioStream" uid="uid://co84tqcetfm4v" path="res://sounds music/paladin weapon.mp3" id="11_yx5yd"]
+[ext_resource type="AudioStream" uid="uid://cl4t1c72nwk4m" path="res://sounds music/latexpunch3.mp3" id="11_u4cxp"]
+[ext_resource type="Script" uid="uid://bfi564sn20v5w" path="res://scenes scripts/effect_1.gd" id="12_ks1xg"]
+[ext_resource type="Texture2D" uid="uid://c3llgeyap0b5a" path="res://sprites/icon10.png" id="13_ei8dj"]
+[ext_resource type="Texture2D" uid="uid://cm88bv01c07ad" path="res://sprites/icon8.png" id="14_8gh0d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aut8l"]
 radius = 0.36
@@ -166,6 +169,72 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Curve" id="Curve_0uhga"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.989726, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ch1xs"]
+curve = SubResource("Curve_0uhga")
+
+[sub_resource type="Curve" id="Curve_sph3f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34589, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c3rke"]
+curve = SubResource("Curve_sph3f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yx5yd"]
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+damping_max = 0.5
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_c3rke")
+alpha_curve = SubResource("CurveTexture_ch1xs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3643k"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("14_8gh0d")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_6iewy"]
+material = SubResource("StandardMaterial3D_3643k")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_w5sew"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.517123, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3anti"]
+curve = SubResource("Curve_w5sew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t2p3d"]
+particle_flag_align_y = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3anti")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvxw7"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3jttq"]
+material = SubResource("StandardMaterial3D_kvxw7")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 4
+
 [node name="enemy3" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 3
@@ -187,7 +256,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)
 shape = SubResource("CapsuleShape3D_aut8l")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, 0, 0)
 billboard = 1
 shaded = true
 alpha_cut = 1
@@ -243,12 +312,39 @@ sprite_frames = SubResource("SpriteFrames_nulj7")
 autoplay = "default"
 frame_progress = 0.299114
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_yx5yd")
+[node name="punch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_u4cxp")
 volume_db = 5.0
 max_db = 6.0
+script = ExtResource("5_ei8dj")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="effect1" type="Node3D" parent="."]
+script = ExtResource("12_ks1xg")
+effecttexture = ExtResource("13_ei8dj")
+amounttexture = 8
+coloreffect = Color(0.148989, 0.156802, 0.152895, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yx5yd")
+draw_pass_1 = SubResource("QuadMesh_6iewy")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_t2p3d")
+draw_pass_1 = SubResource("CylinderMesh_3jttq")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
