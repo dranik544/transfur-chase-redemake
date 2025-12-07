@@ -223,6 +223,7 @@ func stunn():
 	remove_from_group("unsleep enemy")
 	$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	$Sprite3D.rotation.x = deg_to_rad(-90.0)
+	$Sprite3D.rotation.y = deg_to_rad(randf_range(-180, 180))
 	$Sprite3D.stop()
 	$Sprite3D.position.y = randf_range(-0.6, -0.7)
 
