@@ -75,6 +75,7 @@ _data = {
 size = Vector3(2, 2, 2)
 
 [node name="item1" type="RigidBody3D"]
+collision_layer = 0
 script = ExtResource("1_kbc05")
 selfsprite = ExtResource("2_7oafq")
 type = "Разбиваемый"

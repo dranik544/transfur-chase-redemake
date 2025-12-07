@@ -27,6 +27,8 @@ var itemscene: PackedScene
 var itemsprite: CompressedTexture2D
 var itemtype: String = "Тип предмета"
 var itemkg: float = 0.0
+var itempointstime: int = 0
+var itempointstimemax: int = 0
 @export var centercam: Node3D
 @export var cam: Camera3D
 var camfollow: bool = false
@@ -40,6 +42,7 @@ var isthereenemy: bool = false
 @export var shakeIfThereEnemy: float = 20
 var oneshot: bool = true
 var noslide: bool = true
+@export var damage: float = 1.0
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -86,8 +89,8 @@ func _unhandled_input(event):
 	camscalewheel = clampf(camscalewheel, -2.5, 9.0)
 	
 	if event.is_action_pressed("F"):
-		Global.punchpl.emit()
-		Global.hitdoor.emit(1)
+		Global.punchpl.emit(damage)
+		Global.hitdoor.emit(damage)
 	if event.is_action_pressed("E"): Global.pickupitem.emit(self)
 
 func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
@@ -197,28 +200,37 @@ func _physics_process(delta: float) -> void:
 	if isinv:
 		if itemsprite:
 			$gui/gui/invtexture.texture = itemsprite
-			$gui/gui/Label.text = itemtype
+			$gui/gui/Label.text = itemtype + " (" + str(itempointstime + 1) + "/" + str(itempointstimemax + 1) + ")"
 			#$gui/invtexture.scale = Vector2(2.0, 2.0)
 			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
 		if Input.is_action_just_pressed("LCM"):
-			if itemscene:
+			if itempointstime == 0:
+				if itemscene:
+					var item = itemscene.instantiate()
+					get_parent().add_child(item)
+					item.global_position = global_position
+					
+					item.use()
+					
+					#if item.ischangehp:
+						#health += item.changehp
+						#item.queue_free()
+					
+					itemsprite = null
+					$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
+					itemscene = null
+					itemkg = 0.0
+					itemtype = "Тип предмета"
+					$gui/gui/Label.text = itemtype
+					isinv = false
+			elif itempointstime > 0:
 				var item = itemscene.instantiate()
 				get_parent().add_child(item)
 				item.global_position = global_position
 				
 				item.use()
 				
-				#if item.ischangehp:
-					#health += item.changehp
-					#item.queue_free()
-				
-				itemsprite = null
-				$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
-				itemscene = null
-				itemkg = 0.0
-				itemtype = "Тип предмета"
-				$gui/gui/Label.text = itemtype
-				isinv = false
+				itempointstime -= 1
 	
 	if health < 3.0:
 		$gui/slime.position = slimebasepos + Vector2(

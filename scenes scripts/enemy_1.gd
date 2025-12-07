@@ -48,7 +48,8 @@ func _ready():
 	curhealth = health
 	
 	curstate = STATE.SLEEP
-	$Sprite3D.play(sleepanim)
+	if $Sprite3D.sprite_frames.has_animation(sleepanim):
+		$Sprite3D.play(sleepanim)
 	velocity = Vector3.ZERO
 
 func _physics_process(delta):
@@ -60,7 +61,8 @@ func _physics_process(delta):
 	match curstate:
 		STATE.SLEEP:
 			velocity = Vector3.ZERO
-			$Sprite3D.play(sleepanim)
+			if $Sprite3D.sprite_frames.has_animation(sleepanim):
+				$Sprite3D.play(sleepanim)
 			
 			if playerinarea and player.velocity.length() > 2.1:
 				curstate = STATE.ACTIVE
@@ -85,12 +87,13 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(newvelocity, 0.5)
 			
 			if velocity.length() > 0:
-				$Sprite3D.play(runanim)
 				$Sprite3D.flip_h = velocity.x < 0
 				$Sprite3D.speed_scale = velocity.length() / 5
 			else:
-				$Sprite3D.play(runanim)
 				$Sprite3D.speed_scale = 1.0
+			
+			if $Sprite3D.sprite_frames.has_animation(runanim):
+				$Sprite3D.play(runanim)
 			
 			if velocity.length() < 0.7 and playerdist > 1.5:
 				framess += 1
@@ -124,7 +127,8 @@ func _physics_process(delta):
 					curstate = STATE.SLEEP
 					remove_from_group("unsleep enemy")
 					playerinarea = false
-					$Sprite3D.play(sleepanim)
+					if $Sprite3D.sprite_frames.has_animation(sleepanim):
+						$Sprite3D.play(sleepanim)
 					velocity = Vector3.ZERO
 			elif velocity.length() > 0.7:
 				$NavigationAgent3D.simplify_path = false
@@ -169,7 +173,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func punching():
+func punching(damage: float):
 	if !get_tree() or !canpunch or curstate == STATE.STUNNED or curstate == STATE.SLEEP:
 		return
 	
@@ -197,7 +201,7 @@ func punching():
 	if player:
 		player.startshake(15, 0.2)
 	
-	curhealth -= 1.0
+	curhealth -= damage
 	
 	if curhealth <= 0:
 		stunn()
@@ -241,7 +245,8 @@ func areaplayerexited(body):
 			if player and global_position.distance_to(player.global_position) > 10.0:
 				curstate = STATE.SLEEP
 				remove_from_group("unsleep enemy")
-				$Sprite3D.play(sleepanim)
+				if $Sprite3D.sprite_frames.has_animation(sleepanim):
+					$Sprite3D.play(sleepanim)
 				velocity = Vector3.ZERO
 
 func targetpos(target):
@@ -251,7 +256,6 @@ func exitfromvent():
 	curstate = STATE.ACTIVE
 	add_to_group("unsleep enemy")
 	canpunch = true
-	Global.unsleepenemies += 1
 	$AnimationPlayer.play("RESET")
 	checkenemies()
 

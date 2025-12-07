@@ -84,7 +84,7 @@ var settings = {
 
 signal navibake()
 signal updatesoundandmusic()
-signal punchpl()
+signal punchpl(damage)
 signal hitdoor(damage)
 signal pickupitem(player)
 
@@ -92,8 +92,6 @@ signal pickupitem(player)
 func _ready() -> void:
 	var now = Time.get_datetime_dict_from_system()
 	iswinter = now.month == Time.Month.MONTH_DECEMBER or now.month == Time.Month.MONTH_JANUARY
-	
-	print(settings)
 	
 	if SavingManager.load("skins") == null:
 		SavingManager.save("skins", colinskin)
@@ -110,8 +108,6 @@ func _ready() -> void:
 	if SavingManager.load("settings") == null or settings.size() != SavingManager.load("settings").size():
 		SavingManager.save("settings", settings)
 	colinskin = SavingManager.load("skins")
-	
-	print(settings)
 	
 	if SavingManager.load("skinlist") != null:
 		for i in range(listskins.size()):
