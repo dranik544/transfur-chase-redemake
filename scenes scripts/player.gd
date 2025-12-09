@@ -43,6 +43,7 @@ var isthereenemy: bool = false
 var oneshot: bool = true
 var noslide: bool = true
 @export var damage: float = 1.0
+var itemdata = {}
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -176,6 +177,9 @@ func _physics_process(delta: float) -> void:
 			$sh.emitting = false
 	
 	if Input.is_action_pressed("CTRL"):
+		if itemdata.has("kg"):
+			itemkg = itemdata["kg"]
+		
 		if !isslide:
 			$CollisionShape3D2.disabled = false
 			await get_tree().physics_frame
@@ -183,6 +187,9 @@ func _physics_process(delta: float) -> void:
 		speed = lerp(speed, 2.5 - itemkg, 5 * delta)
 		taunt = true
 	else:
+		if itemdata.has("kg"):
+			itemkg = itemdata["kg"]
+		
 		if !$RayCast3D.is_colliding():
 			if !isslide:
 				$CollisionShape3D.disabled = false
@@ -191,47 +198,21 @@ func _physics_process(delta: float) -> void:
 			speed = lerp(speed, 6.0 - itemkg, 5 * delta)
 			taunt = false
 	
-	hit = Input.is_action_pressed("F")
-	pick = Input.is_action_pressed("E")
+	#hit = Input.is_action_pressed("F")
+	#pick = Input.is_action_pressed("E")
 	
 	#var camitem = get_viewport().get_camera_3d()
 	#var directionitem = -camitem.global_transform.basis.z
 	#var throwpos = (camitem.global_transform.basis.z / 0.75)
 	
 	if isinv:
-		if itemsprite:
-			$gui/gui/invtexture.texture = itemsprite
-			$gui/gui/Label.text = itemtype + " (" + str(itempointstime + 1) + "/" + str(itempointstimemax + 1) + ")"
+		if itemdata["sprite"] and itemdata["type"]:
+			$gui/gui/invtexture.texture = itemdata["sprite"]
+			$gui/gui/Label.text = itemtype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
 			#$gui/invtexture.scale = Vector2(2.0, 2.0)
 			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
 		if Input.is_action_just_pressed("LCM"):
-			if itempointstime == 0:
-				if itemscene:
-					var item = itemscene.instantiate()
-					get_parent().add_child(item)
-					item.global_position = global_position
-					
-					item.use()
-					
-					#if item.ischangehp:
-						#health += item.changehp
-						#item.queue_free()
-					
-					itemsprite = null
-					$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
-					itemscene = null
-					itemkg = 0.0
-					itemtype = "Тип предмета"
-					$gui/gui/Label.text = itemtype
-					isinv = false
-			elif itempointstime > 0:
-				var item = itemscene.instantiate()
-				get_parent().add_child(item)
-				item.global_position = global_position
-				
-				item.use()
-				
-				itempointstime -= 1
+			useitem()
 	
 	if health < 3.0:
 		$gui/slime.position = slimebasepos + Vector2(
@@ -374,18 +355,21 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		
 		startshake(20, 0.05)
 	if body.is_in_group("enemy"):
-		minushealth(1.0)
-		Global.hitsfromenemies -= 1
-		
-		var random = randi_range(1, 2)
-		match random:
-			1: $latexpunch.stream = latexpunchsound1
-			2: $latexpunch.stream = latexpunchsound2
-		$latexpunch.play()
-		
-		oneshot = false
-		
-		startshake(20, 0.1)
+		if itemdata.has("shieldenable"):
+			useitem()
+		else:
+			minushealth(1.0)
+			Global.hitsfromenemies -= 1
+			
+			var random = randi_range(1, 2)
+			match random:
+				1: $latexpunch.stream = latexpunchsound1
+				2: $latexpunch.stream = latexpunchsound2
+			$latexpunch.play()
+			
+			oneshot = false
+			
+			startshake(20, 0.1)
 	if body.is_in_group("small enemy"):
 		minushealth(0.25)
 		Global.hitsfromenemies -= 1
@@ -441,6 +425,35 @@ func _on_timer_timeout() -> void:
 func _on_slidetimer_timeout() -> void:
 	canslide = true
 	$gui/gui/slidebar/slidebar.visible = false
+
+func useitem():
+	if itemdata["pointstime"] <= 0:
+		if itemdata["scene"]:
+			var item = itemdata["scene"].instantiate()
+			get_parent().add_child(item)
+			item.global_position = global_position
+			
+			item.use()
+			
+			item.queue_free()
+			#if item.ischangehp:
+				#health += item.changehp
+				#item.queue_free()
+			
+			itemdata.clear()
+			$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
+			$gui/gui/Label.text = "Тип предмета"
+			isinv = false
+	elif itemdata["pointstime"] > 0:
+		var item = itemdata["scene"].instantiate()
+		get_parent().add_child(item)
+		item.global_position = global_position
+		
+		item.use()
+		
+		item.queue_free()
+		
+		itemdata["pointstime"] -= 1
 
 func updateskin():
 	match Global.colinskin:

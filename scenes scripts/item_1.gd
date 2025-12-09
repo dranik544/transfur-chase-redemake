@@ -7,7 +7,7 @@ extends RigidBody3D
 @export var type: String
 
 @export_category("types")
-enum TYPE {CHANGEHP, CHANGEDAMAGE}
+enum TYPE {CHANGEHP, CHANGEDAMAGE, SHIELD}
 @export var curtype: TYPE
 @export var changehp: int = 1
 @export var changedamage: float = 1.0
@@ -23,6 +23,8 @@ enum TYPE {CHANGEHP, CHANGEDAMAGE}
 @export var iamounttexture: int = 12
 @export var icoloreffect: Color = Color(1.0, 1.0, 1.0)
 
+var itemdata = {}
+
 
 func _ready():
 	if selfscene == null:
@@ -33,6 +35,15 @@ func _ready():
 	
 	if !istimed:
 		pointstime = 0
+	
+	itemdata["sprite"] = selfsprite
+	itemdata["scene"] = selfscene
+	itemdata["type"] = type
+	itemdata["kg"] = selfkg
+	itemdata["pointstime"] = pointstime
+	itemdata["pointstimemax"] = pointstime
+	if curtype == TYPE.SHIELD:
+		itemdata["shieldenable"] = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -49,17 +60,15 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func pick(player = get_tree().get_first_node_in_group("player")):
 	if global_position.distance_to(player.global_position) < 1.5:
 		player.isinv = true
-		player.itemsprite = selfsprite
-		player.itemscene = selfscene
-		player.itemtype = type
-		player.itemkg = selfkg
-		player.itempointstime = pointstime
-		player.itempointstimemax = pointstime
+		
+		player.itemdata = itemdata
 		
 		queue_free()
 
 func use(player = get_tree().get_first_node_in_group("player")):
 	if !player: return
+	
+	Global.useditems += 1
 	
 	match curtype:
 		TYPE.CHANGEHP:
@@ -69,8 +78,8 @@ func use(player = get_tree().get_first_node_in_group("player")):
 			Global.hitdoor.emit(player.damage)
 			Global.punchpl.emit(player.damage)
 			player.damage -= changedamage
-	
-	Global.useditems += 1
+		TYPE.SHIELD:
+			pass
 	
 	var effect = effectscene.instantiate()
 	get_parent().add_child(effect)
