@@ -66,6 +66,21 @@ func _ready():
 		доступен новогодний костюм.
 		это событие можно отключить
 		в настройках.", load("res://sprites/new year colin skin/colin1idle.png"), 8)
+		
+		var o = 0
+		for i in range(85):
+			if o == 5:
+				$notification.display("у вас проблемы
+				с производительность!", "понизьте настройки графики
+				в настройках, играть с таким
+				FPS будет трудно...", load("res://sprites/icon3.png"), 6)
+				
+				break
+			
+			var curfps = Engine.get_frames_per_second()
+			if curfps < 25:
+				o += 1
+			await get_tree().create_timer(0.1).timeout
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
