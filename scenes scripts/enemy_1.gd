@@ -4,7 +4,8 @@ extends CharacterBody3D
 @export var nerf = 3.0
 @export var randomspawn = 0
 @export var ismimic = false
-@export var isblackenemy = false
+enum TYPE {whiteenemy, blackenemy}
+@export var curtype: TYPE = TYPE.whiteenemy
 
 var canpunch = true
 var curspeed = 3.5
@@ -35,7 +36,7 @@ func _ready():
 	if randomspawn != 0 and randi_range(0, randomspawn) != randomspawn:
 		queue_free()
 	
-	if isblackenemy:
+	if curtype == TYPE.blackenemy:
 		isfemale = randi_range(1, 2) == 2
 		if isfemale:
 			$Sprite3D.sprite_frames = load("res://skins/enemy_female__2_loc_sprite.tres")

@@ -37,6 +37,7 @@ var camfollowpluspos: float = 0.0
 var camscalewheel = 0.0
 @export var latexpunchsound1: AudioStream = preload("res://sounds music/latexpunch2.mp3")
 @export var latexpunchsound2: AudioStream = preload("res://sounds music/latexpunch3.mp3")
+@export var halatpunchsound1: AudioStream = preload("res://sounds music/halatpunch1.mp3")
 var defposspr: Vector3 = Vector3.ZERO
 var isthereenemy: bool = false
 @export var shakeIfThereEnemy: float = 20
@@ -208,7 +209,7 @@ func _physics_process(delta: float) -> void:
 	if isinv:
 		if itemdata["sprite"] and itemdata["type"]:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
-			$gui/gui/Label.text = itemtype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
+			$gui/gui/Label.text = itemdata["type"] + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
 			#$gui/invtexture.scale = Vector2(2.0, 2.0)
 			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
 		if Input.is_action_just_pressed("LCM"):
@@ -219,7 +220,7 @@ func _physics_process(delta: float) -> void:
 			sin(slimetimepos) * 10, #randf_range(-1, 1),
 			sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
 		)
-		$gui/slime.modulate = Color(1.0, 1.0, 1.0, 0.75 + sin(slimetimepos) * 0.2)
+		$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
 		$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
 		slimetimepos += delta
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
@@ -356,9 +357,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		startshake(20, 0.05)
 	if body.is_in_group("enemy"):
 		if itemdata.has("shieldenable"):
+			camscale += randf_range(-10.0, -7.5)
+			$latexpunch.stream = halatpunchsound1
+			$latexpunch.play()
+			
 			useitem()
 		else:
-			minushealth(1.0)
+			var color = detectenemycolor(body)
+			minushealth(1.0, color)
 			Global.hitsfromenemies -= 1
 			
 			var random = randi_range(1, 2)
@@ -391,28 +397,48 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		
 		startshake(30, 0.2)
 
-func minushealth(num):
+func minushealth(num, color: Color = Color.WHITE):
 	health -= num
 	$gui/slime.scale = Vector2(1.5, 1.5)
 	camscale += randf_range(-10.0, -7.5)
-	$gui/slimecolor.color = Color(1.0, 1.0, 1.0, randf_range(0.5, 0.8))
+	
+	var finalcolor = color
+	finalcolor.a = randf_range(0.5, 0.8)
+	$gui/slimecolor.color = finalcolor
+	$gui/slime.modulate = finalcolor
 	
 	var slimeenum = randi_range(1, 3)
 	for i in slimeenum:
 		var slimee = TextureRect.new()
-		var randomslimee = randi_range(1, 4)
+		var randomslimee = randi_range(1, 5)
 		var spriteslimee: Texture = load("res://sprites/slimee" + str(randomslimee) + ".png")
 		slimee.texture = spriteslimee
 		slimee.custom_minimum_size = Vector2(
-			randf_range(25, 100),
-			randf_range(25, 100)
+			randf_range(50, 200),
+			randf_range(50, 200)
 		)
-		slimee.modulate = Color(1.0, 1.0, 1.0, randf_range(0.2, 1.0))
 		slimee.position = Vector2(
 			randf_range(0, 640),
 			randf_range(0, 480)
 		)
+		slimee.rotation = randf_range(-90, 90)
+		
+		slimee.pivot_offset = Vector2(slimee.size.x / 2, slimee.size.y / 2)
+		slimee.modulate.a = randf_range(0.2, 1.0)
+		slimee.modulate = finalcolor
+		
 		$gui.add_child(slimee)
+		
+		var tween = create_tween()
+		var tweentime = randf_range(20, 50)
+		
+		tween.set_parallel(true)
+		tween.tween_property(slimee, "modulate:a", 0.0, tweentime)
+		tween.tween_property(slimee, "scale", Vector2(0.1, 0.1), tweentime)
+		
+		tween.finished.connect(func():
+			slimee.queue_free()
+		)
 
 func _on_timer_timeout() -> void:
 	isslide = false
@@ -427,14 +453,14 @@ func _on_slidetimer_timeout() -> void:
 	$gui/gui/slidebar/slidebar.visible = false
 
 func useitem():
+	var item = itemdata["scene"].instantiate()
+	get_parent().add_child(item)
+	item.global_position = global_position
+	
+	item.use()
+	
 	if itemdata["pointstime"] <= 0:
 		if itemdata["scene"]:
-			var item = itemdata["scene"].instantiate()
-			get_parent().add_child(item)
-			item.global_position = global_position
-			
-			item.use()
-			
 			item.queue_free()
 			#if item.ischangehp:
 				#health += item.changehp
@@ -445,15 +471,19 @@ func useitem():
 			$gui/gui/Label.text = "Тип предмета"
 			isinv = false
 	elif itemdata["pointstime"] > 0:
-		var item = itemdata["scene"].instantiate()
-		get_parent().add_child(item)
-		item.global_position = global_position
-		
-		item.use()
-		
 		item.queue_free()
-		
 		itemdata["pointstime"] -= 1
+
+func detectenemycolor(enemy):
+	var typeenemy = enemy.curtype
+	var colorhit: Color
+	match typeenemy:
+		0:
+			colorhit = Color.WHITE_SMOKE
+		1:
+			colorhit = Color.BLACK
+	
+	return colorhit
 
 func updateskin():
 	match Global.colinskin:
