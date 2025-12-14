@@ -29,31 +29,27 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			curskin = 0
 	if enablecurskin: Global.colinskin = Global.listskins[curskin]["name"]; $"../../room1 1/Sprite3D2/effect1".play()
 	
-	match Global.colinskin:
+	match Global.colinskin: #localization: skins.csv
 		"colin":
 			colin.sprite_frames = load("res://skins/player_sprite.tres")
-			$Label.text = "обычный Колин"
-			$Label2.text = "ну что про него можно вообще написать?"
-			$Label3.text = "автор: TEAM_WITH_DRANIKS (Dranik544 / Drimer544)"
+			$Label.text = tr("COLIN_DEFAULT_NAME")
+			$Label2.text = tr("COLIN_DEFAULT_DESC")
+			$Label3.text = tr("COLIN_DEFAULT_AUTHOR")
 		"V1":
 			colin.sprite_frames = load("res://skins/v1_player_skin.tres")
-			$Label.text = "V1"
-			$Label2.text = "выбрался из глубин ада чтобы надавать лещей латексным!
-			(отсылка на UltraKill)
-			(даётся за прохождении 1-ой локации)"
-			$Label3.text = "автор: TheNamelessDeity"
+			$Label.text = tr("V1_NAME")
+			$Label2.text = tr("V1_DESC")
+			$Label3.text = tr("V1_AUTHOR")
 		"nightmare colin":
 			colin.sprite_frames = load("res://skins/nightmare_player_skin.tres")
-			$Label.text = "жуткий Колин"
-			$Label2.text = "сладость или трансфурмация!
-			(даётся на событие Хеллоуин)"
-			$Label3.text = "автор: TheNamelessDeity"
+			$Label.text = tr("COLIN_NIGHTMARE_NAME")
+			$Label2.text = tr("COLIN_NIGHTMARE_DESC")
+			$Label3.text = tr("COLIN_NIGHTMARE_AUTHOR")
 		"new year colin":
 			colin.sprite_frames = load("res://skins/new_year_colin_skin.tres")
-			$Label.text = "праздничный Колин"
-			$Label2.text = "а ты уже нарядил свою ёлку?
-			(даётся на событие Новый год)"
-			$Label3.text = "автор: TheNamelessDeity"
+			$Label.text = tr("COLIN_NEWYEAR_NAME")
+			$Label2.text = tr("COLIN_NEWYEAR_DESC")
+			$Label3.text = tr("COLIN_NEWYEAR_AUTHOR")
 		#"gold colin":
 			#colin.sprite_frames = load("res://skins/player_sprite.tres")
 			#$Label.text = "ЗОЛОТОЙ КОЛИН"
@@ -62,11 +58,9 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			#$Label3.text = "автор: TheNamelessDeity"
 		"hank":
 			colin.sprite_frames = load("res://skins/hank_player_skin.tres")
-			$Label.text = "Хэнк"
-			$Label2.text = "псих Невады, который может насадить тебя 1000 и 1 способом.
-			(отсылка на Madness Combat)
-			(даётся за прохождение 2-ой локации)"
-			$Label3.text = "автор: TheNamelessDeity"
+			$Label.text = tr("HANK_NAME")
+			$Label2.text = tr("HANK_DESC")
+			$Label3.text = tr("HANK_AUTHOR")
 		"necoarc":
 			colin.sprite_frames = load("res://skins/necoarc_player_skin.tres")
 			$Label.text = "Неко Арк"

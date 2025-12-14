@@ -1,0 +1,36 @@
+id,ru,en
+
+COLIN_DEFAULT_NAME,"Обычный Колин","Common Colin"
+COLIN_DEFAULT_DESC,"Просто Колин.","Just a Colin."
+COLIN_DEFAULT_AUTHOR,"Автор: TEAM_WITH_DRANIKS","Creator: TEAM_WITH_DRANIKS"
+
+V1_NAME,"V1","V1"
+V1_DESC,"выбрался из глубин ада чтобы надавать лещей латексным!
+(отсылка на UltraKill)
+(даётся за прохождении 1-ой локации)","Emerged from the depths of hell
+to give latex guys a good beating!
+(reference to UltraKill)
+(awarded for completing the first location)"
+V1_AUTHOR,"Автор: TheNamelessDeity","Creator: TheNamelessDeity"
+
+COLIN_NIGHTMARE_NAME,"Жуткий Колин","Creepy Colin"
+COLIN_NIGHTMARE_DESC,"сладость или трансфурмация!
+(даётся на событие Хеллоуин)","Trick or transfur!
+(Granted during the Halloween event)"
+COLIN_DEFAULT_AUTHOR,"Автор: TheNamelessDeity","Creator: TheNamelessDeity"
+
+COLIN_NEWYEAR_NAME,"Новогодний Колин","New Years Colin"
+COLIN_NEWYEAR_DESC,"а ты уже нарядил свою ёлку?
+(даётся на событие Новый год)","Have you decorated
+your Christmas tree yet?
+(given for the New Year's event)"
+COLIN_NEWYEAR_AUTHOR,"Автор: TheNamelessDeity","Creator: TheNamelessDeity"
+
+HANK_NAME,"Хэнк","Hank"
+HANK_DESC,"псих Невады, который может насадить тебя 1000 и 1 способом.
+(отсылка на Madness Combat)
+(даётся за прохождение 2-ой локации)","A Nevada psycho, who can screw you over
+in a 1000 and 1 ways.
+(reference to Madness Combat)
+(awarded for completing the second location)"
+HANK_AUTHOR,"Автор: TheNamelessDeity","Creator: TheNamelessDeity"

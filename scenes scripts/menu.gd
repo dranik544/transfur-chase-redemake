@@ -46,41 +46,41 @@ func _ready():
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
 	
 	if Global.listskins[7]["unlocked"]:
-		$"room1 1/elka/gift".queue_free()
+		$"room1 1/elka/gift".visible = false
 	
 	$"CanvasLayer/skins menu".updateskin(false, true, true)
 	
 	await get_tree().create_timer(0.5).timeout
-	$notification.display(tr("сейчас играет - ") + "Unknown,
-	hostile environment", tr("эмбиент от
-	") + "TheNamelessDeity", load("res://sprites/icon3.png"), 4)
-		
+	$notification.display(
+		tr("NOW_PLAYING").format({"track": "Unknown,
+		hostile environment"}),
+		tr("SOUNDTRACK_AUTHOR").format({"author": "TheNamelessDeity"}),
+		load("res://sprites/icon3.png"), 4)
+	
 	if Global.iswinter:
 		if Global.unlockachievement(4):
 			$notification.display(Global.achievements[4]["name"],
 			Global.achievements[4]["desc"],
 			load("res://sprites/icon12.png"))
 		
-		$notification.display(tr("ура, новый год!"), tr("сейчас в игре проходит
-		событие Новый Год, вам
-		доступен новогодний костюм.
-		это событие можно отключить
-		в настройках."), load("res://sprites/new year colin skin/colin1idle.png"), 8)
+		$notification.display(tr("NOTIFICATION_NEWYEAR_NAME"),
+		tr("NOTIFICATION_NEWYEAR_DESC"),
+		load("res://sprites/new year colin skin/colin1idle.png"), 8)
 		
-		var o = 0
-		for i in range(85):
-			if o == 5:
-				$notification.display(tr("у вас проблемы
-				с производительность!"), tr("понизьте настройки графики
-				в настройках, играть с таким
-				FPS будет трудно..."), load("res://sprites/icon3.png"), 6)
-				
-				break
-			
-			var curfps = Engine.get_frames_per_second()
-			if curfps < 25:
-				o += 1
-			await get_tree().create_timer(0.1).timeout
+		#var o = 0
+		#for i in range(85):
+			#if o == 5:
+				#$notification.display(tr("у вас проблемы
+				#с производительность!"), tr("понизьте настройки графики
+				#в настройках, играть с таким
+				#FPS будет трудно..."), load("res://sprites/icon3.png"), 6)
+				#
+				#break
+			#
+			#var curfps = Engine.get_frames_per_second()
+			#if curfps < 25:
+				#o += 1
+			#await get_tree().create_timer(0.1).timeout
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam:
@@ -169,10 +169,8 @@ func btnmuhapressed():
 	if $"room1 1/elka/gift".visible:
 		$"room1 1/elka/gift".visible = false
 	
-	$notification.display(tr("получен новый костюм!"),
-	tr("вы нашли костюм Муха Груши
-	под ёлкой, можете его примерить
-	в меню костюмов."),
+	$notification.display(tr("NOTIFICATION_NEW_SKIN_NAME"),
+	tr("NOTIFICATION_NEW_SKIN_PEAR_MUHA_DESC"),
 	load("res://sprites/icon7.png"))
 
 func btnskinspressed():

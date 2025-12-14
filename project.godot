@@ -174,7 +174,7 @@ DOSKA={
 [internationalization]
 
 locale/translation_remaps={}
-locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation")
+locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation", "res://localization/skins.en.translation", "res://localization/skins.ru.translation", "res://localization/notifications.en.translation", "res://localization/notifications.ru.translation")
 
 [physics]
 

@@ -1,0 +1,25 @@
+id,ru,en
+
+NOW_PLAYING,"Сейчас играет - {track}","Now playing - {track}"
+SOUNDTRACK_AUTHOR,"Автор саундтрека -
+{author}","Soundtrack by -
+{author}"
+
+NOTIFICATION_NEWYEAR_NAME,"Ура, начался Новый Год!","Hooray, the New Year
+has begun!"
+NOTIFICATION_NEWYEAR_DESC,"сейчас в игре проходит
+событие Новый Год, вам
+доступен новогодний костюм.","The game is currently hosting
+a New Year's event.
+A New Year's costume is available."
+
+NOTIFICATION_NEW_SKIN_NAME,"Получен новый костюм!","New costume received!"
+NOTIFICATION_NEW_SKIN_DESC,"Новый костюм можно
+примерить в меню в Костюмах","You can try on a new costume
+in the Costumes menu"
+NOTIFICATION_NEW_SKIN_PEAR_MUHA_DESC,"вы нашли костюм Муха Груши
+под ёлкой, можете его примерить
+в меню костюмов.","You found the Pear Muha costume
+under the Christmas tree.
+You can try it on in the
+Costume menu."

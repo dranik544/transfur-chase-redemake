@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://btb2qp0db8as8"
+
+[deps]
+
+files=["res://localization/skins.ru.translation", "res://localization/skins.en.translation"]
+
+source_file="res://localization/skins.csv"
+dest_files=["res://localization/skins.ru.translation", "res://localization/skins.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0
