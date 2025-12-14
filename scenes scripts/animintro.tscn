@@ -176,8 +176,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2, 5, 8, 11, 12, 14, 15, 18, 19, 21),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["...", "ты помнишь как тебя зовут?", "ну, предполагаю что нет.", "ты видел что в мире творится?!", "...", "да-да-да, это не люди.", "...", "ты вообще представляешь?
-сколько всего произошло пока тебя не было?", "...", "полный хаос.", "так проснись уже чувак, проснииись!"]
+"values": ["ANIMINTRO_D_1", "ANIMINTRO_D_2", "ANIMINTRO_D_3", "ANIMINTRO_D_4", "ANIMINTRO_D_5", "ANIMINTRO_D_6", "ANIMINTRO_D_7", "ANIMINTRO_D_8", "ANIMINTRO_D_9", "ANIMINTRO_D_10", "ANIMINTRO_D_11"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -413,7 +412,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 0.392157)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_n5emn")
 theme_override_font_sizes/font_size = 10
-text = "(для пропуска нажмите любую кнопку)"
+text = "ANIMINTRO_SKIP"
 horizontal_alignment = 1
 vertical_alignment = 2
 

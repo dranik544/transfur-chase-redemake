@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b3jp1nsjuhefr"
+
+[deps]
+
+files=["res://localization/animintro.ru.translation", "res://localization/animintro.en.translation"]
+
+source_file="res://localization/animintro.csv"
+dest_files=["res://localization/animintro.ru.translation", "res://localization/animintro.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

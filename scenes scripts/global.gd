@@ -128,6 +128,8 @@ func _ready() -> void:
 	
 	listskins[3]["unlocked"] = iswinter
 	
+	TranslationServer.set_locale("en")
+	
 	updatewindowmode()
 
 func unlockachievement(id: int):

@@ -171,6 +171,11 @@ DOSKA={
 ]
 }
 
+[internationalization]
+
+locale/translation_remaps={}
+locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation")
+
 [physics]
 
 common/physics_ticks_per_second=45

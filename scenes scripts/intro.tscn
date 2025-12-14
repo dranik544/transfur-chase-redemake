@@ -297,10 +297,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("4_rtwky")
 theme_override_font_sizes/font_size = 14
-text = "DEMAKE и REDEMAKE сделал TEAM_WITH_DRANIKS
-оригинальную игру (TransFur Chase) сделал One K
-все авторские права (игры Changed) принадлежат DragonSnow
-проверял игру на ошибки друг TapokSila"
+text = "INTRO_CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 

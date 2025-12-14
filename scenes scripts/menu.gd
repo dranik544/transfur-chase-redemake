@@ -51,9 +51,9 @@ func _ready():
 	$"CanvasLayer/skins menu".updateskin(false, true, true)
 	
 	await get_tree().create_timer(0.5).timeout
-	$notification.display("сейчас играет - Unknown,
-	hostile environment", "эмбиент от
-	TheNamelessDeity", load("res://sprites/icon3.png"), 4)
+	$notification.display(tr("сейчас играет - ") + "Unknown,
+	hostile environment", tr("эмбиент от
+	") + "TheNamelessDeity", load("res://sprites/icon3.png"), 4)
 		
 	if Global.iswinter:
 		if Global.unlockachievement(4):
@@ -61,19 +61,19 @@ func _ready():
 			Global.achievements[4]["desc"],
 			load("res://sprites/icon12.png"))
 		
-		$notification.display("ура, новый год!", "сейчас в игре проходит
+		$notification.display(tr("ура, новый год!"), tr("сейчас в игре проходит
 		событие Новый Год, вам
 		доступен новогодний костюм.
 		это событие можно отключить
-		в настройках.", load("res://sprites/new year colin skin/colin1idle.png"), 8)
+		в настройках."), load("res://sprites/new year colin skin/colin1idle.png"), 8)
 		
 		var o = 0
 		for i in range(85):
 			if o == 5:
-				$notification.display("у вас проблемы
-				с производительность!", "понизьте настройки графики
+				$notification.display(tr("у вас проблемы
+				с производительность!"), tr("понизьте настройки графики
 				в настройках, играть с таким
-				FPS будет трудно...", load("res://sprites/icon3.png"), 6)
+				FPS будет трудно..."), load("res://sprites/icon3.png"), 6)
 				
 				break
 			
@@ -106,7 +106,7 @@ func _physics_process(delta: float) -> void:
 	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/Sprite3D", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/Sprite3D2", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/waaa, $"room1 1/Sprite3D3", 25, tr / 8, sz / 8, mp)
-	if $"room1 1/elka/gift":
+	if $"room1 1/elka/gift".visible:
 		dinamicbtn(delta, $"CanvasLayer/buttons/muha gift", $"room1 1/elka/gift", 25, tr / 8, sz / 8, mp)
 	else:
 		$"CanvasLayer/buttons/muha gift".visible = false
@@ -133,18 +133,18 @@ func dinamicbtn(curdelta: float, btn, unprpos, speed: int, tr: int, sz: int, mou
 		1.0 - mousepos.distance_to(btn.global_position) / sz
 	)
 
-func btnstartmouseentered():$CanvasLayer/text/Label.text = "приготовьте свои мандарины!"
-func btnstartmouseexited():$CanvasLayer/text/Label.text = ". . ."
-func btnexitmouseentered():$CanvasLayer/text/Label.text = "если надоело - это для вас."
-func btnexitmouseexited():$CanvasLayer/text/Label.text = ". . ."
-func btnsettingsmouseentered():$CanvasLayer/text/Label.text = "настройте игру как душа пожелает!"
-func btnsettingsmouseexited():$CanvasLayer/text/Label.text = ". . ."
-func btntutorialmouseentered():$CanvasLayer/text/Label.text = "освежите память!"
-func btntutorialmouseexited():$CanvasLayer/text/Label.text = ". . ."
-func btnstatsmouseentered():$CanvasLayer/text/Label.text = "узнайте свою статистику и новое об противниках!"
-func btnstatsmouseexited():$CanvasLayer/text/Label.text = ". . ."
-func btnskinsmouseentered():$CanvasLayer/text/Label.text = "выберите любой костюм для Колина!"
-func btnskinsmouseexited():$CanvasLayer/text/Label.text = ". . ."
+func btnstartmouseentered():$CanvasLayer/text/Label.text = tr("приготовьте свои мандарины!")
+func btnstartmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btnexitmouseentered():$CanvasLayer/text/Label.text = tr("если надоело - это для вас.")
+func btnexitmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btnsettingsmouseentered():$CanvasLayer/text/Label.text = tr("настройте игру как душа пожелает!")
+func btnsettingsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btntutorialmouseentered():$CanvasLayer/text/Label.text = tr("освежите память!")
+func btntutorialmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btnstatsmouseentered():$CanvasLayer/text/Label.text = tr("узнайте свою статистику и новое об противниках!")
+func btnstatsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btnskinsmouseentered():$CanvasLayer/text/Label.text = tr("выберите любой костюм для Колина!")
+func btnskinsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
 
 func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false
 func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true
@@ -166,13 +166,13 @@ func btnwaaapressed():
 func btnmuhapressed():
 	Global.listskins[7]["unlocked"] = true
 	SavingManager.save("skinlist", Global.listskins)
-	if $"room1 1/elka/gift":
-		$"room1 1/elka/gift".queue_free()
+	if $"room1 1/elka/gift".visible:
+		$"room1 1/elka/gift".visible = false
 	
-	$notification.display("получен новый костюм!",
-	"вы нашли костюм Муха Груши
+	$notification.display(tr("получен новый костюм!"),
+	tr("вы нашли костюм Муха Груши
 	под ёлкой, можете его примерить
-	в меню костюмов.",
+	в меню костюмов."),
 	load("res://sprites/icon7.png"))
 
 func btnskinspressed():
