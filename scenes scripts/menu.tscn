@@ -947,7 +947,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "начать"
+text = "BUTTON_MENU_START"
 icon = ExtResource("17_xh7j4")
 expand_icon = true
 
@@ -970,7 +970,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "выйти"
+text = "BUTTON_MENU_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
@@ -993,7 +993,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "настройки"
+text = "BUTTON_MENU_SETTINGS"
 icon = ExtResource("20_n7qjf")
 expand_icon = true
 
@@ -1016,7 +1016,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "руководство"
+text = "BUTTON_MENU_TUTORIAL"
 icon = ExtResource("21_jh7g4")
 expand_icon = true
 
@@ -1039,7 +1039,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "статистика"
+text = "BUTTON_MENU_STATS"
 icon = ExtResource("22_ybihx")
 expand_icon = true
 
@@ -1062,7 +1062,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "костюмы"
+text = "BUTTON_MENU_SKINS"
 icon = ExtResource("24_4l3ii")
 expand_icon = true
 
@@ -1228,7 +1228,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "выйти"
+text = "BUTTON_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
@@ -2137,7 +2137,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "сохранить и выйти"
+text = "BUTTON_SAVE_AND_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
@@ -2173,7 +2173,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "сохранить и выйти"
+text = "BUTTON_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
@@ -2194,7 +2194,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "перезапустить"
+text = "BUTTON_RESTART_GAME"
 icon = ExtResource("20_n7qjf")
 expand_icon = true
 script = SubResource("GDScript_mxc8c")
@@ -2216,7 +2216,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "звуки и музыка"
+text = "SETTINGS_SOUNDS_AND_MUSIC"
 vertical_alignment = 1
 
 [node name="soundtext" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2226,8 +2226,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
-text = "
-громкость звука"
+text = "SETTINGS_VOLUME_SOUND"
 vertical_alignment = 1
 
 [node name="soundslider" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2243,8 +2242,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
-text = "
-громкость музыки"
+text = "SETTINGS_VOLUME_MUSIC"
 vertical_alignment = 1
 
 [node name="musicslider" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2260,9 +2258,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "
-
-графика"
+text = "SETTINGS_GRAPHICS"
 vertical_alignment = 1
 
 [node name="windowmode" type="OptionButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2275,9 +2271,9 @@ theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 selected = 0
 item_count = 2
-popup/item_0/text = "полноэкранный режим"
+popup/item_0/text = "SETTINGS_FULLSCREEN_MODE"
 popup/item_0/id = 0
-popup/item_1/text = "оконный режим"
+popup/item_1/text = "SETTINGS_WINDOW_MODE"
 popup/item_1/id = 1
 
 [node name="shakescreen" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2290,7 +2286,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "тряска экрана"
+text = "SETTINGS_SHAKE_SCREEN"
 
 [node name="beauty" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2302,7 +2298,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "красивое окружение"
+text = "SETTINGS_BEAUTIFUL_ENV"
 
 [node name="light" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2314,7 +2310,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "освещение"
+text = "SETTINGS_LIGHTS"
 
 [node name="effects" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2326,7 +2322,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "частицы и эффекты"
+text = "SETTINGS_PARTICLES_AND_EFFECTS"
 
 [node name="cabels" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2338,7 +2334,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "висящие провода"
+text = "SETTINGS_CABELS"
 
 [node name="tubes" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2350,7 +2346,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "трубы"
+text = "SETTINGS_TUBES"
 
 [node name="events" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2359,9 +2355,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "
-
-события"
+text = "SETTINGS_EVENTS"
 vertical_alignment = 1
 
 [node name="winterevent" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2374,7 +2368,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "новогоднее событие"
+text = "SETTINGS_NEWYEAR_EVENT"
 
 [node name="events2" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2383,8 +2377,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 16
-text = "при изменении может
-потребоваться перезагрузка"
 vertical_alignment = 1
 
 [node name="input" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2394,9 +2386,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "
-
-управление"
+text = "SETTINGS_INPUT"
 vertical_alignment = 1
 
 [node name="cammode" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2409,8 +2399,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "камера \"от комнаты
-к комнате\""
+text = "SETTINGS_CAM_FROM_ROOM_TO_ROOM"
 
 [node name="gameplay" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
 layout_mode = 2
@@ -2419,9 +2408,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 32
-text = "
-
-геймплей"
+text = "SETTINGS_GAMEPLAY"
 vertical_alignment = 1
 
 [node name="betterai" type="CheckButton" parent="CanvasLayer/settings menu/scc/vboxc"]
@@ -2434,7 +2421,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
-text = "умный ИИ врагов"
+text = "SETTINGS_BETTER_AI"
 
 [node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -2461,7 +2448,7 @@ size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
-text = "выйти"
+text = "BUTTON_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 

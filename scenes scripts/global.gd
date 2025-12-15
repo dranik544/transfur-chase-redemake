@@ -35,34 +35,15 @@ var listskins = [
 ]
 
 var achievements = [
-	{"name": "пройти 1 локацию", "desc": "завершить 1 локацию
-	любым способом.", "unlocked": false}, #id: 0
-	
-	{"name": "WAAAA!", "desc": "нажать на
-	слизне-кота в меню.", "unlocked": false}, #id: 1
-	
-	{"name": "ВОУ КАКОЙ КРУТОЙ БАГ!", "desc": "застрять в корзине
-	во время игры.", "unlocked": false}, #id: 2
-	
-	{"name": "OneShot", "desc": "завершить локацию не
-	получив лещей", "unlocked": false}, #id: 3
-	
-	{"name": "новый гоооод!", "desc": "встретить событие
-	Новый Год в игре.", "unlocked": false}, #id: 4
-	
-	{"name": "на волоске от смерти", "desc": "завершить локацию будучи
-	почти трансфурмированным", "unlocked": false}, #id: 5
-	
-	{"name": "в этой игре есть
-	скольжение?!", "desc": "завершить локацию не
-	использовав скольжение", "unlocked": false}, #id: 6
-	
-	{"name": "стая на хвосте", "desc": "набрать 10+ не
-	спящих врагов", "unlocked": false}, #id: 7
-	
-	{"name": "тише едешь -
-	дальше будешь!", "desc": "не разбудить врагов
-	на 2 локации", "unlocked": false}, #id: 8
+	{"name": tr("ACHIEVEMENT_1_NAME"), "desc": tr("ACHIEVEMENT_1_DESC"), "unlocked": false}, # Complete 1 location
+	{"name": tr("ACHIEVEMENT_2_NAME"), "desc": tr("ACHIEVEMENT_2_DESC"), "unlocked": false}, # WAAAA!
+	{"name": tr("ACHIEVEMENT_3_NAME"), "desc": tr("ACHIEVEMENT_3_DESC"), "unlocked": false}, # THIS GAME IS FULL OF BUGS!
+	{"name": tr("ACHIEVEMENT_4_NAME"), "desc": tr("ACHIEVEMENT_4_DESC"), "unlocked": false}, # OneShot.
+	{"name": tr("ACHIEVEMENT_5_NAME"), "desc": tr("ACHIEVEMENT_5_DESC"), "unlocked": false}, # New Yeeeeear!
+	{"name": tr("ACHIEVEMENT_6_NAME"), "desc": tr("ACHIEVEMENT_6_DESC"), "unlocked": false}, # On the Brink of Death
+	{"name": tr("ACHIEVEMENT_7_NAME"), "desc": tr("ACHIEVEMENT_7_DESC"), "unlocked": false}, # This game has sliding?!
+	{"name": tr("ACHIEVEMENT_8_NAME"), "desc": tr("ACHIEVEMENT_8_DESC"), "unlocked": false}, # A Pack on the Tail
+	{"name": tr("ACHIEVEMENT_9_NAME"), "desc": tr("ACHIEVEMENT_9_DESC"), "unlocked": false}, # Slow and Steady Wins the Race!
 ]
 
 var recordpoints: int = 0
@@ -128,8 +109,6 @@ func _ready() -> void:
 	recordpoints = SavingManager.load("recordpoints")
 	
 	listskins[3]["unlocked"] = iswinter
-	
-	TranslationServer.set_locale("en")
 	
 	updatewindowmode()
 

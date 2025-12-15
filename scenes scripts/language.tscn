@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0rfpwex6vxnn"]
+
+[ext_resource type="Texture2D" uid="uid://bnygijfv3vrge" path="res://sprites/RU language1.png" id="1_dgqgf"]
+[ext_resource type="Texture2D" uid="uid://chcdkulvudlk" path="res://sprites/EN language1.png" id="2_wwj4d"]
+[ext_resource type="AudioStream" uid="uid://c2mmisoeoi2hj" path="res://sounds music/halatpunch1.mp3" id="4_6g5yn"]
+[ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="5_hxpoq"]
+
+[sub_resource type="GDScript" id="GDScript_ncl1c"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	$ru.pressed.connect(ru)
+	$en.pressed.connect(en)
+
+func ru():
+	TranslationServer.set_locale(\"ru\")
+	ScreenTransition.changescene(\"res://scenes scripts/intro.tscn\")
+	$AudioStreamPlayer.play()
+func en():
+	TranslationServer.set_locale(\"en\")
+	ScreenTransition.changescene(\"res://scenes scripts/intro.tscn\")
+	$AudioStreamPlayer.play()
+"
+
+[node name="language" type="Node2D"]
+script = SubResource("GDScript_ncl1c")
+
+[node name="bg" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 690.0
+offset_bottom = 515.0
+texture = ExtResource("5_hxpoq")
+
+[node name="ru" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 110.0
+offset_right = 306.0
+offset_bottom = 366.0
+icon = ExtResource("1_dgqgf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="en" type="Button" parent="."]
+offset_left = 334.0
+offset_top = 110.0
+offset_right = 590.0
+offset_bottom = 366.0
+icon = ExtResource("2_wwj4d")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6g5yn")
+pitch_scale = 2.25

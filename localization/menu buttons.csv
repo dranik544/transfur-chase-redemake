@@ -1,0 +1,12 @@
+id,ru,en
+
+BUTTON_MENU_START,"Начать","Start"
+BUTTON_MENU_EXIT,"Выйти","Quit"
+BUTTON_MENU_SETTINGS,"Настройки","Settings"
+BUTTON_MENU_TUTORIAL,"Руководство","Guide"
+BUTTON_MENU_STATS,"Статистика","Statistics"
+BUTTON_MENU_SKINS,"Костюмы","Costumes"
+
+BUTTON_EXIT,"Выйти","Exit"
+BUTTON_SAVE_AND_EXIT,"Сохранить и Выйти","Save and Exit"
+BUTTON_RESTART_GAME,"Перезапустить","Restart"

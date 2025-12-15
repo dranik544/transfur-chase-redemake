@@ -1,0 +1,37 @@
+id,ru,en
+
+SETTINGS_SOUNDS_AND_MUSIC,"
+Звуки и Музыка","
+Sounds and Music"
+SETTINGS_VOLUME_SOUND,"Громкость звука","Sound Volume"
+SETTINGS_VOLUME_MUSIC,"Громкость музыки","Music Volume"
+
+SETTINGS_GRAPHICS,"
+Графика","
+Graphics"
+SETTINGS_FULLSCREEN_MODE,"Полноэкранный режим","Fullscreen Mode"
+SETTINGS_WINDOW_MODE,"Оконный режим","Windowed Mode"
+SETTINGS_SHAKE_SCREEN,"Тряска экрана","Screen Shake"
+SETTINGS_BEAUTIFUL_ENV,"Красивое окружение","Detailed Environment"
+SETTINGS_LIGHTS,"Освещение","Lighting"
+SETTINGS_PARTICLES_AND_EFFECTS,"Частицы и Эффекты","Particles & Effects"
+SETTINGS_CABELS,"Висящие проводы","Hanging Cables"
+SETTINGS_TUBES,"Трубы","Pipes"
+
+SETTINGS_EVENTS,"
+События","
+Events"
+SETTINGS_NEWYEAR_EVENT,"Новогоднее событие","New Year Event"
+
+SETTINGS_INPUT,"
+Управление","
+Input"
+SETTINGS_CAM_FROM_ROOM_TO_ROOM,"Камера 'от комнаты
+к комнате'","Room-to-Room Camera"
+
+SETTINGS_GAMEPLAY,"
+Геймплей","
+Gameplay"
+SETTINGS_BETTER_AI,"Дать врагам руководство
+'Как ходить и бегать'","Give Enemies the
+'How to Walk & Run' Manual"

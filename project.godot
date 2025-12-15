@@ -13,7 +13,7 @@ config_version=5
 config/name="TransFur Chase DEMAKE"
 config/version="0.0.0.3"
 config/tags=PackedStringArray("3d", "dranik544", "roguelike")
-run/main_scene="uid://cmvf6gdw38n03"
+run/main_scene="uid://c0rfpwex6vxnn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.0987284, 0.0987284, 0.0987284, 1)
 boot_splash/fullsize=false
@@ -33,6 +33,7 @@ ScreenTransition="*res://scenes scripts/ScreenTransition.gd"
 window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=2
 mouse_cursor/custom_image="uid://dqd2s0q86h7ws"
 
@@ -174,7 +175,7 @@ DOSKA={
 [internationalization]
 
 locale/translation_remaps={}
-locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation", "res://localization/skins.en.translation", "res://localization/skins.ru.translation", "res://localization/notifications.en.translation", "res://localization/notifications.ru.translation")
+locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation", "res://localization/skins.en.translation", "res://localization/skins.ru.translation", "res://localization/notifications.en.translation", "res://localization/notifications.ru.translation", "res://localization/achievements.en.translation", "res://localization/achievements.ru.translation", "res://localization/menu settings.en.translation", "res://localization/menu settings.ru.translation", "res://localization/menu buttons.en.translation", "res://localization/menu buttons.ru.translation")
 
 [physics]
 

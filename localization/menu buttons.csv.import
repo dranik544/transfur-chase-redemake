@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ftepqlkca6ko"
+
+[deps]
+
+files=["res://localization/menu buttons.ru.translation", "res://localization/menu buttons.en.translation"]
+
+source_file="res://localization/menu buttons.csv"
+dest_files=["res://localization/menu buttons.ru.translation", "res://localization/menu buttons.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

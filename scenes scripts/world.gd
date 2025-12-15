@@ -67,8 +67,10 @@ func _ready():
 		$enemy2.set_physics_process(true)
 	$music.play()
 	
-	$notification.display("Сейчас играет - Run!", "автор музыки:
-	WatewrFlame", load("res://sprites/icon2.png"), 3)
+	$notification.display(
+		tr("NOW_PLAYING").format({"track": "Run!"}),
+		tr("SOUNDTRACK_AUTHOR").format({"author": "WaterFlame"}),
+		load("res://sprites/icon2.png"), 4)
 	
 	add_to_group("world")
 
