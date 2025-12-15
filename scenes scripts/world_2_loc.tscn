@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=24 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="13_mvru5"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="14_b3iur"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="15_gm8ny"]
+[ext_resource type="PackedScene" uid="uid://blxs373auyw5e" path="res://scenes scripts/lightcontrol_2_loc.tscn" id="15_uckpa"]
 [ext_resource type="PackedScene" uid="uid://47uaksceiu82" path="res://scenes scripts/enemy_3.tscn" id="16_pcuvx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
@@ -87,7 +88,7 @@ script = ExtResource("1_rdsqj")
 environment = ExtResource("2_iombt")
 script = ExtResource("3_tdjod")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." groups=["worldlight"]]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
@@ -176,7 +177,7 @@ randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_jvjns")
 draw_pass_1 = SubResource("QuadMesh_53xst")
 
-[node name="music" type="AudioStreamPlayer" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="." groups=["music"]]
 stream = ExtResource("13_mvru5")
 volume_db = -0.5
 parameters/looping = true
@@ -192,3 +193,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -4)
 
 [node name="enemy5" parent="." instance=ExtResource("16_pcuvx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.9, -4)
+
+[node name="lightcontrol 2loc" parent="." instance=ExtResource("15_uckpa")]

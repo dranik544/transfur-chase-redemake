@@ -208,7 +208,7 @@ randomness = 0.05
 process_material = SubResource("ParticleProcessMaterial_jvjns")
 draw_pass_1 = SubResource("QuadMesh_53xst")
 
-[node name="music" type="AudioStreamPlayer" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="." groups=["music"]]
 stream = ExtResource("10_5vyl4")
 volume_db = -0.5
 parameters/looping = true

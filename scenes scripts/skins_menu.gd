@@ -63,27 +63,24 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			$Label3.text = tr("HANK_AUTHOR")
 		"necoarc":
 			colin.sprite_frames = load("res://skins/necoarc_player_skin.tres")
-			$Label.text = "Неко Арк"
-			$Label2.text = "безумная кошка способная пускать лазеры из глаз!
-			(отсылка на Melty Blood)
-			(даётся за H1`da_=sklv12_5_bmt1аывпр.//)"
-			$Label3.text = "автор: TEAM_WITH_DRANIKS (Dranik544 / Drimer544)"
+			$Label.text = tr("NECOARC_NAME")
+			$Label2.text = tr("NECOARC_DESC")
+			$Label3.text = tr("NECOARC_AUTHOR")
 		"muha":
 			colin.sprite_frames = load("res://skins/muha_player_skin.tres")
-			$Label.text = "Муха Груша"
-			$Label2.text = "мяу"
-			$Label3.text = "автор: Paper_Shaverma (Захар М.)"
+			$Label.text = tr("MUHAPEAR_NAME")
+			$Label2.text = tr("MUHAPEAR_DESC")
+			$Label3.text = tr("MUHAPEAR_AUTHOR")
 		"solider":
 			colin.sprite_frames = load("res://skins/solider_colin_skin.tres")
-			$Label.text = "Солдат"
-			$Label2.text = "пережил многое."
-			$Label3.text = "автор: TheNamelessDeity"
+			$Label.text = tr("SOLIDER_NAME")
+			$Label2.text = tr("SOLIDER_DESC")
+			$Label3.text = tr("SOLIDER_AUTHOR")
 		"yay basket ^w^":
 			colin.sprite_frames = load("res://skins/basket_colin_skin.tres")
-			$Label.text = "Колин с мусорной корзиной"
-			$Label2.text = "- ВОУ ЧУВАК ЭТО РЕАЛЬНО КРУТОЙ БАГ ХАХАХА"
-			$Label3.text = "автор: TheNamelessDeity
-			придумал: Tapoksila"
+			$Label.text = tr("COLIN_BASKET_NAME")
+			$Label2.text = tr("COLIN_BASKET_DESC")
+			$Label3.text = tr("COLIN_BASKET_AUTHOR")
 		"paladin":
 			colin.sprite_frames = load("res://skins/paladin_skin.tres")
 			$Label.text = "паладин"

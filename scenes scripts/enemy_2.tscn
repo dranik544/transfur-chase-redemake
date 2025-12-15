@@ -271,7 +271,6 @@ collision_priority = 0.8
 script = ExtResource("1_cbs1w")
 speed = 2.2
 nerf = 4.0
-ismimic = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.5

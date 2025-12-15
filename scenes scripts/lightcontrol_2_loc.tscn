@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://blxs373auyw5e"]
+
+[ext_resource type="Script" uid="uid://dtjmvor51ja0n" path="res://scenes scripts/lightcontrol_2_loc.gd" id="1_eig17"]
+[ext_resource type="AudioStream" uid="uid://4k7tcvck4vte" path="res://sounds music/toggle2.mp3" id="2_17t7j"]
+
+[node name="lightcontrol 2loc" type="Node"]
+script = ExtResource("1_eig17")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_17t7j")

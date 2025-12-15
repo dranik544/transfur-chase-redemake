@@ -3,8 +3,7 @@ extends CharacterBody3D
 @export var speed = 4.75
 @export var nerf = 3.0
 @export var randomspawn = 0
-@export var ismimic = false
-enum TYPE {whiteenemy, blackenemy}
+enum TYPE {whiteenemy, blackenemy, mimic}
 @export var curtype: TYPE = TYPE.whiteenemy
 
 var canpunch = true
@@ -41,7 +40,7 @@ func _ready():
 		if isfemale:
 			$Sprite3D.sprite_frames = load("res://skins/enemy_female__2_loc_sprite.tres")
 	
-	if Global.iswinter and !ismimic:
+	if Global.iswinter and curtype != TYPE.mimic:
 		runanim = "run newyear"
 		sleepanim = "sleep newyear"
 	
@@ -102,7 +101,7 @@ func _physics_process(delta):
 				$wha.visible = true
 				$NavigationAgent3D.simplify_path = true
 				
-				if not ismimic:
+				if curtype != TYPE.mimic:
 					set_collision_layer_value(2, false)
 					set_collision_mask_value(2, false)
 				
@@ -133,7 +132,7 @@ func _physics_process(delta):
 					velocity = Vector3.ZERO
 			elif velocity.length() > 0.7:
 				$NavigationAgent3D.simplify_path = false
-				if ismimic:
+				if curtype == TYPE.mimic:
 					set_collision_layer_value(4, true)
 				else:
 					set_collision_layer_value(2, true)
@@ -157,7 +156,7 @@ func _physics_process(delta):
 			if velocity.length() < 0.5:
 				curstate = STATE.ACTIVE
 				$wha.visible = false
-				if ismimic:
+				if curtype == TYPE.mimic:
 					set_collision_layer_value(4, true)
 				else:
 					set_collision_layer_value(2, true)
@@ -220,7 +219,7 @@ func punching(damage: float):
 		targetpos(player.global_transform.origin)
 
 func stunn():
-	if not ismimic:
+	if curtype != TYPE.mimic:
 		set_collision_layer_value(2, false)
 		set_collision_mask_value(2, false)
 	
@@ -273,3 +272,7 @@ func checkenemies():
 
 func timertimeout():
 	canpunch = true
+
+func enablearea(onoff: bool):
+	if onoff: $Area3D/CollisionShape3D.disabled = true
+	if !onoff: $Area3D/CollisionShape3D.disabled = false

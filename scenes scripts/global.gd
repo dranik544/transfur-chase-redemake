@@ -87,6 +87,7 @@ signal updatesoundandmusic()
 signal punchpl(damage)
 signal hitdoor(damage)
 signal pickupitem(player)
+signal turnlight(onoff)
 
 
 func _ready() -> void:
