@@ -57,6 +57,10 @@ func _ready():
 	$CanvasLayer/Label.text = "Please, wait one more second."
 	await get_tree().create_timer(1.0).timeout
 	
+	$CanvasLayer/Label.text = "Press Enter to continue"
+	await get_tree().create_timer(0.05).timeout
+	await enter()
+	
 	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
 	if player: player.set_physics_process(true)
@@ -71,6 +75,12 @@ func _ready():
 		load("res://sprites/icon2.png"), 4)
 	
 	add_to_group("world")
+
+func enter() -> void:
+	while true:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ENTER"):
+			return
 
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, rooms.size())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=27 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
 [ext_resource type="PackedScene" uid="uid://d15h6sm1ybfa7" path="res://scenes scripts/basket_1.tscn" id="8_alufl"]
 [ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="10_5vyl4"]
+[ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="12_kvnqr"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="13_sivfs"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="16_rginh"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="18_ixu3i"]
@@ -192,6 +193,8 @@ offset_bottom = 465.0
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("13_sivfs")
 script = SubResource("GDScript_rf126")
+
+[node name="guide screen world" parent="CanvasLayer" instance=ExtResource("12_kvnqr")]
 
 [node name="snow effect" type="Node3D" parent="."]
 script = SubResource("GDScript_qeca7")
