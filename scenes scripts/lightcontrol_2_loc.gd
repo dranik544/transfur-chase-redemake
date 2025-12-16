@@ -10,23 +10,24 @@ var music
 
 func _ready() -> void:
 	if !get_tree(): return
-	worldlight = get_tree().get_first_node_in_group("worldlight")
-	music = get_tree().get_first_node_in_group("music")
-	enemies = get_tree().get_nodes_in_group("enemy")
-	lights = get_tree().get_nodes_in_group("light")
+	updategroups()
 	
-	$Timer.timeout.connect(timeout)
+	$Timer.timeout.connect(beforetimeout)
 
-func timeout():
+func updategroups():
 	if !get_tree(): return
-	onoff = not onoff
-	
 	lights = get_tree().get_nodes_in_group("light")
 	enemies = get_tree().get_nodes_in_group("enemy")
 	if !worldlight:
 		worldlight = get_tree().get_first_node_in_group("worldlight")
 	if !music:
 		music = get_tree().get_first_node_in_group("music")
+
+func timeout():
+	if !get_tree(): return
+	onoff = not onoff
+	
+	updategroups()
 	
 	if lights.size() > 0:
 		for i in lights:
@@ -42,3 +43,17 @@ func timeout():
 	if onoff: $AudioStreamPlayer.pitch_scale = 1.0
 	if !onoff: $AudioStreamPlayer.pitch_scale = 0.7
 	$AudioStreamPlayer.play()
+
+func beforetimeout():
+	if !get_tree(): return
+	updategroups()
+	
+	for i in randi_range(25, 30):
+		if lights and worldlight:
+			for l in lights: l.visible = not l.visible
+			worldlight.visible = not worldlight.visible
+			
+			await get_tree().create_timer(randi_range(0.1, 0.2)).timeout
+	
+	$Timer.wait_time = randf_range(2, 6)
+	timeout()

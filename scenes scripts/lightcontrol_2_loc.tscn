@@ -7,7 +7,7 @@
 script = ExtResource("1_eig17")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.75
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
