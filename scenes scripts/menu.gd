@@ -133,18 +133,18 @@ func dinamicbtn(curdelta: float, btn, unprpos, speed: int, tr: int, sz: int, mou
 		1.0 - mousepos.distance_to(btn.global_position) / sz
 	)
 
-func btnstartmouseentered():$CanvasLayer/text/Label.text = tr("приготовьте свои мандарины!")
-func btnstartmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
-func btnexitmouseentered():$CanvasLayer/text/Label.text = tr("если надоело - это для вас.")
-func btnexitmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
-func btnsettingsmouseentered():$CanvasLayer/text/Label.text = tr("настройте игру как душа пожелает!")
-func btnsettingsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
-func btntutorialmouseentered():$CanvasLayer/text/Label.text = tr("освежите память!")
-func btntutorialmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
-func btnstatsmouseentered():$CanvasLayer/text/Label.text = tr("узнайте свою статистику и новое об противниках!")
-func btnstatsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
-func btnskinsmouseentered():$CanvasLayer/text/Label.text = tr("выберите любой костюм для Колина!")
-func btnskinsmouseexited():$CanvasLayer/text/Label.text = tr(". . .")
+func btnstartmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_START_BUTTON")
+func btnstartmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
+func btnexitmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_EXIT_BUTTON")
+func btnexitmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
+func btnsettingsmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_SETTINGS_BUTTON")
+func btnsettingsmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
+func btntutorialmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_TUTORIAL_BUTTON")
+func btntutorialmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
+func btnstatsmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_STATS_BUTTON")
+func btnstatsmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
+func btnskinsmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_SKINS_BUTTON")
+func btnskinsmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
 
 func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false
 func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true

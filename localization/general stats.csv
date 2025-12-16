@@ -1,0 +1,35 @@
+id,ru,en
+
+RATING_1,"позорно!","shameful!"
+RATING_2,"даже моя бабушка играет лучше","even my grandma plays better"
+RATING_3,"неплохо!","not bad!"
+RATING_4,"отлично!","great!"
+RATING_5,"великолепно!","amazing!"
+RATING_6,"ты бог игры!","you are a god of the game!"
+GENERAL_STATS_TEMPLATE,"
+общая статистика:
+
+
+всего сломано коробок: {boxes}
+всего выломано дверей: {doors}
+всего тронуто луж: {puddles}
+всего получил лещей: {damage}
+всего открыто люков: {vents}
+всего использовано предметов: {items}
+пробуждено врагов: {enemies}
+
+общее итого: {total}
+вердикт: {verdict}","
+General Statistics:
+
+
+Total boxes smashed: {boxes}
+Total doors broken: {doors}
+Total puddles touched: {puddles}
+Total damage taken: {damage}
+Total vents opened: {vents}
+Total items used: {items}
+Total enemies awakened: {enemies}
+
+Overall score: {total}
+Verdict: {verdict}"

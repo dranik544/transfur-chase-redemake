@@ -1,0 +1,6 @@
+id,ru,en
+
+DEFAULT_TYPE_ITEM,"Тип предмета","Item type"
+HEAL_PLAYER_TYPE_ITEM,"Пополняет здоровье","Replenishes health"
+HIT_STRENGTH_TYPE_ITEM,"Сила удара","Impact force"
+SHIELD_TYPE_ITEM,"Защищает от ударов","Protects against impacts"

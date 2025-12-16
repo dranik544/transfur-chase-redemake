@@ -63,33 +63,28 @@ func _ready() -> void:
 	for value in Global.generalstats:
 		total += value
 	
-	if total < 0:
-		recomend = "позорно!"
-	elif total >= 0 and total < 75:
-		recomend = "даже моя бабушка играет лучше"
-	elif total >= 75 and total < 120:
-		recomend = "неплохо!"
-	elif total >= 120 and total < 275:
-		recomend = "отлично!"
-	elif total >= 275 and total < 750:
-		recomend = "великолепно!"
-	elif total >= 750:
-		recomend = "ты бог игры!"
+	var recomendkey: String
+	if total < 0: recomendkey = "RATING_1"
+	elif total < 75: recomendkey = "RATING_2"
+	elif total < 120: recomendkey = "RATING_3"
+	elif total < 275: recomendkey = "RATING_4"
+	elif total < 750: recomendkey = "RATING_5"
+	else: recomendkey = "RATING_6"
 	
-	$scc/hboxc/vboxc2/Label.text = "
-	общая статистика:
+	var finalverdict = tr(recomendkey)
+	var stats_text = tr("GENERAL_STATS_TEMPLATE").format({
+		"boxes": str(Global.generalstats[0]),
+		"doors": str(Global.generalstats[1]),
+		"puddles": str(Global.generalstats[2]),
+		"damage": str(Global.generalstats[3]),
+		"vents": str(Global.generalstats[4]),
+		"items": str(Global.generalstats[5]),
+		"enemies": str(Global.generalstats[6]),
+		"total": str(total),
+		"verdict": finalverdict
+	})
 	
-	
-	всего сломано коробок: " + str(Global.generalstats[0]) + "
-	всего выломано дверей: " + str(Global.generalstats[1]) + "
-	всего тронуто луж: " + str(Global.generalstats[2]) + "
-	всего получил лещей: " + str(Global.generalstats[3]) + "
-	всего открыто люков: " + str(Global.generalstats[4]) + "
-	всего использовано предметов: " + str(Global.generalstats[5]) + "
-	пробуждено врагов: " + str(Global.generalstats[6]) + "
-	
-	общее итого: " + str(total) + "
-	вердикт: " + recomend
+	$scc/hboxc/vboxc2/Label.text = stats_text
 
 func setach(ach, title: String, desc: String, image: Texture, completed: bool):
 	ach.get_node("mc").get_node("vbc").get_node("label").text = str(title)

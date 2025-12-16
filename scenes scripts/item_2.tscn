@@ -79,7 +79,7 @@ mass = 0.1
 script = ExtResource("1_rg4mv")
 selfsprite = ExtResource("3_ptsyo")
 selfkg = 0.1
-type = "Пополняет здоровье"
+type = "HEAL_PLAYER_TYPE_ITEM"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_okf5b")

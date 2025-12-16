@@ -17,27 +17,37 @@ func _ready():
 	
 	if points > Global.recordpoints:
 		Global.recordpoints = points
-		
-		$notification.display("новый рекорд!", "поздравляю, вы побили свой
-		прошлый рекорд! он будет
-		записан во вкладке Статистики.", load("res://sprites/icon11.png"), 7)
+		$notification.display(
+			tr("NOTIFY_NEW_RECORD_TITLE"),
+			tr("NOTIFY_NEW_RECORD_DESC"),
+			load("res://sprites/icon11.png"),
+			7
+		)
 	
-	$label.text = "ты сдулся!
-	
-	сломано коробок: " + str(Global.brokenboxes) + "
-	выломано дверей: " + str(Global.brokendoors) + "
-	тронуто луж: " + str(Global.touchedslimes) + "
-	получил лещей: " + str(Global.hitsfromenemies) + "
-	открыто люков: " + str(Global.openvents) + "
-	использовано предметов: " + str(Global.useditems) + "
-	пробуждено врагов: " + str(Global.unsleepenemies) + "
-	
-	итого: " + str(points) + "
-	лучший рекорд: " + str(SavingManager.load("recordpoints"))
+	var statstext = tr("RUN_STATS_TEMPLATE").format({
+		"boxes": str(Global.brokenboxes),
+		"doors": str(Global.brokendoors),
+		"puddles": str(Global.touchedslimes),
+		"damage": str(Global.hitsfromenemies),
+		"vents": str(Global.openvents),
+		"items": str(Global.useditems),
+		"enemies": str(Global.unsleepenemies),
+		"points": str(points),
+		"record": str(SavingManager.load("recordpoints"))
+	})
+	$label.text = statstext
 	
 	SavingManager.save("recordpoints", Global.recordpoints)
 	
 	ScreenTransition.cleanup()
+	
+	#Global.brokenboxes = 0
+	#Global.brokendoors = 0
+	#Global.touchedslimes = 0
+	#Global.hitsfromenemies = 0
+	#Global.openvents = 0
+	#Global.useditems = 0
+	#Global.unsleepenemies = 0
 
 func _process(delta):
 	time += delta

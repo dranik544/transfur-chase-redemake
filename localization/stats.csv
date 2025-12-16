@@ -1,0 +1,34 @@
+id,ru,en
+
+RUN_STATS_TEMPLATE,"ты сдулся!
+
+сломано коробок: {boxes}
+выломано дверей: {doors}
+тронуто луж: {puddles}
+получил лещей: {damage}
+открыто люков: {vents}
+использовано предметов: {items}
+пробуждено врагов: {enemies}
+
+итого: {points}
+лучший рекорд: {record}","You gave up!
+
+Boxes smashed: {boxes}
+Doors broken: {doors}
+Puddles touched: {puddles}
+Damage taken: {damage}
+Vents opened: {vents}
+Items used: {items}
+Enemies awakened: {enemies}
+
+Total: {points}
+Best record: {record}"
+
+NOTIFY_NEW_RECORD_TITLE,"новый рекорд!","New record!"
+NOTIFY_NEW_RECORD_DESC,"поздравляю, вы побили свой
+прошлый рекорд! он будет
+записан во вкладке Статистики.","Congratulations, you beat your
+previous record! It will be
+saved in the Statistics tab."
+
+LABEL_DEATHSCREEN_HINTS,"выход в меню: Q или ESC; перезапуск: SPACE или R.","Exit to menu: Q or ESC; restart: SPACE or R."

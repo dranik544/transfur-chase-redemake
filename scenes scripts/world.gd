@@ -16,17 +16,15 @@ extends Node3D
 }
 @export var loadrooms: int = 45
 var lastroom: int = 1
-var grooms = [
-	$startroom2,
-	$startroom3,
-	$startroom4,
-	$startroom1
-]
+var grooms = []
 
 
 func _ready():
 	var o: int = 0
 	await get_tree().physics_frame
+	
+	grooms.push_back(get_node("startroom1"))
+	grooms.push_back(get_node("startroom4"))
 	
 	var player
 	if get_tree(): player = get_tree().get_first_node_in_group("player")

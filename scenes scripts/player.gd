@@ -209,9 +209,8 @@ func _physics_process(delta: float) -> void:
 	if isinv:
 		if itemdata["sprite"] and itemdata["type"]:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
-			$gui/gui/Label.text = itemdata["type"] + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-			#$gui/invtexture.scale = Vector2(2.0, 2.0)
-			#$gui/invtexture.scale = lerp($gui/invtexture.scale, Vector2(1.0, 1.0), 5 * delta)
+			var ittype = tr(itemdata["type"])
+			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
 		if Input.is_action_just_pressed("LCM"):
 			useitem()
 	
@@ -468,7 +467,7 @@ func useitem():
 			
 			itemdata.clear()
 			$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
-			$gui/gui/Label.text = "Тип предмета"
+			$gui/gui/Label.text = "DEFAULT_TYPE_ITEM"
 			isinv = false
 	elif itemdata["pointstime"] > 0:
 		item.queue_free()

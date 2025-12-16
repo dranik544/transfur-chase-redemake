@@ -174,7 +174,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_511js")
-text = "тип предмета"
+text = "DEFAULT_TYPE_ITEM"
 vertical_alignment = 2
 
 [node name="pause menu" type="Node2D" parent="gui"]

@@ -33,7 +33,6 @@ ScreenTransition="*res://scenes scripts/ScreenTransition.gd"
 window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
-window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=2
 mouse_cursor/custom_image="uid://dqd2s0q86h7ws"
 
@@ -175,7 +174,7 @@ DOSKA={
 [internationalization]
 
 locale/translation_remaps={}
-locale/translations=PackedStringArray("res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation", "res://localization/skins.en.translation", "res://localization/skins.ru.translation", "res://localization/notifications.en.translation", "res://localization/notifications.ru.translation", "res://localization/achievements.en.translation", "res://localization/achievements.ru.translation", "res://localization/menu settings.en.translation", "res://localization/menu settings.ru.translation", "res://localization/menu buttons.en.translation", "res://localization/menu buttons.ru.translation")
+locale/translations=PackedStringArray("res://localization/achievements.en.translation", "res://localization/achievements.ru.translation", "res://localization/animintro.en.translation", "res://localization/animintro.ru.translation", "res://localization/general stats.en.translation", "res://localization/general stats.ru.translation", "res://localization/intro.en.translation", "res://localization/intro.ru.translation", "res://localization/items.en.translation", "res://localization/items.ru.translation", "res://localization/menu buttons.en.translation", "res://localization/menu buttons.ru.translation", "res://localization/menu settings.en.translation", "res://localization/menu settings.ru.translation", "res://localization/notifications.en.translation", "res://localization/notifications.ru.translation", "res://localization/skins.en.translation", "res://localization/skins.ru.translation", "res://localization/stats.en.translation", "res://localization/stats.ru.translation")
 
 [physics]
 

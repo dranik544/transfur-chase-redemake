@@ -83,6 +83,7 @@ size = Vector2(0.2, 0.2)
 
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_rdsqj")
+loadrooms = 30
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_iombt")

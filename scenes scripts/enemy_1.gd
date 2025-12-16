@@ -76,7 +76,7 @@ func _physics_process(delta):
 		STATE.ACTIVE:
 			var playerdist = global_position.distance_to(player.global_position)
 			
-			speeddist = clampf(0.0 + playerdist / nerf, 0.0, 25.0)
+			speeddist = clampf(0.0 + playerdist / nerf, 0.0, 50.0)
 			if playerdist / nerf > 32.5:
 				queue_free()
 			
