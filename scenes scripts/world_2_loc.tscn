@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=27 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
+[ext_resource type="PackedScene" uid="uid://bk16lsmt07me8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_2.tscn" id="2_tdjod"]
+[ext_resource type="PackedScene" uid="uid://cqxqfdr1jnyoi" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_1.tscn" id="3_66px4"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_tdjod"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_sw6d5"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
@@ -84,6 +86,10 @@ size = Vector2(0.2, 0.2)
 
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_rdsqj")
+rooms = {
+1: ExtResource("2_tdjod"),
+2: ExtResource("3_66px4")
+}
 loadrooms = 30
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

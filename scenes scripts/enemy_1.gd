@@ -40,6 +40,10 @@ func _ready():
 		if isfemale:
 			$Sprite3D.sprite_frames = load("res://skins/enemy_female__2_loc_sprite.tres")
 	
+	var randfliph = randi_range(1, 2)
+	if randfliph == 1: $Sprite3D.flip_h = true
+	elif randfliph == 2: $Sprite3D.flip_h = false
+	
 	if Global.iswinter and curtype != TYPE.mimic:
 		runanim = "run newyear"
 		sleepanim = "sleep newyear"

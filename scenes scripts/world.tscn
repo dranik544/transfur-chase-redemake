@@ -86,7 +86,7 @@ size = Vector2(0.2, 0.2)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ktiys")
-loadrooms = 32
+loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ixu3i")
