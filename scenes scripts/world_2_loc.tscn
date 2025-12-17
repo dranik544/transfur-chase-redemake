@@ -136,6 +136,8 @@ shape = SubResource("BoxShape3D_5vyl4")
 
 [node name="startroom4" parent="." instance=ExtResource("6_ff8mw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+RandomBox = false
+RandomNumBoxes = false
 
 [node name="spawnnextroom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)

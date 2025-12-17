@@ -37,8 +37,8 @@ func timeout():
 			if i.curtype == i.TYPE.blackenemy: i.enablearea(not onoff)
 	if worldlight: worldlight.visible = onoff
 	if music:
-		if onoff: music.volume_db -= 3.5
-		if !onoff: music.volume_db += 3.5
+		if onoff: music.volume_db -= 6.5
+		if !onoff: music.volume_db = Global.settings["musicvolume"] / 10
 	
 	if onoff: $AudioStreamPlayer.pitch_scale = 1.0
 	if !onoff: $AudioStreamPlayer.pitch_scale = 0.7
