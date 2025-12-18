@@ -1,14 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=26 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
 [ext_resource type="PackedScene" uid="uid://bk16lsmt07me8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_2.tscn" id="2_tdjod"]
-[ext_resource type="PackedScene" uid="uid://cqxqfdr1jnyoi" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_1.tscn" id="3_66px4"]
+[ext_resource type="PackedScene" uid="uid://bitxsnpbxemel" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_3.tscn" id="3_66px4"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_tdjod"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_sw6d5"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
-[ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="7_vwtus"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="10_8mb1v"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="10_rdsqj"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="11_gks0a"]
@@ -90,7 +89,7 @@ rooms = {
 1: ExtResource("2_tdjod"),
 2: ExtResource("3_66px4")
 }
-loadrooms = 30
+loadrooms = 20
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_iombt")
@@ -116,9 +115,6 @@ texture = ExtResource("6_dtyy0")
 
 [node name="startroom3" parent="." instance=ExtResource("6_ff8mw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
-
-[node name="slime1" parent="startroom3" instance=ExtResource("7_vwtus")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, 0)
 
 [node name="startroom2" parent="." instance=ExtResource("6_ff8mw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)

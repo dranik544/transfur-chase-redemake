@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckgad4iixpkk8"]
+[gd_scene load_steps=9 format=3 uid="uid://ckgad4iixpkk8"]
+
+[ext_resource type="Texture2D" uid="uid://blcisbbjqng50" path="res://normalmaps/savepoint3normalmap1.png" id="1_s4nki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukjev"]
 cull_mode = 1
@@ -10,6 +12,9 @@ grow_amount = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuk1j"]
 next_pass = SubResource("StandardMaterial3D_ukjev")
 albedo_color = Color(0.874737, 0.874737, 0.874737, 1)
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("1_s4nki")
 uv1_triplanar = true
 texture_filter = 2
 
@@ -26,6 +31,9 @@ grow_amount = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yupse"]
 next_pass = SubResource("StandardMaterial3D_s4nki")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("1_s4nki")
 uv1_triplanar = true
 texture_filter = 2
 
