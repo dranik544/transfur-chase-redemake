@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0rfpwex6vxnn"]
+[gd_scene load_steps=7 format=3 uid="uid://c0rfpwex6vxnn"]
 
 [ext_resource type="Texture2D" uid="uid://bnygijfv3vrge" path="res://sprites/RU language1.png" id="1_dgqgf"]
 [ext_resource type="Texture2D" uid="uid://chcdkulvudlk" path="res://sprites/EN language1.png" id="2_wwj4d"]
 [ext_resource type="AudioStream" uid="uid://c2mmisoeoi2hj" path="res://sounds music/halatpunch1.mp3" id="4_6g5yn"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="5_hxpoq"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="5_wev8o"]
 
 [sub_resource type="GDScript" id="GDScript_ncl1c"]
 script/source = "extends Node2D
@@ -53,3 +54,20 @@ expand_icon = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6g5yn")
 pitch_scale = 2.25
+
+[node name="Label" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 17.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("5_wev8o")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "ver 0.0.0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
