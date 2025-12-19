@@ -16,6 +16,7 @@ extends Node3D
 }
 @export var loadrooms: int = 45
 var lastroom: int = 1
+@export var lastroomscene: PackedScene = preload("res://scenes scripts/rooms/endroom_1.tscn")
 var grooms = []
 
 
@@ -43,6 +44,8 @@ func _ready():
 	#$navi.bake_navigation_mesh()
 	await get_tree().physics_frame
 	
+	spawnroom(false, lastroomscene)
+	
 	o = 0
 	for i in grooms:
 		if i != null:
@@ -61,7 +64,6 @@ func _ready():
 	await get_tree().create_timer(0.05).timeout
 	await enter()
 	
-	spawnroom(false, load("res://scenes scripts/rooms/endroom_1.tscn"))
 	$CanvasLayer.queue_free()
 	if player: player.set_physics_process(true)
 	if $enemy1 and $enemy2:
@@ -107,6 +109,7 @@ func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 		sroom.position = $spawnnextroom.position
 		add_child(sroom)
 		
+		grooms.push_back(sroom)
 		roompos = sroom.getsize()
 	
 	$spawnnextroom.position -= roompos

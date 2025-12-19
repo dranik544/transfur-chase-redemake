@@ -18,6 +18,7 @@ var runanim = "run"
 var sleepanim = "sleep"
 var isfemale = false
 var playerinarea = false
+var cantarget = true
 
 @export var health: float = 5.0
 var curhealth: float = 5.0
@@ -151,7 +152,7 @@ func _physics_process(delta):
 			
 			curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
 			
-			targetpos(player.global_transform.origin)
+			if cantarget: targetpos(player.global_transform.origin)
 		
 		STATE.PUNCH:
 			velocity = velocity.lerp(Vector3.ZERO, 0.1 * delta * 60)
@@ -280,3 +281,6 @@ func timertimeout():
 func enablearea(onoff: bool):
 	if onoff: $Area3D/CollisionShape3D.disabled = true
 	if !onoff: $Area3D/CollisionShape3D.disabled = false
+func enabletarget(onoff: bool):
+	if onoff: cantarget = false
+	if !onoff: cantarget = true
