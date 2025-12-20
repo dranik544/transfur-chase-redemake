@@ -41,6 +41,7 @@ func _ready():
 	$"CanvasLayer/buttons/muha gift/btnmuha".pressed.connect(btnmuhapressed)
 	$CanvasLayer/buttons/tutorial/btntutorial.pressed.connect(btntutorialpressed)
 	$"CanvasLayer/tutorial menu/btnexit".pressed.connect(btntutorialexitpressed)
+	$"CanvasLayer/start menu/btnexit".pressed.connect(btnstartexitpressed)
 	
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
@@ -189,5 +190,6 @@ func btnsettingsexitpressed(): $"CanvasLayer/settings menu".visible = false; $Ca
 func btntutorialpressed(): $"CanvasLayer/tutorial menu".visible = true; $CanvasLayer/buttons.visible = false
 func btntutorialexitpressed(): $"CanvasLayer/tutorial menu".visible = false; $CanvasLayer/buttons.visible = true
 
-func btnstartpressed():ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.BLACK, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
+func btnstartpressed():$"CanvasLayer/start menu".visible = true
+func btnstartexitpressed():$"CanvasLayer/start menu".visible = false
 func btnexitpressed():get_tree().quit()

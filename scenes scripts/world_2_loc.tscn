@@ -194,12 +194,12 @@ script = ExtResource("14_b3iur")
 [node name="notification" parent="." instance=ExtResource("15_gm8ny")]
 
 [node name="enemy3" parent="." instance=ExtResource("16_pcuvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.9, -4)
 
 [node name="enemy4" parent="." instance=ExtResource("16_pcuvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.9, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.9, -2)
 
 [node name="enemy5" parent="." instance=ExtResource("16_pcuvx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.9, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.9, 4)
 
 [node name="lightcontrol 2loc" parent="." instance=ExtResource("15_uckpa")]

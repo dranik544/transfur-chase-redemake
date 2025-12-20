@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://bvqdyq2tfhg3y"]
+[gd_scene load_steps=93 format=3 uid="uid://bvqdyq2tfhg3y"]
 
 [ext_resource type="Script" uid="uid://boshgf2n2xbtr" path="res://scenes scripts/menu.gd" id="1_tnq6k"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_1qjkn"]
@@ -56,6 +56,8 @@
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="48_8lcj0"]
 [ext_resource type="Script" uid="uid://neol3tevslhf" path="res://scenes scripts/settings_menu.gd" id="49_rd0ur"]
 [ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="51_g2umq"]
+[ext_resource type="Texture2D" uid="uid://bxfvf4x2t23eo" path="res://sprites/1loc.png" id="53_bmvr6"]
+[ext_resource type="Texture2D" uid="uid://c0he3nas2vwva" path="res://sprites/2loc.png" id="54_e4kgd"]
 [ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="57_mxc8c"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0b3bo"]
@@ -496,6 +498,18 @@ func _on_pressed() -> void:
 	Global._ready()
 	$\"..\".updatesettings()
 	get_tree().reload_current_scene()
+"
+
+[sub_resource type="GDScript" id="GDScript_e4kgd"]
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	$\"1loc/Button\".pressed.connect(btn1loc)
+	$\"2loc/Button\".pressed.connect(btn2loc)
+
+func btn1loc(): ScreenTransition.changescene(\"res://scenes scripts/world.tscn\", Color.BLACK)
+func btn2loc(): ScreenTransition.changescene(\"res://scenes scripts/world_2_loc.tscn\", Color.BLACK)
 "
 
 [sub_resource type="GDScript" id="GDScript_un3na"]
@@ -2149,6 +2163,7 @@ texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
 [node name="settings menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("49_rd0ur")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/settings menu"]
@@ -2558,6 +2573,122 @@ CTRL+Q - выход из игры
 
 
 [right][i][wave]УДАЧИ![/wave][/i][/right]       "
+
+[node name="start menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+script = SubResource("GDScript_e4kgd")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/start menu"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="btnexit" type="Button" parent="CanvasLayer/start menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 416.0
+offset_right = 95.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "BUTTON_EXIT"
+icon = ExtResource("19_fhf2g")
+expand_icon = true
+
+[node name="1loc" type="Node2D" parent="CanvasLayer/start menu"]
+position = Vector2(125, 127)
+script = SubResource("GDScript_jh7g4")
+
+[node name="wiki" type="TextureRect" parent="CanvasLayer/start menu/1loc"]
+offset_left = -136.0
+offset_top = -143.0
+offset_right = 147.0
+offset_bottom = 140.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("24_n7qjf")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/start menu/1loc"]
+offset_left = -87.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = 78.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("53_bmvr6")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/start menu/1loc"]
+offset_left = -90.0
+offset_top = 82.0
+offset_right = 100.0
+offset_bottom = 119.0
+pivot_offset = Vector2(141, 141)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "NAME_1_LOC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/start menu/1loc"]
+offset_left = -100.0
+offset_top = -107.0
+offset_right = 111.0
+offset_bottom = 124.0
+pivot_offset = Vector2(141, 141)
+flat = true
+
+[node name="2loc" type="Node2D" parent="CanvasLayer/start menu"]
+position = Vector2(316, 147)
+script = SubResource("GDScript_jh7g4")
+
+[node name="wiki" type="TextureRect" parent="CanvasLayer/start menu/2loc"]
+offset_left = -136.0
+offset_top = -143.0
+offset_right = 147.0
+offset_bottom = 140.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("24_n7qjf")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/start menu/2loc"]
+offset_left = -87.0
+offset_top = -94.0
+offset_right = 98.0
+offset_bottom = 78.0
+pivot_offset = Vector2(141, 141)
+texture = ExtResource("54_e4kgd")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/start menu/2loc"]
+offset_left = -90.0
+offset_top = 82.0
+offset_right = 100.0
+offset_bottom = 119.0
+pivot_offset = Vector2(141, 141)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "NAME_2_LOC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/start menu/2loc"]
+offset_left = -100.0
+offset_top = -107.0
+offset_right = 111.0
+offset_bottom = 124.0
+pivot_offset = Vector2(141, 141)
+flat = true
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_efmc1")
