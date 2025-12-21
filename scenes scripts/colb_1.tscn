@@ -14,6 +14,7 @@ grow_amount = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gopog"]
 next_pass = SubResource("StandardMaterial3D_dr75b")
 transparency = 1
+albedo_color = Color(1, 1, 1, 0.490196)
 albedo_texture = ExtResource("2_1kyia")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_offset = Vector3(0.5, 0.5, 0.5)
@@ -23,9 +24,10 @@ texture_filter = 2
 [sub_resource type="CylinderMesh" id="CylinderMesh_inj3c"]
 material = SubResource("StandardMaterial3D_gopog")
 height = 1.8
+radial_segments = 6
+rings = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inj3c"]
-next_pass = SubResource("StandardMaterial3D_dr75b")
 transparency = 1
 albedo_color = Color(0.302004, 0.302004, 0.302004, 1)
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -38,6 +40,9 @@ material = SubResource("StandardMaterial3D_inj3c")
 top_radius = 0.4
 bottom_radius = 0.4
 height = 1.0
+radial_segments = 5
+rings = 0
+cap_bottom = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jd8x"]
 next_pass = SubResource("StandardMaterial3D_dr75b")
@@ -53,14 +58,15 @@ material = SubResource("StandardMaterial3D_8jd8x")
 top_radius = 0.6
 bottom_radius = 0.6
 height = 0.3
-radial_segments = 12
+radial_segments = 8
+rings = 0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dr75b"]
 height = 1.85
 
 [node name="colb1" type="RigidBody3D" groups=["broke"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mass = 2.5
+mass = 12.0
 script = ExtResource("1_dr75b")
 beffecttexture = ExtResource("2_dr75b")
 bscaletexture = Vector2(0.1, 0.1)
