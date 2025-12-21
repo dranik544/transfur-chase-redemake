@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bitxsnpbxemel"]
+[gd_scene load_steps=26 format=3 uid="uid://bitxsnpbxemel"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_dlppc"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_5uv2y"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="14_iwr6k"]
 [ext_resource type="PackedScene" uid="uid://rlv6x1sbjgi0" path="res://scenes scripts/box_4.tscn" id="15_jb80t"]
 [ext_resource type="PackedScene" uid="uid://47uaksceiu82" path="res://scenes scripts/enemy_3.tscn" id="16_5w00f"]
+[ext_resource type="PackedScene" uid="uid://bl31xae5rueew" path="res://scenes scripts/colb_1.tscn" id="16_kkqci"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="18_d8xmp"]
 [ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="19_0and6"]
 
@@ -261,17 +262,17 @@ transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 
 [node name="box4" parent="NavigationRegion3D" instance=ExtResource("15_jb80t")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -16, 0.5, -2.7)
 
-[node name="box5" parent="NavigationRegion3D" instance=ExtResource("14_iwr6k")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -12.4596, 0.5, -3.80962)
-
-[node name="box6" parent="NavigationRegion3D" instance=ExtResource("15_jb80t")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -11.5404, 0.5, -2.89038)
-
 [node name="box7" parent="NavigationRegion3D" instance=ExtResource("14_iwr6k")]
 transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -13.8318, 0.5, -2.72215)
 
 [node name="box8" parent="NavigationRegion3D" instance=ExtResource("15_jb80t")]
 transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -14.1682, 0.5, -3.97785)
+
+[node name="colb1" parent="NavigationRegion3D" instance=ExtResource("16_kkqci")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -11.9036, 0.5, -4.10622)
+
+[node name="colb2" parent="NavigationRegion3D" instance=ExtResource("16_kkqci")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -11.8964, 0.5, -2.49378)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

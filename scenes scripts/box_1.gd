@@ -6,20 +6,23 @@ var player: CharacterBody3D
 @export var bamounttexture: int = 8
 @export var bcoloreffect: Color = Color(0.698, 0.486, 0.275)
 @export var effectscene: PackedScene = preload("res://scenes scripts/effect_1.tscn")
+enum TYPE {box, colb}
+@export var curtype: TYPE = TYPE.box
+var slimescene: PackedScene = preload("res://scenes scripts/slime_1.tscn")
 
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-func _process(delta: float) -> void:
-	if !player:
-		player = get_tree().get_first_node_in_group("player")
-	
-	if player:
-		if global_position.distance_to(player.global_position) > 20:
-			set_physics_process(false)
-		else:
-			set_physics_process(true)
+#func _process(delta: float) -> void:
+	#if !player:
+		#player = get_tree().get_first_node_in_group("player")
+	#
+	#if player:
+		#if global_position.distance_to(player.global_position) > 20:
+			#set_physics_process(false)
+		#else:
+			#set_physics_process(true)
 
 func broke():
 	var effect: Node3D = effectscene.instantiate()
@@ -31,6 +34,12 @@ func broke():
 	#effect.amounttexture = bamounttexture
 	#effect.coloreffect = bcoloreffect
 	effect.seteffect(beffecttexture, bscaletexture, bamounttexture, bcoloreffect)
+	
+	if curtype == TYPE.colb:
+		var slime = slimescene.instantiate()
+		slime.curtype = slime.TYPE.blackenemy
+		get_parent().add_child(slime)
+		slime.global_position = Vector3(global_position.x, 0, global_position.z)
 	
 	effect.play()
 	
