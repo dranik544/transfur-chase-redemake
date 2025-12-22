@@ -1,0 +1,164 @@
+[gd_scene load_steps=25 format=3 uid="uid://vv3yyifjc8ba"]
+
+[ext_resource type="Script" uid="uid://bvlrwnte3offw" path="res://scenes scripts/small_enemy_1.gd" id="1_jfu27"]
+[ext_resource type="Texture2D" uid="uid://dus528dkpma80" path="res://sprites/small slime 1.png" id="2_8grb2"]
+[ext_resource type="Texture2D" uid="uid://4nayrbybffe2" path="res://sprites/small slime 2.png" id="3_l2b4f"]
+[ext_resource type="Texture2D" uid="uid://c2pr2xrftn3nb" path="res://sprites/savepoint2.png" id="4_8grb2"]
+[ext_resource type="Script" uid="uid://bfi564sn20v5w" path="res://scenes scripts/effect_1.gd" id="5_3dlo2"]
+[ext_resource type="Texture2D" uid="uid://q7f60y45v2ip" path="res://sprites/phhphhphh1.png" id="6_xwfcd"]
+[ext_resource type="Texture2D" uid="uid://cm88bv01c07ad" path="res://sprites/icon8.png" id="6_ykj73"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8grb2"]
+height = 0.23125
+radius = 0.3
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28iu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8grb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l2b4f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2b4f"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dlo2"]
+next_pass = SubResource("StandardMaterial3D_l2b4f")
+shading_mode = 2
+albedo_texture = ExtResource("4_8grb2")
+uv1_scale = Vector3(2, 2, 2)
+texture_filter = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ykj73"]
+material = SubResource("StandardMaterial3D_3dlo2")
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.2
+radial_segments = 9
+rings = 0
+
+[sub_resource type="Curve" id="Curve_ebgmw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.989726, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5rmb1"]
+curve = SubResource("Curve_ebgmw")
+
+[sub_resource type="Curve" id="Curve_6jp87"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a5i1j"]
+curve = SubResource("Curve_6jp87")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebgmw"]
+direction = Vector3(1, 1, 0)
+spread = 90.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.5
+gravity = Vector3(0, 0.2, 0)
+damping_max = 0.5
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_a5i1j")
+alpha_curve = SubResource("CurveTexture_5rmb1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf8ce"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_ykj73")
+texture_filter = 2
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_3xin0"]
+material = SubResource("StandardMaterial3D_gf8ce")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_3xin0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.517123, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7850t"]
+curve = SubResource("Curve_3xin0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u024r"]
+particle_flag_align_y = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_7850t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi44p"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e5cc2"]
+material = SubResource("StandardMaterial3D_hi44p")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 4
+
+[node name="small enemy 1" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+collision_layer = 8
+script = ExtResource("1_jfu27")
+speed = 0.75
+curtype = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.134375, 0)
+shape = SubResource("CylinderShape3D_8grb2")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.32, 0)
+visible = false
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_28iu3")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="mesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+mesh = SubResource("CylinderMesh_ykj73")
+
+[node name="effect1" type="Node3D" parent="."]
+script = ExtResource("5_3dlo2")
+effecttexture = ExtResource("6_xwfcd")
+scaletexture = Vector2(0.35, 0.35)
+coloreffect = Color(0.346569, 0.346569, 0.346569, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 5.0
+speed_scale = 1.25
+process_material = SubResource("ParticleProcessMaterial_ebgmw")
+draw_pass_1 = SubResource("QuadMesh_3xin0")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="effect1"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u024r")
+draw_pass_1 = SubResource("CylinderMesh_e5cc2")

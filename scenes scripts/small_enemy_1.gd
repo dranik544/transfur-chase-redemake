@@ -1,19 +1,46 @@
 extends CharacterBody3D
 
 @export var speed = 2.5
-
+enum TYPE {smalllatex, robotpilesos}
+@export var curtype: TYPE = TYPE.smalllatex
+@export var canmove: bool = true
+var robotdirections = [
+	Vector3.FORWARD,
+	Vector3.FORWARD + Vector3.RIGHT,
+	Vector3.RIGHT,
+	Vector3.BACK + Vector3.RIGHT,
+	Vector3.BACK,
+	Vector3.BACK + Vector3.LEFT,
+	Vector3.LEFT,
+	Vector3.FORWARD + Vector3.LEFT
+]
 
 func _ready():
 	add_to_group("small enemy")
-	velocity = Vector3.FORWARD * speed
+	if canmove:
+		if curtype == TYPE.robotpilesos:
+			velocity = robotdirections[randi() % robotdirections.size()].normalized() * speed
+		else:
+			velocity = Vector3.FORWARD * speed
 
 func _physics_process(delta):
-	#var player: CharacterBody3D = get_tree().get_first_node_in_group("player")
-	#var playerdist = global_position.distance_to(player.global_position)
-	
-	#if playerdist < 17.5:
-	move_and_slide()
-	
-	if get_slide_collision_count() > 0:
-		speed = randf_range(1.5, 5.0)
-		velocity = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * speed
+	if canmove:
+		move_and_slide()
+		
+		if get_slide_collision_count() > 0:
+			match curtype:
+				TYPE.smalllatex:
+					speed = randf_range(1.5, 5.0)
+					velocity = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized() * speed
+				
+				TYPE.robotpilesos:
+					velocity = Vector3.ZERO
+					await get_tree().create_timer(randf_range(0.5, 1.0)).timeout
+					speed = randf_range(0.75, 1.0)
+					var randomdirection = robotdirections[randi() % robotdirections.size()]
+					velocity = randomdirection.normalized() * speed
+
+func robotbroke():
+	$effect1.play()
+	canmove = false
+	$CollisionShape3D.disabled = true

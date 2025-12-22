@@ -253,6 +253,8 @@ collision_priority = 0.8
 script = ExtResource("1_0cj7y")
 speed = 3.5
 nerf = 4.0
+curtype = 3
+health = 0.1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.5

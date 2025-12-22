@@ -11,7 +11,7 @@ point_count = 2
 curve = SubResource("Curve_ebgmw")
 
 [sub_resource type="Curve" id="Curve_6jp87"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34589, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_a5i1j"]
@@ -19,13 +19,12 @@ curve = SubResource("Curve_6jp87")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebgmw"]
 direction = Vector3(1, 1, 0)
-spread = 180.0
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 0, 0)
+spread = 90.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.5
+gravity = Vector3(0, 0.2, 0)
 damping_max = 0.5
 scale_min = 0.1
-scale_max = 1.5
 scale_curve = SubResource("CurveTexture_a5i1j")
 alpha_curve = SubResource("CurveTexture_5rmb1")
 

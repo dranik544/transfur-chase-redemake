@@ -347,7 +347,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("slime") and !isslide:
-		minushealth(0.5)
+		var color = detectenemycolor(body)
+		minushealth(0.5, color)
 		speed -= randf_range(4.0, 5.0)
 		body.touched()
 		
@@ -376,7 +377,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			
 			startshake(20, 0.1)
 	if body.is_in_group("small enemy"):
-		minushealth(0.25)
+		if body.curtype == 1:
+			body.robotbroke()
+			minushealth(0.75, Color.BLACK)
+		else:
+			minushealth(0.25)
 		Global.hitsfromenemies -= 1
 		
 		var random = randi_range(1, 2)
@@ -406,7 +411,7 @@ func minushealth(num, color: Color = Color.WHITE):
 	$gui/slimecolor.color = finalcolor
 	$gui/slime.modulate = finalcolor
 	
-	var slimeenum = randi_range(1, 3)
+	var slimeenum = randi_range(2, 6)
 	for i in slimeenum:
 		var slimee = TextureRect.new()
 		var randomslimee = randi_range(1, 5)
@@ -477,10 +482,8 @@ func detectenemycolor(enemy):
 	var typeenemy = enemy.curtype
 	var colorhit: Color
 	match typeenemy:
-		0:
-			colorhit = Color.WHITE_SMOKE
-		1:
-			colorhit = Color.BLACK
+		0: colorhit = Color.WHITE_SMOKE
+		1: colorhit = Color.BLACK
 	
 	return colorhit
 

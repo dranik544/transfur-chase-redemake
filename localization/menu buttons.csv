@@ -18,3 +18,19 @@ HINT_TUTORIAL_BUTTON,"освежите память!","Refresh your memory!"
 HINT_STATS_BUTTON,"узнайте свою статистику и новое об противниках!","Check out your stats and learn new things about enemies!"
 HINT_SKINS_BUTTON,"выберите любой костюм для Колина!","Choose any costume for Colin!"
 HINT_DEFAULT,". . .",". . ."
+
+
+
+WORLD_2_LOC_WARNING_1,"Внимание! Чёрный латекс
+восприимчив к
+любым движениям!
+Выключайте любое
+освещение перед
+проведением эксеперементов
+с ним!","Caution! Black latex
+is sensitive
+to any movement! Turn
+off all lights
+before
+experimenting
+with it!"
