@@ -29,6 +29,7 @@ rings = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inj3c"]
 transparency = 1
+shading_mode = 2
 albedo_color = Color(0.302004, 0.302004, 0.302004, 1)
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_offset = Vector3(0.5, 0.5, 0.5)

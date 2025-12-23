@@ -196,7 +196,7 @@ func _physics_process(delta: float) -> void:
 				$CollisionShape3D.disabled = false
 				await get_tree().physics_frame
 				$CollisionShape3D2.disabled = true
-			speed = lerp(speed, 6.0 - itemkg, 5 * delta)
+			speed = lerp(speed, 6.0 - itemkg, 3 * delta)
 			taunt = false
 	
 	#hit = Input.is_action_pressed("F")
@@ -360,12 +360,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			camscale += randf_range(-10.0, -7.5)
 			$latexpunch.stream = halatpunchsound1
 			$latexpunch.play()
+			speed += randf_range(1.0, 2.0)
 			
 			useitem()
 		else:
 			var color = detectenemycolor(body)
 			minushealth(1.0, color)
 			Global.hitsfromenemies -= 1
+			speed += randf_range(0.5, 1.0)
 			
 			var random = randi_range(1, 2)
 			match random:
@@ -380,6 +382,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		if body.curtype == 1:
 			body.robotbroke()
 			minushealth(0.75, Color.BLACK)
+			speed -= randf_range(5.0, 6.0)
 		else:
 			minushealth(0.25)
 		Global.hitsfromenemies -= 1
@@ -397,7 +400,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		Global.brokenboxes += 1
 		
 		body.broke()
-		slidespeedminus -= randf_range(1.0, 2.5)
+		slidespeedminus -= randf_range(1.5, 2.5)
 		
 		startshake(30, 0.2)
 
@@ -411,7 +414,7 @@ func minushealth(num, color: Color = Color.WHITE):
 	$gui/slimecolor.color = finalcolor
 	$gui/slime.modulate = finalcolor
 	
-	var slimeenum = randi_range(2, 6)
+	var slimeenum = randi_range(3, 8)
 	for i in slimeenum:
 		var slimee = TextureRect.new()
 		var randomslimee = randi_range(1, 5)

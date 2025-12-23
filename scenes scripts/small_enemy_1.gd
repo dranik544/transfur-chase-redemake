@@ -35,6 +35,7 @@ func _physics_process(delta):
 				
 				TYPE.robotpilesos:
 					velocity = Vector3.ZERO
+					#create_tween().tween_property($mesh1, "rotation:y", $mesh1.rotation.y + randf_range(-90, 90), 0.5)
 					await get_tree().create_timer(randf_range(0.5, 1.0)).timeout
 					speed = randf_range(0.75, 1.0)
 					var randomdirection = robotdirections[randi() % robotdirections.size()]

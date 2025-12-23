@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TransFur Chase DEMAKE"
-config/version="0.0.0.5"
+config/version="6"
 config/tags=PackedStringArray("3d", "dranik544", "roguelike")
 run/main_scene="uid://c0rfpwex6vxnn"
 config/features=PackedStringArray("4.4", "Forward Plus")
