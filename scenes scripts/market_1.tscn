@@ -1,0 +1,197 @@
+[gd_scene load_steps=9 format=3 uid="uid://dy3eijirtg1hy"]
+
+[ext_resource type="Script" uid="uid://4sdd0sdhhj1" path="res://scenes scripts/market_1.gd" id="1_em1l2"]
+[ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="2_t7gik"]
+[ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites/nullinv1.png" id="3_vjfvc"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_skmd8"]
+[ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites/icon5.png" id="5_i4i76"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3dska"]
+size = Vector3(1, 1.4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dska"]
+size = Vector3(1, 1.4, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3dska"]
+height = 1.35
+radius = 1.4
+
+[node name="market1" type="StaticBody3D"]
+script = ExtResource("1_em1l2")
+
+[node name="mesh1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("BoxMesh_3dska")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("BoxShape3D_3dska")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.725, 0)
+shape = SubResource("CylinderShape3D_3dska")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer"]
+process_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -189.0
+offset_right = -13.0
+offset_bottom = 189.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_t7gik")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="item1" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 9.0
+offset_right = 79.0
+offset_bottom = 74.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="item2" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 96.0
+offset_top = 9.0
+offset_right = 161.0
+offset_bottom = 74.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="item3" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 176.0
+offset_top = 9.0
+offset_right = 241.0
+offset_bottom = 74.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="price1" type="ColorRect" parent="CanvasLayer/NinePatchRect"]
+offset_left = 1.0
+offset_top = 80.0
+offset_right = 256.0
+offset_bottom = 104.0
+
+[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price1"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 255.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 22
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="item4" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 14.0
+offset_top = 119.0
+offset_right = 79.0
+offset_bottom = 184.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="item5" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 96.0
+offset_top = 119.0
+offset_right = 161.0
+offset_bottom = 184.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="item6" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 176.0
+offset_top = 119.0
+offset_right = 241.0
+offset_bottom = 184.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="price2" type="ColorRect" parent="CanvasLayer/NinePatchRect"]
+offset_left = 1.0
+offset_top = 190.0
+offset_right = 256.0
+offset_bottom = 214.0
+
+[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price2"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 255.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 22
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="item7" type="Button" parent="CanvasLayer/NinePatchRect"]
+offset_left = 96.0
+offset_top = 235.0
+offset_right = 161.0
+offset_bottom = 300.0
+icon = ExtResource("3_vjfvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="price3" type="ColorRect" parent="CanvasLayer/NinePatchRect"]
+offset_left = 1.0
+offset_top = 306.0
+offset_right = 256.0
+offset_bottom = 330.0
+
+[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price3"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 255.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 22
+text = "discountprice"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="exit" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 338.0
+offset_right = 247.0
+offset_bottom = 369.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+text = "BUTTON_EXIT"
+icon = ExtResource("5_i4i76")
