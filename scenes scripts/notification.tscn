@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="3_13nxq"]
 
 [node name="notification" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_13nxq")
 
 [node name="notification" type="MarginContainer" parent="."]
