@@ -19,6 +19,8 @@ var generalstats = [
 
 var iswinter: bool = false
 
+var money: int = 0
+
 var colinskin: String = "colin"
 var listskins = [
 	{"name": "colin", "unlocked": true}, #id: 0
@@ -67,7 +69,7 @@ signal navibake()
 signal updatesoundandmusic()
 signal punchpl(damage)
 signal hitdoor(damage)
-signal pickupitem(player)
+signal pickupitem(player, checkdist)
 signal turnlight(onoff)
 
 

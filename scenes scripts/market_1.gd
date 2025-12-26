@@ -16,7 +16,16 @@ func _ready() -> void:
 	
 	$CanvasLayer/NinePatchRect.modulate.a = 0.0
 	
+	connectbuttons()
 	spawnitems()
+	
+	
+	
+	
+	
+	
+	
+	Global.money = 100
 
 func bodyentered(body):
 	if body.is_in_group("player"):
@@ -25,6 +34,7 @@ func bodyentered(body):
 		var tween = create_tween()
 		tween.set_ignore_time_scale(true)
 		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.25)
+		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
 
 func bodyexited(body):
 	if body.is_in_group("player"):
@@ -37,6 +47,34 @@ func exit():
 	tween.set_ignore_time_scale(true)
 	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.25)
 
+func connectbuttons():
+	for i in range(1, 8):
+		var button = get_node_or_null("CanvasLayer/NinePatchRect/item" + str(i))
+		if button:
+			button.pressed.connect(_on_item_button_pressed.bind(button))
+
+func _on_item_button_pressed(button: Button):
+	if not button.has_meta("itemdata"):
+		return
+	
+	if Global.money >= button.get_meta("itemdata")["price"]:
+		Global.money -= button.get_meta("itemdata")["price"]
+		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
+		
+		var item: RigidBody3D = button.get_meta("itemdata")["scene"].instantiate()
+		get_parent().add_child(item)
+		item.global_position = global_position
+		item.pick(get_tree().get_first_node_in_group("player"), false)
+		
+		$AudioStreamPlayer.volume_db = Global.settings["soundvolume"] / 10
+		$AudioStreamPlayer.play()
+		
+		button.visible = false
+		button.disabled = true
+	else:
+		#print("недостаточно деньжат")
+		pass
+
 func spawnitems():
 	var cheapitems = []
 	var mediumitems = []
@@ -46,12 +84,12 @@ func spawnitems():
 			if items[i + 1]["price"] == 10: cheapitems.push_back(items[i + 1])
 			if items[i + 1]["price"] == 25: mediumitems.push_back(items[i + 1])
 	
-	print("cheap items: ", cheapitems)
-	print("medium items: ", mediumitems)
+	#print("cheap items: ", cheapitems)
+	#print("medium items: ", mediumitems)
 	
 	for i in 7:
 		var button: Button = get_node("CanvasLayer/NinePatchRect/item" + str(i + 1))
-		print(button)
+		#print(button)
 		
 		var randomnull = randi_range(1, 4)
 		if button:
@@ -77,7 +115,7 @@ func spawnitems():
 						"scene": mediumitems[randitem]["scene"],
 					})
 				if i == 6:
-					var randitem = randi_range(0, items.size() - 1)
+					var randitem = randi_range(1, items.size())
 					button.icon = items[randitem]["texture"]
 					button.set_meta("itemdata", {
 						"item": randitem,

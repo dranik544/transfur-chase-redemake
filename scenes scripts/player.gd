@@ -93,7 +93,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("F"):
 		Global.punchpl.emit(damage)
 		Global.hitdoor.emit(damage)
-	if event.is_action_pressed("E"): Global.pickupitem.emit(self)
+	if event.is_action_pressed("E"):
+		Global.pickupitem.emit(self, true)
 
 func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 	camfollow = canfollow
@@ -211,7 +212,7 @@ func _physics_process(delta: float) -> void:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
 			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-		if Input.is_action_just_pressed("LCM"):
+		if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 			useitem()
 	
 	if health < 3.0:

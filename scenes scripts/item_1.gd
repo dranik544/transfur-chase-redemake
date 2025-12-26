@@ -57,13 +57,16 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		if $hint:
 			$hint.visible = false
 
-func pick(player = get_tree().get_first_node_in_group("player")):
-	if global_position.distance_to(player.global_position) < 1.5:
+func pick(player = get_tree().get_first_node_in_group("player"), checkdist: bool = true):
+	if !checkdist:
 		player.isinv = true
-		
 		player.itemdata = itemdata
-		
 		queue_free()
+	else:
+		if global_position.distance_to(player.global_position) < 1.5:
+			player.isinv = true
+			player.itemdata = itemdata
+			queue_free()
 
 func use(player = get_tree().get_first_node_in_group("player")):
 	if !player: return

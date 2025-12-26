@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy3eijirtg1hy"]
+[gd_scene load_steps=11 format=3 uid="uid://dy3eijirtg1hy"]
 
 [ext_resource type="Script" uid="uid://4sdd0sdhhj1" path="res://scenes scripts/market_1.gd" id="1_em1l2"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="2_t7gik"]
 [ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites/nullinv1.png" id="3_vjfvc"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_skmd8"]
 [ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites/icon5.png" id="5_i4i76"]
+[ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="6_mivkc"]
+[ext_resource type="AudioStream" uid="uid://bj2o3f6xkwsex" path="res://sounds music/paymarket1.mp3" id="7_2vnff"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3dska"]
 size = Vector3(1, 1.4, 1)
@@ -204,3 +206,40 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_skmd8")
 text = "BUTTON_EXIT"
 icon = ExtResource("5_i4i76")
+
+[node name="title" type="Label" parent="CanvasLayer/NinePatchRect"]
+offset_left = -1.0
+offset_top = -11.0
+offset_right = 260.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 22
+text = "PURO vending machine"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="money" type="Label" parent="CanvasLayer/NinePatchRect"]
+offset_left = 20.0
+offset_top = 369.0
+offset_right = 281.0
+offset_bottom = 393.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 24
+text = "plmoney"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NinePatchRect/money"]
+layout_mode = 0
+offset_left = -24.0
+offset_right = -4.0
+offset_bottom = 20.0
+texture = ExtResource("6_mivkc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2vnff")
