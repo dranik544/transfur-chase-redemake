@@ -1,18 +1,56 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy3eijirtg1hy"]
+[gd_scene load_steps=20 format=3 uid="uid://dy3eijirtg1hy"]
 
 [ext_resource type="Script" uid="uid://4sdd0sdhhj1" path="res://scenes scripts/market_1.gd" id="1_em1l2"]
+[ext_resource type="Texture2D" uid="uid://3iwn0wt8jebx" path="res://sprites/market1.png" id="2_2nedt"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="2_t7gik"]
+[ext_resource type="Texture2D" uid="uid://blcisbbjqng50" path="res://normalmaps/savepoint3normalmap1.png" id="3_mktgp"]
 [ext_resource type="Texture2D" uid="uid://707bf4xk8jrr" path="res://sprites/nullinv1.png" id="3_vjfvc"]
+[ext_resource type="Texture2D" uid="uid://cvrhy7jgvnrli" path="res://sprites/market2.png" id="4_eowi0"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_skmd8"]
 [ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites/icon5.png" id="5_i4i76"]
-[ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="6_mivkc"]
 [ext_resource type="AudioStream" uid="uid://bj2o3f6xkwsex" path="res://sounds music/paymarket1.mp3" id="7_2vnff"]
+[ext_resource type="Texture2D" uid="uid://bbu28qwx6m2xu" path="res://sprites/mandarin1.png" id="9_mktgp"]
+[ext_resource type="Texture2D" uid="uid://dmfjmwwur53we" path="res://sprites/kruzhka1.png" id="11_mktgp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xenot"]
+albedo_texture = ExtResource("2_2nedt")
+normal_enabled = true
+normal_scale = 0.75
+normal_texture = ExtResource("3_mktgp")
+uv1_scale = Vector3(0.833, 0.6, 0.833)
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_3dska"]
-size = Vector3(1, 1.4, 1)
+material = SubResource("StandardMaterial3D_xenot")
+size = Vector3(1.2, 1.68, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cajwh"]
+albedo_texture = ExtResource("4_eowi0")
+normal_enabled = true
+normal_texture = ExtResource("3_mktgp")
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ekot8"]
+material = SubResource("StandardMaterial3D_cajwh")
+size = Vector2(1.2, 1.68)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nedt"]
+shading_mode = 2
+albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mktgp"]
+material = SubResource("StandardMaterial3D_2nedt")
+top_radius = 0.1
+bottom_radius = 0.075
+height = 0.175
+radial_segments = 4
+rings = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3dska"]
-size = Vector3(1, 1.4, 1)
+size = Vector3(1.2, 1.7, 1.2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3dska"]
 height = 1.35
@@ -22,11 +60,31 @@ radius = 1.4
 script = ExtResource("1_em1l2")
 
 [node name="mesh1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("BoxMesh_3dska")
 
+[node name="mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61, 1, 0)
+mesh = SubResource("QuadMesh_ekot8")
+
+[node name="mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.1, 0.4)
+mesh = SubResource("CylinderMesh_mktgp")
+
+[node name="mesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.1, 0.4)
+mesh = SubResource("CylinderMesh_mktgp")
+
+[node name="mesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.1, -0.4)
+mesh = SubResource("CylinderMesh_mktgp")
+
+[node name="mesh6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.1, -0.4)
+mesh = SubResource("CylinderMesh_mktgp")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("BoxShape3D_3dska")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -48,9 +106,8 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -270.0
 offset_top = -189.0
-offset_right = -13.0
+offset_right = 257.0
 offset_bottom = 189.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -208,6 +265,7 @@ text = "BUTTON_EXIT"
 icon = ExtResource("5_i4i76")
 
 [node name="title" type="Label" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = -11.0
 offset_right = 260.0
@@ -222,6 +280,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="money" type="Label" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 20.0
 offset_top = 369.0
 offset_right = 281.0
@@ -239,7 +298,17 @@ layout_mode = 0
 offset_left = -24.0
 offset_right = -4.0
 offset_bottom = 20.0
-texture = ExtResource("6_mivkc")
+rotation = 0.0872665
+texture = ExtResource("9_mktgp")
+expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2vnff")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, 0.3, 1.96, -0.4)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("11_mktgp")

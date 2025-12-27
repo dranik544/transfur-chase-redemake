@@ -40,22 +40,25 @@ func _ready():
 	SavingManager.save("recordpoints", Global.recordpoints)
 	
 	ScreenTransition.cleanup()
-	
-	#Global.brokenboxes = 0
-	#Global.brokendoors = 0
-	#Global.touchedslimes = 0
-	#Global.hitsfromenemies = 0
-	#Global.openvents = 0
-	#Global.useditems = 0
-	#Global.unsleepenemies = 0
 
 func _process(delta):
 	time += delta
 	
-	if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
-		ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
-	if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):
-		ScreenTransition.changescene("res://scenes scripts/menu.tscn", Color.WHITE, 0.5)
+	if Input.is_anything_pressed():
+		if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
+			ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
+		if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):
+			ScreenTransition.changescene("res://scenes scripts/menu.tscn", Color.WHITE, 0.5)
+		
+		Global.brokenboxes = 0
+		Global.brokendoors = 0
+		Global.touchedslimes = 0
+		Global.hitsfromenemies = 0
+		Global.openvents = 0
+		Global.useditems = 0
+		Global.unsleepenemies = 0
+		
+		Global.money = 0
 	
 	
 	$slime.position = Vector2(0.0, 0.0) + Vector2(

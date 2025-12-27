@@ -50,7 +50,7 @@ func beforetimeout():
 	if !get_tree(): return
 	updategroups()
 	
-	for i in randi_range(25, 30):
+	for i in randi_range(60, 75):
 		if lights and worldlight:
 			for l in lights: l.visible = not l.visible
 			worldlight.visible = not worldlight.visible

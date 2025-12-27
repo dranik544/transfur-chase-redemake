@@ -18,14 +18,6 @@ func _ready() -> void:
 	
 	connectbuttons()
 	spawnitems()
-	
-	
-	
-	
-	
-	
-	
-	Global.money = 100
 
 func bodyentered(body):
 	if body.is_in_group("player"):
@@ -33,7 +25,9 @@ func bodyentered(body):
 		Engine.time_scale = 0.05
 		var tween = create_tween()
 		tween.set_ignore_time_scale(true)
-		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.25)
+		tween.set_parallel(true)
+		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.35)
+		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 370, 0.25)
 		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
 
 func bodyexited(body):
@@ -45,7 +39,9 @@ func exit():
 	Engine.time_scale = 1.0
 	var tween = create_tween()
 	tween.set_ignore_time_scale(true)
-	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.25)
+	tween.set_parallel(true)
+	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.15)
+	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 640, 0.25)
 
 func connectbuttons():
 	for i in range(1, 8):
@@ -54,7 +50,7 @@ func connectbuttons():
 			button.pressed.connect(_on_item_button_pressed.bind(button))
 
 func _on_item_button_pressed(button: Button):
-	if not button.has_meta("itemdata"):
+	if not button.has_meta("itemdata") or !playerin:
 		return
 	
 	if Global.money >= button.get_meta("itemdata")["price"]:

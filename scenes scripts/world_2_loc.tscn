@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=32 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
 [ext_resource type="PackedScene" uid="uid://bk16lsmt07me8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_2.tscn" id="2_tdjod"]
 [ext_resource type="PackedScene" uid="uid://bitxsnpbxemel" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_3.tscn" id="3_66px4"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_tdjod"]
+[ext_resource type="PackedScene" uid="uid://dtenf0fgrk1p2" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_2.tscn" id="4_fti4m"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_sw6d5"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
@@ -21,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bl31xae5rueew" path="res://scenes scripts/colb_1.tscn" id="19_66px4"]
 [ext_resource type="PackedScene" uid="uid://vv3yyifjc8ba" path="res://scenes scripts/small_enemy_2.tscn" id="21_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://dy3eijirtg1hy" path="res://scenes scripts/market_1.tscn" id="21_fti4m"]
+[ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="23_d6q5k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
 size = Vector3(0.2, 3, 10)
@@ -91,7 +93,8 @@ size = Vector2(0.2, 0.2)
 script = ExtResource("1_rdsqj")
 rooms = {
 1: ExtResource("2_tdjod"),
-2: ExtResource("3_66px4")
+2: ExtResource("3_66px4"),
+3: ExtResource("4_fti4m")
 }
 loadrooms = 20
 
@@ -168,10 +171,70 @@ font = ExtResource("10_8mb1v")
 font_size = 11
 outline_size = 4
 
+[node name="market1" parent="startroom1" instance=ExtResource("21_fti4m")]
+transform = Transform3D(-0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871558, -1, 0, -4)
+
+[node name="mandarin1" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.3, -3.6)
+randomSpawn = false
+
+[node name="mandarin2" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.3, -3.6)
+randomSpawn = false
+
+[node name="mandarin3" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 1.3, -3.9)
+randomSpawn = false
+
+[node name="mandarin4" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.3, -3.5)
+randomSpawn = false
+
+[node name="mandarin5" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 1.3, -3.2)
+randomSpawn = false
+
+[node name="mandarin6" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.3, -3.1)
+randomSpawn = false
+
+[node name="mandarin7" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 1.3, -2.7)
+randomSpawn = false
+
+[node name="mandarin8" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 1.3, -3.8)
+randomSpawn = false
+
+[node name="mandarin9" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1, 1.3, -3.9)
+randomSpawn = false
+
+[node name="mandarin10" parent="startroom1" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 1.3, -2.7)
+randomSpawn = false
+
 [node name="startroom4" parent="." instance=ExtResource("6_ff8mw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 RandomBox = false
 RandomNumBoxes = false
+
+[node name="mandarin1" parent="startroom4" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3, -3.6)
+randomSpawn = false
+
+[node name="mandarin2" parent="startroom4" instance=ExtResource("23_d6q5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.3, 1.4)
+randomSpawn = false
+
+[node name="colb3" parent="startroom4" instance=ExtResource("19_66px4")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -4.2, 0.6, -3.6)
+
+[node name="colb4" parent="startroom4" instance=ExtResource("19_66px4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.6, 3.7)
+
+[node name="small enemy 1" parent="startroom4" instance=ExtResource("21_dtyy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0.1, -2.8)
 
 [node name="spawnnextroom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
@@ -247,14 +310,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -3)
 
 [node name="colb2" parent="." instance=ExtResource("19_66px4")]
 transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -2.5, 0.6, 3.1)
-
-[node name="colb3" parent="." instance=ExtResource("19_66px4")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -9.2, 0.6, -3.6)
-
-[node name="colb4" parent="." instance=ExtResource("19_66px4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0.6, 3.7)
-
-[node name="small enemy 1" parent="." instance=ExtResource("21_dtyy0")]
-
-[node name="market1" parent="." instance=ExtResource("21_fti4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bitxsnpbxemel"]
+[gd_scene load_steps=27 format=3 uid="uid://bitxsnpbxemel"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_dlppc"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_5uv2y"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bl31xae5rueew" path="res://scenes scripts/colb_1.tscn" id="16_kkqci"]
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="18_d8xmp"]
 [ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="19_0and6"]
+[ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="21_u6gm2"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g6ow6"]
 material = ExtResource("3_u0te8")
@@ -322,6 +323,17 @@ curtype = 1
 
 [node name="savepoint1" parent="." instance=ExtResource("19_0and6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.7, -5)
+
+[node name="mandarin1" parent="." instance=ExtResource("21_u6gm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 1.3, 1.8)
+chanceSpawn = 10
+
+[node name="mandarin2" parent="." instance=ExtResource("21_u6gm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1.3, 3.8)
+chanceSpawn = 10
+
+[node name="mandarin3" parent="." instance=ExtResource("21_u6gm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2, 1.3, -2.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
