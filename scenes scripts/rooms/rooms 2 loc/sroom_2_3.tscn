@@ -335,6 +335,11 @@ chanceSpawn = 10
 [node name="mandarin3" parent="." instance=ExtResource("21_u6gm2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2, 1.3, -2.5)
 
+[node name="mandarin4" parent="." instance=ExtResource("21_u6gm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9, 1.3, 0.8)
+chanceSpawn = 10
+biggerHitbox = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -72,7 +72,7 @@ func _ready():
 	camrot = cam.rotation
 
 func _input(event):
-	if event is InputEventMouseMotion and !freecam:
+	if event is InputEventMouseMotion and !freecam and !Engine.time_scale < 1.0:
 		rotate_y(-event.relative.x * sens)
 		centercam.rotate_x(-event.relative.y * sens)
 		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
