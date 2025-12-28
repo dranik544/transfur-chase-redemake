@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=33 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bitxsnpbxemel" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_3.tscn" id="3_66px4"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_tdjod"]
 [ext_resource type="PackedScene" uid="uid://dtenf0fgrk1p2" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_2.tscn" id="4_fti4m"]
+[ext_resource type="PackedScene" uid="uid://dcqtr0lcfrt5a" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_4.tscn" id="5_7lqlk"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_sw6d5"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
@@ -94,7 +95,8 @@ script = ExtResource("1_rdsqj")
 rooms = {
 1: ExtResource("2_tdjod"),
 2: ExtResource("3_66px4"),
-3: ExtResource("4_fti4m")
+3: ExtResource("4_fti4m"),
+4: ExtResource("5_7lqlk")
 }
 loadrooms = 20
 
@@ -222,6 +224,8 @@ RandomNumBoxes = false
 [node name="mandarin1" parent="startroom4" instance=ExtResource("23_d6q5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3, -3.6)
 randomSpawn = false
+chanceMoreMandarins = 20
+numMoreMandarins = 6
 
 [node name="mandarin2" parent="startroom4" instance=ExtResource("23_d6q5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.3, 1.4)
