@@ -19,7 +19,8 @@ var generalstats = [
 
 var iswinter: bool = false
 
-var money: int = 0
+var money: int = 999
+var rerollmarketprice: int = 15
 
 var colinskin: String = "colin"
 var listskins = [

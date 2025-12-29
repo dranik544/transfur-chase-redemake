@@ -55,7 +55,7 @@ func beforetimeout():
 			for l in lights: l.visible = not l.visible
 			worldlight.visible = not worldlight.visible
 			
-			await get_tree().create_timer(randi_range(0.1, 0.2)).timeout
+			await get_tree().create_timer(randi_range(0.3, 0.5)).timeout
 	
 	$Timer.wait_time = randf_range(2, 6)
 	timeout()

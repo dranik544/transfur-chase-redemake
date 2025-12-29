@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dy3eijirtg1hy"]
+[gd_scene load_steps=21 format=3 uid="uid://dy3eijirtg1hy"]
 
 [ext_resource type="Script" uid="uid://4sdd0sdhhj1" path="res://scenes scripts/market_1.gd" id="1_em1l2"]
 [ext_resource type="Texture2D" uid="uid://3iwn0wt8jebx" path="res://sprites/market1.png" id="2_2nedt"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_skmd8"]
 [ext_resource type="Texture2D" uid="uid://sllwh1mrrbr0" path="res://sprites/icon5.png" id="5_i4i76"]
 [ext_resource type="AudioStream" uid="uid://bj2o3f6xkwsex" path="res://sounds music/paymarket1.mp3" id="7_2vnff"]
+[ext_resource type="Texture2D" uid="uid://b5btu0xwskrcw" path="res://sprites/icon13.png" id="9_eowi0"]
 [ext_resource type="Texture2D" uid="uid://bbu28qwx6m2xu" path="res://sprites/mandarin1.png" id="9_mktgp"]
 [ext_resource type="Texture2D" uid="uid://dmfjmwwur53we" path="res://sprites/kruzhka1.png" id="11_mktgp"]
 
@@ -252,18 +253,6 @@ text = "discountprice"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="exit" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 338.0
-offset_right = 247.0
-offset_bottom = 369.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("4_skmd8")
-text = "BUTTON_EXIT"
-icon = ExtResource("5_i4i76")
-
 [node name="title" type="Label" parent="CanvasLayer/NinePatchRect"]
 layout_mode = 0
 offset_left = -1.0
@@ -301,6 +290,31 @@ offset_bottom = 20.0
 rotation = 0.0872665
 texture = ExtResource("9_mktgp")
 expand_mode = 1
+
+[node name="hbox" type="HBoxContainer" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 334.0
+offset_right = 252.0
+offset_bottom = 374.0
+
+[node name="exit" type="Button" parent="CanvasLayer/NinePatchRect/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+text = "BUTTON_EXIT"
+icon = ExtResource("5_i4i76")
+
+[node name="reroll" type="Button" parent="CanvasLayer/NinePatchRect/hbox"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+text = "price"
+icon = ExtResource("9_eowi0")
+icon_alignment = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2vnff")

@@ -11,7 +11,8 @@ var playerin: bool = false
 func _ready() -> void:
 	$Area3D.body_entered.connect(bodyentered)
 	$Area3D.body_exited.connect(bodyexited)
-	$CanvasLayer/NinePatchRect/exit.pressed.connect(exit)
+	$CanvasLayer/NinePatchRect/hbox/exit.pressed.connect(exit)
+	$CanvasLayer/NinePatchRect/hbox/reroll.pressed.connect(reroll)
 	$CanvasLayer/NinePatchRect/price3/Label.text = ". . ."
 	
 	$CanvasLayer/NinePatchRect.modulate.a = 0.0
@@ -29,10 +30,17 @@ func bodyentered(body):
 		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.35)
 		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 370, 0.25)
 		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
+		$CanvasLayer/NinePatchRect/hbox/reroll.text = str(Global.rerollmarketprice)
 
 func bodyexited(body):
 	if body.is_in_group("player"):
 		exit()
+
+func minusmoney(num: int):
+	Global.money -= num
+	$CanvasLayer/NinePatchRect/money.text = str(Global.money)
+	$AudioStreamPlayer.volume_db = Global.settings["soundvolume"] / 10
+	$AudioStreamPlayer.play()
 
 func exit():
 	playerin = false
@@ -42,6 +50,14 @@ func exit():
 	tween.set_parallel(true)
 	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.15)
 	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 640, 0.25)
+
+func reroll():
+	if Global.money >= Global.rerollmarketprice:
+		minusmoney(Global.rerollmarketprice)
+		Global.rerollmarketprice += 5
+		$CanvasLayer/NinePatchRect/hbox/reroll.text = str(Global.rerollmarketprice)
+		
+		spawnitems()
 
 func connectbuttons():
 	for i in range(1, 8):
@@ -54,16 +70,12 @@ func _on_item_button_pressed(button: Button):
 		return
 	
 	if Global.money >= button.get_meta("itemdata")["price"]:
-		Global.money -= button.get_meta("itemdata")["price"]
-		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
+		minusmoney(button.get_meta("itemdata")["price"])
 		
 		var item: RigidBody3D = button.get_meta("itemdata")["scene"].instantiate()
 		get_parent().add_child(item)
 		item.global_position = global_position
 		item.pick(get_tree().get_first_node_in_group("player"), false)
-		
-		$AudioStreamPlayer.volume_db = Global.settings["soundvolume"] / 10
-		$AudioStreamPlayer.play()
 		
 		button.visible = false
 		button.disabled = true
@@ -94,6 +106,9 @@ func spawnitems():
 				button.disabled = true
 				continue
 			else:
+				button.visible = true
+				button.disabled = false
+				
 				if i <= 2 and cheapitems.size() > 0:
 					var randitem = randi_range(0, cheapitems.size() - 1)
 					button.icon = cheapitems[randitem]["texture"]
