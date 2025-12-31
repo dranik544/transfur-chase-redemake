@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=34 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dtenf0fgrk1p2" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_2.tscn" id="4_fti4m"]
 [ext_resource type="PackedScene" uid="uid://dcqtr0lcfrt5a" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_4.tscn" id="5_7lqlk"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_sw6d5"]
+[ext_resource type="PackedScene" uid="uid://c6uon4skfhsp8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_6.tscn" id="6_8mb1v"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
 [ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="9_tdjod"]
@@ -96,7 +97,8 @@ rooms = {
 1: ExtResource("2_tdjod"),
 2: ExtResource("3_66px4"),
 3: ExtResource("4_fti4m"),
-4: ExtResource("5_7lqlk")
+4: ExtResource("5_7lqlk"),
+5: ExtResource("6_8mb1v")
 }
 loadrooms = 20
 

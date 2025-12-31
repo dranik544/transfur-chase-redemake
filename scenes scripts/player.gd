@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 
 @export var speed = 6.25
+@export var speedlerp: float = 5.0
+@export var velocitylerp: float = 9.0
 const JUMP_VELOCITY = 4.5
 @export var sens: float = 0.002
 var freecam: bool = true
@@ -186,7 +188,7 @@ func _physics_process(delta: float) -> void:
 			$CollisionShape3D2.disabled = false
 			await get_tree().physics_frame
 			$CollisionShape3D.disabled = true
-		speed = lerp(speed, 2.5 - itemkg, 5 * delta)
+		speed = lerp(speed, 2.5 - itemkg, speedlerp * delta)
 		taunt = true
 	else:
 		if itemdata.has("kg"):
@@ -197,7 +199,7 @@ func _physics_process(delta: float) -> void:
 				$CollisionShape3D.disabled = false
 				await get_tree().physics_frame
 				$CollisionShape3D2.disabled = true
-			speed = lerp(speed, 6.0 - itemkg, 3 * delta)
+			speed = lerp(speed, 6.0 - itemkg, (speedlerp / 1.5) * delta)
 			taunt = false
 	
 	#hit = Input.is_action_pressed("F")
@@ -308,8 +310,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Sprite3D.play("taunt run")
 				camscale = lerp(camscale, 11.0, 11 * delta)
-			velocity.x = lerp(velocity.x, direction.x * speed, 9 * delta)
-			velocity.z = lerp(velocity.z, direction.z * speed, 9 * delta)
+			velocity.x = lerp(velocity.x, direction.x * speed, velocitylerp * delta)
+			velocity.z = lerp(velocity.z, direction.z * speed, velocitylerp * delta)
 		else:
 			if !taunt:
 				$steps.stop()
@@ -318,8 +320,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Sprite3D.play("taunt")
 				camscale = lerp(camscale, 8.5, 10 * delta)
-			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), 15 * delta)
-			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), 15 * delta)
+			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), (velocitylerp * 1.5) * delta)
+			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), (velocitylerp * 1.5) * delta)
 	
 	if Input.is_action_just_pressed("A"):
 		$Sprite3D.flip_h = true
@@ -528,3 +530,6 @@ func updateskin():
 			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")
 	
 	$Sprite3D.play("idle")
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	pass

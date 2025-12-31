@@ -268,29 +268,6 @@ text = "PURO vending machine"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="money" type="Label" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 369.0
-offset_right = 281.0
-offset_bottom = 393.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("4_skmd8")
-theme_override_font_sizes/font_size = 24
-text = "plmoney"
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NinePatchRect/money"]
-layout_mode = 0
-offset_left = -24.0
-offset_right = -4.0
-offset_bottom = 20.0
-rotation = 0.0872665
-texture = ExtResource("9_mktgp")
-expand_mode = 1
-
 [node name="hbox" type="HBoxContainer" parent="CanvasLayer/NinePatchRect"]
 layout_mode = 0
 offset_left = 5.0
@@ -315,6 +292,29 @@ theme_override_fonts/font = ExtResource("4_skmd8")
 text = "price"
 icon = ExtResource("9_eowi0")
 icon_alignment = 2
+
+[node name="money" type="Label" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 369.0
+offset_right = 281.0
+offset_bottom = 393.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 24
+text = "plmoney"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NinePatchRect/money"]
+layout_mode = 0
+offset_left = -24.0
+offset_right = -4.0
+offset_bottom = 20.0
+rotation = 0.0872665
+texture = ExtResource("9_mktgp")
+expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2vnff")
