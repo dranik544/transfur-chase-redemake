@@ -314,30 +314,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("logo/Label:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 335)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("logo/Label:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_eogbu"]
 resource_name = "start"
@@ -378,37 +354,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("logo/Label:position")
+tracks/3/path = NodePath("logo")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.46667, 2.96667),
-"transitions": PackedFloat32Array(1, 1.7, 1),
-"update": 0,
-"values": [Vector2(0, 340), Vector2(0, 340), Vector2(0, 170)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("logo/Label:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.44667, 2.93333),
-"transitions": PackedFloat32Array(1, 0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("logo")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -432,7 +384,7 @@ func _ready() -> void:
 "
 
 [sub_resource type="GDScript" id="GDScript_jh7g4"]
-script/source = "extends Node2D
+script/source = "extends Control
 
 @export var list = {
 	1: preload(\"res://sprites/photo1.png\"),
@@ -501,7 +453,7 @@ func _on_pressed() -> void:
 "
 
 [sub_resource type="GDScript" id="GDScript_e4kgd"]
-script/source = "extends Node2D
+script/source = "extends Control
 
 
 func _ready() -> void:
@@ -1161,17 +1113,16 @@ text = ". . ."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="logo" type="Node2D" parent="CanvasLayer"]
+[node name="logo" type="CanvasLayer" parent="CanvasLayer"]
 visible = false
 
 [node name="bg" type="ColorRect" parent="CanvasLayer/logo"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 color = Color(0, 0, 0, 1)
 
 [node name="logo1" type="TextureRect" parent="CanvasLayer/logo"]
@@ -1180,34 +1131,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 90.0
-offset_top = 132.5
-offset_right = 550.0
-offset_bottom = 347.5
+offset_left = -230.0
+offset_top = -107.5
+offset_right = 230.0
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(230, 107)
 size_flags_horizontal = 4
 texture = ExtResource("18_eogbu")
-
-[node name="Label" type="Label" parent="CanvasLayer/logo"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 335.0
-offset_right = 640.0
-offset_bottom = 358.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("16_k8css")
-theme_override_font_sizes/font_size = 14
-text = "логотип игры сделал TheNamelessDeity"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/logo"]
 root_node = NodePath("../..")
@@ -1216,76 +1148,51 @@ libraries = {
 }
 autoplay = "start"
 
-[node name="stats menu" type="Node2D" parent="CanvasLayer"]
-visible = false
+[node name="stats menu" type="CanvasLayer" parent="CanvasLayer"]
 script = ExtResource("38_lk0fw")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats menu"]
-offset_right = 640.0
-offset_bottom = 480.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
 
-[node name="btnexit" type="Button" parent="CanvasLayer/stats menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = 416.0
-offset_right = 95.0
-offset_bottom = 447.0
+[node name="control" type="Control" parent="CanvasLayer/stats menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "BUTTON_EXIT"
-icon = ExtResource("19_fhf2g")
-expand_icon = true
 
-[node name="Label" type="Label" parent="CanvasLayer/stats menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 104.0
-offset_top = 417.0
-offset_right = 640.0
-offset_bottom = 449.0
+[node name="scc" type="ScrollContainer" parent="CanvasLayer/stats menu/control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("16_k8css")
-theme_override_font_sizes/font_size = 26
-text = "лучший рекорд:"
-vertical_alignment = 1
-script = SubResource("GDScript_sr01d")
 
-[node name="scc" type="ScrollContainer" parent="CanvasLayer/stats menu"]
-offset_right = 640.0
-offset_bottom = 412.0
-
-[node name="hboxc" type="HBoxContainer" parent="CanvasLayer/stats menu/scc"]
+[node name="hboxc" type="HBoxContainer" parent="CanvasLayer/stats menu/control/scc"]
 layout_mode = 2
-theme_override_constants/separation = 10
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 24
 
-[node name="vboxc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
+[node name="vboxc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ach1" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach1" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1294,17 +1201,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1314,7 +1221,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1324,7 +1231,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1332,7 +1239,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach1/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach1/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1340,14 +1247,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1356,17 +1263,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1376,7 +1283,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1386,7 +1293,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1394,7 +1301,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach2/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach2/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1402,14 +1309,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach3" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach3" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1418,17 +1325,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1438,7 +1345,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1448,7 +1355,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1456,7 +1363,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach3/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach3/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1464,14 +1371,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach4" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach4" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1480,17 +1387,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1500,7 +1407,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1510,7 +1417,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1518,7 +1425,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach4/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach4/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1526,14 +1433,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach5" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach5" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1542,17 +1449,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1562,7 +1469,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1572,7 +1479,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1580,7 +1487,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach5/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach5/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1588,14 +1495,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach6" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach6" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1604,17 +1511,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1624,7 +1531,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1634,7 +1541,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1642,7 +1549,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach6/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach6/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1650,14 +1557,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach7" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach7" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1666,17 +1573,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1686,7 +1593,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1696,7 +1603,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1704,7 +1611,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach7/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach7/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1712,14 +1619,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach8" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach8" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1728,17 +1635,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1748,7 +1655,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1758,7 +1665,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1766,7 +1673,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach8/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach8/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1774,14 +1681,14 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ach9" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc"]
+[node name="ach9" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9"]
 layout_mode = 2
 texture = ExtResource("38_o23wf")
 region_rect = Rect2(0, 0, 32, 32)
@@ -1790,17 +1697,17 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+[node name="mc" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc"]
+[node name="vbc" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9/mc"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc/vbc"]
+[node name="label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1810,7 +1717,7 @@ theme_override_font_sizes/font_size = 16
 text = "title"
 vertical_alignment = 1
 
-[node name="label2" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc/vbc"]
+[node name="label2" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9/mc/vbc"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1820,7 +1727,7 @@ theme_override_font_sizes/font_size = 12
 text = "decription"
 vertical_alignment = 1
 
-[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9"]
+[node name="mc2" type="MarginContainer" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/margin_left = 20
@@ -1828,7 +1735,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/scc/hboxc/vboxc/ach9/mc2"]
+[node name="ic" type="TextureRect" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc/ach9/mc2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -1836,13 +1743,15 @@ texture = ExtResource("39_lk0fw")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="vboxc2" type="VBoxContainer" parent="CanvasLayer/stats menu/scc/hboxc"]
+[node name="vboxc2" type="VBoxContainer" parent="CanvasLayer/stats menu/control/scc/hboxc"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/stats menu/scc/hboxc/vboxc2"]
+[node name="Label" type="Label" parent="CanvasLayer/stats menu/control/scc/hboxc/vboxc2"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
@@ -1857,6 +1766,37 @@ text = "общая статистика:
 всего "
 horizontal_alignment = 1
 
+[node name="hbox" type="HBoxContainer" parent="CanvasLayer/stats menu/control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 384.0
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="btnexit" type="Button" parent="CanvasLayer/stats menu/control/hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "BUTTON_EXIT"
+icon = ExtResource("19_fhf2g")
+
+[node name="Label" type="Label" parent="CanvasLayer/stats menu/control/hbox"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 26
+text = "лучший рекорд:"
+vertical_alignment = 1
+script = SubResource("GDScript_sr01d")
+
 [node name="OLDstats menu" type="Node2D" parent="CanvasLayer"]
 visible = false
 
@@ -1865,11 +1805,17 @@ offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 0.490196)
 
-[node name="wiki locs" type="Node2D" parent="CanvasLayer/OLDstats menu"]
-position = Vector2(125, 127)
+[node name="wiki locs" type="Control" parent="CanvasLayer/OLDstats menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 125.0
+offset_top = 127.0
+offset_right = 125.0
+offset_bottom = 127.0
 script = SubResource("GDScript_jh7g4")
 
 [node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki locs"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -143.0
 offset_right = 147.0
@@ -1878,6 +1824,7 @@ pivot_offset = Vector2(141, 141)
 texture = ExtResource("24_n7qjf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki locs"]
+layout_mode = 0
 offset_left = -87.0
 offset_top = -94.0
 offset_right = 98.0
@@ -1887,6 +1834,7 @@ texture = ExtResource("25_ybihx")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki locs"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 82.0
 offset_right = 100.0
@@ -1902,6 +1850,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki locs"]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -107.0
 offset_right = 111.0
@@ -1909,11 +1858,17 @@ offset_bottom = 124.0
 pivot_offset = Vector2(141, 141)
 flat = true
 
-[node name="wiki enemies" type="Node2D" parent="CanvasLayer/OLDstats menu"]
-position = Vector2(497, 127)
+[node name="wiki enemies" type="Control" parent="CanvasLayer/OLDstats menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 497.0
+offset_top = 127.0
+offset_right = 497.0
+offset_bottom = 127.0
 script = SubResource("GDScript_jh7g4")
 
 [node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -143.0
 offset_right = 147.0
@@ -1922,6 +1877,7 @@ pivot_offset = Vector2(141, 141)
 texture = ExtResource("24_n7qjf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+layout_mode = 0
 offset_left = -87.0
 offset_top = -94.0
 offset_right = 98.0
@@ -1931,6 +1887,7 @@ texture = ExtResource("26_bhk6r")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 82.0
 offset_right = 100.0
@@ -1946,6 +1903,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki enemies"]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -107.0
 offset_right = 111.0
@@ -1953,11 +1911,17 @@ offset_bottom = 124.0
 pivot_offset = Vector2(141, 141)
 flat = true
 
-[node name="wiki3" type="Node2D" parent="CanvasLayer/OLDstats menu"]
-position = Vector2(315, 171)
+[node name="wiki3" type="Control" parent="CanvasLayer/OLDstats menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 171.0
+offset_right = 315.0
+offset_bottom = 171.0
 script = SubResource("GDScript_jh7g4")
 
 [node name="wiki" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki3"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -143.0
 offset_right = 147.0
@@ -1966,6 +1930,7 @@ pivot_offset = Vector2(141, 141)
 texture = ExtResource("24_n7qjf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/OLDstats menu/wiki3"]
+layout_mode = 0
 offset_left = -87.0
 offset_top = -94.0
 offset_right = 98.0
@@ -1975,6 +1940,7 @@ texture = ExtResource("27_bhk6r")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/OLDstats menu/wiki3"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 82.0
 offset_right = 100.0
@@ -1990,6 +1956,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/OLDstats menu/wiki3"]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -107.0
 offset_right = 111.0
@@ -2038,21 +2005,27 @@ text = "лучший рекорд:"
 vertical_alignment = 1
 script = SubResource("GDScript_sr01d")
 
-[node name="skins menu" type="Node2D" parent="CanvasLayer"]
+[node name="skins menu" type="Control" parent="CanvasLayer"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("30_0xt4r")
 
 [node name="Label" type="Label" parent="CanvasLayer/skins menu"]
-anchors_preset = 8
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.0208333
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 18.0
-offset_right = 640.0
-offset_bottom = 41.0
+anchor_bottom = 0.0208333
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 32.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
@@ -2062,45 +2035,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer/skins menu"]
-anchors_preset = 8
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 41.0
-offset_right = 640.0
-offset_bottom = 61.0
+offset_left = -320.0
+offset_top = 51.0
+offset_right = 320.0
+offset_bottom = 71.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 10
 text = "имя автора костюма"
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/skins menu"]
-anchors_preset = 8
-anchor_left = 0.5
+[node name="arrow1" type="Control" parent="CanvasLayer/skins menu"]
+layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 422.0
-offset_right = 640.0
-offset_bottom = 445.0
-grow_horizontal = 2
+offset_left = 125.0
+offset_right = 125.0
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("16_k8css")
-theme_override_font_sizes/font_size = 18
-text = ". . ."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="arrow1" type="Node2D" parent="CanvasLayer/skins menu"]
-position = Vector2(125, 240)
 script = ExtResource("31_0xt4r")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/skins menu/arrow1"]
@@ -2109,14 +2067,24 @@ scale = Vector2(4, 4)
 texture = ExtResource("31_hxmmw")
 
 [node name="Button" type="Button" parent="CanvasLayer/skins menu/arrow1"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = -57.0
 offset_right = 19.0
 offset_bottom = 47.0
 flat = true
 
-[node name="arrow2" type="Node2D" parent="CanvasLayer/skins menu"]
-position = Vector2(565, 240)
+[node name="arrow2" type="Control" parent="CanvasLayer/skins menu"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_right = -70.0
+grow_horizontal = 0
+grow_vertical = 2
 script = ExtResource("31_0xt4r")
 pluspos = Vector2(-25, 0)
 
@@ -2127,25 +2095,30 @@ texture = ExtResource("31_hxmmw")
 flip_h = true
 
 [node name="Button" type="Button" parent="CanvasLayer/skins menu/arrow2"]
+layout_mode = 0
 offset_left = -79.0
 offset_top = -57.0
 offset_right = 30.0
 offset_bottom = 47.0
 flat = true
 
-[node name="btnexit" type="Button" parent="CanvasLayer/skins menu"]
-anchors_preset = 8
+[node name="vbox" type="VBoxContainer" parent="CanvasLayer/skins menu"]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 205.0
-offset_top = 360.0
-offset_right = 410.0
-offset_bottom = 391.0
+anchor_bottom = 1.0
+offset_left = -110.5
+offset_top = -72.0
+offset_right = 110.5
+offset_bottom = -10.0
 grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(102, 15)
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="btnexit" type="Button" parent="CanvasLayer/skins menu/vbox"]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -2153,72 +2126,62 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
 text = "BUTTON_SAVE_AND_EXIT"
 icon = ExtResource("19_fhf2g")
-expand_icon = true
 
-[node name="lock" type="Sprite2D" parent="CanvasLayer/skins menu"]
-visible = false
-position = Vector2(320, 240)
-scale = Vector2(4, 4)
+[node name="Label2" type="Label" parent="CanvasLayer/skins menu/vbox"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = ". . ."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lock" type="Control" parent="CanvasLayer/skins menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lock" type="Sprite2D" parent="CanvasLayer/skins menu/lock"]
+scale = Vector2(6, 6)
 texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
-[node name="settings menu" type="Node2D" parent="CanvasLayer"]
+[node name="settings menu" type="Control" parent="CanvasLayer"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("49_rd0ur")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/settings menu"]
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
 
-[node name="btnexit" type="Button" parent="CanvasLayer/settings menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 11.0
-offset_top = 416.0
-offset_right = 213.0
-offset_bottom = 447.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "BUTTON_EXIT"
-icon = ExtResource("19_fhf2g")
-expand_icon = true
-
-[node name="btnrestart" type="Button" parent="CanvasLayer/settings menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 463.0
-offset_top = 416.0
-offset_right = 629.0
-offset_bottom = 447.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("16_k8css")
-text = "BUTTON_RESTART_GAME"
-icon = ExtResource("20_n7qjf")
-expand_icon = true
-script = SubResource("GDScript_mxc8c")
-
 [node name="scc" type="ScrollContainer" parent="CanvasLayer/settings menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 635.0
-offset_bottom = 407.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="vboxc" type="VBoxContainer" parent="CanvasLayer/settings menu/scc"]
 layout_mode = 2
@@ -2438,26 +2401,16 @@ theme_override_font_sizes/font_size = 18
 button_pressed = true
 text = "SETTINGS_BETTER_AI"
 
-[node name="tutorial menu" type="Node2D" parent="CanvasLayer"]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial menu"]
-offset_right = 640.0
-offset_bottom = 480.0
-color = Color(0, 0, 0, 0.490196)
-
-[node name="btnexit" type="Button" parent="CanvasLayer/tutorial menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = 416.0
-offset_right = 95.0
-offset_bottom = 447.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="btnexit" type="Button" parent="CanvasLayer/settings menu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -41.0
+offset_right = 212.0
+offset_bottom = -10.0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -2465,13 +2418,58 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("16_k8css")
 text = "BUTTON_EXIT"
 icon = ExtResource("19_fhf2g")
-expand_icon = true
+
+[node name="btnrestart" type="Button" parent="CanvasLayer/settings menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -41.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "BUTTON_RESTART_GAME"
+icon = ExtResource("20_n7qjf")
+script = SubResource("GDScript_mxc8c")
+
+[node name="tutorial menu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/tutorial menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 635.0
-offset_bottom = 412.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
@@ -2574,27 +2572,53 @@ CTRL+Q - выход из игры
 
 [right][i][wave]УДАЧИ![/wave][/i][/right]       "
 
-[node name="start menu" type="Node2D" parent="CanvasLayer"]
+[node name="btnexit" type="Button" parent="CanvasLayer/tutorial menu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -41.0
+offset_right = 152.0
+offset_bottom = -10.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("16_k8css")
+text = "BUTTON_EXIT"
+icon = ExtResource("19_fhf2g")
+
+[node name="start menu" type="Control" parent="CanvasLayer"]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_e4kgd")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/start menu"]
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
 
 [node name="btnexit" type="Button" parent="CanvasLayer/start menu"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = 416.0
-offset_right = 95.0
-offset_bottom = 447.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -41.0
+offset_right = 132.0
+offset_bottom = -10.0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -2604,11 +2628,17 @@ text = "BUTTON_EXIT"
 icon = ExtResource("19_fhf2g")
 expand_icon = true
 
-[node name="1loc" type="Node2D" parent="CanvasLayer/start menu"]
-position = Vector2(125, 127)
+[node name="1loc" type="Control" parent="CanvasLayer/start menu"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 125.0
+offset_top = 130.0
+offset_right = 125.0
+offset_bottom = 130.0
 script = SubResource("GDScript_jh7g4")
 
 [node name="wiki" type="TextureRect" parent="CanvasLayer/start menu/1loc"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -143.0
 offset_right = 147.0
@@ -2617,6 +2647,7 @@ pivot_offset = Vector2(141, 141)
 texture = ExtResource("24_n7qjf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/start menu/1loc"]
+layout_mode = 0
 offset_left = -87.0
 offset_top = -94.0
 offset_right = 98.0
@@ -2626,6 +2657,7 @@ texture = ExtResource("53_bmvr6")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/start menu/1loc"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 82.0
 offset_right = 100.0
@@ -2640,6 +2672,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/start menu/1loc"]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -107.0
 offset_right = 111.0
@@ -2647,11 +2680,17 @@ offset_bottom = 124.0
 pivot_offset = Vector2(141, 141)
 flat = true
 
-[node name="2loc" type="Node2D" parent="CanvasLayer/start menu"]
-position = Vector2(316, 147)
+[node name="2loc" type="Control" parent="CanvasLayer/start menu"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 330.0
+offset_top = 148.0
+offset_right = 330.0
+offset_bottom = 148.0
 script = SubResource("GDScript_jh7g4")
 
 [node name="wiki" type="TextureRect" parent="CanvasLayer/start menu/2loc"]
+layout_mode = 0
 offset_left = -136.0
 offset_top = -143.0
 offset_right = 147.0
@@ -2660,6 +2699,7 @@ pivot_offset = Vector2(141, 141)
 texture = ExtResource("24_n7qjf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/start menu/2loc"]
+layout_mode = 0
 offset_left = -87.0
 offset_top = -94.0
 offset_right = 98.0
@@ -2669,6 +2709,7 @@ texture = ExtResource("54_e4kgd")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/start menu/2loc"]
+layout_mode = 0
 offset_left = -90.0
 offset_top = 82.0
 offset_right = 100.0
@@ -2683,6 +2724,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/start menu/2loc"]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -107.0
 offset_right = 111.0

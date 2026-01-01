@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @export var pluspos: Vector2 = Vector2(25, 0)
 var defpos

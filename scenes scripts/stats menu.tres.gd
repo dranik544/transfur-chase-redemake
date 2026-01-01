@@ -1,56 +1,56 @@
-extends Node2D
+extends CanvasLayer
 
 
 func _ready() -> void:
-	setach($scc/hboxc/vboxc/ach1,
+	setach($control/scc/hboxc/vboxc/ach1,
 	Global.achievements[0]["name"],
 	Global.achievements[0]["desc"],
 	load("res://sprites/achievement1ic.png"),
 	Global.achievements[0]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach2,
+	setach($control/scc/hboxc/vboxc/ach2,
 	Global.achievements[1]["name"],
 	Global.achievements[1]["desc"],
 	load("res://sprites/cat waaaa.png"),
 	Global.achievements[1]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach3,
+	setach($control/scc/hboxc/vboxc/ach3,
 	Global.achievements[2]["name"],
 	Global.achievements[2]["desc"],
 	load("res://sprites/achievement2ic.png"),
 	Global.achievements[2]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach4,
+	setach($control/scc/hboxc/vboxc/ach4,
 	Global.achievements[3]["name"],
 	Global.achievements[3]["desc"],
 	load("res://sprites/achievement6ic.png"),
 	Global.achievements[3]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach5,
+	setach($control/scc/hboxc/vboxc/ach5,
 	Global.achievements[4]["name"],
 	Global.achievements[4]["desc"],
 	load("res://sprites/achievement5ic.png"),
 	Global.achievements[4]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach6,
+	setach($control/scc/hboxc/vboxc/ach6,
 	Global.achievements[5]["name"],
 	Global.achievements[5]["desc"],
 	load("res://sprites/achievement4ic.png"),
 	Global.achievements[5]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach7,
+	setach($control/scc/hboxc/vboxc/ach7,
 	Global.achievements[6]["name"],
 	Global.achievements[6]["desc"],
 	load("res://sprites/achievement3ic.png"),
 	Global.achievements[6]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach8,
+	setach($control/scc/hboxc/vboxc/ach8,
 	Global.achievements[7]["name"],
 	Global.achievements[7]["desc"],
 	load("res://sprites/achievement7ic.png"),
 	Global.achievements[7]["unlocked"])
 	
-	setach($scc/hboxc/vboxc/ach9,
+	setach($control/scc/hboxc/vboxc/ach9,
 	Global.achievements[8]["name"],
 	Global.achievements[8]["desc"],
 	load("res://sprites/achievement8ic.png"),
@@ -84,14 +84,14 @@ func _ready() -> void:
 		"verdict": finalverdict
 	})
 	
-	$scc/hboxc/vboxc2/Label.text = stats_text
+	$control/scc/hboxc/vboxc2/Label.text = stats_text
 
 func setach(ach, title: String, desc: String, image: Texture, completed: bool):
-	ach.get_node("mc").get_node("vbc").get_node("label").text = str(title)
-	ach.get_node("mc").get_node("vbc").get_node("label2").text = str(desc)
+	ach.get_node("mc/vbc/label").text = str(title)
+	ach.get_node("mc/vbc/label2").text = str(desc)
 	
-	if image: ach.get_node("mc2").get_node("ic").texture = image
-	else: ach.get_node("mc2").get_node("ic").texture = null
+	if image: ach.get_node("mc2/ic").texture = image
+	else: ach.get_node("mc2/ic").texture = null
 	
 	ach.size = Vector2.ZERO
 	

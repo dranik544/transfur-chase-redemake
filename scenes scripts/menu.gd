@@ -12,7 +12,7 @@ func _ready():
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
 	
-	$CanvasLayer/logo.visible = true
+	#$CanvasLayer/logo.visible = true
 	$"CanvasLayer/stats menu".visible = false
 	$"CanvasLayer/skins menu".visible = false
 	$"CanvasLayer/settings menu".visible = false
@@ -32,11 +32,11 @@ func _ready():
 	$CanvasLayer/buttons/skins/btnskins.mouse_exited.connect(btnskinsmouseexited)
 	
 	$CanvasLayer/buttons/stats/btnstats.pressed.connect(btnstatspressed)
-	$"CanvasLayer/stats menu/btnexit".pressed.connect(btnstatsexitpressed)
+	$"CanvasLayer/stats menu/control/hbox/btnexit".pressed.connect(btnstatsexitpressed)
 	$CanvasLayer/buttons/settings/btnsettings.pressed.connect(btnsettingspressed)
 	$"CanvasLayer/settings menu/btnexit".pressed.connect(btnsettingsexitpressed)
 	$CanvasLayer/buttons/skins/btnskins.pressed.connect(btnskinspressed)
-	$"CanvasLayer/skins menu/btnexit".pressed.connect(btnskinsexitpressed)
+	$"CanvasLayer/skins menu/vbox/btnexit".pressed.connect(btnskinsexitpressed)
 	$CanvasLayer/buttons/waaa/btnwaaa.pressed.connect(btnwaaapressed)
 	$"CanvasLayer/buttons/muha gift/btnmuha".pressed.connect(btnmuhapressed)
 	$CanvasLayer/buttons/tutorial/btntutorial.pressed.connect(btntutorialpressed)

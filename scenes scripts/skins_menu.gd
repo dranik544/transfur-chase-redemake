@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var curskin = 0
 var curskinset
@@ -33,62 +33,62 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 		"colin":
 			colin.sprite_frames = load("res://skins/player_sprite.tres")
 			$Label.text = tr("COLIN_DEFAULT_NAME")
-			$Label2.text = tr("COLIN_DEFAULT_DESC")
+			$vbox/Label2.text = tr("COLIN_DEFAULT_DESC")
 			$Label3.text = tr("COLIN_DEFAULT_AUTHOR")
 		"V1":
 			colin.sprite_frames = load("res://skins/v1_player_skin.tres")
 			$Label.text = tr("V1_NAME")
-			$Label2.text = tr("V1_DESC")
+			$vbox/Label2.text = tr("V1_DESC")
 			$Label3.text = tr("V1_AUTHOR")
 		"nightmare colin":
 			colin.sprite_frames = load("res://skins/nightmare_player_skin.tres")
 			$Label.text = tr("COLIN_NIGHTMARE_NAME")
-			$Label2.text = tr("COLIN_NIGHTMARE_DESC")
+			$vbox/Label2.text = tr("COLIN_NIGHTMARE_DESC")
 			$Label3.text = tr("COLIN_NIGHTMARE_AUTHOR")
 		"new year colin":
 			colin.sprite_frames = load("res://skins/new_year_colin_skin.tres")
 			$Label.text = tr("COLIN_NEWYEAR_NAME")
-			$Label2.text = tr("COLIN_NEWYEAR_DESC")
+			$vbox/Label2.text = tr("COLIN_NEWYEAR_DESC")
 			$Label3.text = tr("COLIN_NEWYEAR_AUTHOR")
 		#"gold colin":
 			#colin.sprite_frames = load("res://skins/player_sprite.tres")
 			#$Label.text = "ЗОЛОТОЙ КОЛИН"
-			#$Label2.text = "чувак ты где его нашёл?!
+			#$vbox/Label2.text = "чувак ты где его нашёл?!
 			#(даётся за полное закрытие всех достижений)"
 			#$Label3.text = "автор: TheNamelessDeity"
 		"hank":
 			colin.sprite_frames = load("res://skins/hank_player_skin.tres")
 			$Label.text = tr("HANK_NAME")
-			$Label2.text = tr("HANK_DESC")
+			$vbox/Label2.text = tr("HANK_DESC")
 			$Label3.text = tr("HANK_AUTHOR")
 		"necoarc":
 			colin.sprite_frames = load("res://skins/necoarc_player_skin.tres")
 			$Label.text = tr("NECOARC_NAME")
-			$Label2.text = tr("NECOARC_DESC")
+			$vbox/Label2.text = tr("NECOARC_DESC")
 			$Label3.text = tr("NECOARC_AUTHOR")
 		"muha":
 			colin.sprite_frames = load("res://skins/muha_player_skin.tres")
 			$Label.text = tr("MUHAPEAR_NAME")
-			$Label2.text = tr("MUHAPEAR_DESC")
+			$vbox/Label2.text = tr("MUHAPEAR_DESC")
 			$Label3.text = tr("MUHAPEAR_AUTHOR")
 		"solider":
 			colin.sprite_frames = load("res://skins/solider_colin_skin.tres")
 			$Label.text = tr("SOLIDER_NAME")
-			$Label2.text = tr("SOLIDER_DESC")
+			$vbox/Label2.text = tr("SOLIDER_DESC")
 			$Label3.text = tr("SOLIDER_AUTHOR")
 		"yay basket ^w^":
 			colin.sprite_frames = load("res://skins/basket_colin_skin.tres")
 			$Label.text = tr("COLIN_BASKET_NAME")
-			$Label2.text = tr("COLIN_BASKET_DESC")
+			$vbox/Label2.text = tr("COLIN_BASKET_DESC")
 			$Label3.text = tr("COLIN_BASKET_AUTHOR")
 		"paladin":
 			colin.sprite_frames = load("res://skins/paladin_skin.tres")
 			$Label.text = "паладин"
-			$Label2.text = "могучий рыцарь, охранявший лабораторию."
+			$vbox/Label2.text = "могучий рыцарь, охранявший лабораторию."
 			$Label3.text = "автор: TheNamelessDeity"
 	
 	$lock.visible = !Global.listskins[curskin]["unlocked"]
-	$btnexit.disabled = !Global.listskins[curskin]["unlocked"]
+	$vbox/btnexit.disabled = !Global.listskins[curskin]["unlocked"]
 	
 	if save: SavingManager.save("skins", Global.colinskin); colin.playanim();
 	#if save: SavingManager.save("skinlist", Global.listskins)
