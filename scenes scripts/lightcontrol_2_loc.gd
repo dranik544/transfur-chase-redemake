@@ -37,6 +37,7 @@ func timeout():
 			if i.curtype == i.TYPE.blackenemy:
 				i.enablearea(not onoff)
 				i.enabletarget(not onoff)
+				if !onoff: i.curstate = 0
 	if worldlight: worldlight.visible = onoff
 	if music:
 		if onoff: music.volume_db -= 6.5

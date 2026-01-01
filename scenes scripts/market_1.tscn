@@ -320,7 +320,7 @@ expand_mode = 1
 stream = ExtResource("7_2vnff")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, 0.3, 1.96, -0.4)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 3, 0.3, 2.06, -0.3)
 billboard = 1
 shaded = true
 alpha_cut = 1

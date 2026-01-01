@@ -88,6 +88,15 @@ func hit(damage: float):
 			$Timer2.start()
 
 func time_for_DIEEE_MUHAHAHAHAHAHAHA():
+	if !get_tree():
+		queue_free()
+		return
+	
+	create_tween().tween_property($door1/Sprite3D, "modulate:a", 0.0, 4)
+	create_tween().tween_property($door2/Sprite3D, "modulate:a", 0.0, 4)
+	
+	await get_tree().create_timer(3.9).timeout
+	
 	queue_free()
 
 func _on_timer_2_timeout() -> void:

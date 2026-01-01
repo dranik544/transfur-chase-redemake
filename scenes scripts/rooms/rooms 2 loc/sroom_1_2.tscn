@@ -185,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.9, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, -1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -2.7, 1.06, -2.1)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 3, -2.7, 1.06, -2.1)
 billboard = 1
 shaded = true
 alpha_cut = 1
@@ -193,7 +193,7 @@ texture_filter = 2
 texture = ExtResource("14_r2umj")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -1, 1.06, 2)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 3, -1, 1.06, 2)
 billboard = 1
 shaded = true
 alpha_cut = 1
@@ -201,7 +201,7 @@ texture_filter = 2
 texture = ExtResource("14_r2umj")
 
 [node name="Sprite3D3" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -7.3, 1.06, -2.1)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 3, -7.3, 1.06, -2.1)
 billboard = 1
 shaded = true
 alpha_cut = 1
@@ -209,7 +209,7 @@ texture_filter = 2
 texture = ExtResource("14_r2umj")
 
 [node name="Sprite3D4" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 2, -6.9, 1.06, 3.1)
+transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 3, -6.9, 1.06, 3.1)
 billboard = 1
 shaded = true
 alpha_cut = 1

@@ -19,6 +19,7 @@ var sleepanim = "sleep"
 var isfemale = false
 var playerinarea = false
 var cantarget = true
+var player
 
 @export var health: float = 5.0
 var curhealth: float = 5.0
@@ -56,11 +57,14 @@ func _ready():
 	if $Sprite3D.sprite_frames.has_animation(sleepanim):
 		$Sprite3D.play(sleepanim)
 	velocity = Vector3.ZERO
+	
+	
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta):
 	if !get_tree(): return
-	var player = get_tree().get_first_node_in_group("player")
 	if !player:
+		player = get_tree().get_first_node_in_group("player")
 		return
 	
 	match curstate:
@@ -70,13 +74,13 @@ func _physics_process(delta):
 				$Sprite3D.play(sleepanim)
 			
 			if playerinarea and player.velocity.length() > 2.1:
-				curstate = STATE.ACTIVE
 				$AnimationPlayer.play("its colin!")
-				await $AnimationPlayer.animation_finished
 				add_to_group("unsleep enemy")
+				await $AnimationPlayer.animation_finished
 				Global.unsleepenemies += 1
 				checkenemies()
 				canpunch = true
+				curstate = STATE.ACTIVE
 		
 		STATE.ACTIVE:
 			var playerdist = global_position.distance_to(player.global_position)
