@@ -182,28 +182,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ccg18")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="Control" parent="."]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("14_1nov8")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 640.0
-offset_bottom = 50.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
-offset_top = 429.0
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect2"]
 modulate = Color(1, 1, 1, 0.490196)
-layout_mode = 0
-offset_left = 15.0
-offset_top = 19.0
-offset_right = 305.0
-offset_bottom = 35.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -26.0
+offset_right = 300.0
+offset_bottom = -10.0
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 4
@@ -213,6 +231,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="dialog" parent="CanvasLayer" instance=ExtResource("14_rxdwu")]
+layout_mode = 0
 
 [node name="basket1" parent="." instance=ExtResource("17_r10y8")]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -4.1, 0.5, 3.8)

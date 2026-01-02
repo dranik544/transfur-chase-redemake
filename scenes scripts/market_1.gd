@@ -28,7 +28,7 @@ func bodyentered(body):
 		tween.set_ignore_time_scale(true)
 		tween.set_parallel(true)
 		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.35)
-		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 370, 0.25)
+		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_viewport().size.x - 270, 0.25)
 		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
 		$CanvasLayer/NinePatchRect/hbox/reroll.text = str(Global.rerollmarketprice)
 
@@ -49,7 +49,7 @@ func exit():
 	tween.set_ignore_time_scale(true)
 	tween.set_parallel(true)
 	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.15)
-	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", 640, 0.25)
+	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_viewport().size.x, 0.25)
 
 func reroll():
 	if Global.money >= Global.rerollmarketprice:

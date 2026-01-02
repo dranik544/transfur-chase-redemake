@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var defposbg
 var defposlabel
@@ -8,6 +8,7 @@ var time: float = 0.0
 func _ready() -> void:
 	defposbg = $"pause menu".position
 	defposlabel = $labels.position
+	visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ESC"):

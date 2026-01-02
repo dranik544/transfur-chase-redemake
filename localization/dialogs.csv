@@ -20,46 +20,46 @@ a little more patient, you wouldn't have had to run,"
 DIALOG_1_9,"но у тебя же в жопе свербит!
 [wave]дай побегаю по комплексу.[/wave]","but you just can't sit still!
 [wave]Let me run around the complex.[/wave]"
-DIALOG_1_10,А если бы ты решил на меня
-их настроить, пока я там сидел?,"And what if you had decided to set them
+DIALOG_1_10,"А если бы ты решил на меня
+их настроить, пока я там сидел?","And what if you had decided to set them
 on me while I was sitting there?"
 DIALOG_1_11,"[shake]Дай договорить то![/shake]
 [pulse]Кхем.[/pulse]","[shake]Let me finish talking![/shake]
 [pulse]Ahem.[/pulse]"
-DIALOG_1_12,Во-вторых, я их не контролирую,
-и они делают что им вздумается.,"Secondly, I don't control them,
+DIALOG_1_12,"Во-вторых, я их не контролирую,
+и они делают что им вздумается.","Secondly, I don't control them,
 and they do whatever they want."
 DIALOG_1_13,"Так стоп! То есть рядом с капсулами
 бродят агрессивные твари?","Wait, stop! So there are aggressive creatures
 roaming near the capsules?"
-DIALOG_1_14,Что тут у вас творится?!,"What's going on here?!"
+DIALOG_1_14,"Что тут у вас творится?!","What's going on here?!"
 DIALOG_1_15,"[color=#FF5555]Тебе мелкому
 знать не положено.[/color]","[color=#FF5555]It's not for you,
 you little punk, to know.[/color]"
-DIALOG_1_16,Тогда я сам узнаю, и они
-меня не остановят.,"Then I'll find out myself, and they
+DIALOG_1_16,"Тогда я сам узнаю, и они
+меня не остановят.","Then I'll find out myself, and they
 won't stop me."
-DIALOG_1_17,Не советую идти дальше...,"I don't advise going further..."
-DIALOG_1_18,Хотя, зная тебя, ты все равно пойдешь,,"Although, knowing you, you'll go anyway,"
+DIALOG_1_17,"Не советую идти дальше...","I don't advise going further..."
+DIALOG_1_18,"Хотя, зная тебя, ты все равно пойдешь,","Although, knowing you, you'll go anyway,"
 DIALOG_1_19,"так что просто будь готов к
 маленьким неприятностям.","so just be ready for
 some little inconveniences."
-DIALOG_1_20,Сам решил выйти и мне по лбу надавать?,"You decided to come out and hit me in the head yourself?"
-DIALOG_1_21,Зачем? В комплексе достаточно способов
-дистанционно тебе нагадить.,"Why? There are enough ways
+DIALOG_1_20,"Сам решил выйти и мне по лбу надавать?","You decided to come out and hit me in the head yourself?"
+DIALOG_1_21,"Зачем? В комплексе достаточно способов
+дистанционно тебе нагадить.","Why? There are enough ways
 in the complex to mess with you remotely."
-DIALOG_1_22,Зачем ты пытаешься меня остановить?,"Why are you trying to stop me?"
-DIALOG_1_23,Что, страшно, что я твое наглое лицо разобью?,"What, afraid I'll smash your smug face?"
-DIALOG_1_24,ТЫ?,"YOU?"
-DIALOG_1_25,МНЕ?,"ME?"
-DIALOG_1_26,[wave]ХА! ХА! ХА![/wave] Как смешно.,"[wave]HA! HA! HA![/wave] How funny."
-DIALOG_1_27,Уверен, ты не пройдешь
-и десяти комнат дальше.,"I'm sure you won't make it
+DIALOG_1_22,"Зачем ты пытаешься меня остановить?","Why are you trying to stop me?"
+DIALOG_1_23,"Что, страшно, что я твое наглое лицо разобью?","What, afraid I'll smash your smug face?"
+DIALOG_1_24,"ТЫ?","YOU?"
+DIALOG_1_25,"МНЕ?","ME?"
+DIALOG_1_26,"[wave]ХА! ХА! ХА![/wave] Как смешно.","[wave]HA! HA! HA![/wave] How funny."
+DIALOG_1_27,"Уверен, ты не пройдешь
+и десяти комнат дальше.","I'm sure you won't make it
 past ten more rooms."
 DIALOG_1_28,"[pulse]Тихо: если, конечно,
 этот гандон не вмешается[/pulse]","[pulse]Quiet: unless, of course,
 that asshole interferes[/pulse]"
-DIALOG_1_29,Кто, кто?,"Who, who?"
+DIALOG_1_29,"Кто, кто?","Who, who?"
 DIALOG_1_30,"[shake]Так, все[/shake],
 хватит этой болтовни.","[shake]Alright, that's enough[/shake],
 enough of this chatter."
@@ -68,14 +68,14 @@ DIALOG_1_31,"Либо ты идешь к тем латексным,
 в следующей комнате.","Either you go to those latex creatures,
 or you'll be [shake]eaten[/shake]
 in the next room."
-DIALOG_1_32,Выбирай.,"Choose."
-DIALOG_1_33,Ага, то есть уже нет
-выбора подождать.,"Aha, so there's no
+DIALOG_1_32,"Выбирай.","Choose."
+DIALOG_1_33,"Ага, то есть уже нет
+выбора подождать.","Aha, so there's no
 choice to wait anymore."
-DIALOG_1_34,Ну ладно, тогда я выберу
-набить тебе лицо.,"Well then, I choose
+DIALOG_1_34,"Ну ладно, тогда я выберу
+набить тебе лицо.","Well then, I choose
 to smash your face in."
 DIALOG_1_35,"[rainbow]Что могу сказать,
 можешь попытаться.[/rainbow]","[rainbow]What can I say,
 you can try.[/rainbow]"
-DIALOG_1_36,end dialog,end dialog
+DIALOG_1_36,enddialog,enddialog

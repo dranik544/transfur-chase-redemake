@@ -217,14 +217,18 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 			useitem()
 	
+	slimebasepos = Vector2.ZERO
+	$gui/slime.pivot_offset = $gui/slime.size / 2
+	
+	$gui/slime.position = slimebasepos + Vector2(
+		sin(slimetimepos) * 10, #randf_range(-1, 1),
+		sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
+	)
+	$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
+	$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
+	slimetimepos += delta
+	
 	if health < 3.0:
-		$gui/slime.position = slimebasepos + Vector2(
-			sin(slimetimepos) * 10, #randf_range(-1, 1),
-			sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
-		)
-		$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
-		$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
-		slimetimepos += delta
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
 		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	else:
@@ -409,7 +413,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func minushealth(num, color: Color = Color.WHITE):
 	health -= num
-	$gui/slime.scale = Vector2(1.5, 1.5)
+	
+	var ws = get_window().size
+	
+	$gui/slime.scale = Vector2(1.25, 1.25)
 	camscale += randf_range(-10.0, -7.5)
 	
 	var finalcolor = color
@@ -423,13 +430,14 @@ func minushealth(num, color: Color = Color.WHITE):
 		var randomslimee = randi_range(1, 5)
 		var spriteslimee: Texture = load("res://sprites/slimee" + str(randomslimee) + ".png")
 		slimee.texture = spriteslimee
+		
 		slimee.custom_minimum_size = Vector2(
 			randf_range(50, 200),
 			randf_range(50, 200)
 		)
 		slimee.position = Vector2(
-			randf_range(0, 640),
-			randf_range(0, 480)
+			randf_range(0, ws.x),
+			randf_range(0, ws.y)
 		)
 		slimee.rotation = randf_range(-90, 90)
 		

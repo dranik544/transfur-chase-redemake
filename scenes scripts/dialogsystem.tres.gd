@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var curd: int = 0
 var posd: Vector3 = Vector3.ZERO
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 		$dialog.global_position.x -= $dialog.size.x / 2
 		$dialog.global_position.y += 24
 		
-		var sizew = Vector2(640, 480)
+		var sizew = Vector2(get_viewport().size.x, get_viewport().size.y)
 		$dialog.global_position.x = clamp($dialog.global_position.x, 10, sizew.x - $dialog.size.x - 10)
 		$dialog.global_position.y = clamp($dialog.global_position.y, 10, sizew.y - $dialog.size.y - 10)
 		
