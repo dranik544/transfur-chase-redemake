@@ -1,111 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://dakl6h268fd70"]
+[gd_scene load_steps=4 format=3 uid="uid://dakl6h268fd70"]
 
 [ext_resource type="Texture2D" uid="uid://4ta1a1h5ekyy" path="res://sprites/titri1.png" id="1_wo663"]
 [ext_resource type="AudioStream" uid="uid://cc63i4npaugbw" path="res://sounds music/dekobe-danger.mp3" id="2_fytnu"]
 
 [sub_resource type="GDScript" id="GDScript_wo663"]
-script/source = "extends Node2D
+script/source = "extends Control
 
+
+func _ready() -> void:
+	#$TextureRect.position.y = get_viewport_rect().size.y / 2 + 25
+	$TextureRect.position.x = get_viewport_rect().size.x + 25
+	
+	create_tween().tween_property($TextureRect, \"position:x\", -$TextureRect.size.x + $TextureRect.size.x / 2.75, 17.5)
+	
+	await get_tree().create_timer(17.5).timeout
+	await get_tree().create_timer(1.5).timeout
+	
+	create_tween().tween_property($TextureRect, \"modulate:a\", 0.0, 0.75)
+	await get_tree().create_timer(0.75).timeout
+	
+	changescene()
 
 func changescene():
 	get_tree().change_scene_to_file(\"res://scenes scripts/menu.tscn\")
 "
 
-[sub_resource type="Animation" id="Animation_omhp5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_fytnu"]
-resource_name = "default"
-length = 15.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 13, 14),
-"transitions": PackedFloat32Array(1, 0.5, 1),
-"update": 0,
-"values": [Vector2(640, 0), Vector2(-989.032, 0), Vector2(-1110, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(14.4, 14.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(15),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"changescene"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7itck"]
-_data = {
-&"RESET": SubResource("Animation_omhp5"),
-&"default": SubResource("Animation_fytnu")
-}
-
-[node name="end" type="Node2D"]
+[node name="end" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_wo663")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -240.0
 offset_right = 1920.0
-offset_bottom = 480.0
+offset_bottom = 240.0
+grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(0, 240)
 texture = ExtResource("1_wo663")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_7itck")
-}
-autoplay = "default"
+stretch_mode = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fytnu")

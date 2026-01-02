@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="5_wev8o"]
 
 [sub_resource type="GDScript" id="GDScript_ncl1c"]
-script/source = "extends Node2D
+script/source = "extends Control
 
 func _ready() -> void:
 	$ru.pressed.connect(ru)
@@ -23,30 +23,54 @@ func en():
 	$AudioStreamPlayer.play()
 "
 
-[node name="language" type="Node2D"]
+[node name="language" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_ncl1c")
 
 [node name="bg" type="TextureRect" parent="."]
-offset_left = -50.0
-offset_top = -35.0
-offset_right = 690.0
-offset_bottom = 515.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_hxpoq")
 
 [node name="ru" type="Button" parent="."]
-offset_left = 50.0
-offset_top = 110.0
-offset_right = 306.0
-offset_bottom = 366.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -128.0
+offset_right = -22.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
 icon = ExtResource("1_dgqgf")
 icon_alignment = 1
 expand_icon = true
 
 [node name="en" type="Button" parent="."]
-offset_left = 334.0
-offset_top = 110.0
-offset_right = 590.0
-offset_bottom = 366.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -128.0
+offset_right = 278.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
 icon = ExtResource("2_wwj4d")
 icon_alignment = 1
 expand_icon = true
@@ -56,10 +80,15 @@ stream = ExtResource("4_6g5yn")
 pitch_scale = 2.25
 
 [node name="Label" type="RichTextLabel" parent="."]
-offset_left = 5.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
 offset_top = 5.0
-offset_right = 85.0
+offset_right = 40.0
 offset_bottom = 17.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5

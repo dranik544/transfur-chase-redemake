@@ -1076,24 +1076,29 @@ theme_override_fonts/font = ExtResource("16_k8css")
 icon = ExtResource("33_i05ob")
 expand_icon = true
 
-[node name="text" type="Node2D" parent="CanvasLayer"]
-position = Vector2(307, 462)
+[node name="text" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/text"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -307.0
-offset_top = -5.0
-offset_right = 333.0
-offset_bottom = 3.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.196078)
 
 [node name="Label" type="Label" parent="CanvasLayer/text"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1149,6 +1154,7 @@ libraries = {
 autoplay = "start"
 
 [node name="stats menu" type="CanvasLayer" parent="CanvasLayer"]
+visible = false
 script = ExtResource("38_lk0fw")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats menu"]

@@ -8,9 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://ynhycmhcibys" path="res://sprites/boykisser.jpeg" id="7_rblpr"]
 
 [sub_resource type="GDScript" id="GDScript_1w7ov"]
-script/source = "extends Node2D
+script/source = "extends Control
 
 
+func falllogo2():
+	var logopos = $logo2.position
+	$logo2.visible = true
+	$logo2.position.x = get_viewport().size.x / 2
+	$logo2.position.y = 0.0 - $logo2.size.y - 25
+	create_tween().tween_property($logo2, \"position:y\", logopos.y, 0.5)
 
 func changescene():
 	get_tree().change_scene_to_file(\"res://scenes scripts/animintro.tscn\")
@@ -37,55 +43,55 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("logo2:position")
+tracks/1/path = NodePath("logo2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -104)]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("logo2:rotation")
+tracks/2/path = NodePath("logo2:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("logo2:scale")
+tracks/3/path = NodePath("bg2:color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("bg2:color")
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/path = NodePath("AudioStreamPlayer2:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -97,22 +103,10 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer2:playing")
+tracks/6/path = NodePath("Label:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Label:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -137,73 +131,76 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("logo2:position")
+tracks/1/path = NodePath("logo2:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 1.5),
-"transitions": PackedFloat32Array(1.6, 1),
-"update": 0,
-"values": [Vector2(195, -116), Vector2(195, 175)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("logo2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(1, 1.33333, 2, 2.16667, 2.5),
 "transitions": PackedFloat32Array(1, 1, 0.3, 1.6, 1),
 "update": 0,
 "values": [-0.174533, 0.0, 0.0, 0.261799, -0.0872665]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("logo2:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("logo2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(1, 1.46667, 2.46667, 2.5, 2.96667),
 "transitions": PackedFloat32Array(1.76, 1, 1e-05, 0.3, 1),
 "update": 0,
 "values": [Vector2(1.4, 1.4), Vector2(1, 1), Vector2(1, 1), Vector2(2.25, 2.25), Vector2(1, 1)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("bg2:color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg2:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 2.4, 2.5, 2.76667, 5, 5.36667),
 "transitions": PackedFloat32Array(1, 1e-05, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(5.5),
-"transitions": PackedFloat32Array(1),
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 5.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"falllogo2"
+}, {
 "args": [],
 "method": &"changescene"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-0.0333333, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer:playing")
+tracks/6/path = NodePath("AudioStreamPlayer2:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(-0.0333333, 1.9),
+"times": PackedFloat32Array(-0.0333333, 1.33333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -211,22 +208,10 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer2:playing")
+tracks/7/path = NodePath("Label:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(-0.0333333, 1.33333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Label:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0.0333333, 2.45),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -239,29 +224,35 @@ _data = {
 &"start": SubResource("Animation_asbl3")
 }
 
-[node name="intro" type="Node2D"]
-script = SubResource("GDScript_1w7ov")
-
-[node name="bg" type="ColorRect" parent="."]
+[node name="intro" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1w7ov")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="logo1" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 95.0
-offset_top = 130.0
-offset_right = 555.0
-offset_bottom = 345.0
+offset_left = -230.0
+offset_top = -107.5
+offset_right = 230.0
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(230, 107)
@@ -275,24 +266,34 @@ libraries = {
 autoplay = "start"
 
 [node name="logo2" type="TextureRect" parent="."]
-offset_left = 195.0
-offset_top = 175.0
-offset_right = 449.0
-offset_bottom = 278.0
-pivot_offset = Vector2(127, 51)
-texture = ExtResource("2_1w7ov")
-
-[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 403.5
-offset_right = 640.0
-offset_bottom = 459.5
+offset_left = -127.0
+offset_top = -51.5
+offset_right = 127.0
+offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(127, 51)
+texture = ExtResource("2_1w7ov")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -115.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("4_rtwky")
@@ -302,11 +303,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bg2" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 

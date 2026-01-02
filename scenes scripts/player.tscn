@@ -144,6 +144,7 @@ anchor_bottom = 1.0
 grow_vertical = 0
 
 [node name="slidebar" type="ProgressBar" parent="gui/gui"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = -95.0
 offset_right = 223.0
@@ -168,6 +169,7 @@ indeterminate = true
 editor_preview_indeterminate = false
 
 [node name="inv" type="TextureRect" parent="gui/gui"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = -95.0
 offset_right = 95.0
@@ -175,6 +177,7 @@ offset_bottom = -15.0
 texture = ExtResource("4_0amtw")
 
 [node name="invtexture" type="TextureRect" parent="gui/gui"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = -95.0
 offset_right = 95.0
@@ -182,6 +185,7 @@ offset_bottom = -15.0
 texture = ExtResource("5_ndhvj")
 
 [node name="Label" type="Label" parent="gui/gui"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = -38.0
 offset_right = 276.0
