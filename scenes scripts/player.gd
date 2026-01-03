@@ -234,6 +234,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
 	if health <= 0.0:
+		Global.lastworld = get_tree().current_scene.get_scene_file_path()
 		$Sprite3D.animation = "transfur"
 		var tween = create_tween()
 		tween.tween_property($"center camera/cam", "size", 0, 4)

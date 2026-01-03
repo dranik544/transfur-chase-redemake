@@ -19,6 +19,7 @@ func _ready() -> void:
 	$scc/vboxc/shakescreen.button_pressed = Global.settings["shakescreen"]
 	$scc/vboxc/light.button_pressed = Global.settings["light"]
 	$scc/vboxc/betterai.button_pressed = Global.settings["betterai"]
+	$scc/vboxc/sizemode.selected = Global.settings["sizemode"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -33,10 +34,12 @@ func updatesettings():
 	Global.settings["shakescreen"] = $scc/vboxc/shakescreen.button_pressed
 	Global.settings["light"] = $scc/vboxc/light.button_pressed
 	Global.settings["betterai"] = $scc/vboxc/betterai.button_pressed
+	Global.settings["sizemode"] = $scc/vboxc/sizemode.selected
 	
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()
+	Global.updatesizemode()
 	
 	SavingManager.save("settings", Global.settings)
 

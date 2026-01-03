@@ -1,9 +1,16 @@
-extends Node2D
+extends Control
 
 var time: float = 0.0
+var baseposlabel: Vector2
+var baseposcolin: Vector2
 
 
 func _ready():
+	baseposcolin = $colin.position
+	baseposcolin.x -= get_tree().root.content_scale_size.x / 5
+	baseposlabel = $colin.position
+	baseposlabel.x += get_tree().root.content_scale_size.x / 5
+	
 	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems + Global.unsleepenemies
 	
 	Global.generalstats[0] += Global.brokenboxes
@@ -46,7 +53,7 @@ func _process(delta):
 	
 	if Input.is_anything_pressed():
 		if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
-			ScreenTransition.changescene("res://scenes scripts/world.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
+			ScreenTransition.changescene(Global.lastworld, Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
 		if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):
 			ScreenTransition.changescene("res://scenes scripts/menu.tscn", Color.WHITE, 0.5)
 		
@@ -71,13 +78,13 @@ func _process(delta):
 	
 	$bg2.modulate = lerp($bg2.modulate, Color(1.0, 1.0, 1.0, 0.0), 0.5 * delta)
 	
-	$colin.position = Vector2(-155.0, 7.0) + Vector2(
+	$colin.position = baseposcolin + Vector2(
 		sin(time * 4) * 4,
 		sin(time * 2) * 4
 	)
-	$label.position = Vector2(320.0, 0.0) + Vector2(
-		sin(time * 4) * 4/2,
-		sin(time * 2) * 4/2
+	$label.position = baseposlabel + Vector2(
+		sin(time * 4) * 1,
+		sin(time * 2) * 1
 	)
 	
 	$colin.scale = Vector2(1.0, 1.0) + Vector2(

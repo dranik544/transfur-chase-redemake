@@ -13,30 +13,18 @@
 [sub_resource type="GDScript" id="GDScript_nxi7l"]
 script/source = "extends Node2D
 
-var defscreen: Vector2i
-
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if Input.is_anything_pressed():
 		ScreenTransition.changescene(\"res://scenes scripts/menu.tscn\", Color.BLACK, 1.0)
-		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-		await get_tree().process_frame
-		await get_tree().process_frame
-		get_window().size = defscreen
+		Global.updatesizemode()
 
 func changescene():
-	get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-	await get_tree().process_frame
-	await get_tree().process_frame
-	get_window().size = defscreen
-	
+	Global.updatesizemode()
 	get_tree().change_scene_to_file(\"res://scenes scripts/menu.tscn\")
 
 func _ready() -> void:
-	defscreen = get_window().size
-	
-	get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-	get_window().size = Vector2i(640, 480)
+	Global.updatesizemode(1)
 	
 	await get_tree().create_timer(0.5).timeout
 	$notification.display(

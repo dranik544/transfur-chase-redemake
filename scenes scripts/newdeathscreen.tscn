@@ -7,25 +7,44 @@
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="5_36hd4"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="6_fp0uh"]
 
-[node name="newdeathscreen" type="Node2D"]
+[node name="newdeathscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_36kbc")
 
 [node name="bg" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_sxofj")
+expand_mode = 1
 
 [node name="colin" type="TextureRect" parent="."]
-offset_left = -155.0
-offset_right = 485.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(320, 480)
 texture = ExtResource("2_36kbc")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="label" type="Label" parent="."]
-offset_left = 320.0
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
@@ -46,21 +65,37 @@ vertical_alignment = 1
 
 [node name="bg2" type="TextureRect" parent="."]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_sxofj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 405.0
-offset_right = 640.0
-offset_bottom = 445.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
 pivot_offset = Vector2(0, 20)
 color = Color(0, 0, 0, 0.392157)
 
 [node name="label2" type="Label" parent="."]
-offset_top = 405.0
-offset_right = 640.0
-offset_bottom = 446.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
@@ -71,11 +106,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="slime" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(2.5, 2.5)
 pivot_offset = Vector2(320, 240)
 texture = ExtResource("5_36hd4")
-metadata/_edit_use_anchors_ = true
+expand_mode = 2
 
 [node name="notification" parent="." instance=ExtResource("6_fp0uh")]

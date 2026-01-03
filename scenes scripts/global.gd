@@ -21,6 +21,7 @@ var iswinter: bool = false
 
 var money: int = 0
 var rerollmarketprice: int = 15
+var lastworld: String
 
 var colinskin: String = "colin"
 var listskins = [
@@ -64,6 +65,7 @@ var settings = {
 	"shakescreen": true,
 	"light": true,
 	"betterai": false,
+	"sizemode": 0,
 }
 
 signal navibake()
@@ -114,6 +116,7 @@ func _ready() -> void:
 	listskins[3]["unlocked"] = iswinter
 	
 	updatewindowmode()
+	updatesizemode()
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:
@@ -121,6 +124,7 @@ func unlockachievement(id: int):
 		SavingManager.save("achievements", achievements)
 		return true
 	return false
+
 func checkachievement(id: int):
 	return achievements[id]["unlocked"]
 
@@ -128,6 +132,20 @@ func updatewindowmode():
 	match settings["windowmode"]:
 		0: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		1: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func updatesizemode(from = settings["sizemode"]):
+	match from:
+		0:
+			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
+			get_window().size = Vector2i(640, 480)
+		1: 
+			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			get_tree().root.content_scale_size = Vector2i(640, 480)
+			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+		2: 
+			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			get_tree().root.content_scale_size = Vector2i(850, 480)
+			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 
 func _process(delta: float) -> void:
 	pass
