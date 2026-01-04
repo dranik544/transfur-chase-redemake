@@ -15,6 +15,11 @@ func changescene():
 	get_tree().change_scene_to_file(\"res://scenes scripts/animintro.tscn\")
 
 func _ready() -> void:
+	if Global.ismobile:
+		$Button.visible = true
+	else:
+		$Button.visible = false
+	
 	Global.updatesizemode(1)
 	
 	$Button.pressed.connect(skip)

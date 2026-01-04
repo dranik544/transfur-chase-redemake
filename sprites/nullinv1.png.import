@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://707bf4xk8jrr"
 path.s3tc="res://.godot/imported/nullinv1.png-c654d3af0e01fdf95b6049662ba3278b.s3tc.ctex"
+path.etc2="res://.godot/imported/nullinv1.png-c654d3af0e01fdf95b6049662ba3278b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/nullinv1.png"
-dest_files=["res://.godot/imported/nullinv1.png-c654d3af0e01fdf95b6049662ba3278b.s3tc.ctex"]
+dest_files=["res://.godot/imported/nullinv1.png-c654d3af0e01fdf95b6049662ba3278b.s3tc.ctex", "res://.godot/imported/nullinv1.png-c654d3af0e01fdf95b6049662ba3278b.etc2.ctex"]
 
 [params]
 

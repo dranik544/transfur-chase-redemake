@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=29 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="11_hb04b"]
 [ext_resource type="Texture2D" uid="uid://cbhup0lvsqa51" path="res://sprites/ohno.png" id="11_lodc7"]
 [ext_resource type="Texture2D" uid="uid://bkrdhqt8a8i1y" path="res://sprites/guide2.png" id="13_gahc2"]
+[ext_resource type="Texture2D" uid="uid://c6t5yesx3c2aj" path="res://sprites/guide5.png" id="13_ttj71"]
 [ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites/icon3.png" id="14_afss4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
@@ -143,6 +144,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("7_f74ev")
 
 [node name="gui" type="Control" parent="gui"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -203,83 +205,6 @@ theme_override_fonts/font = ExtResource("6_511js")
 text = "DEFAULT_TYPE_ITEM"
 vertical_alignment = 2
 
-[node name="pause menu" type="Control" parent="gui"]
-process_mode = 3
-visible = false
-z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("8_nccrc")
-
-[node name="pause menu" type="TextureRect" parent="gui/pause menu"]
-modulate = Color(1, 1, 1, 0.294118)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_6rr08")
-expand_mode = 4
-
-[node name="labels" type="Control" parent="gui/pause menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="gui/pause menu/labels"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -117.5
-offset_top = -66.0
-offset_right = 117.5
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 54
-text = "PAUSE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="gui/pause menu/labels"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.5
-offset_top = -7.0
-offset_right = 100.5
-offset_bottom = 66.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 16
-text = "Restart - R
-Exit in menu - Q
-Continue - ESC
-Quit - CTRL+Q"
-horizontal_alignment = 1
-
 [node name="mobilecontrols" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -290,11 +215,13 @@ grow_vertical = 2
 
 [node name="Virtual Joystick" parent="mobilecontrols" instance=ExtResource("7_tlnr4")]
 layout_mode = 1
-offset_left = 15.0
-offset_top = -215.0
-offset_right = 215.0
-offset_bottom = -15.0
+offset_left = 55.0
+offset_top = -168.0
+offset_right = 171.0
+offset_bottom = -55.0
+mouse_filter = 2
 deadzone_size = 25.0
+clampzone_size = 50.0
 joystick_mode = 1
 action_left = "A"
 action_right = "D"
@@ -303,14 +230,18 @@ action_down = "S"
 
 [node name="ctrlbtn" type="Button" parent="mobilecontrols"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 33.0
-offset_top = -277.0
-offset_right = 199.0
-offset_bottom = -226.0
+offset_left = -294.0
+offset_top = -83.0
+offset_right = -144.0
+offset_bottom = -32.0
+grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -333,6 +264,7 @@ offset_right = -40.0
 offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -356,6 +288,7 @@ offset_right = -71.0
 offset_bottom = -29.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -376,6 +309,7 @@ offset_top = 18.0
 offset_right = -34.0
 offset_bottom = 118.0
 grow_horizontal = 0
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -400,6 +334,7 @@ offset_right = -144.0
 offset_bottom = -96.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -414,7 +349,7 @@ icon = ExtResource("13_gahc2")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ebtn2" type="Button" parent="mobilecontrols"]
+[node name="escbtn" type="Button" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -434,6 +369,27 @@ icon = ExtResource("14_afss4")
 icon_alignment = 1
 expand_icon = true
 
+[node name="rcmbtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 128.0
+offset_right = -34.0
+offset_bottom = 183.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 16
+text = "RCM"
+icon = ExtResource("13_ttj71")
+icon_alignment = 1
+expand_icon = true
+
 [node name="scalecam" type="VSlider" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 1
@@ -448,6 +404,149 @@ min_value = -2.5
 max_value = 10.5
 step = 0.2
 value = 0.1
+
+[node name="pause menu" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_nccrc")
+
+[node name="pause menu" type="TextureRect" parent="pause menu"]
+modulate = Color(1, 1, 1, 0.294118)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_6rr08")
+expand_mode = 4
+
+[node name="labels" type="Control" parent="pause menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="pause menu/labels"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -66.0
+offset_right = 117.5
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 54
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="pause menu/labels"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -7.0
+offset_right = 100.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 16
+text = "Restart - R
+Exit in menu - Q
+Continue - ESC
+Quit - CTRL+Q"
+horizontal_alignment = 1
+
+[node name="esc" type="Button" parent="pause menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.5
+offset_top = -45.0
+offset_right = 35.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "ESC"
+expand_icon = true
+
+[node name="r" type="Button" parent="pause menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -45.0
+offset_right = 86.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "R"
+expand_icon = true
+
+[node name="q" type="Button" parent="pause menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -45.0
+offset_right = -42.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "Q"
+expand_icon = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.65

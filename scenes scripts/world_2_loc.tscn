@@ -100,7 +100,7 @@ rooms = {
 4: ExtResource("5_7lqlk"),
 5: ExtResource("6_8mb1v")
 }
-loadrooms = 28
+loadrooms = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_iombt")

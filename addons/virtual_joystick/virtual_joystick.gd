@@ -90,16 +90,16 @@ func _input(event: InputEvent) -> void:
 						_touch_index = event.index
 						_tip.modulate = pressed_color
 						_update_joystick(event.position)
-						get_viewport().set_input_as_handled()
+						#get_viewport().set_input_as_handled()
 			elif event.index == _touch_index:
 				_reset()
 				if visibility_mode == Visibility_mode.WHEN_TOUCHED:
 					hide()
-				get_viewport().set_input_as_handled()
+				#get_viewport().set_input_as_handled()
 		elif event is InputEventScreenDrag:
 			if event.index == _touch_index:
 				_update_joystick(event.position)
-				get_viewport().set_input_as_handled()
+				#get_viewport().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
 	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()

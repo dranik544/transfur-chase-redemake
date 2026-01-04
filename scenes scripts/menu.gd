@@ -86,6 +86,14 @@ func _ready():
 			#await get_tree().create_timer(0.1).timeout
 
 func _input(event):
+	if event is InputEventScreenDrag and Global.ismobile:
+		$"room1 1".rotate_y(event.relative.x * sens)
+		#centercam.rotate_y(-event.relative.x * sens)
+		centercam.rotate_x(-event.relative.y * sens)
+		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
+		driftcam += event.relative.x / 1000
+		driftcam = clamp(driftcam, -0.05, 0.05)
+	
 	if event is InputEventMouseMotion and !freecam:
 		$"room1 1".rotate_y(event.relative.x * sens)
 		#centercam.rotate_y(-event.relative.x * sens)

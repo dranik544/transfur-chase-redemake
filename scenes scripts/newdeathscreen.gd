@@ -3,6 +3,8 @@ extends Control
 var time: float = 0.0
 var baseposlabel: Vector2
 var baseposcolin: Vector2
+var r: bool = false
+var q: bool = false
 
 
 func _ready():
@@ -10,6 +12,15 @@ func _ready():
 	baseposcolin.x -= get_tree().root.content_scale_size.x / 5
 	baseposlabel = $colin.position
 	baseposlabel.x += get_tree().root.content_scale_size.x / 5
+	
+	if !Global.ismobile:
+		$r.visible = false
+		$r.disabled = false
+		$q.visible = false
+		$q.disabled = false
+	
+	$r.pressed.connect(rmobile)
+	$q.pressed.connect(qmobile)
 	
 	var points: int = Global.brokenboxes + Global.brokendoors + Global.touchedslimes + Global.hitsfromenemies + Global.openvents + Global.useditems + Global.unsleepenemies
 	
@@ -52,9 +63,11 @@ func _process(delta):
 	time += delta
 	
 	if Input.is_anything_pressed():
-		if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R"):
+		if Input.is_action_just_pressed("SPACE") or Input.is_action_just_pressed("R") or r:
+			r = false
 			ScreenTransition.changescene(Global.lastworld, Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/world.tscn")
-		if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q"):
+		if Input.is_action_just_pressed("ESC") or Input.is_action_just_pressed("Q") or q:
+			q = false
 			ScreenTransition.changescene("res://scenes scripts/menu.tscn", Color.WHITE, 0.5)
 		
 		Global.brokenboxes = 0
@@ -98,3 +111,6 @@ func _process(delta):
 	
 	$colin.rotation = 0.0 + sin(time) * 0.025
 	$label.rotation = 0.0 + sin(time) * 0.025/2
+
+func rmobile(): r = true
+func qmobile(): q = true

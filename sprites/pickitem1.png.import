@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb6tpkfemtwo8"
 path.s3tc="res://.godot/imported/pickitem1.png-fde49f9658ae5d62e5b591a983550ed4.s3tc.ctex"
+path.etc2="res://.godot/imported/pickitem1.png-fde49f9658ae5d62e5b591a983550ed4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/pickitem1.png"
-dest_files=["res://.godot/imported/pickitem1.png-fde49f9658ae5d62e5b591a983550ed4.s3tc.ctex"]
+dest_files=["res://.godot/imported/pickitem1.png-fde49f9658ae5d62e5b591a983550ed4.s3tc.ctex", "res://.godot/imported/pickitem1.png-fde49f9658ae5d62e5b591a983550ed4.etc2.ctex"]
 
 [params]
 

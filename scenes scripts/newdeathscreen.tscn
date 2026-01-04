@@ -118,3 +118,41 @@ texture = ExtResource("5_36hd4")
 expand_mode = 2
 
 [node name="notification" parent="." instance=ExtResource("6_fp0uh")]
+
+[node name="r" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 81.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_8w1qj")
+theme_override_font_sizes/font_size = 32
+text = "R"
+expand_icon = true
+
+[node name="q" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.0
+offset_top = 5.0
+offset_right = -7.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_8w1qj")
+theme_override_font_sizes/font_size = 32
+text = "Q"
+expand_icon = true

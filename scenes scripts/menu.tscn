@@ -881,7 +881,7 @@ texture_filter = 2
 texture = ExtResource("28_un3na")
 
 [node name="gift" type="AnimatedSprite3D" parent="room1 1/elka"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.2, 0.4, 0.4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.3, 0.4, 0.5)
 billboard = 1
 shaded = true
 alpha_cut = 1

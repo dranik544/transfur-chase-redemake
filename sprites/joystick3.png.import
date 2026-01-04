@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2tg4xqk57gdw"
-path.s3tc="res://.godot/imported/list2.png-c74ad562320ef9957468478f124958c3.s3tc.ctex"
-path.etc2="res://.godot/imported/list2.png-c74ad562320ef9957468478f124958c3.etc2.ctex"
+uid="uid://crlg48bvrt63q"
+path="res://.godot/imported/joystick3.png-db171fbc95c244a4b5031b2e9df094a3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/list2.png"
-dest_files=["res://.godot/imported/list2.png-c74ad562320ef9957468478f124958c3.s3tc.ctex", "res://.godot/imported/list2.png-c74ad562320ef9957468478f124958c3.etc2.ctex"]
+source_file="res://sprites/joystick3.png"
+dest_files=["res://.godot/imported/joystick3.png-db171fbc95c244a4b5031b2e9df094a3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

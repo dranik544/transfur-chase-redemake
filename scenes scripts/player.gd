@@ -78,6 +78,7 @@ func _ready():
 	$mobilecontrols/fbtn.pressed.connect(fmobile)
 	$mobilecontrols/ctrlbtn.pressed.connect(ctrlmobile)
 	$mobilecontrols/spacebtn.pressed.connect(spacemobile)
+	$mobilecontrols/rcmbtn.pressed.connect(rcmmobile)
 	
 	campos = cam.position
 	camrot = cam.rotation
@@ -90,6 +91,8 @@ func _ready():
 		$mobilecontrols/lcmbtn.disabled = true
 		$mobilecontrols/ctrlbtn.disabled = true
 		$mobilecontrols/spacebtn.disabled = true
+		$mobilecontrols/escbtn.disabled = true
+		$mobilecontrols/rcmbtn.disabled = true
 		$mobilecontrols/scalecam.editable = false
 	else:
 		$mobilecontrols.visible = true
@@ -99,6 +102,8 @@ func _ready():
 		$mobilecontrols/lcmbtn.disabled = false
 		$mobilecontrols/ctrlbtn.disabled = false
 		$mobilecontrols/spacebtn.disabled = false
+		$mobilecontrols/escbtn.disabled = false
+		$mobilecontrols/rcmbtn.disabled = false
 		$mobilecontrols/scalecam.editable = true
 		
 		$gui/gui.anchor_left = true
@@ -108,6 +113,13 @@ func _ready():
 	sens = Global.settings["camsens"]
 
 func _input(event):
+	if event is InputEventScreenDrag and Global.ismobile and !freecam:
+		rotate_y(-event.relative.x * sens)
+		centercam.rotate_x(-event.relative.y * sens)
+		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
+		driftcam += event.relative.x / 1000
+		driftcam = clamp(driftcam, -0.05, 0.05)
+	
 	if event is InputEventMouseMotion and !freecam and !Engine.time_scale < 1.0:
 		rotate_y(-event.relative.x * sens)
 		centercam.rotate_x(-event.relative.y * sens)
@@ -146,14 +158,13 @@ func _physics_process(delta: float) -> void:
 		camscalewheel = $mobilecontrols/scalecam.value
 		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
 	
-	if Global.ismobile and Input.is_action_pressed("LCM"):
-		freecam = false
-	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		freecam = false
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		freecam = true
+	if !Global.ismobile:
+		if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			freecam = false
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			freecam = true
 	if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn") #res://doskapochteniya.tscn", Color.SLATE_GRAY, 0.2)
 	
 	if camfollow:
@@ -297,6 +308,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("SPACE") or space and !isslide and canslide:
 		canslide = false
+		space = false
 		slidespeed = MaxSlideSpeed
 		slidespeedminus = MaxSlideSpeed
 		$Timer.start()
@@ -539,7 +551,8 @@ func lcmmobile(): if isinv and !Engine.time_scale < 1.0: useitem()
 func emobile(): Global.pickupitem.emit(self, true)
 func fmobile(): Global.punchpl.emit(damage); Global.hitdoor.emit(damage)
 func ctrlmobile(): ctrl = not ctrl
-func spacemobile(): space = true; await get_tree().process_frame; space = false
+func spacemobile(): space = true
+func rcmmobile(): freecam = not freecam
 
 func detectenemycolor(enemy):
 	var typeenemy = enemy.curtype
