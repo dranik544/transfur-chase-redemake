@@ -22,6 +22,7 @@ var iswinter: bool = false
 var money: int = 0
 var rerollmarketprice: int = 15
 var lastworld: String
+var ismobile: bool
 
 var colinskin: String = "colin"
 var listskins = [
@@ -65,7 +66,9 @@ var settings = {
 	"shakescreen": true,
 	"light": true,
 	"betterai": false,
-	"sizemode": 0,
+	"sizemode": 1,
+	"camsens": 0.002,
+	"forcemobile": false,
 }
 
 signal navibake()
@@ -114,6 +117,8 @@ func _ready() -> void:
 	recordpoints = SavingManager.load("recordpoints")
 	
 	listskins[3]["unlocked"] = iswinter
+	
+	if OS.get_name() == "Android" or OS.get_name() == "iOS" or settings["forcemobile"]: ismobile = true
 	
 	updatewindowmode()
 	updatesizemode()

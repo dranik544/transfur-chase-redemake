@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=28 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -6,13 +6,19 @@
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="6_511js"]
 [ext_resource type="Texture2D" uid="uid://b7k16svsdf4gs" path="res://sprites/colin bg1.png" id="7_f74ev"]
 [ext_resource type="AudioStream" uid="uid://dtl35rnlvj3ci" path="res://sounds music/run_default.ogg" id="7_q0em8"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="7_tlnr4"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="8_6rr08"]
 [ext_resource type="Script" uid="uid://dy8l1imwdm7o6" path="res://scenes scripts/pause_menu.gd" id="8_nccrc"]
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
 [ext_resource type="AudioStream" uid="uid://cemgmgav0lfm2" path="res://sounds music/latexpunch2.mp3" id="9_h5cnr"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="9_v6gaw"]
+[ext_resource type="Texture2D" uid="uid://dwmqqhmsc4jnk" path="res://sprites/guide1.png" id="10_8jtgo"]
 [ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="10_nccrc"]
+[ext_resource type="Texture2D" uid="uid://dxbddgobdedac" path="res://sprites/guide3.png" id="10_u365h"]
+[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="11_hb04b"]
 [ext_resource type="Texture2D" uid="uid://cbhup0lvsqa51" path="res://sprites/ohno.png" id="11_lodc7"]
+[ext_resource type="Texture2D" uid="uid://bkrdhqt8a8i1y" path="res://sprites/guide2.png" id="13_gahc2"]
+[ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites/icon3.png" id="14_afss4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
 radius = 0.3
@@ -273,6 +279,175 @@ Exit in menu - Q
 Continue - ESC
 Quit - CTRL+Q"
 horizontal_alignment = 1
+
+[node name="mobilecontrols" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Virtual Joystick" parent="mobilecontrols" instance=ExtResource("7_tlnr4")]
+layout_mode = 1
+offset_left = 15.0
+offset_top = -215.0
+offset_right = 215.0
+offset_bottom = -15.0
+deadzone_size = 25.0
+joystick_mode = 1
+action_left = "A"
+action_right = "D"
+action_up = "W"
+action_down = "S"
+
+[node name="ctrlbtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -277.0
+offset_right = 199.0
+offset_bottom = -226.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "CTRL"
+icon = ExtResource("10_u365h")
+expand_icon = true
+
+[node name="fbtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -206.0
+offset_right = -40.0
+offset_bottom = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 42
+text = "F"
+icon = ExtResource("10_8jtgo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ebtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -84.0
+offset_right = -71.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "E"
+icon = ExtResource("11_hb04b")
+icon_alignment = 1
+expand_icon = true
+
+[node name="lcmbtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 18.0
+offset_right = -34.0
+offset_bottom = 118.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 18
+text = "Use"
+icon = ExtResource("5_ndhvj")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="spacebtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -206.0
+offset_right = -144.0
+offset_bottom = -96.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 18
+text = "S
+P
+a
+c
+e"
+icon = ExtResource("13_gahc2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ebtn2" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 5.0
+offset_right = 20.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 12
+text = "ESC"
+icon = ExtResource("14_afss4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="scalecam" type="VSlider" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -25.0
+offset_top = 18.0
+offset_right = -9.0
+offset_bottom = 192.0
+grow_horizontal = 0
+min_value = -2.5
+max_value = 10.5
+step = 0.2
+value = 0.1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.65

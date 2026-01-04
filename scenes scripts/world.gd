@@ -81,6 +81,9 @@ func _ready():
 func enter() -> void:
 	while true:
 		await get_tree().process_frame
+		if Global.ismobile:
+			if Input.is_action_just_pressed("LCM"):
+				return
 		if Input.is_action_just_pressed("ENTER"):
 			return
 

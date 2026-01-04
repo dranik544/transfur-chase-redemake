@@ -12,6 +12,8 @@ func _ready():
 	centercam = get_node("center camera")
 	cam = centercam.get_node("cam")
 	
+	sens = Global.settings["camsens"]
+	
 	#$CanvasLayer/logo.visible = true
 	$"CanvasLayer/stats menu".visible = false
 	$"CanvasLayer/skins menu".visible = false
@@ -111,6 +113,9 @@ func _physics_process(delta: float) -> void:
 		dinamicbtn(delta, $"CanvasLayer/buttons/muha gift", $"room1 1/elka/gift", 25, tr / 8, sz / 8, mp)
 	else:
 		$"CanvasLayer/buttons/muha gift".visible = false
+	
+	if Global.ismobile and Input.is_action_pressed("LCM"):
+		freecam = false
 	
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -16,10 +16,15 @@ func changescene():
 
 func _ready() -> void:
 	Global.updatesizemode(1)
+	
+	$Button.pressed.connect(skip)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_anything_pressed():
-		ScreenTransition.changescene(\"res://scenes scripts/animintro.tscn\", Color.BLACK, 1.0)
+		skip()
+
+func skip():
+	ScreenTransition.changescene(\"res://scenes scripts/animintro.tscn\", Color.BLACK, 1.0)
 "
 
 [sub_resource type="Animation" id="Animation_1w7ov"]
@@ -327,3 +332,21 @@ offset_right = -8.0
 offset_bottom = -9.0
 texture = ExtResource("7_rblpr")
 expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 247.0
+offset_top = 444.0
+offset_right = 388.0
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_rtwky")
+text = "SKIP"

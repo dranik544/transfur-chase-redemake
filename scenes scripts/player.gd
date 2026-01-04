@@ -55,6 +55,9 @@ var camrot: Vector3
 var iscamshaking: bool = false
 var camposoffset: Vector3 = Vector3.ZERO
 var camrotoffset: Vector3 = Vector3.ZERO
+var ctrl: bool = false
+var space: bool = false
+
 
 func startshake(intensity: float, dur: float):
 	camshake = intensity
@@ -70,8 +73,39 @@ func _ready():
 	
 	updateskin()
 	
+	$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
+	$mobilecontrols/ebtn.pressed.connect(emobile)
+	$mobilecontrols/fbtn.pressed.connect(fmobile)
+	$mobilecontrols/ctrlbtn.pressed.connect(ctrlmobile)
+	$mobilecontrols/spacebtn.pressed.connect(spacemobile)
+	
 	campos = cam.position
 	camrot = cam.rotation
+	
+	if !Global.ismobile:
+		$mobilecontrols.visible = false
+		$"mobilecontrols/Virtual Joystick".enable = false
+		$mobilecontrols/fbtn.disabled = true
+		$mobilecontrols/ebtn.disabled = true
+		$mobilecontrols/lcmbtn.disabled = true
+		$mobilecontrols/ctrlbtn.disabled = true
+		$mobilecontrols/spacebtn.disabled = true
+		$mobilecontrols/scalecam.editable = false
+	else:
+		$mobilecontrols.visible = true
+		$"mobilecontrols/Virtual Joystick".enable = true
+		$mobilecontrols/fbtn.disabled = false
+		$mobilecontrols/ebtn.disabled = false
+		$mobilecontrols/lcmbtn.disabled = false
+		$mobilecontrols/ctrlbtn.disabled = false
+		$mobilecontrols/spacebtn.disabled = false
+		$mobilecontrols/scalecam.editable = true
+		
+		$gui/gui.anchor_left = true
+		$gui/gui.anchor_top = true
+		$gui/gui.position = Vector2(0, 110)
+	
+	sens = Global.settings["camsens"]
 
 func _input(event):
 	if event is InputEventMouseMotion and !freecam and !Engine.time_scale < 1.0:
@@ -90,7 +124,7 @@ func _unhandled_input(event):
 		camscalewheel += 0.75
 	if event.is_action_pressed("CCM UP"):
 		camscalewheel -= 0.75
-	camscalewheel = clampf(camscalewheel, -2.5, 9.0)
+	
 	
 	if event.is_action_pressed("F"):
 		Global.punchpl.emit(damage)
@@ -108,6 +142,12 @@ func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 		camfollowpluspos = 0.0
 
 func _physics_process(delta: float) -> void:
+	if Global.ismobile:
+		camscalewheel = $mobilecontrols/scalecam.value
+		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
+	
+	if Global.ismobile and Input.is_action_pressed("LCM"):
+		freecam = false
 	if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		freecam = false
@@ -180,7 +220,7 @@ func _physics_process(delta: float) -> void:
 			$Sprite3D.position = defposspr
 			$sh.emitting = false
 	
-	if Input.is_action_pressed("CTRL"):
+	if Input.is_action_pressed("CTRL") or ctrl:
 		if itemdata.has("kg"):
 			itemkg = itemdata["kg"]
 		
@@ -214,8 +254,10 @@ func _physics_process(delta: float) -> void:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
 			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-		if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
-			useitem()
+		if !Global.ismobile:
+			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
+				useitem()
+	$mobilecontrols/lcmbtn.icon = $gui/gui/invtexture.texture
 	
 	slimebasepos = Vector2.ZERO
 	$gui/slime.pivot_offset = $gui/slime.size / 2
@@ -253,7 +295,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("A", "D", "W", "S")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("SPACE") and !isslide and canslide:
+	if Input.is_action_just_pressed("SPACE") or space and !isslide and canslide:
 		canslide = false
 		slidespeed = MaxSlideSpeed
 		slidespeedminus = MaxSlideSpeed
@@ -492,6 +534,12 @@ func useitem():
 	elif itemdata["pointstime"] > 0:
 		item.queue_free()
 		itemdata["pointstime"] -= 1
+
+func lcmmobile(): if isinv and !Engine.time_scale < 1.0: useitem()
+func emobile(): Global.pickupitem.emit(self, true)
+func fmobile(): Global.punchpl.emit(damage); Global.hitdoor.emit(damage)
+func ctrlmobile(): ctrl = not ctrl
+func spacemobile(): space = true; await get_tree().process_frame; space = false
 
 func detectenemycolor(enemy):
 	var typeenemy = enemy.curtype

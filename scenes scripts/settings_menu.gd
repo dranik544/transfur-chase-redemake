@@ -20,6 +20,8 @@ func _ready() -> void:
 	$scc/vboxc/light.button_pressed = Global.settings["light"]
 	$scc/vboxc/betterai.button_pressed = Global.settings["betterai"]
 	$scc/vboxc/sizemode.selected = Global.settings["sizemode"]
+	$scc/vboxc/camsens.value = Global.settings["camsens"]
+	$scc/vboxc/forcemobile.button_pressed = Global.settings["forcemobile"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -35,7 +37,8 @@ func updatesettings():
 	Global.settings["light"] = $scc/vboxc/light.button_pressed
 	Global.settings["betterai"] = $scc/vboxc/betterai.button_pressed
 	Global.settings["sizemode"] = $scc/vboxc/sizemode.selected
-	
+	Global.settings["camsens"] = $scc/vboxc/camsens.value
+	Global.settings["forcemobile"] = $scc/vboxc/forcemobile.button_pressed
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()

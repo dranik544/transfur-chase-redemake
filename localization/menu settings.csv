@@ -31,6 +31,9 @@ SETTINGS_INPUT,"
 Input"
 SETTINGS_CAM_FROM_ROOM_TO_ROOM,"Камера 'от комнаты
 к комнате'","Room-to-Room Camera"
+SETTINGS_CAM_SENS,"Чувствительность камеры","Camera sensitivity"
+SETTINGS_FORCE_MOBILE,"Принудительное
+мобильное управление","Force mobile controls"
 
 SETTINGS_GAMEPLAY,"
 Геймплей","
