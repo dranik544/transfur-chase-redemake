@@ -91,3 +91,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_pressed("ENTER"):
 			curd += 1
 			updatedialog()
+
+func _input(event: InputEvent) -> void:
+	if itstvtiimeeee:
+		if event is InputEventScreenTouch:
+			if event.pressed:
+				curd += 1
+				updatedialog()

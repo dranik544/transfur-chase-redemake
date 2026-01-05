@@ -10,16 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="8_6rr08"]
 [ext_resource type="Script" uid="uid://dy8l1imwdm7o6" path="res://scenes scripts/pause_menu.gd" id="8_nccrc"]
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
+[ext_resource type="Texture2D" uid="uid://wes37g2twr23" path="res://sprites/icon15.png" id="8_ttj71"]
 [ext_resource type="AudioStream" uid="uid://cemgmgav0lfm2" path="res://sounds music/latexpunch2.mp3" id="9_h5cnr"]
+[ext_resource type="Texture2D" uid="uid://dsprothngkj5f" path="res://sprites/icon17.png" id="9_ttj71"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="9_v6gaw"]
-[ext_resource type="Texture2D" uid="uid://dwmqqhmsc4jnk" path="res://sprites/guide1.png" id="10_8jtgo"]
 [ext_resource type="Script" uid="uid://dkkr7un48yxct" path="res://scenes scripts/sound.gd" id="10_nccrc"]
-[ext_resource type="Texture2D" uid="uid://dxbddgobdedac" path="res://sprites/guide3.png" id="10_u365h"]
 [ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="11_hb04b"]
 [ext_resource type="Texture2D" uid="uid://cbhup0lvsqa51" path="res://sprites/ohno.png" id="11_lodc7"]
-[ext_resource type="Texture2D" uid="uid://bkrdhqt8a8i1y" path="res://sprites/guide2.png" id="13_gahc2"]
+[ext_resource type="Texture2D" uid="uid://c6w3ofxci77h" path="res://sprites/icon16.png" id="11_ttj71"]
 [ext_resource type="Texture2D" uid="uid://c6t5yesx3c2aj" path="res://sprites/guide5.png" id="13_ttj71"]
-[ext_resource type="Texture2D" uid="uid://jjuqquposomn" path="res://sprites/icon3.png" id="14_afss4"]
+[ext_resource type="Texture2D" uid="uid://bf0c2ogy5bqwt" path="res://sprites/icon14.png" id="13_v8yca"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
 radius = 0.3
@@ -215,12 +215,12 @@ grow_vertical = 2
 
 [node name="Virtual Joystick" parent="mobilecontrols" instance=ExtResource("7_tlnr4")]
 layout_mode = 1
-offset_left = 55.0
+offset_left = 54.0
 offset_top = -168.0
-offset_right = 171.0
+offset_right = 170.0
 offset_bottom = -55.0
 mouse_filter = 2
-deadzone_size = 25.0
+deadzone_size = 35.0
 clampzone_size = 50.0
 joystick_mode = 1
 action_left = "A"
@@ -228,30 +228,26 @@ action_right = "D"
 action_up = "W"
 action_down = "S"
 
-[node name="ctrlbtn" type="Button" parent="mobilecontrols"]
+[node name="ctrlbtn" type="TextureButton" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -294.0
-offset_top = -83.0
-offset_right = -144.0
-offset_bottom = -32.0
+offset_left = -229.0
+offset_top = -78.0
+offset_right = -152.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 32
-text = "CTRL"
-icon = ExtResource("10_u365h")
-expand_icon = true
+texture_normal = ExtResource("8_ttj71")
+texture_pressed = ExtResource("8_ttj71")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="fbtn" type="Button" parent="mobilecontrols"]
+[node name="fbtn" type="TextureButton" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -259,69 +255,71 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -120.0
-offset_top = -206.0
-offset_right = -40.0
+offset_top = -231.0
+offset_right = -20.0
 offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 42
-text = "F"
-icon = ExtResource("10_8jtgo")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("9_ttj71")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ebtn" type="Button" parent="mobilecontrols"]
+[node name="ebtn" type="TextureButton" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -84.0
-offset_right = -71.0
-offset_bottom = -29.0
+offset_left = -118.0
+offset_top = -86.0
+offset_right = -62.0
+offset_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 32
-text = "E"
-icon = ExtResource("11_hb04b")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("11_hb04b")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="lcmbtn" type="Button" parent="mobilecontrols"]
+[node name="lcmbtn" type="TextureButton" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -136.0
-offset_top = 18.0
-offset_right = -34.0
-offset_bottom = 118.0
+offset_left = -160.0
+offset_top = 21.0
+offset_right = -45.0
+offset_bottom = 142.0
 grow_horizontal = 0
 mouse_filter = 1
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+texture_normal = ExtResource("5_ndhvj")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="mobilecontrols/lcmbtn"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("6_511js")
 theme_override_font_sizes/font_size = 18
-text = "Use"
-icon = ExtResource("5_ndhvj")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+text = "use item"
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="spacebtn" type="Button" parent="mobilecontrols"]
+[node name="spacebtn" type="TextureButton" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -330,22 +328,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -224.0
 offset_top = -206.0
-offset_right = -144.0
-offset_bottom = -96.0
+offset_right = -135.0
+offset_bottom = -111.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
+texture_normal = ExtResource("11_ttj71")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="rcmbtn" type="Button" parent="mobilecontrols"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -762.0
+offset_top = -98.0
+offset_right = -706.0
+offset_bottom = -43.0
+grow_horizontal = 0
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 18
-text = "S
-P
-a
-c
-e"
-icon = ExtResource("13_gahc2")
+theme_override_font_sizes/font_size = 16
+text = "RCM"
+icon = ExtResource("13_ttj71")
 icon_alignment = 1
 expand_icon = true
 
@@ -365,28 +374,7 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("6_511js")
 theme_override_font_sizes/font_size = 12
 text = "ESC"
-icon = ExtResource("14_afss4")
-icon_alignment = 1
-expand_icon = true
-
-[node name="rcmbtn" type="Button" parent="mobilecontrols"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_top = 128.0
-offset_right = -34.0
-offset_bottom = 183.0
-grow_horizontal = 0
-mouse_filter = 1
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 16
-text = "RCM"
-icon = ExtResource("13_ttj71")
+icon = ExtResource("13_v8yca")
 icon_alignment = 1
 expand_icon = true
 

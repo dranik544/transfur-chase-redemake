@@ -57,6 +57,8 @@ var camposoffset: Vector3 = Vector3.ZERO
 var camrotoffset: Vector3 = Vector3.ZERO
 var ctrl: bool = false
 var space: bool = false
+var fingermobiledown: bool = false
+var fingermobiledowntime: float = 0.0
 
 
 func startshake(intensity: float, dur: float):
@@ -113,6 +115,19 @@ func _ready():
 	sens = Global.settings["camsens"]
 
 func _input(event):
+	if event is InputEventScreenTouch:
+		fingermobiledown = event.pressed
+	
+	if event is InputEventScreenDrag and Global.ismobile:
+		var lastpos = event.position
+		print(event.position.x)
+		if event.position.x > get_viewport().get_visible_rect().size.x / 2 and event.position.x < get_viewport().get_visible_rect().size.x - 40:
+			if fingermobiledowntime >= 0.4:
+				freecam = false
+		else:
+			freecam = true
+		print(freecam)
+	
 	if event is InputEventScreenDrag and Global.ismobile and !freecam:
 		rotate_y(-event.relative.x * sens)
 		centercam.rotate_x(-event.relative.y * sens)
@@ -157,6 +172,9 @@ func _physics_process(delta: float) -> void:
 	if Global.ismobile:
 		camscalewheel = $mobilecontrols/scalecam.value
 		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
+	
+	if fingermobiledown: fingermobiledowntime += delta
+	else: fingermobiledowntime = 0
 	
 	if !Global.ismobile:
 		if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
@@ -268,7 +286,7 @@ func _physics_process(delta: float) -> void:
 		if !Global.ismobile:
 			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 				useitem()
-	$mobilecontrols/lcmbtn.icon = $gui/gui/invtexture.texture
+	$mobilecontrols/lcmbtn.texture_normal = $gui/gui/invtexture.texture
 	
 	slimebasepos = Vector2.ZERO
 	$gui/slime.pivot_offset = $gui/slime.size / 2
