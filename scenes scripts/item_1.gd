@@ -7,10 +7,11 @@ extends RigidBody3D
 @export var type: String
 
 @export_category("types")
-enum TYPE {CHANGEHP, CHANGEDAMAGE, SHIELD}
+enum TYPE {CHANGEHP, CHANGEDAMAGE, SHIELD, CHANGESPEED}
 @export var curtype: TYPE
 @export var changehp: int = 1
 @export var changedamage: float = 1.0
+@export var changespeed: float = 1.75
 
 @export_category("only for one time")
 @export var istimed: bool = false
@@ -68,21 +69,10 @@ func pick(player = get_tree().get_first_node_in_group("player"), checkdist: bool
 			player.itemdata = itemdata
 			queue_free()
 
-func use(player = get_tree().get_first_node_in_group("player")):
+func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player")):
 	if !player: return
 	
 	Global.useditems += 1
-	
-	match curtype:
-		TYPE.CHANGEHP:
-			player.health += changehp
-		TYPE.CHANGEDAMAGE:
-			player.damage += changedamage
-			Global.hitdoor.emit(player.damage)
-			Global.punchpl.emit(player.damage)
-			player.damage -= changedamage
-		TYPE.SHIELD:
-			pass
 	
 	var effect = effectscene.instantiate()
 	get_parent().add_child(effect)
@@ -95,4 +85,36 @@ func use(player = get_tree().get_first_node_in_group("player")):
 	effect.seteffect(ieffecttexture, iscaletexture, iamounttexture, icoloreffect)
 	effect.play()
 	
-	queue_free()
+	match curtype:
+		TYPE.CHANGEHP:
+			player.health += changehp
+			
+			queue_free()
+		TYPE.CHANGEDAMAGE:
+			player.damage += changedamage
+			Global.hitdoor.emit(player.damage)
+			Global.punchpl.emit(player.damage)
+			player.damage -= changedamage
+			
+			queue_free()
+		TYPE.SHIELD:
+			
+			
+			queue_free()
+		TYPE.CHANGESPEED:
+			hide()
+			player.speedlerp = 0.1
+			player.speed += changespeed
+			player.startshake(200, 50)
+			Engine.time_scale = 1.0 + changespeed / 10
+			
+			var flash: CanvasLayer = load("res://scenes scripts/flash.tscn").instantiate()
+			get_parent().add_child(flash)
+			flash.flash(Color.ANTIQUE_WHITE, 4.5)
+			
+			await get_tree().create_timer(5.0).timeout
+			
+			Engine.time_scale = 1.0
+			player.speedlerp = 5.0
+			
+			queue_free()

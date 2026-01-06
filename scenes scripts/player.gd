@@ -556,7 +556,7 @@ func useitem():
 	
 	if itemdata["pointstime"] <= 0:
 		if itemdata["scene"]:
-			item.queue_free()
+			#item.queue_free()
 			#if item.ischangehp:
 				#health += item.changehp
 				#item.queue_free()
@@ -566,7 +566,7 @@ func useitem():
 			$gui/gui/Label.text = "DEFAULT_TYPE_ITEM"
 			isinv = false
 	elif itemdata["pointstime"] > 0:
-		item.queue_free()
+		#item.queue_free()
 		itemdata["pointstime"] -= 1
 
 func lcmmobile(): if isinv and !Engine.time_scale < 1.0: useitem()

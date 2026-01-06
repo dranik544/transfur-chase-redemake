@@ -159,9 +159,10 @@ func _physics_process(delta):
 				curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
 			else:
 				if playerdist < 10.0:
-					curspeed = lerp(curspeed, player.velocity.length() * 1.5, 12 * delta)
+					curspeed = lerp(curspeed, player.velocity.length() * 1.5, 16 * delta)
+					curspeed = clampf(curspeed, 0.0, 6.25 * 1.5)
 				else:
-					curspeed = lerp(curspeed, 0.0, 12 * delta)
+					curspeed = lerp(curspeed, 0.0, 16 * delta)
 			
 			if cantarget: targetpos(player.global_transform.origin)
 		

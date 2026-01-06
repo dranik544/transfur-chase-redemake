@@ -4,11 +4,12 @@
 script/source = "extends CanvasLayer
 
 
-func flash():
+func flash(color: Color = Color.BLACK, time: float = 1.0):
 	var TUFFTWIN = create_tween()
-	TUFFTWIN.tween_property($ColorRect, \"color\", Color(1.0, 1.0, 1.0, 0.0), 1)
-	#await TUFFTWIN.TWEEN_PAUSE_STOP
-	#queue_free()
+	$ColorRect.color = color
+	TUFFTWIN.tween_property($ColorRect, \"color:a\", 0.0, time)
+	await TUFFTWIN.finished
+	queue_free()
 "
 
 [node name="flash" type="CanvasLayer"]
