@@ -14,6 +14,7 @@ script = ExtResource("1_nqfxy")
 beffecttexture = ExtResource("2_nqfxy")
 bscaletexture = Vector2(0.2, 0.2)
 bcoloreffect = Color(0.14902, 0.196078, 0.239216, 1)
+curtype = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

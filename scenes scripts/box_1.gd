@@ -6,13 +6,25 @@ var player: CharacterBody3D
 @export var bamounttexture: int = 8
 @export var bcoloreffect: Color = Color(0.698, 0.486, 0.275)
 @export var effectscene: PackedScene = preload("res://scenes scripts/effect_1.tscn")
-enum TYPE {box, colb}
+enum TYPE {box, colb, crystal}
 @export var curtype: TYPE = TYPE.box
 var slimescene: PackedScene = preload("res://scenes scripts/slime_1.tscn")
+@export var crystalsprites = [
+	preload("res://sprites/bcrystal1.png"),
+	preload("res://sprites/bcrystal2.png"),
+	preload("res://sprites/bcrystal3.png"),
+	preload("res://sprites/bcrystal4.png"),
+	preload("res://sprites/cristal2.png")
+]
 
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	
+	if curtype == TYPE.crystal:
+		var random = randi_range(0, crystalsprites.size() - 1)
+		$Sprite3D.texture = crystalsprites[random]
+		$Sprite3D2.texture = crystalsprites[random]
 
 #func _process(delta: float) -> void:
 	#if !player:

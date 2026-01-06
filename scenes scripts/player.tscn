@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=30 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -32,6 +32,9 @@ height = 0.56
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6gaw"]
 radius = 0.4
 height = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttj71"]
+size = Vector2(30, 30)
 
 [sub_resource type="Curve" id="Curve_6rr08"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -205,16 +208,7 @@ theme_override_fonts/font = ExtResource("6_511js")
 text = "DEFAULT_TYPE_ITEM"
 vertical_alignment = 2
 
-[node name="mobilecontrols" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Virtual Joystick" parent="mobilecontrols" instance=ExtResource("7_tlnr4")]
-layout_mode = 1
+[node name="Virtual Joystick" parent="." instance=ExtResource("7_tlnr4")]
 offset_left = 54.0
 offset_top = -168.0
 offset_right = 170.0
@@ -228,7 +222,15 @@ action_right = "D"
 action_up = "W"
 action_down = "S"
 
-[node name="ctrlbtn" type="TextureButton" parent="mobilecontrols"]
+[node name="mobilecontrols" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ctrlbtn" type="Control" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -237,17 +239,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -229.0
 offset_top = -78.0
-offset_right = -152.0
-offset_bottom = -7.0
+offset_right = -154.0
+offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-texture_normal = ExtResource("8_ttj71")
-texture_pressed = ExtResource("8_ttj71")
-ignore_texture_size = true
+
+[node name="TextureRect" type="TextureRect" parent="mobilecontrols/ctrlbtn"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0amtw")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="fbtn" type="TextureButton" parent="mobilecontrols"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="mobilecontrols/ctrlbtn"]
+scale = Vector2(2.34375, 2.34375)
+texture_normal = ExtResource("8_ttj71")
+texture_pressed = ExtResource("8_ttj71")
+shape = SubResource("RectangleShape2D_ttj71")
+action = "CTRL"
+
+[node name="fbtn" type="Control" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -257,15 +274,32 @@ anchor_bottom = 1.0
 offset_left = -120.0
 offset_top = -231.0
 offset_right = -20.0
-offset_bottom = -128.0
+offset_bottom = -131.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-texture_normal = ExtResource("9_ttj71")
-ignore_texture_size = true
+
+[node name="TextureRect" type="TextureRect" parent="mobilecontrols/fbtn"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0amtw")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="ebtn" type="TextureButton" parent="mobilecontrols"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="mobilecontrols/fbtn"]
+position = Vector2(1.70469e-05, 0)
+scale = Vector2(3.125, 3.125)
+texture_normal = ExtResource("9_ttj71")
+texture_pressed = ExtResource("9_ttj71")
+shape = SubResource("RectangleShape2D_ttj71")
+action = "F"
+
+[node name="ebtn" type="Control" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -274,29 +308,62 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -118.0
 offset_top = -86.0
-offset_right = -62.0
+offset_right = -63.0
 offset_bottom = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-texture_normal = ExtResource("11_hb04b")
-ignore_texture_size = true
+
+[node name="TextureRect" type="TextureRect" parent="mobilecontrols/ebtn"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0amtw")
+expand_mode = 1
 stretch_mode = 5
 
-[node name="lcmbtn" type="TextureButton" parent="mobilecontrols"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="mobilecontrols/ebtn"]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(1.71875, 1.71875)
+texture_normal = ExtResource("11_hb04b")
+texture_pressed = ExtResource("11_hb04b")
+shape = SubResource("RectangleShape2D_ttj71")
+action = "E"
+
+[node name="lcmbtn" type="Control" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -160.0
 offset_top = 21.0
-offset_right = -45.0
-offset_bottom = 142.0
+offset_right = -35.0
+offset_bottom = 146.0
 grow_horizontal = 0
 mouse_filter = 1
-texture_normal = ExtResource("5_ndhvj")
-ignore_texture_size = true
+
+[node name="TextureRect" type="TextureRect" parent="mobilecontrols/lcmbtn"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0amtw")
+expand_mode = 1
 stretch_mode = 5
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="mobilecontrols/lcmbtn"]
+position = Vector2(3.8743e-06, 0)
+scale = Vector2(3.90625, 3.90625)
+texture_normal = ExtResource("5_ndhvj")
+shape = SubResource("RectangleShape2D_ttj71")
+action = "MOBILE USE ITEM"
 
 [node name="Label" type="Label" parent="mobilecontrols/lcmbtn"]
 layout_mode = 1
@@ -305,9 +372,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -40.5
 offset_top = -23.0
-offset_right = 20.0
+offset_right = 40.5
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -319,23 +386,40 @@ text = "use item"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="spacebtn" type="TextureButton" parent="mobilecontrols"]
+[node name="spacebtn" type="Control" parent="mobilecontrols"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = -206.0
-offset_right = -135.0
-offset_bottom = -111.0
+offset_left = -244.0
+offset_top = -204.0
+offset_right = -149.0
+offset_bottom = -109.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
-texture_normal = ExtResource("11_ttj71")
-ignore_texture_size = true
+
+[node name="TextureRect" type="TextureRect" parent="mobilecontrols/spacebtn"]
+modulate = Color(1, 1, 1, 0.686275)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0amtw")
+expand_mode = 1
 stretch_mode = 5
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="mobilecontrols/spacebtn"]
+position = Vector2(-3.016e-05, 0)
+scale = Vector2(2.96875, 2.96875)
+texture_normal = ExtResource("11_ttj71")
+texture_pressed = ExtResource("11_ttj71")
+shape = SubResource("RectangleShape2D_ttj71")
+action = "SPACE"
 
 [node name="rcmbtn" type="Button" parent="mobilecontrols"]
 layout_mode = 1

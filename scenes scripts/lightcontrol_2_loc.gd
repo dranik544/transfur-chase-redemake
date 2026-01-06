@@ -51,12 +51,24 @@ func beforetimeout():
 	if !get_tree(): return
 	updategroups()
 	
-	for i in randi_range(60, 75):
-		if lights and worldlight:
-			for l in lights: l.visible = not l.visible
-			worldlight.visible = not worldlight.visible
-			
-			await get_tree().create_timer(randi_range(0.3, 0.5)).timeout
+	#if lights.size() > 0:
+		#for l in lights:
+			#var tween = create_tween()
+			#if !onoff:
+				#tween.tween_property(l, "light_energy", l.neededenergy, 1.5)
+			#else:
+				#tween.tween_property(l, "light_energy", 0.0, 1.5)
+	#
+	#await get_tree().create_timer(1.5).timeout
 	
-	$Timer.wait_time = randf_range(2, 6)
+	#if lights and worldlight:
+		#for l in lights: 
+			#l.visible = true
+			#l.light_energy = 0.0
+			#var tween = create_tween()
+			#tween.tween_property(l, "light_energy", l.neededenergy, 1)
+		#worldlight.visible
+		#await get_tree().create_timer(1.2).timeout
+	
+	$Timer.wait_time = randf_range(7, 20)
 	timeout()

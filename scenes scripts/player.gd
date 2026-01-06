@@ -75,37 +75,39 @@ func _ready():
 	
 	updateskin()
 	
-	$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
-	$mobilecontrols/ebtn.pressed.connect(emobile)
-	$mobilecontrols/fbtn.pressed.connect(fmobile)
-	$mobilecontrols/ctrlbtn.pressed.connect(ctrlmobile)
-	$mobilecontrols/spacebtn.pressed.connect(spacemobile)
-	$mobilecontrols/rcmbtn.pressed.connect(rcmmobile)
+	#$mobilecontrols/lcmbtn.button_down.connect(lcmmobile)
+	#$mobilecontrols/ebtn.button_down.connect(emobile)
+	#$mobilecontrols/fbtn.button_down.connect(fmobile)
+	#$mobilecontrols/ctrlbtn.button_down.connect(ctrlmobile)
+	#$mobilecontrols/spacebtn.button_down.connect(spacemobile)
+	#$mobilecontrols/rcmbtn.button_down.connect(rcmmobile)
 	
 	campos = cam.position
 	camrot = cam.rotation
 	
 	if !Global.ismobile:
 		$mobilecontrols.visible = false
-		$"mobilecontrols/Virtual Joystick".enable = false
-		$mobilecontrols/fbtn.disabled = true
-		$mobilecontrols/ebtn.disabled = true
-		$mobilecontrols/lcmbtn.disabled = true
-		$mobilecontrols/ctrlbtn.disabled = true
-		$mobilecontrols/spacebtn.disabled = true
-		$mobilecontrols/escbtn.disabled = true
-		$mobilecontrols/rcmbtn.disabled = true
+		$"Virtual Joystick".visible = false
+		$"Virtual Joystick".enable = false
+		#$mobilecontrols/fbtn.disabled = true
+		#$mobilecontrols/ebtn.disabled = true
+		#$mobilecontrols/lcmbtn.disabled = true
+		#$mobilecontrols/ctrlbtn.disabled = true
+		#$mobilecontrols/spacebtn.disabled = true
+		#$mobilecontrols/escbtn.disabled = true
+		#$mobilecontrols/rcmbtn.disabled = true
 		$mobilecontrols/scalecam.editable = false
 	else:
 		$mobilecontrols.visible = true
-		$"mobilecontrols/Virtual Joystick".enable = true
-		$mobilecontrols/fbtn.disabled = false
-		$mobilecontrols/ebtn.disabled = false
-		$mobilecontrols/lcmbtn.disabled = false
-		$mobilecontrols/ctrlbtn.disabled = false
-		$mobilecontrols/spacebtn.disabled = false
-		$mobilecontrols/escbtn.disabled = false
-		$mobilecontrols/rcmbtn.disabled = false
+		$"Virtual Joystick".visible = true
+		$"Virtual Joystick".enable = true
+		#$mobilecontrols/fbtn.disabled = false
+		#$mobilecontrols/ebtn.disabled = false
+		#$mobilecontrols/lcmbtn.disabled = false
+		#$mobilecontrols/ctrlbtn.disabled = false
+		#$mobilecontrols/spacebtn.disabled = false
+		#$mobilecontrols/escbtn.disabled = false
+		#$mobilecontrols/rcmbtn.disabled = false
 		$mobilecontrols/scalecam.editable = true
 		
 		$gui/gui.anchor_left = true
@@ -120,13 +122,11 @@ func _input(event):
 	
 	if event is InputEventScreenDrag and Global.ismobile:
 		var lastpos = event.position
-		print(event.position.x)
 		if event.position.x > get_viewport().get_visible_rect().size.x / 2 and event.position.x < get_viewport().get_visible_rect().size.x - 40:
 			if fingermobiledowntime >= 0.4:
 				freecam = false
 		else:
 			freecam = true
-		print(freecam)
 	
 	if event is InputEventScreenDrag and Global.ismobile and !freecam:
 		rotate_y(-event.relative.x * sens)
@@ -151,6 +151,7 @@ func _unhandled_input(event):
 		camscalewheel += 0.75
 	if event.is_action_pressed("CCM UP"):
 		camscalewheel -= 0.75
+	camscalewheel = clampf(camscalewheel, -2.5, 11.5)
 	
 	
 	if event.is_action_pressed("F"):
@@ -283,10 +284,13 @@ func _physics_process(delta: float) -> void:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
 			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-		if !Global.ismobile:
+		if Global.ismobile:
+			if Input.is_action_just_pressed("MOBILE USE ITEM") and !Engine.time_scale < 1.0:
+				useitem()
+		else:
 			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 				useitem()
-	$mobilecontrols/lcmbtn.texture_normal = $gui/gui/invtexture.texture
+	$mobilecontrols/lcmbtn/TouchScreenButton.texture_normal = $gui/gui/invtexture.texture
 	
 	slimebasepos = Vector2.ZERO
 	$gui/slime.pivot_offset = $gui/slime.size / 2
@@ -324,7 +328,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("A", "D", "W", "S")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("SPACE") or space and !isslide and canslide:
+	if Input.is_action_just_pressed("SPACE") and !isslide and canslide:
 		canslide = false
 		space = false
 		slidespeed = MaxSlideSpeed

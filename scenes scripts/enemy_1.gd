@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var speed = 4.75
 @export var nerf = 3.0
 @export var randomspawn = 0
-enum TYPE {whiteenemy, blackenemy, mimic}
+enum TYPE {whiteenemy, blackenemy, mimic, blackdragon}
 @export var curtype: TYPE = TYPE.whiteenemy
 
 var canpunch = true
@@ -104,49 +104,50 @@ func _physics_process(delta):
 			if $Sprite3D.sprite_frames.has_animation(runanim):
 				$Sprite3D.play(runanim)
 			
-			if velocity.length() < 0.7 and playerdist > 1.5:
-				framess += 1
-				framessl += 1
-				$wha.visible = true
-				$NavigationAgent3D.simplify_path = true
-				
-				if curtype != TYPE.mimic:
-					set_collision_layer_value(2, false)
-					set_collision_mask_value(2, false)
-				
-				if playerdist > 5:
-					set_collision_mask_value(1, false)
-				
-				curspeed += 1.0
-				var direction = (global_position - player.global_position).normalized()
-				
-				if framess > timess:
-					velocity += direction * ultratuffpower
-					framess = 0
-					ultratuffpower += 0.75
-					timess = clamp(timess - 2, 20, 80)
-				
-				if framessl > timessl:
-					velocity += direction * ultratuffpower * 2
-					set_collision_mask_value(1, false)
-					await get_tree().create_timer(2.5).timeout
-					framessl = 0
-					framess = 0
-					timess = 55
-					curstate = STATE.SLEEP
-					remove_from_group("unsleep enemy")
-					playerinarea = false
-					if $Sprite3D.sprite_frames.has_animation(sleepanim):
-						$Sprite3D.play(sleepanim)
-					velocity = Vector3.ZERO
-			elif velocity.length() > 0.7:
-				$NavigationAgent3D.simplify_path = false
-				if curtype == TYPE.mimic:
-					set_collision_layer_value(4, true)
-				else:
-					set_collision_layer_value(2, true)
-					set_collision_mask_value(2, true)
-					set_collision_mask_value(1, true)
+			if curtype != TYPE.blackdragon:
+				if velocity.length() < 0.7 and playerdist > 1.5:
+					framess += 1
+					framessl += 1
+					$wha.visible = true
+					$NavigationAgent3D.simplify_path = true
+					
+					if curtype != TYPE.mimic:
+						set_collision_layer_value(2, false)
+						set_collision_mask_value(2, false)
+					
+					if playerdist > 5:
+						set_collision_mask_value(1, false)
+					
+					curspeed += 1.0
+					var direction = (global_position - player.global_position).normalized()
+					
+					if framess > timess:
+						velocity += direction * ultratuffpower
+						framess = 0
+						ultratuffpower += 0.75
+						timess = clamp(timess - 2, 20, 80)
+					
+					if framessl > timessl:
+						velocity += direction * ultratuffpower * 2
+						set_collision_mask_value(1, false)
+						await get_tree().create_timer(2.5).timeout
+						framessl = 0
+						framess = 0
+						timess = 55
+						curstate = STATE.SLEEP
+						remove_from_group("unsleep enemy")
+						playerinarea = false
+						if $Sprite3D.sprite_frames.has_animation(sleepanim):
+							$Sprite3D.play(sleepanim)
+						velocity = Vector3.ZERO
+				elif velocity.length() > 0.7:
+					$NavigationAgent3D.simplify_path = false
+					if curtype == TYPE.mimic:
+						set_collision_layer_value(4, true)
+					else:
+						set_collision_layer_value(2, true)
+						set_collision_mask_value(2, true)
+						set_collision_mask_value(1, true)
 				
 				framessl = 0
 				framess = 0
@@ -154,7 +155,13 @@ func _physics_process(delta):
 				ultratuffpower = 6.0
 				$wha.visible = false
 			
-			curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
+			if curtype != TYPE.blackdragon:
+				curspeed = lerp(curspeed, speed + speeddist, 3 * delta)
+			else:
+				if playerdist < 10.0:
+					curspeed = lerp(curspeed, player.velocity.length() * 1.5, 12 * delta)
+				else:
+					curspeed = lerp(curspeed, 0.0, 12 * delta)
 			
 			if cantarget: targetpos(player.global_transform.origin)
 		
