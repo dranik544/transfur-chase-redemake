@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bk16lsmt07me8"]
+[gd_scene load_steps=34 format=3 uid="uid://bk16lsmt07me8"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_06lyr"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_veg8y"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://djen0polk7fay" path="res://sprites/monitor4.png" id="24_rrjoa"]
 [ext_resource type="Texture2D" uid="uid://nmfwdenewl7b" path="res://sprites/monitor2.png" id="25_wpw36"]
 [ext_resource type="Texture2D" uid="uid://c40clmuv7sjnh" path="res://sprites/keyboardnmouse.png" id="26_f5ew5"]
+[ext_resource type="Texture2D" uid="uid://dx3qvrb67uvte" path="res://sprites/fumo1.png" id="27_rrjoa"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g6ow6"]
 material = ExtResource("3_2tne3")
@@ -42,6 +43,15 @@ size = Vector3(10, 3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
 size = Vector3(10, 3, 10)
+
+[sub_resource type="GDScript" id="GDScript_rrjoa"]
+script/source = "extends Sprite3D
+
+
+func _ready() -> void:
+	texture = load(\"res://sprites/fumo\" + str(randi_range(1, 3)) + \".png\")
+	if randi_range(0, 2) > 0: queue_free()
+"
 
 [node name="sroom2 1" type="Node3D"]
 script = ExtResource("1_06lyr")
@@ -395,6 +405,15 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("26_f5ew5")
+
+[node name="Sprite3D9" type="Sprite3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -6.4, 2.5, -3.6)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("27_rrjoa")
+script = SubResource("GDScript_rrjoa")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

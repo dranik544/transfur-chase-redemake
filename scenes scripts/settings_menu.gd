@@ -3,6 +3,7 @@ extends Control
 
 func _ready() -> void:
 	$btnexit.pressed.connect(btnexitpressed)
+	$scc/vboxc/countenemy.value_changed.connect(countenemieschanged)
 	
 	$scc/vboxc/winterevent.disabled = true
 	$scc/vboxc/winterevent.button_pressed = true
@@ -22,6 +23,8 @@ func _ready() -> void:
 	$scc/vboxc/sizemode.selected = Global.settings["sizemode"]
 	$scc/vboxc/camsens.value = Global.settings["camsens"]
 	$scc/vboxc/forcemobile.button_pressed = Global.settings["forcemobile"]
+	$scc/vboxc/countenemy.value = Global.settings["enemycount"]
+	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int($scc/vboxc/countenemy.value)})
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -39,12 +42,16 @@ func updatesettings():
 	Global.settings["sizemode"] = $scc/vboxc/sizemode.selected
 	Global.settings["camsens"] = $scc/vboxc/camsens.value
 	Global.settings["forcemobile"] = $scc/vboxc/forcemobile.button_pressed
+	Global.settings["enemycount"] = $scc/vboxc/countenemy.value
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()
 	Global.updatesizemode()
 	
 	SavingManager.save("settings", Global.settings)
+
+func countenemieschanged(value: float):
+	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int(value)})
 
 func btnexitpressed():
 	updatesettings()

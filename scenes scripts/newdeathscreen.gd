@@ -13,6 +13,9 @@ func _ready():
 	baseposlabel = $colin.position
 	baseposlabel.x += get_tree().root.content_scale_size.x / 5
 	
+	Global.money = 0
+	Global.rerollmarketprice = 15
+	
 	if !Global.ismobile:
 		$r.visible = false
 		$r.disabled = false

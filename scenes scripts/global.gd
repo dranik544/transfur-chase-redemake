@@ -69,6 +69,7 @@ var settings = {
 	"sizemode": 1,
 	"camsens": 0.002,
 	"forcemobile": false,
+	"enemycount": 10,
 }
 
 signal navibake()

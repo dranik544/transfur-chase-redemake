@@ -24,6 +24,8 @@ func _ready() -> void:
 	$CanvasLayer/NinePatchRect.modulate.a = 0.0
 	$CanvasLayer/NinePatchRect.position.x = get_tree().root.content_scale_size.x
 	
+	add_to_group("market")
+	
 	connectbuttons()
 	spawnitems()
 

@@ -41,3 +41,4 @@ Gameplay"
 SETTINGS_BETTER_AI,"Дать врагам руководство
 'Как ходить и бегать'","Give Enemies the
 'How to Walk & Run' Manual"
+SETTINGS_ENEMY_COUNT,"Макс. кол-во врагов: {count}","Max count enemies: {count}"

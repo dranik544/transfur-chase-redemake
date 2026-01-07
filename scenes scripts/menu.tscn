@@ -1178,6 +1178,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -2059,11 +2060,14 @@ horizontal_alignment = 1
 
 [node name="arrow1" type="Control" parent="CanvasLayer/skins menu"]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 125.0
-offset_right = 125.0
+offset_left = -190.0
+offset_right = -190.0
+grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("31_0xt4r")
 
@@ -2082,14 +2086,14 @@ flat = true
 
 [node name="arrow2" type="Control" parent="CanvasLayer/skins menu"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_right = -70.0
-grow_horizontal = 0
+offset_left = 245.0
+offset_right = 245.0
+grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("31_0xt4r")
 pluspos = Vector2(-25, 0)
@@ -2159,6 +2163,7 @@ texture = ExtResource("43_oarhb")
 script = SubResource("GDScript_oarhb")
 
 [node name="settings menu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2184,7 +2189,7 @@ anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
 offset_right = -5.0
-offset_bottom = -5.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -2451,6 +2456,22 @@ theme_override_fonts/font = ExtResource("16_k8css")
 theme_override_font_sizes/font_size = 18
 button_pressed = true
 text = "SETTINGS_BETTER_AI"
+
+[node name="countenemytext" type="Label" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("16_k8css")
+theme_override_font_sizes/font_size = 18
+text = "SETTINGS_ENEMY_COUNT"
+vertical_alignment = 1
+
+[node name="countenemy" type="HSlider" parent="CanvasLayer/settings menu/scc/vboxc"]
+layout_mode = 2
+min_value = 1.0
+max_value = 40.0
+value = 10.0
 
 [node name="btnexit" type="Button" parent="CanvasLayer/settings menu"]
 layout_mode = 1

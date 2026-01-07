@@ -37,12 +37,18 @@ func _input(event: InputEvent) -> void:
 	
 	if get_tree().paused:
 		if event.is_action_pressed("R") or r:
+			Global.money = 0
+			Global.rerollmarketprice = 15
+			
 			r = false
 			get_tree().paused = false
 			get_tree().reload_current_scene()
 			
 			ScreenTransition.cleanup()
 		if event.is_action_pressed("Q") or q:
+			Global.money = 0
+			Global.rerollmarketprice = 15
+			
 			q = false
 			get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes scripts/menu.tscn")

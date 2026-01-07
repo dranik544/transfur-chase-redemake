@@ -77,7 +77,7 @@ func _physics_process(delta):
 				$AnimationPlayer.play("its colin!")
 				add_to_group("unsleep enemy")
 				await $AnimationPlayer.animation_finished
-				Global.unsleepenemies += 1
+				updateunsleepenemycounter()
 				checkenemies()
 				canpunch = true
 				curstate = STATE.ACTIVE
@@ -278,14 +278,21 @@ func exitfromvent():
 
 func checkenemies():
 	var enemies = get_tree().get_nodes_in_group("unsleep enemy")
-	if enemies.size() > 10:
+	if enemies.size() > Global.settings["enemycount"]:
 		if Global.unlockachievement(7):
 			var ach = get_tree().current_scene.get_node("notification")
 			ach.display(Global.achievements[7]["name"], Global.achievements[7]["desc"], load("res://sprites/icon12.png"))
 		
-		for i in range(enemies.size() - 10):
+		for i in range(enemies.size() - Global.settings["enemycount"]):
 			if i < enemies.size():
 				enemies[i].queue_free()
+		
+		updateunsleepenemycounter()
+
+func updateunsleepenemycounter():
+	if !get_tree(): return
+	
+	Global.unsleepenemies = get_tree().get_node_count_in_group("unsleep enemy")
 
 func timertimeout():
 	canpunch = true

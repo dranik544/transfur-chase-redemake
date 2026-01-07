@@ -105,7 +105,7 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 		TYPE.CHANGESPEED:
 			hide()
 			
-			player.speedlerp = 0.1
+			player.speedlerp = 0.05
 			player.speed += changespeed
 			player.startshake(200, 50)
 			var pldamage = player.damage
@@ -135,7 +135,8 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 			
 			player.speed *= 1.0 / changetimescale
 			player.slidespeed *= 1.0 / changetimescale
-			player.speedlerp *= 1.0 / changetimescale
+			#player.speedlerp *= 1.0 / changetimescale
+			player.speedlerp = 0.05
 			player.velocitylerp *= 1.0 / changetimescale
 			
 			player.startshake(20, 1)
@@ -149,7 +150,7 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 			
 			player.speed = origspeed
 			player.slidespeed = origslidespeed
-			player.speedlerp = origspeedlerp
+			#player.speedlerp = origspeedlerp
 			player.velocitylerp = origvelocitylerp
 			
 			queue_free()
