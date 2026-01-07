@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=35 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c6uon4skfhsp8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_6.tscn" id="6_8mb1v"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_dtyy0"]
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
+[ext_resource type="PackedScene" uid="uid://ces71ldf1x1w1" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_7.tscn" id="7_gks0a"]
 [ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="9_tdjod"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="10_8mb1v"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="10_rdsqj"]
@@ -98,7 +99,8 @@ rooms = {
 2: ExtResource("3_66px4"),
 3: ExtResource("4_fti4m"),
 4: ExtResource("5_7lqlk"),
-5: ExtResource("6_8mb1v")
+5: ExtResource("6_8mb1v"),
+6: ExtResource("7_gks0a")
 }
 loadrooms = 25
 

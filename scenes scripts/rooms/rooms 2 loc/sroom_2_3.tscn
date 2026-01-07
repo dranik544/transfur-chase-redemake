@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bitxsnpbxemel"]
+[gd_scene load_steps=31 format=3 uid="uid://bitxsnpbxemel"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_dlppc"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_5uv2y"]
@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="18_d8xmp"]
 [ext_resource type="PackedScene" uid="uid://ccm4d0awreshf" path="res://scenes scripts/savepoint_1.tscn" id="19_0and6"]
 [ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="21_u6gm2"]
+[ext_resource type="Texture2D" uid="uid://dhpm755j7l533" path="res://sprites/monitor1.png" id="22_oa72v"]
+[ext_resource type="Texture2D" uid="uid://ca2c3tpcb0mh4" path="res://sprites/monitor3.png" id="23_ap8wi"]
+[ext_resource type="Texture2D" uid="uid://djen0polk7fay" path="res://sprites/monitor4.png" id="24_64ymr"]
+[ext_resource type="Texture2D" uid="uid://c40clmuv7sjnh" path="res://sprites/keyboardnmouse.png" id="25_m2gge"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g6ow6"]
 material = ExtResource("3_u0te8")
@@ -339,6 +343,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2, 1.3, -2.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9, 1.3, 0.8)
 chanceSpawn = 10
 biggerHitbox = true
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 1.4, 3)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("22_oa72v")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 1.4, -3)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("23_ap8wi")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -13, 1.4, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("24_64ymr")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(0.127704, -2.80563, -1.05458, -0.141979, -1.06002, 2.80289, -2.99392, -0.0694035, -0.177903, -11.8, 1, -0.2)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("25_m2gge")
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(-1.31134e-07, -3, -1.31134e-07, -1.27055e-21, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, -3, 1, 3.1)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("25_m2gge")
+
+[node name="Sprite3D8" type="Sprite3D" parent="."]
+transform = Transform3D(-1.31134e-07, -3, -1.31134e-07, -1.27055e-21, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, -3, 1, -2.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("25_m2gge")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

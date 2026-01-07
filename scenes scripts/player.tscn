@@ -77,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 keep_aspect = 0
 projection = 1
 size = 13.0
-far = 45.0
+far = 30.0
 
 [node name="RayCast3D" type="RayCast3D" parent="center camera/cam"]
 transform = Transform3D(1, 0, 0, 0, -8.9407e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)

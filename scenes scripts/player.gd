@@ -57,8 +57,6 @@ var camposoffset: Vector3 = Vector3.ZERO
 var camrotoffset: Vector3 = Vector3.ZERO
 var ctrl: bool = false
 var space: bool = false
-var fingermobiledown: bool = false
-var fingermobiledowntime: float = 0.0
 
 
 func startshake(intensity: float, dur: float):
@@ -75,20 +73,20 @@ func _ready():
 	
 	updateskin()
 	
-	#$mobilecontrols/lcmbtn.button_down.connect(lcmmobile)
-	#$mobilecontrols/ebtn.button_down.connect(emobile)
-	#$mobilecontrols/fbtn.button_down.connect(fmobile)
-	#$mobilecontrols/ctrlbtn.button_down.connect(ctrlmobile)
-	#$mobilecontrols/spacebtn.button_down.connect(spacemobile)
-	#$mobilecontrols/rcmbtn.button_down.connect(rcmmobile)
+	#$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
+	#$mobilecontrols/ebtn.pressed.connect(emobile)
+	#$mobilecontrols/fbtn.pressed.connect(fmobile)
+	#$mobilecontrols/ctrlbtn.pressed.connect(ctrlmobile)
+	#$mobilecontrols/spacebtn.pressed.connect(spacemobile)
+	#$mobilecontrols/rcmbtn.pressed.connect(rcmmobile)
 	
 	campos = cam.position
 	camrot = cam.rotation
 	
 	if !Global.ismobile:
 		$mobilecontrols.visible = false
-		$"Virtual Joystick".visible = false
 		$"Virtual Joystick".enable = false
+		$"Virtual Joystick".visible = false
 		#$mobilecontrols/fbtn.disabled = true
 		#$mobilecontrols/ebtn.disabled = true
 		#$mobilecontrols/lcmbtn.disabled = true
@@ -99,8 +97,8 @@ func _ready():
 		$mobilecontrols/scalecam.editable = false
 	else:
 		$mobilecontrols.visible = true
-		$"Virtual Joystick".visible = true
 		$"Virtual Joystick".enable = true
+		$"Virtual Joystick".visible = true
 		#$mobilecontrols/fbtn.disabled = false
 		#$mobilecontrols/ebtn.disabled = false
 		#$mobilecontrols/lcmbtn.disabled = false
@@ -117,17 +115,6 @@ func _ready():
 	sens = Global.settings["camsens"]
 
 func _input(event):
-	if event is InputEventScreenTouch:
-		fingermobiledown = event.pressed
-	
-	if event is InputEventScreenDrag and Global.ismobile:
-		var lastpos = event.position
-		if event.position.x > get_viewport().get_visible_rect().size.x / 2 and event.position.x < get_viewport().get_visible_rect().size.x - 40:
-			if fingermobiledowntime >= 0.4:
-				freecam = false
-		else:
-			freecam = true
-	
 	if event is InputEventScreenDrag and Global.ismobile and !freecam:
 		rotate_y(-event.relative.x * sens)
 		centercam.rotate_x(-event.relative.y * sens)
@@ -173,9 +160,6 @@ func _physics_process(delta: float) -> void:
 	if Global.ismobile:
 		camscalewheel = $mobilecontrols/scalecam.value
 		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
-	
-	if fingermobiledown: fingermobiledowntime += delta
-	else: fingermobiledowntime = 0
 	
 	if !Global.ismobile:
 		if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
@@ -284,10 +268,7 @@ func _physics_process(delta: float) -> void:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
 			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-		if Global.ismobile:
-			if Input.is_action_just_pressed("MOBILE USE ITEM") and !Engine.time_scale < 1.0:
-				useitem()
-		else:
+		if !Global.ismobile:
 			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 				useitem()
 	$mobilecontrols/lcmbtn/TouchScreenButton.texture_normal = $gui/gui/invtexture.texture
@@ -309,6 +290,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
 	if health <= 0.0:
+		$Sprite3D.speed_scale = 1.0
 		Global.lastworld = get_tree().current_scene.get_scene_file_path()
 		$Sprite3D.animation = "transfur"
 		var tween = create_tween()
@@ -328,7 +310,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("A", "D", "W", "S")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("SPACE") and !isslide and canslide:
+	if Input.is_action_just_pressed("SPACE") or space and !isslide and canslide:
 		canslide = false
 		space = false
 		slidespeed = MaxSlideSpeed
@@ -416,6 +398,8 @@ func _physics_process(delta: float) -> void:
 		if Global.colinskin == "muha":
 			$Sprite3D.flip_h = not $Sprite3D.flip_h
 			$gui/colinbg.flip_h = not $gui/colinbg.flip_h
+	
+	if health <= 0: $Sprite3D.speed_scale = velocity.length() / 5
 	
 	#if $"center camera/Camera3D/RayCast3D".is_colliding():
 		#var collider = $"center camera/Camera3D/RayCast3D".get_collider()
@@ -556,7 +540,7 @@ func useitem():
 	
 	if itemdata["pointstime"] <= 0:
 		if itemdata["scene"]:
-			#item.queue_free()
+			item.queue_free()
 			#if item.ischangehp:
 				#health += item.changehp
 				#item.queue_free()
@@ -566,7 +550,7 @@ func useitem():
 			$gui/gui/Label.text = "DEFAULT_TYPE_ITEM"
 			isinv = false
 	elif itemdata["pointstime"] > 0:
-		#item.queue_free()
+		item.queue_free()
 		itemdata["pointstime"] -= 1
 
 func lcmmobile(): if isinv and !Engine.time_scale < 1.0: useitem()

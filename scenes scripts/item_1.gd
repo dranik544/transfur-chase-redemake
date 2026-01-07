@@ -7,11 +7,12 @@ extends RigidBody3D
 @export var type: String
 
 @export_category("types")
-enum TYPE {CHANGEHP, CHANGEDAMAGE, SHIELD, CHANGESPEED}
+enum TYPE {CHANGEHP, CHANGEDAMAGE, SHIELD, CHANGESPEED, CHANGETIMESCALE}
 @export var curtype: TYPE
 @export var changehp: int = 1
 @export var changedamage: float = 1.0
 @export var changespeed: float = 1.75
+@export var changetimescale: float = 0.75
 
 @export_category("only for one time")
 @export var istimed: bool = false
@@ -103,18 +104,52 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 			queue_free()
 		TYPE.CHANGESPEED:
 			hide()
+			
 			player.speedlerp = 0.1
 			player.speed += changespeed
 			player.startshake(200, 50)
+			var pldamage = player.damage
+			player.damage *= changespeed
 			Engine.time_scale = 1.0 + changespeed / 10
 			
 			var flash: CanvasLayer = load("res://scenes scripts/flash.tscn").instantiate()
 			get_parent().add_child(flash)
-			flash.flash(Color.ANTIQUE_WHITE, 4.5)
+			flash.flash(Color.ANTIQUE_WHITE, 1.5)
 			
-			await get_tree().create_timer(5.0).timeout
+			await get_tree().create_timer(5.0, false, false, true).timeout
 			
 			Engine.time_scale = 1.0
 			player.speedlerp = 5.0
+			player.damage = pldamage
+			
+			queue_free()
+		TYPE.CHANGETIMESCALE:
+			hide()
+			
+			var origspeed = player.speed
+			var origslidespeed = player.slidespeed
+			var origspeedlerp = player.speedlerp
+			var origvelocitylerp = player.velocitylerp
+			
+			Engine.time_scale = changetimescale
+			
+			player.speed *= 1.0 / changetimescale
+			player.slidespeed *= 1.0 / changetimescale
+			player.speedlerp *= 1.0 / changetimescale
+			player.velocitylerp *= 1.0 / changetimescale
+			
+			player.startshake(20, 1)
+			var flash: CanvasLayer = load("res://scenes scripts/flash.tscn").instantiate()
+			get_parent().add_child(flash)
+			flash.flash(Color.WHITE, 2)
+			
+			await get_tree().create_timer(10.0, false, false, true).timeout
+			
+			Engine.time_scale = 1.0
+			
+			player.speed = origspeed
+			player.slidespeed = origslidespeed
+			player.speedlerp = origspeedlerp
+			player.velocitylerp = origvelocitylerp
 			
 			queue_free()

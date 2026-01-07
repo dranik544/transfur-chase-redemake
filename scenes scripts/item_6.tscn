@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://nqflos4sfqha"]
+[gd_scene load_steps=10 format=3 uid="uid://7q3mvyqaidvt"]
 
-[ext_resource type="Script" uid="uid://birrl14afv5hp" path="res://scenes scripts/item_1.gd" id="1_8tqss"]
-[ext_resource type="Texture2D" uid="uid://mhaqyuwntue3" path="res://sprites/cocacola1.png" id="3_8tqss"]
-[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="4_ttakb"]
-[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="5_fle6k"]
+[ext_resource type="Script" uid="uid://birrl14afv5hp" path="res://scenes scripts/item_1.gd" id="1_8hy6f"]
+[ext_resource type="Texture2D" uid="uid://cmyqh05u3lf23" path="res://sprites/pills1.png" id="2_8hy6f"]
+[ext_resource type="Texture2D" uid="uid://cb6tpkfemtwo8" path="res://sprites/pickitem1.png" id="3_3nxjw"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_2gxy3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8lryk"]
-radius = 0.21349
-height = 0.637673
+radius = 0.215882
+height = 0.530331
 
 [sub_resource type="Animation" id="Animation_44nab"]
 length = 0.001
@@ -76,22 +76,23 @@ size = Vector3(2, 2, 2)
 [node name="item1" type="RigidBody3D"]
 collision_layer = 0
 mass = 0.1
-script = ExtResource("1_8tqss")
-selfsprite = ExtResource("3_8tqss")
+script = ExtResource("1_8hy6f")
+selfsprite = ExtResource("2_8hy6f")
 selfkg = 0.15
-type = "CHANGE_SPEED_TYPE_ITEM"
-curtype = 3
+type = ". . ."
+curtype = 4
+changetimescale = 0.6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8lryk")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 billboard = 1
 shaded = true
 alpha_cut = 1
 texture_filter = 2
-texture = ExtResource("3_8tqss")
+texture = ExtResource("2_8hy6f")
 
 [node name="hint" type="Sprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1, 0)
@@ -99,7 +100,7 @@ visible = false
 sorting_offset = 1.0
 billboard = 1
 texture_filter = 2
-texture = ExtResource("4_ttakb")
+texture = ExtResource("3_3nxjw")
 
 [node name="Label3D" type="Label3D" parent="hint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -107,7 +108,7 @@ sorting_offset = 1.5
 billboard = 1
 texture_filter = 2
 text = "E"
-font = ExtResource("5_fle6k")
+font = ExtResource("4_2gxy3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hint"]
 libraries = {

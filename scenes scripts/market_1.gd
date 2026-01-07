@@ -5,6 +5,11 @@ var items = {
 	2: {"price": 25, "scene": preload("res://scenes scripts/item_3.tscn"), "texture": preload("res://sprites/tube1.png")}, # tube
 	3: {"price": 25, "scene": preload("res://scenes scripts/item_4.tscn"), "texture": preload("res://sprites/halat1.png")}, # halat
 	4: {"price": 10, "scene": preload("res://scenes scripts/item_5.tscn"), "texture": preload("res://sprites/cocacola1.png")}, # energetik
+	5: {"price": 30, "scene": preload("res://scenes scripts/item_6.tscn"), "texture": preload("res://sprites/pills1.png")}, # pills
+	6: {"price": 10, "scene": preload("res://scenes scripts/item_2.tscn"), "texture": preload("res://sprites/healitem1.png")}, # heal
+	7: {"price": 25, "scene": preload("res://scenes scripts/item_3.tscn"), "texture": preload("res://sprites/tube1.png")}, # tube
+	8: {"price": 25, "scene": preload("res://scenes scripts/item_4.tscn"), "texture": preload("res://sprites/halat1.png")}, # halat
+	9: {"price": 10, "scene": preload("res://scenes scripts/item_5.tscn"), "texture": preload("res://sprites/cocacola1.png")}, # energetik
 }
 var playerin: bool = false
 

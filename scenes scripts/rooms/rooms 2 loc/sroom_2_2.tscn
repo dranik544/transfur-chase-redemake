@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bk16lsmt07me8"]
+[gd_scene load_steps=32 format=3 uid="uid://bk16lsmt07me8"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_06lyr"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_veg8y"]
@@ -21,6 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="18_slkc7"]
 [ext_resource type="PackedScene" uid="uid://vv3yyifjc8ba" path="res://scenes scripts/small_enemy_2.tscn" id="20_7x3o6"]
 [ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="21_7dh2k"]
+[ext_resource type="Texture2D" uid="uid://dhpm755j7l533" path="res://sprites/monitor1.png" id="22_77k1k"]
+[ext_resource type="Texture2D" uid="uid://ca2c3tpcb0mh4" path="res://sprites/monitor3.png" id="23_f5ew5"]
+[ext_resource type="Texture2D" uid="uid://djen0polk7fay" path="res://sprites/monitor4.png" id="24_rrjoa"]
+[ext_resource type="Texture2D" uid="uid://nmfwdenewl7b" path="res://sprites/monitor2.png" id="25_wpw36"]
+[ext_resource type="Texture2D" uid="uid://c40clmuv7sjnh" path="res://sprites/keyboardnmouse.png" id="26_f5ew5"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g6ow6"]
 material = ExtResource("3_2tne3")
@@ -190,7 +195,7 @@ texture_filter = 2
 texture = ExtResource("8_2tne3")
 
 [node name="item2" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("9_w7e7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 1.3, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 1.3, 0.6)
 
 [node name="table4" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("8_veg8y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9, 0, -0.2)
@@ -330,6 +335,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3, 1.3, 2.3)
 [node name="mandarin4" parent="." instance=ExtResource("21_7dh2k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2, 1.3, -2.6)
 chanceSpawn = 8
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 1.4, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("22_77k1k")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 1.4, -3)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("23_f5ew5")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -12, 1.4, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("24_rrjoa")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -15, 1.4, -0.2)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("25_wpw36")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, -11.8, 1, 0.8)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("26_f5ew5")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(-3, 2.62268e-07, 1.14641e-14, 0, -1.31134e-07, 3, 2.62268e-07, 3, 1.31134e-07, -14.8, 1, -1.2)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("26_f5ew5")
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(-1.31134e-07, -3, -1.31134e-07, -1.27055e-21, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, -3, 1, 0.1)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("26_f5ew5")
+
+[node name="Sprite3D8" type="Sprite3D" parent="."]
+transform = Transform3D(-1.31134e-07, -3, -1.31134e-07, -1.27055e-21, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, -3, 1, -2.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("26_f5ew5")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
