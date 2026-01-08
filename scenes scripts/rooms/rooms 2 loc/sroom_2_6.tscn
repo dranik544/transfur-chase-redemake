@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6uon4skfhsp8"]
+[gd_scene load_steps=31 format=3 uid="uid://c6uon4skfhsp8"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_tptvj"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_47iwj"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://buyy3kfg4llnn" path="res://scenes scripts/slime_1.tscn" id="14_m8eou"]
 [ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="16_sj5o6"]
 [ext_resource type="Texture2D" uid="uid://dx3qvrb67uvte" path="res://sprites/fumo1.png" id="17_aha5t"]
+[ext_resource type="PackedScene" uid="uid://vv3yyifjc8ba" path="res://scenes scripts/small_enemy_2.tscn" id="18_nksgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yalsd"]
 albedo_texture = ExtResource("3_ckv6m")
@@ -283,6 +284,9 @@ script = SubResource("GDScript_nksgd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 0)
+
+[node name="small enemy 2" parent="." instance=ExtResource("18_nksgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.1, -3.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

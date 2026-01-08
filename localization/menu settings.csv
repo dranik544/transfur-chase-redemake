@@ -32,6 +32,9 @@ Input"
 SETTINGS_CAM_FROM_ROOM_TO_ROOM,"Камера 'от комнаты
 к комнате'","Room-to-Room Camera"
 SETTINGS_CAM_SENS,"Чувствительность камеры","Camera sensitivity"
+SETTINGS_MOBILE_HOLDTIME_CAM,"Время зажатия экрана
+для поворота камеры: {count}сек","Screen hold time
+for camera rotation: {count}sec"
 SETTINGS_FORCE_MOBILE,"Принудительное
 мобильное управление","Force mobile controls"
 

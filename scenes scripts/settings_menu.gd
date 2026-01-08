@@ -4,6 +4,10 @@ extends Control
 func _ready() -> void:
 	$btnexit.pressed.connect(btnexitpressed)
 	$scc/vboxc/countenemy.value_changed.connect(countenemieschanged)
+	$scc/vboxc/holdtimemobile.value_changed.connect(holdtimemobilechanged)
+	
+	$scc/vboxc/holdtimemobiletext.visible = Global.ismobile
+	$scc/vboxc/holdtimemobile.visible = Global.ismobile
 	
 	$scc/vboxc/winterevent.disabled = true
 	$scc/vboxc/winterevent.button_pressed = true
@@ -25,6 +29,8 @@ func _ready() -> void:
 	$scc/vboxc/forcemobile.button_pressed = Global.settings["forcemobile"]
 	$scc/vboxc/countenemy.value = Global.settings["enemycount"]
 	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int($scc/vboxc/countenemy.value)})
+	$scc/vboxc/holdtimemobile.value = Global.settings["holdtimemobile"]
+	$scc/vboxc/holdtimemobiletext.text = tr("SETTINGS_MOBILE_HOLDTIME_CAM").format({"count": float($scc/vboxc/holdtimemobile.value)})
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -43,6 +49,8 @@ func updatesettings():
 	Global.settings["camsens"] = $scc/vboxc/camsens.value
 	Global.settings["forcemobile"] = $scc/vboxc/forcemobile.button_pressed
 	Global.settings["enemycount"] = $scc/vboxc/countenemy.value
+	Global.settings["holdtimemobile"] = $scc/vboxc/holdtimemobile.value
+	
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()
@@ -52,6 +60,8 @@ func updatesettings():
 
 func countenemieschanged(value: float):
 	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int(value)})
+func holdtimemobilechanged(value: float):
+	$scc/vboxc/holdtimemobiletext.text = tr("SETTINGS_MOBILE_HOLDTIME_CAM").format({"count": float(value)})
 
 func btnexitpressed():
 	updatesettings()

@@ -47,6 +47,8 @@ var oneshot: bool = true
 var noslide: bool = true
 @export var damage: float = 1.0
 var itemdata = {}
+var fingermobiledown: bool = false
+var fingermobiledowntime: float = 0.0
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -115,12 +117,23 @@ func _ready():
 	sens = Global.settings["camsens"]
 
 func _input(event):
-	if event is InputEventScreenDrag and Global.ismobile and !freecam:
-		rotate_y(-event.relative.x * sens)
-		centercam.rotate_x(-event.relative.y * sens)
-		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
-		driftcam += event.relative.x / 1000
-		driftcam = clamp(driftcam, -0.05, 0.05)
+	if event is InputEventScreenTouch:
+		fingermobiledown = event.pressed
+	
+	if event is InputEventScreenDrag and Global.ismobile:
+		var lastpos = event.position
+		if event.position.x > get_viewport().get_visible_rect().size.x / 2 and event.position.x < get_viewport().get_visible_rect().size.x - 40:
+			if fingermobiledowntime >= Global.settings["holdtimemobile"]:
+				freecam = false
+		else:
+			freecam = true
+	
+	#if event is InputEventScreenDrag and Global.ismobile and !freecam:
+		#rotate_y(-event.relative.x * sens)
+		#centercam.rotate_x(-event.relative.y * sens)
+		#centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
+		#driftcam += event.relative.x / 1000
+		#driftcam = clamp(driftcam, -0.05, 0.05)
 	
 	if event is InputEventMouseMotion and !freecam and !Engine.time_scale < 1.0:
 		rotate_y(-event.relative.x * sens)
@@ -157,6 +170,9 @@ func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 		camfollowpluspos = 0.0
 
 func _physics_process(delta: float) -> void:
+	if fingermobiledown: fingermobiledowntime += delta
+	else: fingermobiledowntime = 0
+	
 	if Global.ismobile:
 		camscalewheel = $mobilecontrols/scalecam.value
 		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
@@ -268,7 +284,10 @@ func _physics_process(delta: float) -> void:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
 			$gui/gui/Label.text = ittype + " (" + str(itemdata["pointstime"] + 1) + "/" + str(itemdata["pointstimemax"] + 1) + ")"
-		if !Global.ismobile:
+		if Global.ismobile:
+			if Input.is_action_just_pressed("MOBILE USE ITEM") and !Engine.time_scale < 1.0:
+				useitem()
+		else:
 			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 				useitem()
 	$mobilecontrols/lcmbtn/TouchScreenButton.texture_normal = $gui/gui/invtexture.texture

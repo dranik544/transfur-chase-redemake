@@ -181,6 +181,7 @@ script = ExtResource("7_qygnp")
 
 [node name="enemy4" parent="." instance=ExtResource("10_fai4j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.9, 3)
+randomspawn = 3
 
 [node name="small enemy 1" parent="." instance=ExtResource("13_qygnp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, -1)

@@ -70,6 +70,7 @@ var settings = {
 	"camsens": 0.002,
 	"forcemobile": false,
 	"enemycount": 10,
+	"holdtimemobile": 0.5,
 }
 
 signal navibake()
