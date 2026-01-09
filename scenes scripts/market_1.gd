@@ -6,10 +6,6 @@ var items = {
 	3: {"price": 25, "scene": preload("res://scenes scripts/item_4.tscn"), "texture": preload("res://sprites/halat1.png")}, # halat
 	4: {"price": 10, "scene": preload("res://scenes scripts/item_5.tscn"), "texture": preload("res://sprites/cocacola1.png")}, # energetik
 	5: {"price": 30, "scene": preload("res://scenes scripts/item_6.tscn"), "texture": preload("res://sprites/pills1.png")}, # pills
-	6: {"price": 10, "scene": preload("res://scenes scripts/item_2.tscn"), "texture": preload("res://sprites/healitem1.png")}, # heal
-	7: {"price": 25, "scene": preload("res://scenes scripts/item_3.tscn"), "texture": preload("res://sprites/tube1.png")}, # tube
-	8: {"price": 25, "scene": preload("res://scenes scripts/item_4.tscn"), "texture": preload("res://sprites/halat1.png")}, # halat
-	9: {"price": 10, "scene": preload("res://scenes scripts/item_5.tscn"), "texture": preload("res://sprites/cocacola1.png")}, # energetik
 }
 var playerin: bool = false
 
@@ -19,7 +15,7 @@ func _ready() -> void:
 	$Area3D.body_exited.connect(bodyexited)
 	$CanvasLayer/NinePatchRect/hbox/exit.pressed.connect(exit)
 	$CanvasLayer/NinePatchRect/hbox/reroll.pressed.connect(reroll)
-	$CanvasLayer/NinePatchRect/price3/Label.text = ". . ."
+	#$CanvasLayer/NinePatchRect/price3/Label.text = ". . ."
 	
 	$CanvasLayer/NinePatchRect.modulate.a = 0.0
 	$CanvasLayer/NinePatchRect.position.x = get_tree().root.content_scale_size.x
@@ -97,10 +93,15 @@ func spawnitems():
 	var cheapitems = []
 	var mediumitems = []
 	
-	for i in items.size():
-		if items[i + 1]:
-			if items[i + 1]["price"] == 10: cheapitems.push_back(items[i + 1])
-			if items[i + 1]["price"] == 25: mediumitems.push_back(items[i + 1])
+	#for i in items.size():
+		#if items[i + 1]:
+			#if items[i + 1]["price"] == 10: cheapitems.push_back(items[i + 1])
+			#if items[i + 1]["price"] == 25: mediumitems.push_back(items[i + 1])
+	
+	for i in range(1, 8):
+		var btn = get_node("CanvasLayer/NinePatchRect/item" + str(i))
+		if btn:
+			btn.text = ""
 	
 	#print("cheap items: ", cheapitems)
 	#print("medium items: ", mediumitems)
@@ -114,33 +115,31 @@ func spawnitems():
 			if randomnull == 1:
 				button.visible = false
 				button.disabled = true
+				if i == 6: $CanvasLayer/NinePatchRect/discount.visible = false
 				continue
 			else:
 				button.visible = true
 				button.disabled = false
 				
-				if i <= 2 and cheapitems.size() > 0:
-					var randitem = randi_range(0, cheapitems.size() - 1)
-					button.icon = cheapitems[randitem]["texture"]
-					button.set_meta("itemdata", {
-						"item": randitem,
-						"price": cheapitems[randitem]["price"],
-						"scene": cheapitems[randitem]["scene"],
-					})
-				if i > 2 and i <= 5 and mediumitems.size() > 0:
-					var randitem = randi_range(0, mediumitems.size() - 1)
-					button.icon = mediumitems[randitem]["texture"]
-					button.set_meta("itemdata", {
-						"item": randitem,
-						"price": mediumitems[randitem]["price"],
-						"scene": mediumitems[randitem]["scene"],
-					})
+				var randitem = randi_range(1, items.size())
+				var price = items[randitem]["price"]
+				
 				if i == 6:
-					var randitem = randi_range(1, items.size())
-					button.icon = items[randitem]["texture"]
-					button.set_meta("itemdata", {
-						"item": randitem,
-						"price": items[randitem]["price"] / 2,
-						"scene": items[randitem]["scene"],
-					})
-					$CanvasLayer/NinePatchRect/price3/Label.text = str(items[randitem]["price"] / 2) + " (-50%!)"
+					price = items[randitem]["price"] / 2
+					$CanvasLayer/NinePatchRect/discount.visible = true
+				
+				button.icon = items[randitem]["texture"]
+				button.text = str(price)
+				
+				#if price <= 15:
+					#button.add_theme_color_override("font_color", Color.GREEN)
+				#elif price <= 30:
+					#button.add_theme_color_override("font_color", Color.YELLOW)
+				#else:
+					#button.add_theme_color_override("font_color", Color.RED)
+				
+				button.set_meta("itemdata", {
+					"item": randitem,
+					"price": price,
+					"scene": items[randitem]["scene"],
+				})

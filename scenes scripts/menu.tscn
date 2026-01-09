@@ -2769,6 +2769,7 @@ pivot_offset = Vector2(141, 141)
 flat = true
 
 [node name="2loc" type="Control" parent="CanvasLayer/start menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_left = 330.0
@@ -2818,6 +2819,7 @@ offset_top = -107.0
 offset_right = 111.0
 offset_bottom = 124.0
 pivot_offset = Vector2(141, 141)
+disabled = true
 flat = true
 
 [node name="music" type="AudioStreamPlayer" parent="."]

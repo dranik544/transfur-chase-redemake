@@ -122,29 +122,51 @@ patch_margin_bottom = 3
 [node name="item1" type="Button" parent="CanvasLayer/NinePatchRect"]
 layout_mode = 0
 offset_left = 14.0
-offset_top = 9.0
+offset_top = 11.0
 offset_right = 79.0
-offset_bottom = 74.0
+offset_bottom = 76.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="item2" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
 offset_left = 96.0
-offset_top = 9.0
+offset_top = 11.0
 offset_right = 161.0
-offset_bottom = 74.0
+offset_bottom = 76.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="item3" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
-offset_left = 176.0
-offset_top = 9.0
-offset_right = 241.0
-offset_bottom = 74.0
+offset_left = 178.0
+offset_top = 11.0
+offset_right = 243.0
+offset_bottom = 76.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
@@ -156,46 +178,53 @@ offset_top = 80.0
 offset_right = 256.0
 offset_bottom = 104.0
 
-[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price1"]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 255.0
-offset_bottom = 26.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("4_skmd8")
-theme_override_font_sizes/font_size = 22
-text = "10"
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="item4" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
 offset_left = 14.0
-offset_top = 119.0
+offset_top = 114.0
 offset_right = 79.0
-offset_bottom = 184.0
+offset_bottom = 179.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="item5" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
 offset_left = 96.0
-offset_top = 119.0
+offset_top = 114.0
 offset_right = 161.0
-offset_bottom = 184.0
+offset_bottom = 179.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="item6" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
-offset_left = 176.0
-offset_top = 119.0
-offset_right = 241.0
-offset_bottom = 184.0
+offset_left = 178.0
+offset_top = 114.0
+offset_right = 243.0
+offset_bottom = 179.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
@@ -207,26 +236,19 @@ offset_top = 190.0
 offset_right = 256.0
 offset_bottom = 214.0
 
-[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price2"]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 255.0
-offset_bottom = 26.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("4_skmd8")
-theme_override_font_sizes/font_size = 22
-text = "25"
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [node name="item7" type="Button" parent="CanvasLayer/NinePatchRect"]
-layout_mode = 0
 offset_left = 96.0
-offset_top = 235.0
+offset_top = 228.0
 offset_right = 161.0
-offset_bottom = 300.0
+offset_bottom = 293.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 18
+text = "PRICE"
 icon = ExtResource("3_vjfvc")
 icon_alignment = 1
 expand_icon = true
@@ -237,20 +259,6 @@ offset_left = 1.0
 offset_top = 306.0
 offset_right = 256.0
 offset_bottom = 330.0
-
-[node name="Label" type="Label" parent="CanvasLayer/NinePatchRect/price3"]
-layout_mode = 0
-offset_top = 2.0
-offset_right = 255.0
-offset_bottom = 26.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("4_skmd8")
-theme_override_font_sizes/font_size = 22
-text = "discountprice"
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="title" type="Label" parent="CanvasLayer/NinePatchRect"]
 layout_mode = 0
@@ -314,6 +322,22 @@ offset_bottom = 20.0
 rotation = 0.0872665
 texture = ExtResource("9_mktgp")
 expand_mode = 1
+
+[node name="discount" type="Label" parent="CanvasLayer/NinePatchRect"]
+offset_left = 69.0
+offset_top = 279.0
+offset_right = 149.0
+offset_bottom = 311.0
+rotation = 0.1309
+pivot_offset = Vector2(40, 16)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_skmd8")
+theme_override_font_sizes/font_size = 22
+text = "-50%"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2vnff")
