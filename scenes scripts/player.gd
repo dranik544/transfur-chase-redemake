@@ -303,8 +303,20 @@ func _physics_process(delta: float) -> void:
 	$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
 	slimetimepos += delta
 	
+	
+	if Input.is_key_pressed(KEY_4): health -= 0.5
+	
+	
 	if health < 3.0:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
+		
+		create_tween().set_ease(Tween.EASE_OUT)
+		create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
+		
+		if health < 1.75:
+			create_tween().set_ease(Tween.EASE_OUT)
+			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
+		
 		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	else:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
@@ -314,6 +326,10 @@ func _physics_process(delta: float) -> void:
 		$Sprite3D.animation = "transfur"
 		var tween = create_tween()
 		tween.tween_property($"center camera/cam", "size", 0, 4)
+		
+		create_tween().set_ease(Tween.EASE_OUT)
+		create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.25, 2.5)
+		
 		$"center camera/cam".look_at($Sprite3D.global_position)
 		await $Sprite3D.animation_finished
 		if not is_queued_for_deletion() and get_tree():

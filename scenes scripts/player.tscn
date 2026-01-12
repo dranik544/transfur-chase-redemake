@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=32 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b7k16svsdf4gs" path="res://sprites/colin bg1.png" id="7_f74ev"]
 [ext_resource type="AudioStream" uid="uid://dtl35rnlvj3ci" path="res://sounds music/run_default.ogg" id="7_q0em8"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="7_tlnr4"]
+[ext_resource type="Shader" uid="uid://dbxjuql527skp" path="res://crt.gdshader" id="7_v8yca"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="8_6rr08"]
 [ext_resource type="Script" uid="uid://dy8l1imwdm7o6" path="res://scenes scripts/pause_menu.gd" id="8_nccrc"]
 [ext_resource type="AudioStream" uid="uid://c4ewcfe1qh7e4" path="res://sounds music/slide.ogg" id="8_q0em8"]
@@ -32,6 +33,14 @@ height = 0.56
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v6gaw"]
 radius = 0.4
 height = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bolwy"]
+shader = ExtResource("7_v8yca")
+shader_parameter/shake = 0.0
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.0
+shader_parameter/offsetIntensity = 0.05
+shader_parameter/colorOffsetIntensity = 0.1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttj71"]
 size = Vector2(30, 30)
@@ -146,6 +155,15 @@ visible = false
 position = Vector2(67, -70)
 scale = Vector2(4, 4)
 texture = ExtResource("7_f74ev")
+
+[node name="crt" type="ColorRect" parent="gui"]
+material = SubResource("ShaderMaterial_bolwy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="gui" type="Control" parent="gui"]
 process_mode = 3
