@@ -58,7 +58,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -110,7 +110,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.166667, 0.3),
 "transitions": PackedFloat32Array(0.6, 1.41, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -1, 0), Vector3(0, 0.5, 0), Vector3(0, -1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -257,7 +257,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61, 0)
 shape = SubResource("CapsuleShape3D_aut8l")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, -1, 0)
+offset = Vector2(0, 16)
 billboard = 1
 shaded = true
 alpha_cut = 1

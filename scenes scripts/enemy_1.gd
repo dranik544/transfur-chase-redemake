@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var randomspawn = 0
 enum TYPE {whiteenemy, blackenemy, mimic, blackdragon}
 @export var curtype: TYPE = TYPE.whiteenemy
+@export var randomvars: bool = true
+@export var damage: float = 1.0
 
 var canpunch = true
 var curspeed = 3.5
@@ -57,6 +59,19 @@ func _ready():
 	if $Sprite3D.sprite_frames.has_animation(sleepanim):
 		$Sprite3D.play(sleepanim)
 	velocity = Vector3.ZERO
+	
+	
+	if randomvars:
+		var randspeed: float = randf_range(-0.75, 0.75)
+		var randdamage: float = randf_range(-0.75, 0.75)
+		
+		speed += randspeed
+		damage += randdamage
+		$Sprite3D.scale += Vector3(
+			randspeed + randdamage,
+			randspeed + randdamage,
+			randspeed + randdamage
+		)
 	
 	
 	player = get_tree().get_first_node_in_group("player")

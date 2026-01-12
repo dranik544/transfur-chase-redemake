@@ -138,6 +138,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="item2" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 96.0
 offset_top = 11.0
 offset_right = 161.0
@@ -155,6 +156,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="item3" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 11.0
 offset_right = 243.0
@@ -179,6 +181,7 @@ offset_right = 256.0
 offset_bottom = 104.0
 
 [node name="item4" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 114.0
 offset_right = 79.0
@@ -196,6 +199,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="item5" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 96.0
 offset_top = 114.0
 offset_right = 161.0
@@ -213,6 +217,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="item6" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 114.0
 offset_right = 243.0
@@ -237,6 +242,7 @@ offset_right = 256.0
 offset_bottom = 214.0
 
 [node name="item7" type="Button" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 96.0
 offset_top = 228.0
 offset_right = 161.0
@@ -324,6 +330,7 @@ texture = ExtResource("9_mktgp")
 expand_mode = 1
 
 [node name="discount" type="Label" parent="CanvasLayer/NinePatchRect"]
+layout_mode = 0
 offset_left = 69.0
 offset_top = 279.0
 offset_right = 149.0

@@ -452,7 +452,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			useitem()
 		else:
 			var color = detectenemycolor(body)
-			minushealth(1.0, color)
+			minushealth(body.damage, color)
 			Global.hitsfromenemies -= 1
 			speed += randf_range(0.5, 1.0)
 			

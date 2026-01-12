@@ -154,9 +154,6 @@ func updatesizemode(from = settings["sizemode"]):
 			get_tree().root.content_scale_size = Vector2i(850, 480)
 			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 
-func _process(delta: float) -> void:
-	pass
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_pressed("CTRL+Q"): get_tree().quit()
