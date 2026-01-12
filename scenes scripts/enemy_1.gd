@@ -53,7 +53,6 @@ func _ready():
 		sleepanim = "sleep newyear"
 	
 	if $Timer: $Timer.wait_time = 4.0
-	curhealth = health
 	
 	curstate = STATE.SLEEP
 	if $Sprite3D.sprite_frames.has_animation(sleepanim):
@@ -64,15 +63,17 @@ func _ready():
 	if randomvars:
 		var randspeed: float = randf_range(-0.75, 0.75)
 		var randdamage: float = randf_range(-0.75, 0.75)
+		var randhealth: float = randf_range(-2.0, 2.0)
 		
 		speed += randspeed
 		damage += randdamage
+		health += randhealth
 		$Sprite3D.scale += Vector3(
-			randspeed + randdamage,
-			randspeed + randdamage,
-			randspeed + randdamage
+			(randspeed + randdamage + randhealth) / 2,
+			(randspeed + randdamage + randhealth) / 2,
+			(randspeed + randdamage + randhealth) / 2
 		)
-	
+	curhealth = health
 	
 	player = get_tree().get_first_node_in_group("player")
 
