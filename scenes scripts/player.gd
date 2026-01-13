@@ -73,6 +73,8 @@ func _ready():
 	cam = centercam.get_node("cam")
 	defposspr = $Sprite3D.position
 	
+	$gui/crt.visible = Global.settings["crtshader"]
+	
 	updateskin()
 	
 	#$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
@@ -310,12 +312,12 @@ func _physics_process(delta: float) -> void:
 	if health < 3.0:
 		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
 		
-		create_tween().set_ease(Tween.EASE_OUT)
-		create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
-		
 		if health < 1.75:
 			create_tween().set_ease(Tween.EASE_OUT)
 			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
+		else:
+			create_tween().set_ease(Tween.EASE_OUT)
+			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
 		
 		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	else:

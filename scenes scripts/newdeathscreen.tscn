@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddq7tmo8xynb"]
+[gd_scene load_steps=9 format=3 uid="uid://ddq7tmo8xynb"]
 
 [ext_resource type="Script" uid="uid://dpkf5mdyptxxd" path="res://scenes scripts/newdeathscreen.gd" id="1_36kbc"]
 [ext_resource type="Texture2D" uid="uid://cwjispanxvl4q" path="res://sprites/deathscreen3.png" id="1_sxofj"]
@@ -6,6 +6,15 @@
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="4_8w1qj"]
 [ext_resource type="Texture2D" uid="uid://6sch4okxiwk5" path="res://sprites/slime2.png" id="5_36hd4"]
 [ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="6_fp0uh"]
+[ext_resource type="Shader" uid="uid://dbxjuql527skp" path="res://crt.gdshader" id="7_bffpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtldr"]
+shader = ExtResource("7_bffpy")
+shader_parameter/shake = 0.0
+shader_parameter/noiseQuality = 0.1
+shader_parameter/noiseIntensity = 0.0
+shader_parameter/offsetIntensity = 0.05
+shader_parameter/colorOffsetIntensity = 0.2
 
 [node name="newdeathscreen" type="Control"]
 layout_mode = 3
@@ -73,6 +82,27 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_sxofj")
 
+[node name="slime" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(320, 240)
+texture = ExtResource("5_36hd4")
+expand_mode = 2
+
+[node name="crt" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xtldr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -104,18 +134,6 @@ theme_override_font_sizes/font_size = 20
 text = "LABEL_DEATHSCREEN_HINTS"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="slime" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.5, 2.5)
-pivot_offset = Vector2(320, 240)
-texture = ExtResource("5_36hd4")
-expand_mode = 2
 
 [node name="notification" parent="." instance=ExtResource("6_fp0uh")]
 

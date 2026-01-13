@@ -31,6 +31,7 @@ func _ready() -> void:
 	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int($scc/vboxc/countenemy.value)})
 	$scc/vboxc/holdtimemobile.value = Global.settings["holdtimemobile"]
 	$scc/vboxc/holdtimemobiletext.text = tr("SETTINGS_MOBILE_HOLDTIME_CAM").format({"count": float($scc/vboxc/holdtimemobile.value)})
+	$scc/vboxc/crtshader.button_pressed = Global.settings["crtshader"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -50,6 +51,7 @@ func updatesettings():
 	Global.settings["forcemobile"] = $scc/vboxc/forcemobile.button_pressed
 	Global.settings["enemycount"] = $scc/vboxc/countenemy.value
 	Global.settings["holdtimemobile"] = $scc/vboxc/holdtimemobile.value
+	Global.settings["crtshader"] = $scc/vboxc/crtshader.button_pressed
 	
 	
 	Global.updatesoundandmusic.emit()

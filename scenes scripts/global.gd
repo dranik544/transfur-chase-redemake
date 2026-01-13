@@ -71,6 +71,7 @@ var settings = {
 	"forcemobile": false,
 	"enemycount": 10,
 	"holdtimemobile": 0.5,
+	"crtshader": true,
 }
 
 signal navibake()
