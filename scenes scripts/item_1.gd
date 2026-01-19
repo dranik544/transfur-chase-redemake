@@ -49,6 +49,8 @@ func _ready():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		body.labelhints["pickupitem"]["enable"] = true
+		
 		if $hint:
 			$hint.visible = true
 		#if body.pick and !body.isinv:
@@ -56,6 +58,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		body.labelhints["pickupitem"]["enable"] = false
+		
 		if $hint:
 			$hint.visible = false
 
@@ -115,8 +119,12 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 			var flash: CanvasLayer = load("res://scenes scripts/flash.tscn").instantiate()
 			get_parent().add_child(flash)
 			flash.flash(Color.ANTIQUE_WHITE, 1.5)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/colorOffsetIntensity", 1.5, 0.01)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/colorOffsetIntensity", 0.1, 3.5)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/NoiseIntensity", 0.05, 0.01)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/noiseIntensity", 0.0, 5.0)
 			
-			await get_tree().create_timer(5.0, false, false, true).timeout
+			await get_tree().create_timer(5.5, false, false, true).timeout
 			
 			Engine.time_scale = 1.0
 			player.speedlerp = 5.0

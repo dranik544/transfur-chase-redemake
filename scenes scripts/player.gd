@@ -60,6 +60,36 @@ var camrotoffset: Vector3 = Vector3.ZERO
 var ctrl: bool = false
 var space: bool = false
 
+var labelhints = {
+	"movecam":
+		{"name": "[font size=12]Move Camera - [font size=20]Hold RCM / CCM[font size=12]",
+		"enable": true},
+	"zoomcam":
+		{"name": "Zoom Camera - [font size=20]Mouse Wheel up / down[font size=12]",
+		"enable": true},
+	"walk":
+		{"name": "Walk - [font size=20]W A S D[font size=12]",
+		"enable": true},
+	"slide":
+		{"name": "Slide - [font size=20]SPACE[font size=12]",
+		"enable": true},
+	"crawl":
+		{"name": "Crawl - [font size=20]CTRL[font size=12]",
+		"enable": true},
+	"hitdoor":
+		{"name": "Hit door - [font size=20]F[font size=12]",
+		"enable": false},
+	"punchenemy":
+		{"name": "Punch Enemy - [font size=20]F[font size=12]",
+		"enable": false},
+	"pickupitem":
+		{"name": "Pick up Item - [font size=20]E[font size=12]",
+		"enable": false},
+	"useitem":
+		{"name": "Use Item - [font size=20]LCM[font size=12]",
+		"enable": false},
+}
+
 
 func startshake(intensity: float, dur: float):
 	camshake = intensity
@@ -76,6 +106,7 @@ func _ready():
 	$gui/crt.visible = Global.settings["crtshader"]
 	
 	updateskin()
+	updatehints()
 	
 	#$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
 	#$mobilecontrols/ebtn.pressed.connect(emobile)
@@ -99,6 +130,8 @@ func _ready():
 		#$mobilecontrols/escbtn.disabled = true
 		#$mobilecontrols/rcmbtn.disabled = true
 		$mobilecontrols/scalecam.editable = false
+		
+		$gui/hints.visible = Global.settings["displayhints"]
 	else:
 		$mobilecontrols.visible = true
 		$"Virtual Joystick".enable = true
@@ -115,6 +148,8 @@ func _ready():
 		$gui/gui.anchor_left = true
 		$gui/gui.anchor_top = true
 		$gui/gui.position = Vector2(0, 110)
+		
+		$gui/hints.visible = false
 	
 	sens = Global.settings["camsens"]
 
@@ -143,6 +178,10 @@ func _input(event):
 		centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
 		driftcam += event.relative.x / 1000
 		driftcam = clamp(driftcam, -0.05, 0.05)
+		
+		labelhints["movecam"]["enable"] = false
+	else:
+		labelhints["movecam"]["enable"] = true
 	if Input.is_action_just_pressed("F1"):
 		rotate_y(-deg_to_rad(45))
 	elif Input.is_action_just_pressed("F2"):
@@ -170,6 +209,16 @@ func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 		#camfollowpos.x = centercam.global_position.x - camposx
 	else:
 		camfollowpluspos = 0.0
+
+func updatehints():
+	var htext = ""
+	
+	for i in labelhints:
+		if labelhints[i]["enable"]:
+			htext += labelhints[i]["name"] + "\n"
+	htext = htext.strip_edges()
+	
+	$gui/hints/label.text = htext
 
 func _physics_process(delta: float) -> void:
 	if fingermobiledown: fingermobiledowntime += delta
@@ -282,6 +331,8 @@ func _physics_process(delta: float) -> void:
 	#var throwpos = (camitem.global_transform.basis.z / 0.75)
 	
 	if isinv:
+		labelhints["useitem"]["enable"] = true
+		
 		if itemdata["sprite"] and itemdata["type"]:
 			$gui/gui/invtexture.texture = itemdata["sprite"]
 			var ittype = tr(itemdata["type"])
@@ -292,6 +343,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			if Input.is_action_just_pressed("LCM") and !Engine.time_scale < 1.0:
 				useitem()
+	else:
+		labelhints["useitem"]["enable"] = false
 	$mobilecontrols/lcmbtn/TouchScreenButton.texture_normal = $gui/gui/invtexture.texture
 	
 	slimebasepos = Vector2.ZERO
@@ -365,6 +418,8 @@ func _physics_process(delta: float) -> void:
 		
 		noslide = false
 	
+	labelhints["slide"]["enable"] = canslide
+	
 	if isslide:
 		if !taunt:
 			$CollisionShape3D2.disabled = false
@@ -423,6 +478,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, move_toward(velocity.x, 0, speed), (velocitylerp * 1.5) * delta)
 			velocity.z = lerp(velocity.z, move_toward(velocity.z, 0, speed), (velocitylerp * 1.5) * delta)
 	
+	labelhints["walk"]["enable"] = !direction
+	labelhints["crawl"]["enable"] = !taunt
+	
 	if Input.is_action_just_pressed("A"):
 		$Sprite3D.flip_h = true
 		$gui/colinbg.flip_h = true
@@ -448,6 +506,8 @@ func _physics_process(delta: float) -> void:
 				#coll.material.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
 		
 	move_and_slide()
+	
+	updatehints()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

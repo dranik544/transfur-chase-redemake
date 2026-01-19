@@ -30,6 +30,8 @@ func _process(delta):
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		body.labelhints["hitdoor"]["enable"] = true
+		
 		if $hint:
 			$hint.visible = true
 		#if body.hit:
@@ -39,6 +41,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		body.labelhints["hitdoor"]["enable"] = false
+		
 		if $hint:
 			$hint.visible = false
 

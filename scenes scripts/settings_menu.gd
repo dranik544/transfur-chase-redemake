@@ -32,6 +32,8 @@ func _ready() -> void:
 	$scc/vboxc/holdtimemobile.value = Global.settings["holdtimemobile"]
 	$scc/vboxc/holdtimemobiletext.text = tr("SETTINGS_MOBILE_HOLDTIME_CAM").format({"count": float($scc/vboxc/holdtimemobile.value)})
 	$scc/vboxc/crtshader.button_pressed = Global.settings["crtshader"]
+	$scc/vboxc/displayhints.button_pressed = Global.settings["displayhints"]
+	$scc/vboxc/pixelizescreen.button_pressed = Global.settings["pixelizescreen"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -52,11 +54,13 @@ func updatesettings():
 	Global.settings["enemycount"] = $scc/vboxc/countenemy.value
 	Global.settings["holdtimemobile"] = $scc/vboxc/holdtimemobile.value
 	Global.settings["crtshader"] = $scc/vboxc/crtshader.button_pressed
-	
+	Global.settings["displayhints"] = $scc/vboxc/displayhints.button_pressed
+	Global.settings["pixelizescreen"] = $scc/vboxc/pixelizescreen.button_pressed
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()
 	Global.updatesizemode()
+	ProjectSettings.save()
 	
 	SavingManager.save("settings", Global.settings)
 

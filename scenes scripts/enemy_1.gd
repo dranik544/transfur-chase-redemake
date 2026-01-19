@@ -266,10 +266,12 @@ func stunn():
 
 func areaplayerentered(body):
 	if body.is_in_group("player"):
+		body.labelhints["punchenemy"]["enable"] = true
 		playerinarea = true
 
 func areaplayerexited(body):
 	if body.is_in_group("player"):
+		body.labelhints["punchenemy"]["enable"] = false
 		playerinarea = false
 		if curstate == STATE.SLEEP:
 			pass
