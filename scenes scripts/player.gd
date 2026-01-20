@@ -49,6 +49,7 @@ var noslide: bool = true
 var itemdata = {}
 var fingermobiledown: bool = false
 var fingermobiledowntime: float = 0.0
+var achievement10length: float = 0.0
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -496,6 +497,20 @@ func _physics_process(delta: float) -> void:
 	
 	if health <= 0: $Sprite3D.speed_scale = velocity.length() / 5
 	
+	if speed > 6.1: 
+		achievement10length += velocity.length()
+		print(achievement10length)
+		
+		if achievement10length >= 1900.0:
+			if Global.unlockachievement(9):
+				var ach = get_tree().current_scene.get_node("notification")
+				ach.display(Global.achievements[9]["name"],
+				Global.achievements[9]["desc"],
+				load("res://sprites/icon12.png"))
+				
+				Global.listskins[11]["unlocked"] = true
+				SavingManager.save("skinlist", Global.listskins)
+	
 	#if $"center camera/Camera3D/RayCast3D".is_colliding():
 		#var collider = $"center camera/Camera3D/RayCast3D".get_collider()
 		#if collider.is_in_group("wall"):
@@ -698,6 +713,9 @@ func updateskin():
 		"paladin":
 			$gui/colinbg.texture = load("res://sprites/paladin skin/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://skins/paladin_skin.tres")
+		"llenn":
+			$gui/colinbg.texture = load("res://sprites/paladin skin/colin bg1.png")
+			$Sprite3D.sprite_frames = load("res://skins/llenn_player_skin.tres")
 		null:
 			$gui/colinbg.texture = load("res://sprites/colin bg1.png")
 			$Sprite3D.sprite_frames = load("res://skins/player_sprite.tres")

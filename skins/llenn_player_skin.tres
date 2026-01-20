@@ -1,0 +1,112 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://bp46c1f2apjje"]
+
+[ext_resource type="Texture2D" uid="uid://b81w1vi5atscl" path="res://sprites/colin8.png" id="1_j4scc"]
+[ext_resource type="Texture2D" uid="uid://c68e5j7a27qq0" path="res://sprites/colin9.png" id="2_dflry"]
+[ext_resource type="Texture2D" uid="uid://dahl6qom1g0gm" path="res://sprites/LLENN skin/2llenn_color.png" id="3_qp3nk"]
+[ext_resource type="Texture2D" uid="uid://b1gghbqmiyhd7" path="res://sprites/LLENN skin/2llenn_color_walk1.png" id="4_r522n"]
+[ext_resource type="Texture2D" uid="uid://c7sqwr6vaajjg" path="res://sprites/LLENN skin/2llenn_color_walk2.png" id="5_bsyn4"]
+[ext_resource type="Texture2D" uid="uid://oin1kxcb2bcs" path="res://sprites/LLENN skin/3llenn_color_slide.png" id="6_pnsra"]
+[ext_resource type="Texture2D" uid="uid://coh55l4xnd48a" path="res://sprites/LLENN skin/1llenn_color_mini.png" id="7_drolb"]
+[ext_resource type="Texture2D" uid="uid://dwfssi7635u4m" path="res://sprites/LLENN skin/1llenn_color_mini_walk1.png" id="8_f364b"]
+[ext_resource type="Texture2D" uid="uid://ddnu7m0dihavk" path="res://sprites/LLENN skin/1llenn_color_mini_walk2.png" id="9_a23fi"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j4scc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dflry")
+}],
+"loop": true,
+"name": &"crawl run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qp3nk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qp3nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r522n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qp3nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bsyn4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_drolb")
+}],
+"loop": true,
+"name": &"taunt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_f364b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_drolb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a23fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_drolb")
+}],
+"loop": true,
+"name": &"taunt run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnsra")
+}],
+"loop": false,
+"name": &"transfur",
+"speed": 4.0
+}]

@@ -86,6 +86,11 @@ func updateskin(save: bool, enablecurskin: bool, loadcurskin: bool = false):
 			$Label.text = "паладин"
 			$vbox/Label2.text = "могучий рыцарь, охранявший лабораторию."
 			$Label3.text = "автор: TheNamelessDeity"
+		"llenn":
+			colin.sprite_frames = load("res://skins/llenn_player_skin.tres")
+			$Label.text = tr("LLENN_SKIN_NAME")
+			$vbox/Label2.text = tr("LLENN_SKIN_DESC")
+			$Label3.text = tr("LLENN_SKIN_AUTHOR")
 	
 	$lock.visible = !Global.listskins[curskin]["unlocked"]
 	$vbox/btnexit.disabled = !Global.listskins[curskin]["unlocked"]

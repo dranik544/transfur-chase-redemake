@@ -109,7 +109,7 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 		TYPE.CHANGESPEED:
 			hide()
 			
-			player.speedlerp = 0.05
+			player.speedlerp = 0.01
 			player.speed += changespeed
 			player.startshake(200, 50)
 			var pldamage = player.damage
@@ -118,13 +118,13 @@ func use(player: CharacterBody3D = get_tree().get_first_node_in_group("player"))
 			
 			var flash: CanvasLayer = load("res://scenes scripts/flash.tscn").instantiate()
 			get_parent().add_child(flash)
-			flash.flash(Color.ANTIQUE_WHITE, 1.5)
+			flash.flash(Color.ANTIQUE_WHITE, 1.0)
 			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/colorOffsetIntensity", 1.5, 0.01)
-			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/colorOffsetIntensity", 0.1, 3.5)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/colorOffsetIntensity", 0.1, 6.5)
 			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/NoiseIntensity", 0.05, 0.01)
-			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/noiseIntensity", 0.0, 5.0)
+			create_tween().tween_property(player.get_node("gui/crt").material, "shader_parameter/noiseIntensity", 0.0, 7.0)
 			
-			await get_tree().create_timer(5.5, false, false, true).timeout
+			await get_tree().create_timer(7.5, false, false, true).timeout
 			
 			Engine.time_scale = 1.0
 			player.speedlerp = 5.0

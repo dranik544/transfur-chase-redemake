@@ -37,6 +37,7 @@ var listskins = [
 	{"name": "solider", "unlocked": false}, #id: 8
 	{"name": "yay basket ^w^", "unlocked": false}, #id: 9
 	{"name": "paladin", "unlocked": false}, #id: 10
+	{"name": "llenn", "unlocked": false}, #id: 11
 ]
 
 var achievements = [
@@ -49,6 +50,7 @@ var achievements = [
 	{"name": tr("ACHIEVEMENT_7_NAME"), "desc": tr("ACHIEVEMENT_7_DESC"), "unlocked": false}, # This game has sliding?!
 	{"name": tr("ACHIEVEMENT_8_NAME"), "desc": tr("ACHIEVEMENT_8_DESC"), "unlocked": false}, # A Pack on the Tail
 	{"name": tr("ACHIEVEMENT_9_NAME"), "desc": tr("ACHIEVEMENT_9_DESC"), "unlocked": false}, # Slow and Steady Wins the Race!
+	{"name": tr("ACHIEVEMENT_10_NAME"), "desc": tr("ACHIEVEMENT_10_DESC"), "unlocked": false}, # Like a bullet out
 ]
 
 var recordpoints: int = 0
