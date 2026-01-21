@@ -37,8 +37,8 @@ ACHIEVEMENT_7_DESC,"Завершить локацию не
 using the slide."
 
 ACHIEVEMENT_8_NAME,"Стая на хвосте","A Pack on the Tail"
-ACHIEVEMENT_8_DESC,"Набрать 10+ не
-спящих врагов","Gather 10+ awake enemies."
+ACHIEVEMENT_8_DESC,"Набрать {count}+ не
+спящих врагов","Gather {count}+ awake enemies."
 
 ACHIEVEMENT_9_NAME,"Тише едешь -
 дальше будешь!","Slow and Steady Wins the Race!"

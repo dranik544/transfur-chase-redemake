@@ -122,6 +122,7 @@ func _ready() -> void:
 	
 	settings = SavingManager.load("settings")
 	recordpoints = SavingManager.load("recordpoints")
+	achievements[7]["desc"] = tr("ACHIEVEMENT_8_DESC").format({"count": int(settings["enemycount"])})
 	
 	listskins[3]["unlocked"] = iswinter
 	

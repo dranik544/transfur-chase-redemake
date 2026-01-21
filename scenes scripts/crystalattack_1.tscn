@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2pgxmrhtitay"]
+[gd_scene load_steps=16 format=3 uid="uid://d2pgxmrhtitay"]
 
 [ext_resource type="Script" uid="uid://dekavkj23a8wc" path="res://scenes scripts/crystalattack_1.gd" id="1_q446t"]
 [ext_resource type="Texture2D" uid="uid://j84rq0ioef6l" path="res://sprites/icon18.png" id="2_jxsp3"]
@@ -10,7 +10,12 @@ script/source = "extends Area3D
 
 
 func _ready() -> void:
-	rotation.y = randf_range(-25, 25)
+	rotation.y = randf_range(-90, 90)
+	position += Vector3(
+		randf_range(-0.1, 0.1),
+		0,
+		randf_range(-0.1, 0.1)
+	)
 	$Sprite3D.texture = load(\"res://sprites/greenbcrystal\" + str(randi_range(1, 3)) + \".png\")
 	$Sprite3D2.texture = load(\"res://sprites/greenbcrystal\" + str(randi_range(1, 3)) + \".png\")
 	
@@ -18,12 +23,39 @@ func _ready() -> void:
 
 func bodyentered(body):
 	if body.is_in_group(\"player\"):
-		body.health -= randf_range(0.5, 1.5)
+		body.minushealth(randf_range(0.5, 1.0), Color.BLACK)
+
+func toggledis(toggle: bool, randomize: bool = false):
+	if randomize: toggle = randi_range(0, 1) == 0
+	visible = toggle
+	$CollisionShape3D.disabled = not toggle
 "
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t38jf"]
 height = 1.5
 radius = 0.6
+
+[sub_resource type="GDScript" id="GDScript_x4xfo"]
+script/source = "extends Node3D
+
+
+func updateall():
+	for i in 9:
+		var ni = i + 1
+		get_node(\"warning\" + str(ni)).update()
+"
+
+[sub_resource type="GDScript" id="GDScript_j8h51"]
+script/source = "extends Sprite3D
+
+
+func _ready() -> void:
+	update()
+
+func update():
+	position = get_parent().get_parent().get_node(\"allcrystalls/cristall\" + str(name.trim_prefix(\"warning\"))).position
+	visible = get_parent().get_parent().get_node(\"allcrystalls/cristall\" + str(name.trim_prefix(\"warning\"))).visible
+"
 
 [sub_resource type="Animation" id="Animation_q446t"]
 resource_name = "1attack"
@@ -35,7 +67,7 @@ tracks/0/path = NodePath("allwarnings:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false, true, false]
@@ -47,7 +79,7 @@ tracks/1/path = NodePath("allwarnings:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
 "transitions": PackedFloat32Array(0.6, 1, 0.6, 1, 0.6, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
@@ -59,7 +91,7 @@ tracks/2/path = NodePath("allcrystalls:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.2, 1.4, 1.76667, 2.7, 2.8, 3),
+"times": PackedFloat32Array(1.4, 1.6, 1.96667, 2.9, 3, 3.2),
 "transitions": PackedFloat32Array(0.4, 0.6, 1, 0.6, 1.8, 1),
 "update": 0,
 "values": [Vector3(0, -2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -2, 0)]
@@ -88,6 +120,20 @@ tracks/4/keys = {
 "values": [{
 "args": [],
 "method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("allwarnings")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updateall"
 }]
 }
 
@@ -142,9 +188,725 @@ tracks/3/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_x4xfo"]
+resource_name = "2attack"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("allwarnings:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("allwarnings:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(0.6, 1, 0.6, 1, 0.6, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("allcrystalls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 1.6, 1.96667, 2.9, 3, 3.2),
+"transitions": PackedFloat32Array(0.4, 0.6, 1, 0.6, 1.8, 1),
+"update": 0,
+"values": [Vector3(0, -2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attack1:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("allwarnings")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updateall"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("allcrystalls/cristall1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("allcrystalls/cristall2")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("allcrystalls/cristall3")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("allcrystalls/cristall4")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("allcrystalls/cristall5")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y0f45"]
+resource_name = "3attack"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("allwarnings:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("allwarnings:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(0.6, 1, 0.6, 1, 0.6, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("allcrystalls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 1.6, 1.96667, 2.9, 3, 3.2),
+"transitions": PackedFloat32Array(0.4, 0.6, 1, 0.6, 1.8, 1),
+"update": 0,
+"values": [Vector3(0, -2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attack1:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("allwarnings")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updateall"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("allcrystalls/cristall1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("allcrystalls/cristall6")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("allcrystalls/cristall7")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("allcrystalls/cristall8")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("allcrystalls/cristall9")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gre28"]
+resource_name = "4attack"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("allwarnings:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("allwarnings:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(0.6, 1, 0.6, 1, 0.6, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("allcrystalls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 1.6, 1.96667, 2.9, 3, 3.2),
+"transitions": PackedFloat32Array(0.4, 0.6, 1, 0.6, 1.8, 1),
+"update": 0,
+"values": [Vector3(0, -2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attack1:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("allwarnings")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updateall"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("allcrystalls/cristall1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"toggledis"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("allcrystalls/cristall2")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("allcrystalls/cristall3")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("allcrystalls/cristall4")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("allcrystalls/cristall5")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("allcrystalls/cristall6")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("allcrystalls/cristall7")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("allcrystalls/cristall8")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("allcrystalls/cristall9")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"toggledis"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kqq74"]
+resource_name = "5attack"
+length = 3.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("allwarnings:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("allwarnings:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(0.6, 1, 0.6, 1, 0.6, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("allcrystalls:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 1.6, 1.96667, 2.9, 3, 3.2),
+"transitions": PackedFloat32Array(0.4, 0.6, 1, 0.6, 1.8, 1),
+"update": 0,
+"values": [Vector3(0, -2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -2, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attack1:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.06667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("allwarnings")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updateall"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("allcrystalls/cristall1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("allcrystalls/cristall2")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("allcrystalls/cristall3")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("allcrystalls/cristall4")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("allcrystalls/cristall5")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("allcrystalls/cristall6")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("allcrystalls/cristall7")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("allcrystalls/cristall8")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("allcrystalls/cristall9")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false, true],
+"method": &"toggledis"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x4xfo"]
 _data = {
 &"1attack": SubResource("Animation_q446t"),
+&"2attack": SubResource("Animation_x4xfo"),
+&"3attack": SubResource("Animation_y0f45"),
+&"4attack": SubResource("Animation_gre28"),
+&"5attack": SubResource("Animation_kqq74"),
 &"RESET": SubResource("Animation_j8h51")
 }
 
@@ -353,60 +1115,70 @@ texture_filter = 2
 texture = ExtResource("2_q446t")
 
 [node name="allwarnings" type="Node3D" parent="."]
+script = SubResource("GDScript_x4xfo")
 
 [node name="warning1" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, 0)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning2" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, -1)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning3" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1, 1, 0)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning4" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, 1)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning5" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1, 1, 0)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning6" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, -2)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning7" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2, 1, 0)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning8" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, 2)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="warning9" type="Sprite3D" parent="allwarnings"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -2, 1, 0)
 billboard = 1
 texture_filter = 2
 texture = ExtResource("2_jxsp3")
+script = SubResource("GDScript_j8h51")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -416,6 +1188,3 @@ autoplay = "RESET"
 
 [node name="attack1" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_j8h51")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 7)
