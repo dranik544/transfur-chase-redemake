@@ -1,0 +1,308 @@
+[gd_scene load_steps=37 format=3 uid="uid://bbk73bjynlxn0"]
+
+[ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_47n5y"]
+[ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_02t0b"]
+[ext_resource type="PackedScene" uid="uid://bk16lsmt07me8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_2.tscn" id="2_y3rk5"]
+[ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_dlhw1"]
+[ext_resource type="PackedScene" uid="uid://bitxsnpbxemel" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_3.tscn" id="3_tjhvq"]
+[ext_resource type="PackedScene" uid="uid://dtenf0fgrk1p2" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_2.tscn" id="4_g5e1l"]
+[ext_resource type="PackedScene" uid="uid://dcqtr0lcfrt5a" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_4.tscn" id="5_2d00d"]
+[ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_oe8ym"]
+[ext_resource type="PackedScene" uid="uid://c6uon4skfhsp8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_6.tscn" id="6_cubf3"]
+[ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_x4kdt"]
+[ext_resource type="PackedScene" uid="uid://ces71ldf1x1w1" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_7.tscn" id="7_fch41"]
+[ext_resource type="PackedScene" uid="uid://bgx7rl1b8tsud" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_8.tscn" id="8_r0o74"]
+[ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="10_okxji"]
+[ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="11_y3rk5"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="12_tjhvq"]
+[ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="13_g5e1l"]
+[ext_resource type="PackedScene" uid="uid://bbw1qnt1q0668" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_3.tscn" id="13_okxji"]
+[ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="14_2d00d"]
+[ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="14_8c7yh"]
+[ext_resource type="Script" uid="uid://c8b2rmkutld0g" path="res://scenes scripts/music.gd" id="15_cubf3"]
+[ext_resource type="PackedScene" uid="uid://clh8y3r4u7qw3" path="res://scenes scripts/notification.tscn" id="16_fch41"]
+[ext_resource type="PackedScene" uid="uid://dy3eijirtg1hy" path="res://scenes scripts/market_1.tscn" id="16_w0ldb"]
+[ext_resource type="PackedScene" uid="uid://c47s7sjvjsatg" path="res://scenes scripts/mandarin_1.tscn" id="17_4xfim"]
+[ext_resource type="PackedScene" uid="uid://bl31xae5rueew" path="res://scenes scripts/colb_1.tscn" id="18_utsyn"]
+[ext_resource type="PackedScene" uid="uid://vv3yyifjc8ba" path="res://scenes scripts/small_enemy_2.tscn" id="19_632un"]
+[ext_resource type="PackedScene" uid="uid://blxs373auyw5e" path="res://scenes scripts/lightcontrol_2_loc.tscn" id="27_c8eib"]
+[ext_resource type="PackedScene" uid="uid://biqk3s6fngopa" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_5.tscn" id="27_okxji"]
+[ext_resource type="PackedScene" uid="uid://d2pgxmrhtitay" path="res://scenes scripts/crystalattack_1.tscn" id="28_y3rk5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
+size = Vector3(0.2, 3, 10)
+
+[sub_resource type="GDScript" id="GDScript_rf126"]
+script/source = "extends TextureRect
+
+var time: float = 0.0
+
+
+func _process(delta: float) -> void:
+	time += delta
+	rotation = 0.0 + sin(time * 2) * 3.2
+"
+
+[sub_resource type="GDScript" id="GDScript_qeca7"]
+script/source = "extends Node3D
+
+var player
+
+
+func _ready() -> void:
+	if !Global.iswinter or !Global.settings[\"effects\"]:
+		queue_free()
+	
+	player = get_tree().get_first_node_in_group(\"player\")
+
+func _process(delta: float) -> void:
+	if player:
+		global_position = player.global_position + Vector3(0, 5, 0)
+"
+
+[sub_resource type="Curve" id="Curve_kvnqr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.9), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 8.65251, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_qeca7"]
+curve = SubResource("Curve_kvnqr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jvjns"]
+emission_shape = 3
+emission_box_extents = Vector3(30, 12.5, 17.5)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -2, 0)
+damping_min = 0.2
+damping_max = 0.5
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_qeca7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rginh"]
+transparency = 1
+albedo_texture = ExtResource("13_g5e1l")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_53xst"]
+material = SubResource("StandardMaterial3D_rginh")
+size = Vector2(0.2, 0.2)
+
+[node name="world2loc" type="Node3D"]
+script = ExtResource("1_47n5y")
+rooms = {
+1: ExtResource("2_y3rk5"),
+2: ExtResource("3_tjhvq"),
+3: ExtResource("4_g5e1l"),
+4: ExtResource("5_2d00d"),
+5: ExtResource("6_cubf3"),
+6: ExtResource("7_fch41"),
+7: ExtResource("8_r0o74")
+}
+loadrooms = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_02t0b")
+script = ExtResource("3_dlhw1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." groups=["worldlight"]]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 25.0
+
+[node name="player" parent="." instance=ExtResource("5_oe8ym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="bg" type="Sprite3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+visible = false
+pixel_size = 0.03
+fixed_size = true
+texture_filter = 2
+texture = ExtResource("6_x4kdt")
+
+[node name="startroom3" parent="." instance=ExtResource("27_okxji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 0)
+
+[node name="startroom2" parent="." instance=ExtResource("27_okxji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+
+[node name="startroom1" parent="." instance=ExtResource("13_okxji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+RandomBox = false
+RandomNumBoxes = false
+
+[node name="c" type="StaticBody3D" parent="startroom1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="startroom1/c"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_5vyl4")
+
+[node name="Sprite3D" type="Sprite3D" parent="startroom1"]
+transform = Transform3D(-7.64949e-07, 0, 10, 1.52523, 12.4524, 3.8097e-08, -17.4334, 1.08945, -4.35451e-07, 0.1, 1.6, -2.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("14_8c7yh")
+
+[node name="Label3D" type="Label3D" parent="startroom1"]
+transform = Transform3D(-1.57361e-07, 0, 3.6, 0.313761, 3.5863, 1.37149e-08, -3.5863, 0.313761, -1.56762e-07, 0.2, 1.6, -2.9)
+texture_filter = 2
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+text = "WORLD_2_LOC_WARNING_1"
+font = ExtResource("12_tjhvq")
+font_size = 11
+outline_size = 4
+
+[node name="Sprite3D2" type="Sprite3D" parent="startroom1"]
+transform = Transform3D(2.29485e-06, 0, -10, -1.52523, 12.4524, -1.14291e-07, 17.4334, 1.08945, 1.30635e-06, -0.1, 1.6, -2.9)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("14_8c7yh")
+
+[node name="Label3D2" type="Label3D" parent="startroom1"]
+transform = Transform3D(4.72083e-07, 0, -3.6, -0.313761, 3.5863, -4.11447e-08, 3.5863, 0.313761, 4.70287e-07, -0.2, 1.6, -2.9)
+texture_filter = 2
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+text = "WORLD_2_LOC_WARNING_1"
+font = ExtResource("12_tjhvq")
+font_size = 11
+outline_size = 4
+
+[node name="market1" parent="startroom1" instance=ExtResource("16_w0ldb")]
+transform = Transform3D(-0.642788, 0, 0.766045, 0, 1, 0, -0.766045, 0, -0.642788, -12.1, 0, 3.1)
+
+[node name="startroom4" parent="." instance=ExtResource("13_okxji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+RandomBox = false
+RandomNumBoxes = false
+
+[node name="mandarin1" parent="startroom4" instance=ExtResource("17_4xfim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3, -3.6)
+randomSpawn = false
+chanceMoreMandarins = 20
+numMoreMandarins = 6
+
+[node name="mandarin2" parent="startroom4" instance=ExtResource("17_4xfim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.3, 1.4)
+randomSpawn = false
+
+[node name="colb3" parent="startroom4" instance=ExtResource("18_utsyn")]
+transform = Transform3D(0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, -4.2, 0.6, -2.6)
+
+[node name="colb4" parent="startroom4" instance=ExtResource("18_utsyn")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -8.8, 0.6, 1.7)
+
+[node name="colb5" parent="startroom4" instance=ExtResource("18_utsyn")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -1, 0.6, 2)
+
+[node name="colb6" parent="startroom4" instance=ExtResource("18_utsyn")]
+transform = Transform3D(0.198743, -0.209472, -0.957404, -0.976951, 0.035304, -0.210525, 0.0778994, 0.977177, -0.197628, -3.8, 0.5, 3.3)
+
+[node name="small enemy 1" parent="startroom4" instance=ExtResource("19_632un")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0.1, -2.8)
+
+[node name="spawnnextroom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+
+[node name="CanvasLayer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="guide screen world" parent="CanvasLayer" instance=ExtResource("11_y3rk5")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -55.0
+offset_right = 348.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("12_tjhvq")
+theme_override_font_sizes/font_size = 32
+text = "load rooms... (???%)"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("10_okxji")
+script = SubResource("GDScript_rf126")
+
+[node name="snow effect" type="Node3D" parent="."]
+script = SubResource("GDScript_qeca7")
+
+[node name="snow" type="GPUParticles3D" parent="snow effect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transparency = 0.1
+cast_shadow = 0
+amount = 512
+lifetime = 4.0
+randomness = 0.05
+process_material = SubResource("ParticleProcessMaterial_jvjns")
+draw_pass_1 = SubResource("QuadMesh_53xst")
+
+[node name="music" type="AudioStreamPlayer" parent="." groups=["music"]]
+stream = ExtResource("14_2d00d")
+volume_db = -0.5
+parameters/looping = true
+script = ExtResource("15_cubf3")
+
+[node name="notification" parent="." instance=ExtResource("16_fch41")]
+
+[node name="lightcontrol 2loc" parent="." instance=ExtResource("27_c8eib")]
+
+[node name="colb1" parent="." instance=ExtResource("18_utsyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -3)
+
+[node name="colb2" parent="." instance=ExtResource("18_utsyn")]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -2.5, 0.6, 3.1)
+
+[node name="crystalattack1" parent="." instance=ExtResource("28_y3rk5")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 6)
+current = true

@@ -20,63 +20,63 @@ var lastroom: int = 1
 var grooms = []
 
 
-func _ready():
-	var o: int = 0
-	await get_tree().physics_frame
-	
-	grooms.push_back(get_node("startroom1"))
-	grooms.push_back(get_node("startroom4"))
-	
-	var player
-	if get_tree(): player = get_tree().get_first_node_in_group("player")
-	
-	if $enemy1 and $enemy2:
-		$enemy1.set_physics_process(false)
-		$enemy2.set_physics_process(false)
-	if player: player.set_physics_process(false)
-	$CanvasLayer.visible = true
-	for i in loadrooms:
-		await get_tree().physics_frame
-		spawnroom(true, null)
-		await get_tree().process_frame
-		o += 1
-		$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
-	#$navi.bake_navigation_mesh()
-	await get_tree().physics_frame
-	
-	spawnroom(false, lastroomscene)
-	
-	o = 0
-	for i in grooms:
-		if i != null:
-			if i.has_node("NavigationRegion3D") and i.get_node("NavigationRegion3D") is NavigationRegion3D:
-				var navi: NavigationRegion3D = i.get_node("NavigationRegion3D")
-				navi.navigation_mesh = preload("res://navimesh/navimesh1.tres").duplicate()
-				navi.bake_navigation_mesh()
-				await navi.bake_finished
-			o += 1
-			$CanvasLayer/Label.text = "Generate Nav Meshes.. (" + str(o) + "/" + str(len(grooms)-1) + ")"
-	
-	$CanvasLayer/Label.text = "Please, wait one more second."
-	await get_tree().create_timer(1.0).timeout
-	
-	$CanvasLayer/Label.text = "Press Enter to continue"
-	await get_tree().create_timer(0.05).timeout
-	await enter()
-	
-	$CanvasLayer.queue_free()
-	if player: player.set_physics_process(true)
-	if $enemy1 and $enemy2:
-		$enemy1.set_physics_process(true)
-		$enemy2.set_physics_process(true)
-	$music.play()
-	
-	$notification.display(
-		tr("NOW_PLAYING").format({"track": "Run!"}),
-		tr("SOUNDTRACK_AUTHOR").format({"author": "WaterFlame"}),
-		load("res://sprites/icon2.png"), 4)
-	
-	add_to_group("world")
+#func _ready():
+	#var o: int = 0
+	#await get_tree().physics_frame
+	#
+	#grooms.push_back(get_node("startroom1"))
+	#grooms.push_back(get_node("startroom4"))
+	#
+	#var player
+	#if get_tree(): player = get_tree().get_first_node_in_group("player")
+	#
+	#if $enemy1 and $enemy2:
+		#$enemy1.set_physics_process(false)
+		#$enemy2.set_physics_process(false)
+	#if player: player.set_physics_process(false)
+	#$CanvasLayer.visible = true
+	#for i in loadrooms:
+		#await get_tree().physics_frame
+		#spawnroom(true, null)
+		#await get_tree().process_frame
+		#o += 1
+		#$CanvasLayer/Label.text = "Load rooms.. (" + str(o) + "/" + str(loadrooms) + ")"
+	##$navi.bake_navigation_mesh()
+	#await get_tree().physics_frame
+	#
+	#spawnroom(false, lastroomscene)
+	#
+	#o = 0
+	#for i in grooms:
+		#if i != null:
+			#if i.has_node("NavigationRegion3D") and i.get_node("NavigationRegion3D") is NavigationRegion3D:
+				#var navi: NavigationRegion3D = i.get_node("NavigationRegion3D")
+				#navi.navigation_mesh = preload("res://navimesh/navimesh1.tres").duplicate()
+				#navi.bake_navigation_mesh()
+				#await navi.bake_finished
+			#o += 1
+			#$CanvasLayer/Label.text = "Generate Nav Meshes.. (" + str(o) + "/" + str(len(grooms)-1) + ")"
+	#
+	#$CanvasLayer/Label.text = "Please, wait one more second."
+	#await get_tree().create_timer(1.0).timeout
+	#
+	#$CanvasLayer/Label.text = "Press Enter to continue"
+	#await get_tree().create_timer(0.05).timeout
+	#await enter()
+	#
+	#$CanvasLayer.queue_free()
+	#if player: player.set_physics_process(true)
+	#if $enemy1 and $enemy2:
+		#$enemy1.set_physics_process(true)
+		#$enemy2.set_physics_process(true)
+	#$music.play()
+	#
+	#$notification.display(
+		#tr("NOW_PLAYING").format({"track": "Run!"}),
+		#tr("SOUNDTRACK_AUTHOR").format({"author": "WaterFlame"}),
+		#load("res://sprites/icon2.png"), 4)
+	#
+	#add_to_group("world")
 
 func enter() -> void:
 	while true:
@@ -90,7 +90,7 @@ func enter() -> void:
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
 	var numroom: int = randi_range(1, rooms.size())
 	var sceneroom: PackedScene
-	var roompos
+	var roompos: Vector3 = Vector3.ZERO
 	var doorpos
 	
 	while numroom == lastroom:

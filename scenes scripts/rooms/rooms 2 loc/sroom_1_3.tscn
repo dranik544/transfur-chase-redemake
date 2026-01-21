@@ -1,0 +1,203 @@
+[gd_scene load_steps=25 format=3 uid="uid://bbw1qnt1q0668"]
+
+[ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_tctsl"]
+[ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_l1n0g"]
+[ext_resource type="Texture2D" uid="uid://vxoxololnmph" path="res://sprites/bottom4.png" id="3_l1n0g"]
+[ext_resource type="Texture2D" uid="uid://dsuh7f3tmv2vb" path="res://normalmaps/bottom1normalmap1.png" id="4_2ghei"]
+[ext_resource type="PackedScene" uid="uid://c8fhprlvt2e6o" path="res://scenes scripts/door.tscn" id="4_nipi4"]
+[ext_resource type="PackedScene" uid="uid://cusattjn2rljb" path="res://scenes scripts/tubes1.tscn" id="5_5vv4p"]
+[ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="7_i6pks"]
+[ext_resource type="Texture2D" uid="uid://cgdlsqoqtmkqu" path="res://sprites/WallOffice3.png" id="7_nipi4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pir6"]
+albedo_texture = ExtResource("3_l1n0g")
+metallic = 0.5
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("4_2ghei")
+uv1_scale = Vector3(0.6, 0.6, 0.6)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_i6pks"]
+material = SubResource("StandardMaterial3D_8pir6")
+size = Vector2(10, 10)
+center_offset = Vector3(-5, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ejhko"]
+size = Vector3(10, 10, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeop8"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ghei"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("7_nipi4")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_nipi4"]
+material = SubResource("StandardMaterial3D_2ghei")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v056k"]
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vv4p"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("7_nipi4")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_8pir6"]
+material = SubResource("StandardMaterial3D_5vv4p")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6pks"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("7_nipi4")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_xq6da"]
+material = SubResource("StandardMaterial3D_i6pks")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq6da"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("7_nipi4")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_4pi5q"]
+material = SubResource("StandardMaterial3D_xq6da")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mt8bb"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("7_nipi4")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_w3x31"]
+material = SubResource("StandardMaterial3D_mt8bb")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
+size = Vector3(10, 3, 10)
+
+[node name="sroom1 1" type="Node3D"]
+script = ExtResource("1_tctsl")
+NumBoxes1 = 2
+NumBoxes3 = 0
+NumBoxes4 = 0
+NumBasket1 = 1
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = ExtResource("2_l1n0g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="bottom" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" groups=["navi"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_i6pks")
+skeleton = NodePath("../..")
+
+[node name="bottomcoll" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 0, 0)
+shape = SubResource("BoxShape3D_ejhko")
+
+[node name="door" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("4_nipi4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 1, 0)
+
+[node name="tubes" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_5vv4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -4.55)
+
+[node name="tubes2" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_5vv4p")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8, 1.5, -4.7)
+
+[node name="tubes3" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_5vv4p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 2, 4.55)
+
+[node name="tubes4" parent="NavigationRegion3D/StaticBody3D" instance=ExtResource("5_5vv4p")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -4, 1.5, 4.7)
+
+[node name="wall1" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 5)
+mesh = SubResource("BoxMesh_nipi4")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll1" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 5)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -5)
+mesh = SubResource("BoxMesh_8pir6")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll2" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -5)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, -3)
+mesh = SubResource("BoxMesh_xq6da")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll3" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, -3)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, 3)
+mesh = SubResource("BoxMesh_4pi5q")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll4" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -10, 1.5, 3)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="wall5" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -10, 2.50299, 0)
+mesh = SubResource("BoxMesh_w3x31")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll5" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-8.74228e-09, 0, 1, 0, 0.33, 0, -0.2, 0, -4.37114e-08, -10, 2.50299, 0)
+shape = SubResource("BoxShape3D_v056k")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ccg18")
+
+[node name="light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 4, 0)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("7_i6pks")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

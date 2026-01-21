@@ -510,6 +510,7 @@ func _physics_process(delta: float) -> void:
 				
 				Global.listskins[11]["unlocked"] = true
 				SavingManager.save("skinlist", Global.listskins)
+	else: achievement10length = 0.0
 	
 	#if $"center camera/Camera3D/RayCast3D".is_colliding():
 		#var collider = $"center camera/Camera3D/RayCast3D".get_collider()
