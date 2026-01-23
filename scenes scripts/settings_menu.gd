@@ -34,6 +34,7 @@ func _ready() -> void:
 	$scc/vboxc/crtshader.button_pressed = Global.settings["crtshader"]
 	$scc/vboxc/displayhints.button_pressed = Global.settings["displayhints"]
 	$scc/vboxc/pixelizescreen.button_pressed = Global.settings["pixelizescreen"]
+	$scc/vboxc/enableshadows.button_pressed = Global.settings["enableshadows"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -56,11 +57,13 @@ func updatesettings():
 	Global.settings["crtshader"] = $scc/vboxc/crtshader.button_pressed
 	Global.settings["displayhints"] = $scc/vboxc/displayhints.button_pressed
 	Global.settings["pixelizescreen"] = $scc/vboxc/pixelizescreen.button_pressed
+	Global.settings["enableshadows"] = $scc/vboxc/enableshadows.button_pressed
+	
 	
 	Global.updatesoundandmusic.emit()
 	Global.updatewindowmode()
 	Global.updatesizemode()
-	ProjectSettings.save()
+	#ProjectSettings.save()
 	
 	SavingManager.save("settings", Global.settings)
 

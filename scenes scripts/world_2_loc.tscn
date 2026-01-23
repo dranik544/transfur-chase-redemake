@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=39 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="9_tdjod"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="10_8mb1v"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="10_rdsqj"]
+[ext_resource type="Script" uid="uid://i0phcciccafo" path="res://scenes scripts/directional_light_3d.gd" id="11_b3iur"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="11_gks0a"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="12_cm2oq"]
 [ext_resource type="AudioStream" uid="uid://bf4e60p86b4ph" path="res://sounds music/Waterflame - Run! loopver.mp3" id="13_mvru5"]
@@ -126,6 +127,7 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 25.0
+script = ExtResource("11_b3iur")
 
 [node name="player" parent="." instance=ExtResource("5_sw6d5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

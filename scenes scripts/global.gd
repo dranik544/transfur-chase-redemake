@@ -76,6 +76,7 @@ var settings = {
 	"crtshader": true,
 	"displayhints": false,
 	"pixelizescreen": false,
+	"enableshadows": true,
 }
 
 signal navibake()
@@ -152,17 +153,19 @@ func updatesizemode(from = settings["sizemode"], frompix = settings["pixelizescr
 			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 			get_window().size = Vector2i(640, 480)
 		1: 
-			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			if !frompix: get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			else: get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 			get_tree().root.content_scale_size = Vector2i(640, 480)
 			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 		2: 
-			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			if !frompix: get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			else: get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 			get_tree().root.content_scale_size = Vector2i(850, 480)
 			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	
-	match frompix:
-		false: ProjectSettings.set_setting("display/window/stretch/mode", "disabled")
-		true: ProjectSettings.set_setting("display/window/stretch/mode", "viewport")
+	#match frompix:
+		#false: ProjectSettings.set_setting("display/window/stretch/mode", "disabled")
+		#true: ProjectSettings.set_setting("display/window/stretch/mode", "viewport")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:

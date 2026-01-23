@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://cstvl2h2vgyr"]
+[gd_scene load_steps=28 format=3 uid="uid://cstvl2h2vgyr"]
 
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="1_08pho"]
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_ktiys"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_ixu3i"]
 [ext_resource type="PackedScene" uid="uid://c33iojhyr4ddn" path="res://scenes scripts/room_1_1.tscn" id="3_55rg2"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_alufl"]
+[ext_resource type="Script" uid="uid://i0phcciccafo" path="res://scenes scripts/directional_light_3d.gd" id="4_ixu3i"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_7evke"]
 [ext_resource type="PackedScene" uid="uid://kjde5ai2vtwd" path="res://scenes scripts/box_2.tscn" id="7_rf126"]
 [ext_resource type="PackedScene" uid="uid://2dxmbjms8yyd" path="res://scenes scripts/enemy_1.tscn" id="7_soo4o"]
@@ -98,6 +99,7 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 25.0
+script = ExtResource("4_ixu3i")
 
 [node name="enemy1" parent="." instance=ExtResource("7_soo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.1, -3.4)

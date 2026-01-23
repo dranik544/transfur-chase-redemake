@@ -19,6 +19,7 @@ SETTINGS_BEAUTIFUL_ENV,"Красивое окружение","Detailed Environme
 SETTINGS_CRT_SHADER,"CRT Шейдер","CRT Shader"
 SETTINGS_PIXELIZE_SCREEN,"Пикселизация","Pixelize"
 SETTINGS_LIGHTS,"Освещение","Lighting"
+SETTINGS_ENABLE_SHADOWS,"Включить тени","Shadows"
 SETTINGS_PARTICLES_AND_EFFECTS,"Частицы и Эффекты","Particles & Effects"
 SETTINGS_CABELS,"Висящие проводы","Hanging Cables"
 SETTINGS_TUBES,"Трубы","Pipes"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bbk73bjynlxn0"]
+[gd_scene load_steps=62 format=3 uid="uid://bbk73bjynlxn0"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_47n5y"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_02t0b"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ces71ldf1x1w1" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_7.tscn" id="7_fch41"]
 [ext_resource type="PackedScene" uid="uid://bgx7rl1b8tsud" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_8.tscn" id="8_r0o74"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="10_okxji"]
+[ext_resource type="Script" uid="uid://i0phcciccafo" path="res://scenes scripts/directional_light_3d.gd" id="11_2w8rc"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="11_y3rk5"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="12_tjhvq"]
 [ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="13_g5e1l"]
@@ -28,6 +29,12 @@
 [ext_resource type="PackedScene" uid="uid://blxs373auyw5e" path="res://scenes scripts/lightcontrol_2_loc.tscn" id="27_c8eib"]
 [ext_resource type="PackedScene" uid="uid://biqk3s6fngopa" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_5.tscn" id="27_okxji"]
 [ext_resource type="PackedScene" uid="uid://d2pgxmrhtitay" path="res://scenes scripts/crystalattack_1.tscn" id="28_y3rk5"]
+[ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="29_2w8rc"]
+[ext_resource type="Texture2D" uid="uid://vxoxololnmph" path="res://sprites/bottom4.png" id="30_8c7yh"]
+[ext_resource type="Texture2D" uid="uid://dsuh7f3tmv2vb" path="res://normalmaps/bottom1normalmap1.png" id="31_w0ldb"]
+[ext_resource type="Texture2D" uid="uid://cgdlsqoqtmkqu" path="res://sprites/WallOffice3.png" id="34_632un"]
+[ext_resource type="Texture2D" uid="uid://8657d12d0r43" path="res://sprites/dragonboss1.png" id="34_r0o74"]
+[ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="35_j54va"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
 size = Vector3(0.2, 3, 10)
@@ -94,6 +101,250 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_rginh")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="GDScript" id="GDScript_r0o74"]
+script/source = "extends Node3D
+
+
+func _ready() -> void:
+	$areaenter.body_entered.connect(start)
+
+func updatecam():
+	var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
+	var curcamposy = global_position.z
+	get_tree().get_first_node_in_group(\"player\").process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().get_first_node_in_group(\"player\").camfollowupdate(true, global_position.x + -curcamposx, global_position.y + -curcamposy)
+
+func start(body):
+	if body.is_in_group(\"player\"): $\"../AnimationPlayer\".play(\"intro\")
+	get_tree().get_first_node_in_group(\"player\").process_mode = Node.PROCESS_MODE_DISABLED
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pir6"]
+albedo_texture = ExtResource("30_8c7yh")
+metallic = 0.5
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("31_w0ldb")
+uv1_scale = Vector3(0.6, 0.6, 0.6)
+uv1_triplanar = true
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_2w8rc"]
+material = SubResource("StandardMaterial3D_8pir6")
+size = Vector2(33.4, 16.6)
+center_offset = Vector3(-5, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2w8rc"]
+size = Vector3(33.1, 16.4, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeop8"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ghei"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("34_632un")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_nipi4"]
+material = SubResource("StandardMaterial3D_2ghei")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c7yh"]
+size = Vector3(33.3, 3, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6pks"]
+next_pass = SubResource("StandardMaterial3D_oeop8")
+albedo_texture = ExtResource("34_632un")
+uv1_scale = Vector3(0.333, 0.333, 0.333)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_xq6da"]
+material = SubResource("StandardMaterial3D_i6pks")
+size = Vector3(10, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0o74"]
+size = Vector3(41.8, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0ldb"]
+size = Vector3(8.5, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccg18"]
+size = Vector3(10, 3, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fch41"]
+size = Vector3(1, 3, 17)
+
+[sub_resource type="GDScript" id="GDScript_2w8rc"]
+script/source = "extends Sprite3D
+
+var time: float = 0.0
+var strengh: float = 0.2
+
+
+
+func _process(delta: float) -> void:
+	time += delta
+	
+	scale.y = 4.0 + sin(time * 2) * strengh
+	scale.x = 4.0 + sin(time) * strengh / 2
+"
+
+[sub_resource type="Animation" id="Animation_r0o74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-24, 11, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, -0.785398, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer2/RichTextLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fch41"]
+resource_name = "intro"
+length = 11.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cam:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cam:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3.5, 6, 9, 10, 11),
+"transitions": PackedFloat32Array(1, 1.5, 0.5, 1, 1.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-24, 11, 7), Vector3(-24, 11, 7), Vector3(-28.5962, 12.4142, 7), Vector3(-37, 15, 7), Vector3(-37, 15, 7), Vector3(-32.7574, 13.5858, 7), Vector3(-25, 11, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cam:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 3.5, 6, 9, 10, 11),
+"transitions": PackedFloat32Array(1, 1.5, 0.5, 1, 1.5, 0.5, 1.5),
+"update": 0,
+"values": [Vector3(-0.785398, -0.785398, 0), Vector3(-0.785398, -0.785398, 0), Vector3(-0.785398, 0, 0), Vector3(-0.785398, 0.785398, 0), Vector3(-0.785398, 0.785398, 0), Vector3(-0.785398, 0, 0), Vector3(-0.785398, -0.785398, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bossroom1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(11.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"updatecam"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5.83333, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer2/RichTextLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6, 6.5, 9, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0o74"]
+_data = {
+&"RESET": SubResource("Animation_r0o74"),
+&"intro": SubResource("Animation_fch41")
+}
+
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_47n5y")
 rooms = {
@@ -106,6 +357,7 @@ rooms = {
 7: ExtResource("8_r0o74")
 }
 loadrooms = 0
+lastroomscene = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_02t0b")
@@ -117,6 +369,7 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 25.0
+script = ExtResource("11_2w8rc")
 
 [node name="player" parent="." instance=ExtResource("5_oe8ym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -303,5 +556,184 @@ transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -2
 
 [node name="crystalattack1" parent="." instance=ExtResource("28_y3rk5")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 6)
+[node name="bossroom1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+script = SubResource("GDScript_r0o74")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="bossroom1"]
+navigation_mesh = ExtResource("29_2w8rc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bossroom1/NavigationRegion3D"]
+
+[node name="bottom" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D" groups=["navi"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.7, 0, 0)
+mesh = SubResource("QuadMesh_2w8rc")
+skeleton = NodePath("../..")
+
+[node name="bottomcoll" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -16.55, 0, 0)
+shape = SubResource("BoxShape3D_2w8rc")
+
+[node name="wall1" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(3.33, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, 8.3)
+mesh = SubResource("BoxMesh_nipi4")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll1" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, 8.3)
+shape = SubResource("BoxShape3D_8c7yh")
+
+[node name="wall2" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(3.33, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, -8.3)
+mesh = SubResource("BoxMesh_nipi4")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll2" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, -8.3)
+shape = SubResource("BoxShape3D_8c7yh")
+
+[node name="wall3" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-7.2998e-08, 0, 1, 0, 1, 0, -1.67, 0, -4.37114e-08, -33.4, 1.5, 0)
+mesh = SubResource("BoxMesh_xq6da")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll3" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -33.4, 1.5, 0)
+shape = SubResource("BoxShape3D_r0o74")
+
+[node name="wall4" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.5299e-08, 0, 1, 0, 1, 0, -0.35, 0, -4.37114e-08, -1.90735e-06, 1.5, -6.6)
+mesh = SubResource("BoxMesh_xq6da")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll4" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -1.90735e-06, 1.5, -6.6317)
+shape = SubResource("BoxShape3D_w0ldb")
+
+[node name="wall5" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.5299e-08, 0, 1, 0, 1, 0, -0.35, 0, -4.37114e-08, -1.90735e-06, 1.5, 6.6)
+mesh = SubResource("BoxMesh_xq6da")
+skeleton = NodePath("../bottom")
+
+[node name="wallcoll5" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -1.90735e-06, 1.5, 6.5683)
+shape = SubResource("BoxShape3D_w0ldb")
+
+[node name="Timer" type="Timer" parent="bossroom1"]
+wait_time = 3.0
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bossroom1/Area3D"]
+shape = SubResource("BoxShape3D_ccg18")
+
+[node name="light" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light2" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light3" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -12, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light4" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -12, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light5" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light6" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light7" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -28, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light8" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -28, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="areaenter" type="Area3D" parent="bossroom1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bossroom1/areaenter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1.5, 0)
+shape = SubResource("BoxShape3D_fch41")
+
+[node name="dragon" type="Sprite3D" parent="bossroom1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -29, -8.9407e-08, 0)
+offset = Vector2(0, 64)
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("34_r0o74")
+script = SubResource("GDScript_2w8rc")
+
+[node name="cam" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -24, 11, 7)
+keep_aspect = 0
+projection = 1
+size = 13.0
+far = 30.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r0o74")
+}
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("12_tjhvq")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "
+
+The Elder One
+[font size=18][wave](BOSS)"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="bossroom1/Timer" to="bossroom1" method="_on_timer_timeout"]
+[connection signal="body_entered" from="bossroom1/Area3D" to="bossroom1" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="bossroom1/Area3D" to="bossroom1" method="_on_area_3d_body_exited"]
