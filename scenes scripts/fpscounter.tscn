@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxhmcxq6ab32w"]
+
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="1_4d158"]
+[ext_resource type="Script" uid="uid://clq2eww2vdt2l" path="res://scenes scripts/fpscounter.gd" id="1_6hr2o"]
+
+[node name="fpscounter" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6hr2o")
+
+[node name="label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("1_4d158")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "
+     Current FPS: ???"
+fit_content = true
+scroll_active = false

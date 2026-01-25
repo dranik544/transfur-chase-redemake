@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dut80minejjcs"]
+[gd_scene load_steps=33 format=3 uid="uid://dut80minejjcs"]
 
 [ext_resource type="Script" uid="uid://7qjt41qraabw" path="res://scenes scripts/player.gd" id="1_ydash"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="4_0amtw"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c6w3ofxci77h" path="res://sprites/icon16.png" id="11_ttj71"]
 [ext_resource type="Texture2D" uid="uid://c6t5yesx3c2aj" path="res://sprites/guide5.png" id="13_ttj71"]
 [ext_resource type="Texture2D" uid="uid://bf0c2ogy5bqwt" path="res://sprites/icon14.png" id="13_v8yca"]
+[ext_resource type="PackedScene" uid="uid://bxhmcxq6ab32w" path="res://scenes scripts/fpscounter.tscn" id="22_bolwy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhidd"]
 radius = 0.3
@@ -697,6 +698,8 @@ lifetime = 0.5
 speed_scale = 0.6
 process_material = SubResource("ParticleProcessMaterial_tlnr4")
 draw_pass_1 = SubResource("QuadMesh_hb04b")
+
+[node name="fpscounter" parent="." instance=ExtResource("22_bolwy")]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
