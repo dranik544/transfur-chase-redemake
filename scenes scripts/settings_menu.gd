@@ -35,6 +35,7 @@ func _ready() -> void:
 	$scc/vboxc/displayhints.button_pressed = Global.settings["displayhints"]
 	$scc/vboxc/pixelizescreen.button_pressed = Global.settings["pixelizescreen"]
 	$scc/vboxc/enableshadows.button_pressed = Global.settings["enableshadows"]
+	$scc/vboxc/fpscounter.button_pressed = Global.settings["fpscounter"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -58,6 +59,7 @@ func updatesettings():
 	Global.settings["displayhints"] = $scc/vboxc/displayhints.button_pressed
 	Global.settings["pixelizescreen"] = $scc/vboxc/pixelizescreen.button_pressed
 	Global.settings["enableshadows"] = $scc/vboxc/enableshadows.button_pressed
+	Global.settings["fpscounter"] = $scc/vboxc/fpscounter.button_pressed
 	
 	
 	Global.updatesoundandmusic.emit()

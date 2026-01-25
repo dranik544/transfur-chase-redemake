@@ -77,6 +77,7 @@ var settings = {
 	"displayhints": false,
 	"pixelizescreen": false,
 	"enableshadows": true,
+	"fpscounter": false
 }
 
 signal navibake()

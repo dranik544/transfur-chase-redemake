@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://clq2eww2vdt2l" path="res://scenes scripts/fpscounter.gd" id="1_6hr2o"]
 
 [node name="fpscounter" type="Control"]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 15

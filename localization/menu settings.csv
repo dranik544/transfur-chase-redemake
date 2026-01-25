@@ -23,6 +23,7 @@ SETTINGS_ENABLE_SHADOWS,"Включить тени","Shadows"
 SETTINGS_PARTICLES_AND_EFFECTS,"Частицы и Эффекты","Particles & Effects"
 SETTINGS_CABELS,"Висящие проводы","Hanging Cables"
 SETTINGS_TUBES,"Трубы","Pipes"
+SETTINGS_FPS_COUNTER,"Счётчик FPS","Counter FPS"
 
 SETTINGS_EVENTS,"
 События","
