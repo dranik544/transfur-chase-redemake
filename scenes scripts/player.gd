@@ -222,6 +222,13 @@ func updatehints():
 	$gui/hints/label.text = htext
 
 func _physics_process(delta: float) -> void:
+	
+	
+	
+	print(canslide)
+	
+	
+	
 	if fingermobiledown: fingermobiledowntime += delta
 	else: fingermobiledowntime = 0
 	
@@ -401,23 +408,24 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("A", "D", "W", "S")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if Input.is_action_just_pressed("SPACE") or space and !isslide and canslide:
-		canslide = false
-		space = false
-		slidespeed = MaxSlideSpeed
-		slidespeedminus = MaxSlideSpeed
-		$Timer.start()
-		$gui/gui/slidebar/slidetimer.start()
-		var tweenslidebar = create_tween()
-		$gui/gui/slidebar.value = 0.0
-		tweenslidebar.tween_property($gui/gui/slidebar, "value", 100.0, $gui/gui/slidebar/slidetimer.wait_time)
-		$gui/gui/slidebar/slidebar.visible = true
-		isslide = true
-		slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		
-		startshake(5, $gui/gui/slidebar/slidetimer.wait_time)
-		
-		noslide = false
+	if Input.is_action_just_pressed("SPACE") or space:
+		if !isslide and canslide:
+			canslide = false
+			space = false
+			slidespeed = MaxSlideSpeed
+			slidespeedminus = MaxSlideSpeed
+			$Timer.start()
+			$gui/gui/slidebar/slidetimer.start()
+			var tweenslidebar = create_tween()
+			$gui/gui/slidebar.value = 0.0
+			tweenslidebar.tween_property($gui/gui/slidebar, "value", 100.0, $gui/gui/slidebar/slidetimer.wait_time)
+			$gui/gui/slidebar/slidebar.visible = true
+			isslide = true
+			slidedir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+			
+			startshake(5, $gui/gui/slidebar/slidetimer.wait_time)
+			
+			noslide = false
 	
 	labelhints["slide"]["enable"] = canslide
 	

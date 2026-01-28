@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bbk73bjynlxn0"]
+[gd_scene load_steps=65 format=3 uid="uid://bbk73bjynlxn0"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_47n5y"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_02t0b"]
@@ -35,6 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://cgdlsqoqtmkqu" path="res://sprites/WallOffice3.png" id="34_632un"]
 [ext_resource type="Texture2D" uid="uid://8657d12d0r43" path="res://sprites/dragonboss1.png" id="34_r0o74"]
 [ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="35_j54va"]
+[ext_resource type="Texture2D" uid="uid://p1hwbujyb2ch" path="res://sprites/greenbcrystal1.png" id="36_4xfim"]
+[ext_resource type="Texture2D" uid="uid://cr51l3nyhvhvr" path="res://sprites/greenbcrystal2.png" id="37_utsyn"]
+[ext_resource type="Texture2D" uid="uid://dv0dfaw6u0itu" path="res://sprites/greenbcrystal3.png" id="38_632un"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vyl4"]
 size = Vector3(0.2, 3, 10)
@@ -107,16 +110,40 @@ script/source = "extends Node3D
 
 func _ready() -> void:
 	$areaenter.body_entered.connect(start)
+	$attacktimer.timeout.connect(spawnattack)
 
 func updatecam():
+	$attacktimer.start()
 	var curcamposx = $NavigationRegion3D/StaticBody3D/bottom.mesh.size.x / 2.0
 	var curcamposy = global_position.z
 	get_tree().get_first_node_in_group(\"player\").process_mode = Node.PROCESS_MODE_INHERIT
+	#get_tree().get_first_node_in_group(\"player\").isslide = false
+	#get_tree().get_first_node_in_group(\"player\").canslide = false
+	#get_tree().get_first_node_in_group(\"player\").get_node(\"gui/gui/slidebar/slidetimer\").process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().get_first_node_in_group(\"player\").get_node(\"gui\").visible = true
+	if Global.ismobile:
+		get_tree().get_first_node_in_group(\"player\").get_node(\"Virtual Joystick\").visible = true
+		get_tree().get_first_node_in_group(\"player\").get_node(\"mobilecontrols\").visible = true
 	get_tree().get_first_node_in_group(\"player\").camfollowupdate(true, global_position.x + -curcamposx, global_position.y + -curcamposy)
 
 func start(body):
 	if body.is_in_group(\"player\"): $\"../AnimationPlayer\".play(\"intro\")
+	#get_tree().get_first_node_in_group(\"player\").get_node(\"gui/gui/slidebar/slidetimer\").process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().get_first_node_in_group(\"player\").get_node(\"gui\").visible = false
+	if Global.ismobile:
+		get_tree().get_first_node_in_group(\"player\").get_node(\"Virtual Joystick\").visible = false
+		get_tree().get_first_node_in_group(\"player\").get_node(\"mobilecontrols\").visible = false
 	get_tree().get_first_node_in_group(\"player\").process_mode = Node.PROCESS_MODE_DISABLED
+
+func spawnattack():
+	var attack: Node3D = load(\"res://scenes scripts/crystalattack_1.tscn\").instantiate()
+	attack.global_position = Vector3(
+		get_tree().get_first_node_in_group(\"player\").global_position.x,
+		0,
+		get_tree().get_first_node_in_group(\"player\").global_position.y
+	)
+	get_tree().root.add_child(attack)
+	$attacktimer.wait_time = randf_range(4.0, 7.0)
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pir6"]
@@ -131,11 +158,11 @@ texture_filter = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_2w8rc"]
 material = SubResource("StandardMaterial3D_8pir6")
-size = Vector2(33.4, 16.6)
-center_offset = Vector3(-5, 0, 0)
+size = Vector2(65, 16.6)
+center_offset = Vector3(-32, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2w8rc"]
-size = Vector3(33.1, 16.4, 0.1)
+size = Vector3(65, 16.6, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeop8"]
 cull_mode = 1
@@ -152,12 +179,12 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_nipi4"]
+[sub_resource type="BoxMesh" id="BoxMesh_2w8rc"]
 material = SubResource("StandardMaterial3D_2ghei")
-size = Vector3(10, 3, 0.1)
+size = Vector3(65, 3, 0.1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8c7yh"]
-size = Vector3(33.3, 3, 0.1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xfim"]
+size = Vector3(65, 3, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6pks"]
 next_pass = SubResource("StandardMaterial3D_oeop8")
@@ -286,7 +313,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 3.5, 6, 9, 10, 11),
 "transitions": PackedFloat32Array(1, 1.5, 0.5, 1, 1.5, 0.5, 0.5),
 "update": 0,
-"values": [Vector3(-24, 11, 7), Vector3(-24, 11, 7), Vector3(-28.5962, 12.4142, 7), Vector3(-37, 15, 7), Vector3(-37, 15, 7), Vector3(-32.7574, 13.5858, 7), Vector3(-25, 11, 7)]
+"values": [Vector3(-24, 11, 7), Vector3(-24, 11, 7), Vector3(-33.75, 12.414, 7), Vector3(-67.5, 15, 7), Vector3(-67.5, 15, 7), Vector3(-33.75, 13.586, 7), Vector3(-25, 11, 7)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -566,39 +593,39 @@ navigation_mesh = ExtResource("29_2w8rc")
 [node name="StaticBody3D" type="StaticBody3D" parent="bossroom1/NavigationRegion3D"]
 
 [node name="bottom" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D" groups=["navi"]]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.7, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.500001, 0, 0)
 mesh = SubResource("QuadMesh_2w8rc")
 skeleton = NodePath("../..")
 
 [node name="bottomcoll" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -16.55, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -32.5, 0, 0)
 shape = SubResource("BoxShape3D_2w8rc")
 
 [node name="wall1" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(3.33, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, 8.3)
-mesh = SubResource("BoxMesh_nipi4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 1.5, 8.3)
+mesh = SubResource("BoxMesh_2w8rc")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll1" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, 8.3)
-shape = SubResource("BoxShape3D_8c7yh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 1.5, 8.3)
+shape = SubResource("BoxShape3D_4xfim")
 
 [node name="wall2" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(3.33, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, -8.3)
-mesh = SubResource("BoxMesh_nipi4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 1.5, -8.3)
+mesh = SubResource("BoxMesh_2w8rc")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll2" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1.5, -8.3)
-shape = SubResource("BoxShape3D_8c7yh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5, 1.5, -8.3)
+shape = SubResource("BoxShape3D_4xfim")
 
 [node name="wall3" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-7.2998e-08, 0, 1, 0, 1, 0, -1.67, 0, -4.37114e-08, -33.4, 1.5, 0)
+transform = Transform3D(-7.2998e-08, 0, 1, 0, 1, 0, -1.67, 0, -4.37114e-08, -65, 1.5, 0)
 mesh = SubResource("BoxMesh_xq6da")
 skeleton = NodePath("../bottom")
 
 [node name="wallcoll3" type="CollisionShape3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
-transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -33.4, 1.5, 0)
+transform = Transform3D(-1.74846e-08, 0, 1, 0, 1, 0, -0.4, 0, -4.37114e-08, -65, 1.5, 0)
 shape = SubResource("BoxShape3D_r0o74")
 
 [node name="wall4" type="MeshInstance3D" parent="bossroom1/NavigationRegion3D/StaticBody3D"]
@@ -685,6 +712,48 @@ spot_angle = 58.859
 spot_angle_attenuation = 0.250001
 script = ExtResource("35_j54va")
 
+[node name="light9" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -37, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light10" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -37, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light11" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -45, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light12" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -45, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light13" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -53, 4, -4)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
+[node name="light14" type="SpotLight3D" parent="bossroom1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -53, 4, 3)
+light_energy = 8.5
+spot_angle = 58.859
+spot_angle_attenuation = 0.250001
+script = ExtResource("35_j54va")
+
 [node name="areaenter" type="Area3D" parent="bossroom1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bossroom1/areaenter"]
@@ -692,7 +761,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1.5, 0)
 shape = SubResource("BoxShape3D_fch41")
 
 [node name="dragon" type="Sprite3D" parent="bossroom1"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -29, -8.9407e-08, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -59.5, 0, 0)
 offset = Vector2(0, 64)
 billboard = 1
 shaded = true
@@ -700,6 +769,107 @@ alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("34_r0o74")
 script = SubResource("GDScript_2w8rc")
+
+[node name="1cr1" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.04907e-07, 0, -2.4, 0, 2.4, 0, 2.4, 0, -1.04907e-07, 0, 0.35, 1)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr1" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0.35, 1)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("37_utsyn")
+
+[node name="1cr2" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.04907e-07, 0, -2.4, 0, 2.4, 0, 2.4, 0, -1.04907e-07, -0.225, 0.35, -0.6)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr2" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, -0.225, 0.35, -0.6)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("37_utsyn")
+
+[node name="1cr4" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-0.621166, 0, -2.31822, 0, 2.4, 0, 2.31822, 0, -0.621166, -0.764112, 0.35, -1.60186)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr4" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.31822, 0, -0.621166, 0, 2.4, 0, 0.621166, 0, 2.31822, -0.764112, 0.35, -1.60186)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("37_utsyn")
+
+[node name="1cr5" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(1.69706, 0, 1.69706, 0, 2.4, 0, -1.69706, 0, 1.69706, 0.337023, 0.35, -1.31395)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr5" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.69706, 0, 1.69706, 0, 2.4, 0, -1.69706, 0, -1.69706, 0.337023, 0.35, -1.31395)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="1cr7" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.07846, 0, 1.2, 0, 2.4, 0, -1.2, 0, 2.07846, 0.31068, 0.35, 0.0712892)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr7" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.2, 0, 2.07846, 0, 2.4, 0, -2.07846, 0, -1.2, 0.31068, 0.35, 0.0712892)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("37_utsyn")
+
+[node name="1cr8" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.07846, 0, 1.2, 0, 2.4, 0, -1.2, 0, 2.07846, -0.96246, 0.35, 1.06615)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("36_4xfim")
+
+[node name="2cr8" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.2, 0, 2.07846, 0, 2.4, 0, -2.07846, 0, -1.2, -0.96246, 0.35, 1.06615)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("37_utsyn")
+
+[node name="1cr9" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(2.07846, 0, 1.2, 0, 2.4, 0, -1.2, 0, 2.07846, -0.41432, 0.35, 1.37129)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("38_632un")
+
+[node name="2cr9" type="Sprite3D" parent="bossroom1/dragon"]
+transform = Transform3D(-1.2, 0, 2.07846, 0, 2.4, 0, -2.07846, 0, -1.2, -0.41432, 0.35, 1.37129)
+shaded = true
+alpha_cut = 2
+texture_filter = 2
+texture = ExtResource("38_632un")
+
+[node name="attacktimer" type="Timer" parent="bossroom1"]
+wait_time = 5.0
 
 [node name="cam" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -24, 11, 7)

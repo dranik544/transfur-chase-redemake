@@ -59,7 +59,7 @@ func update():
 
 [sub_resource type="Animation" id="Animation_q446t"]
 resource_name = "1attack"
-length = 3.1
+length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -139,7 +139,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_x4xfo"]
 resource_name = "2attack"
-length = 3.1
+length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -289,7 +289,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_y0f45"]
 resource_name = "3attack"
-length = 3.1
+length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -439,7 +439,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_gre28"]
 resource_name = "4attack"
-length = 3.1
+length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -645,7 +645,7 @@ tracks/14/keys = {
 
 [sub_resource type="Animation" id="Animation_kqq74"]
 resource_name = "5attack"
-length = 3.1
+length = 3.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1188,3 +1188,8 @@ autoplay = "RESET"
 
 [node name="attack1" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_j8h51")
+
+[node name="disableplayerpos" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
