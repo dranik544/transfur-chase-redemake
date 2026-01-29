@@ -501,12 +501,23 @@ RandomNumBoxes = false
 [node name="mandarin1" parent="startroom4" instance=ExtResource("17_4xfim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.3, -3.6)
 randomSpawn = false
-chanceMoreMandarins = 20
+chanceMoreMandarins = 15
 numMoreMandarins = 6
 
 [node name="mandarin2" parent="startroom4" instance=ExtResource("17_4xfim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.3, 1.4)
 randomSpawn = false
+chanceMoreMandarins = 15
+
+[node name="mandarin3" parent="startroom4" instance=ExtResource("17_4xfim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.3, -2.6)
+randomSpawn = false
+chanceMoreMandarins = 15
+
+[node name="mandarin4" parent="startroom4" instance=ExtResource("17_4xfim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.3, 2.4)
+randomSpawn = false
+chanceMoreMandarins = 15
 
 [node name="colb3" parent="startroom4" instance=ExtResource("18_utsyn")]
 transform = Transform3D(0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, -4.2, 0.6, -2.6)

@@ -7,7 +7,7 @@ func _ready() -> void:
 	$disableplayerpos.timeout.connect(func(): canplayerpos = false)
 	
 	rotation.y = randf_range(-180, 180)
-	var randscale = randf_range(-0.75, 1.5)
+	var randscale = randf_range(-0.25, 0.5)
 	scale = Vector3(1, 1, 1) + Vector3(
 		randscale,
 		randscale,

@@ -285,6 +285,16 @@ func areaplayerexited(body):
 				velocity = Vector3.ZERO
 
 func targetpos(target):
+	if global_position.distance_to(target) > 15.0:
+		if Engine.get_physics_frames() % 360 != 0:
+			return
+	elif global_position.distance_to(target) > 5.0:
+		if Engine.get_physics_frames() % 60 != 0:
+			return
+	elif global_position.distance_to(target) < 5.0:
+		if Engine.get_physics_frames() % 20 != 0:
+			return
+	
 	$NavigationAgent3D.set_target_position(target)
 
 func exitfromvent():

@@ -221,46 +221,20 @@ func updatehints():
 	
 	$gui/hints/label.text = htext
 
-func _physics_process(delta: float) -> void:
+func updateslime(delta):
+	slimetimepos += delta
 	
+	slimebasepos = Vector2.ZERO
+	$gui/slime.pivot_offset = $gui/slime.size / 2
 	
-	
-	print(canslide)
-	
-	
-	
-	if fingermobiledown: fingermobiledowntime += delta
-	else: fingermobiledowntime = 0
-	
-	if Global.ismobile:
-		camscalewheel = $mobilecontrols/scalecam.value
-		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
-	
-	if !Global.ismobile:
-		if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			freecam = false
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			freecam = true
-	if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn") #res://doskapochteniya.tscn", Color.SLATE_GRAY, 0.2)
-	
-	if camfollow:
-		centercam.global_position = lerp(centercam.global_position, global_position, 6 * delta)
-	else:
-		centercam.global_position = lerp(centercam.global_position, camfollowpos, 6 * delta)
-	
-	cam.rotation.z += driftcam
-	driftcam = lerp(driftcam, 0.0, 8 * delta)
-	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
-	
-	$gui/colinbg.position = $"center camera/cam".unproject_position($Sprite3D.global_position)
-	$gui/colinbg.scale = Vector2(1 / $"center camera/cam".size * 38, 1 / $"center camera/cam".size * 38)
-	if $"center camera/cam/RayCast3D".is_colliding():
-		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.25, 5 * delta))
-	else:
-		$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.0, 5 * delta))
-	
+	$gui/slime.position = slimebasepos + Vector2(
+		sin(slimetimepos) * 10, #randf_range(-1, 1),
+		sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
+	)
+	$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
+	$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
+
+func updateshake(delta):
 	if Global.settings["shakescreen"]:
 		campos = cam.position
 		camrot = cam.rotation
@@ -288,26 +262,80 @@ func _physics_process(delta: float) -> void:
 		else:
 			cam.position = lerp(cam.position, campos, 10 * delta)
 			cam.rotation = lerp(cam.rotation, camrot, 10 * delta)
+
+func updatehealth(delta):
+	#if health <= 0.0:
+		#$Sprite3D.speed_scale = velocity.length() / 5
+		#
+		#$Sprite3D.speed_scale = 1.0
+		#Global.lastworld = get_tree().current_scene.get_scene_file_path()
+		#$Sprite3D.animation = "transfur"
+		#var tween = create_tween()
+		#tween.tween_property($"center camera/cam", "size", 0, 4)
+		#
+		##if !$gui/crt.material.get_shader_parameter("colorOffsetIntensity", 1.25):
+			##$gui/crt.material.shader_parameter.set_shader_parameter("colorOffsetIntensity", 1.25)
+		#create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.25, 2.5)
+		#
+		#$"center camera/cam".look_at($Sprite3D.global_position)
+		#await $Sprite3D.animation_finished
+		#if get_tree(): #if not is_queued_for_deletion() and get_tree():
+			#ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
-	var enemies = get_tree().get_nodes_in_group("enemy")
-	for enemy in enemies:
-		if enemy:
-			var disttoenemy = global_position.distance_to(enemy.global_position)
-			if disttoenemy <= 3:
-				$Sprite3D.position = defposspr + Vector3(
-					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
-					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
-					randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000)
-				)
-				$sh.emitting = true
-				
-				break
-			else:
-				$Sprite3D.position = defposspr
-				$sh.emitting = false
+	if Engine.get_physics_frames() % 6 != 0:
+		return
+	
+	if health < 3.0:
+		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
+		
+		if health < 1.75:
+			#if !$gui/crt.material.get_shader_parameter("colorOffsetIntensity", 1.1):
+				#$gui/crt.material.shader_parameter.set_shader_parameter("colorOffsetIntensity", 1.1)
+			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
 		else:
-			$Sprite3D.position = defposspr
-			$sh.emitting = false
+			#if !$gui/crt.material.get_shader_parameter("colorOffsetIntensity", 0.5):
+				#$gui/crt.material.shader_parameter.set_shader_parameter("colorOffsetIntensity", 0.5)
+			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
+		
+		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
+	else:
+		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
+	if health <= 0.0:
+		if get_tree(): #if not is_queued_for_deletion() and get_tree():
+			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
+
+func _physics_process(delta: float) -> void:
+	if camfollow:
+		centercam.global_position = lerp(centercam.global_position, global_position, 6 * delta)
+	else:
+		centercam.global_position = lerp(centercam.global_position, camfollowpos, 6 * delta)
+	
+	#$gui/colinbg.position = $"center camera/cam".unproject_position($Sprite3D.global_position)
+	#$gui/colinbg.scale = Vector2(1 / $"center camera/cam".size * 38, 1 / $"center camera/cam".size * 38)
+	#if $"center camera/cam/RayCast3D".is_colliding():
+		#$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.25, 5 * delta))
+	#else:
+		#$gui/colinbg.modulate = Color(1, 1, 1, lerp($gui/colinbg.modulate.a, 0.0, 5 * delta))
+	
+	#var enemies = get_tree().get_nodes_in_group("enemy")
+	#for enemy in enemies:
+		#if enemy:
+			#var disttoenemy = global_position.distance_to(enemy.global_position)
+			#if disttoenemy <= 3:
+				#$Sprite3D.position = defposspr + Vector3(
+					#randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+					#randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000),
+					#randf_range(-shakeIfThereEnemy / 1000, shakeIfThereEnemy / 1000)
+				#)
+				#$sh.emitting = true
+				#
+				#break
+			#else:
+				#$Sprite3D.position = defposspr
+				#$sh.emitting = false
+		#else:
+			#$Sprite3D.position = defposspr
+			#$sh.emitting = false
 	
 	if Input.is_action_pressed("CTRL") or ctrl:
 		if itemdata.has("kg"):
@@ -355,50 +383,6 @@ func _physics_process(delta: float) -> void:
 		labelhints["useitem"]["enable"] = false
 	$mobilecontrols/lcmbtn/TouchScreenButton.texture_normal = $gui/gui/invtexture.texture
 	
-	slimebasepos = Vector2.ZERO
-	$gui/slime.pivot_offset = $gui/slime.size / 2
-	
-	$gui/slime.position = slimebasepos + Vector2(
-		sin(slimetimepos) * 10, #randf_range(-1, 1),
-		sin(slimetimepos / 2) * 10 #randf_range(-1, 1)
-	)
-	$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
-	$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
-	slimetimepos += delta
-	
-	
-	if Input.is_key_pressed(KEY_4): health -= 0.5
-	
-	
-	if health < 3.0:
-		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
-		
-		if health < 1.75:
-			create_tween().set_ease(Tween.EASE_OUT)
-			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
-		else:
-			create_tween().set_ease(Tween.EASE_OUT)
-			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
-		
-		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
-	else:
-		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
-	if health <= 0.0:
-		$Sprite3D.speed_scale = 1.0
-		Global.lastworld = get_tree().current_scene.get_scene_file_path()
-		$Sprite3D.animation = "transfur"
-		var tween = create_tween()
-		tween.tween_property($"center camera/cam", "size", 0, 4)
-		
-		create_tween().set_ease(Tween.EASE_OUT)
-		create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.25, 2.5)
-		
-		$"center camera/cam".look_at($Sprite3D.global_position)
-		await $Sprite3D.animation_finished
-		if not is_queued_for_deletion() and get_tree():
-			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
-	
-	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -432,7 +416,7 @@ func _physics_process(delta: float) -> void:
 	if isslide:
 		if !taunt:
 			$CollisionShape3D2.disabled = false
-			if not is_queued_for_deletion() and get_tree():
+			if get_tree(): #if not is_queued_for_deletion() and get_tree():
 				await get_tree().physics_frame
 			$CollisionShape3D.disabled = true
 		$Sprite3D.play("slide")
@@ -450,7 +434,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if !taunt and !$RayCast3D.is_colliding():
 			$CollisionShape3D.disabled = false
-			if not is_queued_for_deletion() and get_tree():
+			if get_tree(): #if not is_queued_for_deletion() and get_tree():
 				await get_tree().physics_frame
 			$CollisionShape3D2.disabled = true
 			
@@ -492,22 +476,19 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("A"):
 		$Sprite3D.flip_h = true
-		$gui/colinbg.flip_h = true
+		#$gui/colinbg.flip_h = true
 		if Global.colinskin == "muha":
 			$Sprite3D.flip_h = not $Sprite3D.flip_h
-			$gui/colinbg.flip_h = not $gui/colinbg.flip_h
+			#$gui/colinbg.flip_h = not $gui/colinbg.flip_h
 	elif Input.is_action_just_pressed("D"):
 		$Sprite3D.flip_h = false
-		$gui/colinbg.flip_h = false
+		#$gui/colinbg.flip_h = false
 		if Global.colinskin == "muha":
 			$Sprite3D.flip_h = not $Sprite3D.flip_h
-			$gui/colinbg.flip_h = not $gui/colinbg.flip_h
-	
-	if health <= 0: $Sprite3D.speed_scale = velocity.length() / 5
+			#$gui/colinbg.flip_h = not $gui/colinbg.flip_h
 	
 	if speed > 6.1: 
 		achievement10length += velocity.length()
-		print(achievement10length)
 		
 		if achievement10length >= 1900.0:
 			if Global.unlockachievement(9):
@@ -530,8 +511,37 @@ func _physics_process(delta: float) -> void:
 				#coll.material.blend_mode = BaseMaterial3D.BLEND_MODE_MIX
 		
 	move_and_slide()
+
+func _process(delta: float) -> void:
+	if fingermobiledown: fingermobiledowntime += delta
+	else: fingermobiledowntime = 0
 	
+	if Global.ismobile:
+		camscalewheel = $mobilecontrols/scalecam.value
+		camscalewheel = clampf(camscalewheel, -2.5, 11.5)
+	
+	if !Global.ismobile:
+		if Input.is_action_pressed("RCM") or Input.is_action_pressed("CCM"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			freecam = false
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			freecam = true
+	if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn") #res://doskapochteniya.tscn", Color.SLATE_GRAY, 0.2)
+	
+	cam.rotation.z += driftcam
+	driftcam = lerp(driftcam, 0.0, 8 * delta)
+	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
+	
+	
+	updateslime(delta)
+	updatehealth(delta)
 	updatehints()
+	updateshake(delta)
+
+
+
+
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -643,7 +653,7 @@ func minushealth(num, color: Color = Color.WHITE):
 func _on_timer_timeout() -> void:
 	isslide = false
 	await get_tree().physics_frame
-	var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
+	#var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
 	set_collision_mask_value(2, true)
 	$Area3D.set_collision_mask_value(2, true)
 	Global.navibake.emit()
@@ -687,6 +697,7 @@ func detectenemycolor(enemy):
 	match typeenemy:
 		0: colorhit = Color.WHITE_SMOKE
 		1: colorhit = Color.BLACK
+		3: colorhit = Color.BLACK
 	
 	return colorhit
 
