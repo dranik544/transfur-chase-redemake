@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgx7rl1b8tsud"]
+[gd_scene load_steps=32 format=3 uid="uid://bgx7rl1b8tsud"]
 
 [ext_resource type="Script" uid="uid://dtsyf8086rgp8" path="res://scenes scripts/room_1.gd" id="1_2bc0s"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="2_jkwuy"]
@@ -77,8 +77,17 @@ size = Vector2(4.5, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgvmu"]
 size = Vector3(4.4, 1.7, 9.9)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bc0s"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(1, 1, 1, 0.392157)
+albedo_texture = ExtResource("14_01lrx")
+roughness = 0.0
+uv1_triplanar = true
+texture_filter = 2
+
 [sub_resource type="QuadMesh" id="QuadMesh_jkwuy"]
-material = SubResource("StandardMaterial3D_c2qk6")
+material = SubResource("StandardMaterial3D_2bc0s")
 size = Vector2(4.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vu54o"]
