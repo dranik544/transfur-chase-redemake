@@ -84,6 +84,8 @@ func _ready():
 			#if curfps < 25:
 				#o += 1
 			#await get_tree().create_timer(0.1).timeout
+	
+	Global.retranslateachievements()
 
 func _input(event):
 	if event is InputEventScreenDrag and Global.ismobile:

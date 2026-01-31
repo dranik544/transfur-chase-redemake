@@ -5,6 +5,7 @@ func _ready() -> void:
 	$btnexit.pressed.connect(btnexitpressed)
 	$scc/vboxc/countenemy.value_changed.connect(countenemieschanged)
 	$scc/vboxc/holdtimemobile.value_changed.connect(holdtimemobilechanged)
+	$scc/vboxc/screenlatex.value_changed.connect(screenlatexchanged)
 	
 	$scc/vboxc/holdtimemobiletext.visible = Global.ismobile
 	$scc/vboxc/holdtimemobile.visible = Global.ismobile
@@ -36,6 +37,8 @@ func _ready() -> void:
 	$scc/vboxc/pixelizescreen.button_pressed = Global.settings["pixelizescreen"]
 	$scc/vboxc/enableshadows.button_pressed = Global.settings["enableshadows"]
 	$scc/vboxc/fpscounter.button_pressed = Global.settings["fpscounter"]
+	$scc/vboxc/screenlatex.value = Global.settings["screenlatex"]
+	$scc/vboxc/screenlatextext.text = tr("SETTINGS_SCREEN_LATEX").format({"count": int($scc/vboxc/screenlatex.value)})
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -60,6 +63,7 @@ func updatesettings():
 	Global.settings["pixelizescreen"] = $scc/vboxc/pixelizescreen.button_pressed
 	Global.settings["enableshadows"] = $scc/vboxc/enableshadows.button_pressed
 	Global.settings["fpscounter"] = $scc/vboxc/fpscounter.button_pressed
+	Global.settings["screenlatex"] = $scc/vboxc/screenlatex.value
 	
 	
 	Global.updatesoundandmusic.emit()
@@ -73,6 +77,8 @@ func countenemieschanged(value: float):
 	$scc/vboxc/countenemytext.text = tr("SETTINGS_ENEMY_COUNT").format({"count": int(value)})
 func holdtimemobilechanged(value: float):
 	$scc/vboxc/holdtimemobiletext.text = tr("SETTINGS_MOBILE_HOLDTIME_CAM").format({"count": float(value)})
+func screenlatexchanged(value: float):
+	$scc/vboxc/screenlatextext.text = tr("SETTINGS_SCREEN_LATEX").format({"count": int(value)})
 
 func btnexitpressed():
 	updatesettings()

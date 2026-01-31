@@ -77,7 +77,8 @@ var settings = {
 	"displayhints": false,
 	"pixelizescreen": false,
 	"enableshadows": true,
-	"fpscounter": false
+	"fpscounter": false,
+	"screenlatex": 8
 }
 
 signal navibake()
@@ -124,7 +125,6 @@ func _ready() -> void:
 	
 	settings = SavingManager.load("settings")
 	recordpoints = SavingManager.load("recordpoints")
-	achievements[7]["desc"] = tr("ACHIEVEMENT_8_DESC").format({"count": int(settings["enemycount"])})
 	
 	listskins[3]["unlocked"] = iswinter
 	
@@ -132,6 +132,7 @@ func _ready() -> void:
 	
 	updatewindowmode()
 	updatesizemode()
+	retranslateachievements()
 
 func unlockachievement(id: int):
 	if !achievements[id]["unlocked"]:
@@ -142,6 +143,12 @@ func unlockachievement(id: int):
 
 func checkachievement(id: int):
 	return achievements[id]["unlocked"]
+
+func retranslateachievements():
+	for i in achievements.size():
+		achievements[i]["name"] = tr("ACHIEVEMENT_" + str(i + 1) + "_NAME")
+		achievements[i]["desc"] = tr("ACHIEVEMENT_" + str(i + 1) + "_DESC")
+	achievements[7]["desc"] = tr("ACHIEVEMENT_8_DESC").format({"count": int(settings["enemycount"])})
 
 func updatewindowmode():
 	match settings["windowmode"]:

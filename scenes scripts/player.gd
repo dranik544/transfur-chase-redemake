@@ -10,6 +10,7 @@ var freecam: bool = true
 var hit: bool = false
 var taunt: bool = false
 @export var health: float = 6.0
+var lasthealth: float
 var guie = false
 var slimebasepos = Vector2.ZERO
 var slimetimepos = 0.0
@@ -50,6 +51,7 @@ var itemdata = {}
 var fingermobiledown: bool = false
 var fingermobiledowntime: float = 0.0
 var achievement10length: float = 0.0
+var slimelerpvar: Vector2 = Vector2.ZERO
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -93,6 +95,8 @@ var labelhints = {
 
 
 func startshake(intensity: float, dur: float):
+	if !Global.settings["shakescreen"]: return
+	
 	camshake = intensity
 	camshakedur = dur
 	iscamshaking = true
@@ -108,6 +112,8 @@ func _ready():
 	
 	updateskin()
 	updatehints()
+	
+	lasthealth = health
 	
 	#$mobilecontrols/lcmbtn.pressed.connect(lcmmobile)
 	#$mobilecontrols/ebtn.pressed.connect(emobile)
@@ -212,6 +218,8 @@ func camfollowupdate(canfollow: bool, camposx = 0.0, camposz = 0.0):
 		camfollowpluspos = 0.0
 
 func updatehints():
+	if !Global.settings["displayhints"]: return
+	
 	var htext = ""
 	
 	for i in labelhints:
@@ -233,6 +241,8 @@ func updateslime(delta):
 	)
 	$gui/slime.modulate.a = 0.75 + sin(slimetimepos) * 0.2
 	$gui/slime.rotation = sin(slimetimepos * 2.0) * 0.02
+	
+	$gui/slime.scale = lerp($gui/slime.scale, slimelerpvar, 5 * delta)
 
 func updateshake(delta):
 	if Global.settings["shakescreen"]:
@@ -282,27 +292,29 @@ func updatehealth(delta):
 		#if get_tree(): #if not is_queued_for_deletion() and get_tree():
 			#ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
-	if Engine.get_physics_frames() % 6 != 0:
-		return
+	#if Engine.get_physics_frames() % 6 != 0:
+		#return
+	
+	if lasthealth == health: return
 	
 	if health < 3.0:
-		$gui/slime.scale = lerp($gui/slime.scale, Vector2(1.1, 1.1), 5 * delta)
+		slimelerpvar = Vector2(1.1, 1.1)
 		
 		if health < 1.75:
-			#if !$gui/crt.material.get_shader_parameter("colorOffsetIntensity", 1.1):
-				#$gui/crt.material.shader_parameter.set_shader_parameter("colorOffsetIntensity", 1.1)
-			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
+			if Global.settings["crtshader"]: $gui/crt.material.set_shader_parameter("colorOffsetIntensity", 1.1)
+			#create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 1.1, 3.5)
 		else:
-			#if !$gui/crt.material.get_shader_parameter("colorOffsetIntensity", 0.5):
-				#$gui/crt.material.shader_parameter.set_shader_parameter("colorOffsetIntensity", 0.5)
-			create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
+			if Global.settings["crtshader"]: $gui/crt.material.set_shader_parameter("colorOffsetIntensity", 0.5)
+			#create_tween().tween_property($gui/crt.material, "shader_parameter/colorOffsetIntensity", 0.5, 3.5)
 		
 		#$gui.offset = guibasepos + Vector2(randf_range(-2, 2), randf_range(-2, 2))
 	else:
-		$gui/slime.scale = lerp($gui/slime.scale, Vector2(2.5, 2.5), 2 * delta)
+		slimelerpvar = Vector2(2.5, 2.5)
 	if health <= 0.0:
 		if get_tree(): #if not is_queued_for_deletion() and get_tree():
 			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
+	
+	lasthealth = health
 
 func _physics_process(delta: float) -> void:
 	if camfollow:
@@ -343,7 +355,7 @@ func _physics_process(delta: float) -> void:
 		
 		if !isslide:
 			$CollisionShape3D2.disabled = false
-			await get_tree().physics_frame
+			#await get_tree().physics_frame
 			$CollisionShape3D.disabled = true
 		speed = lerp(speed, 2.5 - itemkg, speedlerp * delta)
 		taunt = true
@@ -354,7 +366,7 @@ func _physics_process(delta: float) -> void:
 		if !$RayCast3D.is_colliding():
 			if !isslide:
 				$CollisionShape3D.disabled = false
-				await get_tree().physics_frame
+				#await get_tree().physics_frame
 				$CollisionShape3D2.disabled = true
 			speed = lerp(speed, 6.0 - itemkg, (speedlerp / 1.5) * delta)
 			taunt = false
@@ -416,8 +428,8 @@ func _physics_process(delta: float) -> void:
 	if isslide:
 		if !taunt:
 			$CollisionShape3D2.disabled = false
-			if get_tree(): #if not is_queued_for_deletion() and get_tree():
-				await get_tree().physics_frame
+			#if get_tree(): #if not is_queued_for_deletion() and get_tree():
+				#await get_tree().physics_frame
 			$CollisionShape3D.disabled = true
 		$Sprite3D.play("slide")
 		slidevelocity = slidedir * slidespeed
@@ -434,8 +446,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		if !taunt and !$RayCast3D.is_colliding():
 			$CollisionShape3D.disabled = false
-			if get_tree(): #if not is_queued_for_deletion() and get_tree():
-				await get_tree().physics_frame
+			#if get_tree(): #if not is_queued_for_deletion() and get_tree():
+				#await get_tree().physics_frame
 			$CollisionShape3D2.disabled = true
 			
 			set_collision_mask_value(2, true)
@@ -616,7 +628,9 @@ func minushealth(num, color: Color = Color.WHITE):
 	$gui/slimecolor.color = finalcolor
 	$gui/slime.modulate = finalcolor
 	
-	var slimeenum = randi_range(3, 8)
+	if Global.settings["screenlatex"] <= 0: return
+	
+	var slimeenum = randi_range(int(Global.settings["screenlatex"] / 2), int(Global.settings["screenlatex"]))
 	for i in slimeenum:
 		var slimee = TextureRect.new()
 		var randomslimee = randi_range(1, 5)
@@ -652,7 +666,7 @@ func minushealth(num, color: Color = Color.WHITE):
 
 func _on_timer_timeout() -> void:
 	isslide = false
-	await get_tree().physics_frame
+	#await get_tree().physics_frame
 	#var enemy: CharacterBody3D = get_tree().get_first_node_in_group("enemy")
 	set_collision_mask_value(2, true)
 	$Area3D.set_collision_mask_value(2, true)
