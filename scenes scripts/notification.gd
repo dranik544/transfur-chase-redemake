@@ -34,13 +34,17 @@ func shownext():
 	
 	$notification.position = Vector2(-$notification.size.x - 10, 10)
 	var tween = create_tween()
-	tween.tween_property($notification, "position:x", 10, 0.5)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($notification, "position:x", 10, 1.0)
 	await tween.finished
 	
 	await get_tree().create_timer(notification[3]).timeout
 	
 	tween = create_tween()
-	tween.tween_property($notification, "position:x", -$notification.size.x - 10, 0.5)
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property($notification, "position:x", -$notification.size.x - 10, 0.6)
 	await tween.finished
 	
 	visible = false

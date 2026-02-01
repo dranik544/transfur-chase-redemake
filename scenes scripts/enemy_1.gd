@@ -78,6 +78,8 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta):
+	if curstate == STATE.SLEEP and !playerinarea and Engine.get_physics_frames() % 600 != 0: return
+	
 	if !get_tree(): return
 	if !player:
 		player = get_tree().get_first_node_in_group("player")
