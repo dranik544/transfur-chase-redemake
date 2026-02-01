@@ -231,7 +231,7 @@ locale/translations=PackedStringArray("res://localization/achievements.en.transl
 
 [physics]
 
-common/physics_ticks_per_second=45
+common/physics_ticks_per_second=30
 3d/physics_engine="Jolt Physics"
 
 [rendering]

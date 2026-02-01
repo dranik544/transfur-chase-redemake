@@ -55,11 +55,9 @@ var slimelerpvar: Vector2 = Vector2.ZERO
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
-var campos: Vector3
-var camrot: Vector3
 var iscamshaking: bool = false
-var camposoffset: Vector3 = Vector3.ZERO
-var camrotoffset: Vector3 = Vector3.ZERO
+var camshakeoffset: Vector2 = Vector2.ZERO
+var camshakerotation: float = 0.0
 var ctrl: bool = false
 var space: bool = false
 
@@ -121,9 +119,6 @@ func _ready():
 	#$mobilecontrols/ctrlbtn.pressed.connect(ctrlmobile)
 	#$mobilecontrols/spacebtn.pressed.connect(spacemobile)
 	#$mobilecontrols/rcmbtn.pressed.connect(rcmmobile)
-	
-	campos = cam.position
-	camrot = cam.rotation
 	
 	if !Global.ismobile:
 		$mobilecontrols.visible = false
@@ -244,34 +239,29 @@ func updateslime(delta):
 	
 	$gui/slime.scale = lerp($gui/slime.scale, slimelerpvar, 5 * delta)
 
-func updateshake(delta):
-	if Global.settings["shakescreen"]:
-		campos = cam.position
-		camrot = cam.rotation
-		if iscamshaking and camshakedur > 0:
-			camposoffset = Vector3(
-				randf_range(-camshake, camshake) * 0.002,
-				randf_range(-camshake, camshake) * 0.002,
-				randf_range(-camshake, camshake) * 0.001
-			)
-			camrotoffset = Vector3(
-				randf_range(-camshake, camshake) * 0.0003,
-				randf_range(-camshake, camshake) * 0.0003,
-				randf_range(-camshake, camshake) * 0.0002
-			)
-			
-			cam.position = campos + camposoffset
-			cam.rotation = camrot + camrotoffset
-			
-			camshakedur -= delta
-			camshake = lerp(camshake, 0.0, delta * 3.0)
-			
-			if camshakedur <= 0:
-				iscamshaking = false
-				camshake = 0.0
-		else:
-			cam.position = lerp(cam.position, campos, 10 * delta)
-			cam.rotation = lerp(cam.rotation, camrot, 10 * delta)
+func updateshake(delta: float):
+	if Global.settings["shakescreen"] and iscamshaking and camshakedur > 0:
+		camshakeoffset = Vector2(
+			randf_range(-camshake, camshake),
+			randf_range(-camshake, camshake)
+		)
+		camshakerotation = randf_range(-camshake, camshake) * 0.001
+		$gui.position = camshakeoffset
+		$gui.rotation = camshakerotation
+		
+		camshake = lerp(camshake, 0.0, delta * 3.0)
+		camshakedur -= delta
+		
+		if camshakedur <= 0:
+			iscamshaking = false
+			camshake = 0.0
+			camshakedur = 0.0
+	else:
+		if camshakeoffset != Vector2.ZERO:
+			camshakeoffset = camshakeoffset.lerp(Vector2.ZERO, delta * 10.0)
+			camshakerotation = lerp(camshakerotation, 0.0, delta * 10.0)
+			$gui.position = camshakeoffset
+			$gui.rotation = camshakerotation
 
 func updatehealth(delta):
 	#if health <= 0.0:

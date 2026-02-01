@@ -108,7 +108,7 @@ func _input(event):
 	elif Input.is_action_just_pressed("F2"):
 		rotate_y(-deg_to_rad(45/2))
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var mp = get_viewport().get_mouse_position()
 	var tr = 900
 	var sz = 1600
@@ -119,8 +119,12 @@ func _physics_process(delta: float) -> void:
 	dinamicbtn(delta, $CanvasLayer/buttons/stats, $"room1 1/Sprite3D", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/skins, $"room1 1/Sprite3D2", 25, tr, sz, mp)
 	dinamicbtn(delta, $CanvasLayer/buttons/waaa, $"room1 1/Sprite3D3", 25, tr / 8, sz / 8, mp)
-	if $"room1 1/elka/gift".visible:
-		dinamicbtn(delta, $"CanvasLayer/buttons/muha gift", $"room1 1/elka/gift", 25, tr / 8, sz / 8, mp)
+	
+	if $"room1 1/elka/gift" != null:
+		if $"room1 1/elka/gift".visible:
+			dinamicbtn(delta, $"CanvasLayer/buttons/muha gift", $"room1 1/elka/gift", 25, tr / 8, sz / 8, mp)
+		else:
+			$"CanvasLayer/buttons/muha gift".visible = false
 	else:
 		$"CanvasLayer/buttons/muha gift".visible = false
 	
@@ -182,8 +186,9 @@ func btnwaaapressed():
 func btnmuhapressed():
 	Global.listskins[7]["unlocked"] = true
 	SavingManager.save("skinlist", Global.listskins)
-	if $"room1 1/elka/gift".visible:
-		$"room1 1/elka/gift".visible = false
+	if $"room1 1/elka/gift" != null:
+		if $"room1 1/elka/gift".visible:
+			$"room1 1/elka/gift".visible = false
 	
 	$notification.display(tr("NOTIFICATION_NEW_SKIN_NAME"),
 	tr("NOTIFICATION_NEW_SKIN_PEAR_MUHA_DESC"),
