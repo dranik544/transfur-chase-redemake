@@ -302,6 +302,7 @@ func updatehealth(delta):
 		slimelerpvar = Vector2(2.5, 2.5)
 	if health <= 0.0:
 		if get_tree(): #if not is_queued_for_deletion() and get_tree():
+			Global.lastworld = get_tree().current_scene.get_scene_file_path()
 			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
 	lasthealth = health
@@ -631,9 +632,13 @@ func minushealth(num, color: Color = Color.WHITE):
 			randf_range(50, 200),
 			randf_range(50, 200)
 		)
-		slimee.position = Vector2(
+		var neededpos = Vector2(
 			randf_range(0, ws.x),
 			randf_range(0, ws.y)
+		)
+		slimee.position = Vector2(
+			neededpos.x + randf_range(-150, 150),
+			neededpos.y + randf_range(-150, 150),
 		)
 		slimee.rotation = randf_range(-90, 90)
 		
@@ -643,16 +648,19 @@ func minushealth(num, color: Color = Color.WHITE):
 		
 		$gui.add_child(slimee)
 		
+		var tweenpos = create_tween()
+		tweenpos.set_ease(Tween.EASE_OUT)
+		tweenpos.set_trans(Tween.TRANS_EXPO)
+		tweenpos.tween_property(slimee, "position", neededpos, randf_range(0.2, 0.5))
+		
 		var tween = create_tween()
-		var tweentime = randf_range(20, 50)
+		var tweentime = randf_range(15, 50)
 		
 		tween.set_parallel(true)
 		tween.tween_property(slimee, "modulate:a", 0.0, tweentime)
-		tween.tween_property(slimee, "scale", Vector2(0.1, 0.1), tweentime)
+		tween.tween_property(slimee, "scale", Vector2(0.0, 0.0), tweentime)
 		
-		tween.finished.connect(func():
-			slimee.queue_free()
-		)
+		tween.finished.connect(func(): slimee.queue_free())
 
 func _on_timer_timeout() -> void:
 	isslide = false

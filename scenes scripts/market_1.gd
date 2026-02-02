@@ -30,11 +30,14 @@ func bodyentered(body):
 		playerin = true
 		Engine.time_scale = 0.05
 		var tween = create_tween()
+		
 		tween.set_ignore_time_scale(true)
 		tween.set_parallel(true)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_BACK)
 		
-		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.35)
-		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_tree().root.content_scale_size.x - 270, 0.25)
+		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.5)
+		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_tree().root.content_scale_size.x - 270, 0.5)
 		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
 		$CanvasLayer/NinePatchRect/hbox/reroll.text = str(Global.rerollmarketprice)
 
@@ -52,10 +55,14 @@ func exit():
 	playerin = false
 	Engine.time_scale = 1.0
 	var tween = create_tween()
+	
 	tween.set_ignore_time_scale(true)
 	tween.set_parallel(true)
-	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.15)
-	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_tree().root.content_scale_size.x, 0.25)
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_BACK)
+	
+	tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 0.0, 0.4)
+	tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_tree().root.content_scale_size.x, 0.4)
 
 func reroll():
 	if Global.money >= Global.rerollmarketprice:
