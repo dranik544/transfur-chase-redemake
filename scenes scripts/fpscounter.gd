@@ -16,4 +16,4 @@ func _process(delta: float) -> void:
 	elif fps < maxfps / 2: fpscolor = "#ffed8a"
 	elif fps < maxfps / 4: fpscolor = "#ff8787"
 	
-	$label.text = "\n     Current FPS: " + "[color=" + str(fpscolor) + "]" + str(fps) + " / " + str(maxfps)
+	$label.text = "\n     Current FPS: " + "[color=" + str(fpscolor) + "]" + str(fps) + "[color=]" + " / " + str(maxfps)

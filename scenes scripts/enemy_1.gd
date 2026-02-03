@@ -238,8 +238,7 @@ func punching(damage: float):
 	
 	curhealth -= damage
 	
-	if curhealth <= 0:
-		stunn()
+	if curhealth <= 0: stunn()
 	
 	var timer = 0.0
 	while timer < 0.3:
@@ -261,10 +260,26 @@ func stunn():
 	curstate = STATE.STUNNED
 	remove_from_group("unsleep enemy")
 	$Sprite3D.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-	$Sprite3D.rotation.x = deg_to_rad(-90.0)
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property($Sprite3D, "rotation:y", $Sprite3D.rotation.y + deg_to_rad(randf_range(90, 180)), 0.7)
+	
+	await tween.finished
+	tween = create_tween()
+	
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.set_parallel(true)
+	tween.tween_property($Sprite3D, "rotation:x", deg_to_rad(-90.0), 0.8)
+	#tween.tween_property($Sprite3D, "rotation:y", deg_to_rad(randf_range(-180, 180)), 1.3)
+	tween.tween_property($Sprite3D, "position:y", randf_range(-0.9, -1.0), 0.7)
+	
+	#$Sprite3D.rotation.x = deg_to_rad(-90.0)
 	$Sprite3D.rotation.y = deg_to_rad(randf_range(-180, 180))
 	$Sprite3D.stop()
-	$Sprite3D.position.y = randf_range(-0.6, -0.7)
+	#$Sprite3D.position.y = randf_range(-0.6, -0.7)
 
 func areaplayerentered(body):
 	if body.is_in_group("player"):

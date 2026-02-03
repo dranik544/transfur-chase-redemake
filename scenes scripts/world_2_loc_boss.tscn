@@ -1,17 +1,10 @@
-[gd_scene load_steps=76 format=3 uid="uid://bbk73bjynlxn0"]
+[gd_scene load_steps=69 format=3 uid="uid://bbk73bjynlxn0"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_47n5y"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_02t0b"]
-[ext_resource type="PackedScene" uid="uid://bk16lsmt07me8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_2.tscn" id="2_y3rk5"]
 [ext_resource type="Script" uid="uid://losobi68l255" path="res://scenes scripts/WorldWnvironmentBEAUTYSETTINGS.tres.gd" id="3_dlhw1"]
-[ext_resource type="PackedScene" uid="uid://bitxsnpbxemel" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_3.tscn" id="3_tjhvq"]
-[ext_resource type="PackedScene" uid="uid://dtenf0fgrk1p2" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_2.tscn" id="4_g5e1l"]
-[ext_resource type="PackedScene" uid="uid://dcqtr0lcfrt5a" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_4.tscn" id="5_2d00d"]
 [ext_resource type="PackedScene" uid="uid://dut80minejjcs" path="res://scenes scripts/player.tscn" id="5_oe8ym"]
-[ext_resource type="PackedScene" uid="uid://c6uon4skfhsp8" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_6.tscn" id="6_cubf3"]
 [ext_resource type="Texture2D" uid="uid://blkhjsj8v2lal" path="res://sprites/bg2.png" id="6_x4kdt"]
-[ext_resource type="PackedScene" uid="uid://ces71ldf1x1w1" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_7.tscn" id="7_fch41"]
-[ext_resource type="PackedScene" uid="uid://bgx7rl1b8tsud" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_8.tscn" id="8_r0o74"]
 [ext_resource type="Texture2D" uid="uid://csdtwwjdhqjs8" path="res://sprites/icon1.png" id="10_okxji"]
 [ext_resource type="Script" uid="uid://i0phcciccafo" path="res://scenes scripts/directional_light_3d.gd" id="11_2w8rc"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="11_y3rk5"]
@@ -403,17 +396,7 @@ _data = {
 
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_47n5y")
-rooms = {
-1: ExtResource("2_y3rk5"),
-2: ExtResource("3_tjhvq"),
-3: ExtResource("4_g5e1l"),
-4: ExtResource("5_2d00d"),
-5: ExtResource("6_cubf3"),
-6: ExtResource("7_fch41"),
-7: ExtResource("8_r0o74")
-}
 loadrooms = 0
-lastroomscene = null
 isboss2loc = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

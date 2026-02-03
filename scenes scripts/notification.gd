@@ -36,6 +36,7 @@ func shownext():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.set_ignore_time_scale(true)
 	tween.tween_property($notification, "position:x", 10, 1.0)
 	await tween.finished
 	
@@ -44,6 +45,7 @@ func shownext():
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ignore_time_scale(true)
 	tween.tween_property($notification, "position:x", -$notification.size.x - 10, 0.6)
 	await tween.finished
 	

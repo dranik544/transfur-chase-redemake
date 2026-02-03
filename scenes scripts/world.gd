@@ -1,19 +1,19 @@
 extends Node3D
 
 
-@export var rooms = {
-	1: preload("res://scenes scripts/rooms/sroom_1_1.tscn"),
-	2: preload("res://scenes scripts/rooms/sroom_1_2.tscn"),
-	3: preload("res://scenes scripts/rooms/sroom_1_3.tscn"),
-	4: preload("res://scenes scripts/rooms/sroom_2_1.tscn"),
-	5: preload("res://scenes scripts/rooms/sroom_2_2.tscn"),
-	6: preload("res://scenes scripts/rooms/sroom_1_4.tscn"),
-	7: preload("res://scenes scripts/rooms/sroom_2_3.tscn"),
-	8: preload("res://scenes scripts/rooms/sroom_2_4.tscn"),
-	9: preload("res://scenes scripts/rooms/sroom_1_5.tscn"),
-	10: preload("res://scenes scripts/rooms/sroom_2_5.tscn"),
-	11: preload("res://scenes scripts/rooms/sroom_2_6.tscn"),
-}
+@export var rooms = [
+	preload("res://scenes scripts/rooms/sroom_1_1.tscn"),
+	preload("res://scenes scripts/rooms/sroom_1_2.tscn"),
+	preload("res://scenes scripts/rooms/sroom_1_3.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_1.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_2.tscn"),
+	preload("res://scenes scripts/rooms/sroom_1_4.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_3.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_4.tscn"),
+	preload("res://scenes scripts/rooms/sroom_1_5.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_5.tscn"),
+	preload("res://scenes scripts/rooms/sroom_2_6.tscn")
+]
 @export var loadrooms: int = 45
 var lastroom: int = 1
 @export var lastroomscene: PackedScene = preload("res://scenes scripts/rooms/endroom_1.tscn")
@@ -90,13 +90,13 @@ func enter() -> void:
 			return
 
 func spawnroom(randomroom: bool = true, scenesroom: PackedScene = null):
-	var numroom: int = randi_range(1, rooms.size())
+	var numroom: int = randi_range(0, rooms.size() - 1)
 	var sceneroom: PackedScene
 	var roompos: Vector3 = Vector3.ZERO
 	var doorpos
 	
 	while numroom == lastroom:
-		numroom = randi_range(1, rooms.size())
+		numroom = randi_range(0, rooms.size() - 1)
 	
 	lastroom = numroom
 	sceneroom = rooms.get(numroom)

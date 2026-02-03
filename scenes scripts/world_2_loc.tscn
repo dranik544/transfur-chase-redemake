@@ -106,15 +106,7 @@ func _ready() -> void:
 
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_rdsqj")
-rooms = {
-1: ExtResource("2_tdjod"),
-2: ExtResource("3_66px4"),
-3: ExtResource("4_fti4m"),
-4: ExtResource("5_7lqlk"),
-5: ExtResource("6_8mb1v"),
-6: ExtResource("7_gks0a"),
-7: ExtResource("8_mvru5")
-}
+rooms = [ExtResource("4_fti4m"), ExtResource("2_tdjod"), ExtResource("3_66px4"), ExtResource("5_7lqlk"), ExtResource("6_8mb1v"), ExtResource("7_gks0a"), ExtResource("8_mvru5")]
 loadrooms = 25
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

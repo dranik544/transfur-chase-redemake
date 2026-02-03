@@ -106,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.1, -3.4)
 
 [node name="enemy2" parent="." instance=ExtResource("7_soo4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7, 1.1, -0.8)
-health = 6.0
+health = 1.0
 
 [node name="player" parent="." instance=ExtResource("1_08pho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

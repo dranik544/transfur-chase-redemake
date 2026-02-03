@@ -175,10 +175,10 @@ func updatesizemode(from = settings["sizemode"], frompix = settings["pixelizescr
 		#false: ProjectSettings.set_setting("display/window/stretch/mode", "disabled")
 		#true: ProjectSettings.set_setting("display/window/stretch/mode", "viewport")
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventKey:
-		#if Input.is_action_pressed("CTRL+Q"): get_tree().quit()
-		#if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn")
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if Input.is_action_pressed("CTRL+Q"): get_tree().quit()
+		if Input.is_action_pressed("DOSKA"): get_tree().change_scene_to_file("res://doskapochteniya.tscn")
 		#if Input.is_action_just_pressed("CHEAT MONEY"): money += 999
 		#if Input.is_action_just_pressed("CHEAT HEALTH"): get_tree().get_first_node_in_group("player").health += 99
 		#if Input.is_action_just_pressed("CHEAT DELETE ENEMIES"): for i in get_tree().get_nodes_in_group("enemy"): i.queue_free()
