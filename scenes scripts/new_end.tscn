@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgtsgl35bcky1"]
+
+[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="1_dlj0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1627"]
+size = Vector2(1038, 124)
+
+[sub_resource type="GDScript" id="GDScript_l1627"]
+script/source = "extends Node2D
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		global_position = event.position
+"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l1627"]
+bounce = 0.2
+
+[sub_resource type="GDScript" id="GDScript_dlj0j"]
+script/source = "extends RigidBody2D
+
+@export var distsize: float = 75.0
+var defdistsize: float = 0.0
+var inzone: bool = false
+
+
+func _ready() -> void:
+	defdistsize = distsize
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if Input.is_action_pressed(\"LCM\"):
+			if get_tree().get_node_count_in_group(\"picked items\") == 0:
+				if global_position.distance_to(event.position) < distsize: inzone = true
+				else: inzone = false
+			
+			if inzone:
+				distsize = 999.0
+				
+				global_position = event.position
+				freeze = true
+				add_to_group(\"picked items\")
+		else:
+			remove_from_group(\"picked items\")
+			freeze = false
+			distsize = defdistsize
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlj0j"]
+size = Vector2(126, 107)
+
+[node name="new end" type="Node2D"]
+
+[node name="bg" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = -23.0
+offset_right = 1044.0
+offset_bottom = 284.0
+mouse_filter = 2
+color = Color(0.721859, 0.721859, 0.721859, 1)
+
+[node name="table" type="ColorRect" parent="."]
+offset_left = -25.0
+offset_top = 246.0
+offset_right = 1044.0
+offset_bottom = 505.0
+mouse_filter = 2
+
+[node name="table2" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = 244.0
+offset_right = 1044.0
+offset_bottom = 250.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="tablecoll" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tablecoll"]
+position = Vector2(509, 430)
+shape = SubResource("RectangleShape2D_l1627")
+
+[node name="plcam" type="Node2D" parent="."]
+script = SubResource("GDScript_l1627")
+
+[node name="cam" type="Camera2D" parent="plcam"]
+limit_left = 0
+limit_top = 0
+limit_right = 1020
+limit_bottom = 480
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.7
+drag_top_margin = 0.7
+drag_right_margin = 0.7
+drag_bottom_margin = 0.7
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="hohol1" type="RigidBody2D" parent="."]
+position = Vector2(92, 242)
+physics_material_override = SubResource("PhysicsMaterial_l1627")
+script = SubResource("GDScript_dlj0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="hohol1"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dlj0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hohol1"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_dlj0j")
+
+[node name="hohol2" type="RigidBody2D" parent="."]
+position = Vector2(250, 241)
+physics_material_override = SubResource("PhysicsMaterial_l1627")
+script = SubResource("GDScript_dlj0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="hohol2"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dlj0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hohol2"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_dlj0j")
+
+[node name="hohol3" type="RigidBody2D" parent="."]
+position = Vector2(411, 239)
+physics_material_override = SubResource("PhysicsMaterial_l1627")
+script = SubResource("GDScript_dlj0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="hohol3"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dlj0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hohol3"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_dlj0j")
+
+[node name="hohol4" type="RigidBody2D" parent="."]
+position = Vector2(173, 81)
+physics_material_override = SubResource("PhysicsMaterial_l1627")
+script = SubResource("GDScript_dlj0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="hohol4"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dlj0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hohol4"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_dlj0j")
