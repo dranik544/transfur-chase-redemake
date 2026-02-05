@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgtsgl35bcky1"]
+[gd_scene load_steps=12 format=3 uid="uid://bgtsgl35bcky1"]
 
 [ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="1_dlj0j"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="2_4xnyi"]
+[ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="3_l4ieh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1627"]
 size = Vector2(1038, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4ieh"]
+size = Vector2(25, 492)
 
 [sub_resource type="GDScript" id="GDScript_l1627"]
 script/source = "extends Node2D
@@ -23,6 +28,11 @@ script/source = "extends RigidBody2D
 @export var distsize: float = 75.0
 var defdistsize: float = 0.0
 var inzone: bool = false
+@export var info = [
+	\"name\",
+	\"create box\\ncreate cool bro\\ncreatewhat\",
+	'\"fuck niggers\"'
+]
 
 
 func _ready() -> void:
@@ -31,9 +41,12 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.is_action_pressed(\"LCM\"):
-			if get_tree().get_node_count_in_group(\"picked items\") == 0:
+			$\"../CanvasLayer/vboxc\".updatelabel(false, info, global_position)
+			if get_tree().get_node_count_in_group(\"picked items\") <= 1:
 				if global_position.distance_to(event.position) < distsize: inzone = true
 				else: inzone = false
+			else:
+				inzone = false
 			
 			if inzone:
 				distsize = 999.0
@@ -45,10 +58,63 @@ func _unhandled_input(event: InputEvent) -> void:
 			remove_from_group(\"picked items\")
 			freeze = false
 			distsize = defdistsize
+			if global_position.distance_to(event.position) < distsize:
+				$\"../CanvasLayer/vboxc\".updatelabel(true, info, global_position)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlj0j"]
 size = Vector2(126, 107)
+
+[sub_resource type="GDScript" id="GDScript_l4ieh"]
+script/source = "extends VBoxContainer
+
+var inprocess: bool = false
+
+
+func _ready() -> void: visible = false
+
+func updatelabel(toggle: bool, info, pos: Vector2):
+	if inprocess: return
+	inprocess = true
+	
+	if info != null:
+		$label1.size = Vector2.ZERO
+		$label2.size = Vector2.ZERO
+		$label3.size = Vector2.ZERO
+		
+		$label1.text = str(info[0])
+		$label2.text = str(info[1])
+		$label3.text = str(info[2])
+	if pos != null: global_position = pos
+	
+	if toggle:
+		visible = true
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.tween_property(self, \"scale\", Vector2(1.0, 1.0), 0.75)
+		#await tween.finished
+	else:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.tween_property(self, \"scale\", Vector2.ZERO, 0.75)
+		await tween.finished
+		visible = false
+	
+	inprocess = false
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa10m"]
+texture = ExtResource("3_l4ieh")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="new end" type="Node2D"]
 
@@ -81,6 +147,14 @@ color = Color(0, 0, 0, 1)
 position = Vector2(509, 430)
 shape = SubResource("RectangleShape2D_l1627")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="tablecoll"]
+position = Vector2(-12.5, 129)
+shape = SubResource("RectangleShape2D_l4ieh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="tablecoll"]
+position = Vector2(1033, 131)
+shape = SubResource("RectangleShape2D_l4ieh")
+
 [node name="plcam" type="Node2D" parent="."]
 script = SubResource("GDScript_l1627")
 
@@ -104,6 +178,7 @@ editor_draw_drag_margin = true
 position = Vector2(92, 242)
 physics_material_override = SubResource("PhysicsMaterial_l1627")
 script = SubResource("GDScript_dlj0j")
+info = ["Илья", "сделал хуйню\\nи залупу", "\"fusdfgsdfgs\""]
 
 [node name="Sprite2D" type="Sprite2D" parent="hohol1"]
 scale = Vector2(0.4, 0.4)
@@ -130,6 +205,9 @@ shape = SubResource("RectangleShape2D_dlj0j")
 position = Vector2(411, 239)
 physics_material_override = SubResource("PhysicsMaterial_l1627")
 script = SubResource("GDScript_dlj0j")
+info = ["стиляга228", "create box
+create cool bro
+createwhat", "\"круто\""]
 
 [node name="Sprite2D" type="Sprite2D" parent="hohol3"]
 scale = Vector2(0.4, 0.4)
@@ -143,6 +221,7 @@ shape = SubResource("RectangleShape2D_dlj0j")
 position = Vector2(173, 81)
 physics_material_override = SubResource("PhysicsMaterial_l1627")
 script = SubResource("GDScript_dlj0j")
+info = ["Эпштейн", "долбаёбил", "\"люблю детишек\""]
 
 [node name="Sprite2D" type="Sprite2D" parent="hohol4"]
 scale = Vector2(0.4, 0.4)
@@ -151,3 +230,48 @@ texture = ExtResource("1_dlj0j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hohol4"]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_dlj0j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="vboxc" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_right = 76.0
+offset_bottom = 116.0
+grow_horizontal = 2
+script = SubResource("GDScript_l4ieh")
+
+[node name="label1" type="Label" parent="CanvasLayer/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_4xnyi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa10m")
+text = "name_author"
+horizontal_alignment = 1
+
+[node name="label2" type="Label" parent="CanvasLayer/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_4xnyi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa10m")
+text = "whathedo"
+horizontal_alignment = 1
+
+[node name="label3" type="Label" parent="CanvasLayer/vboxc"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_4xnyi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa10m")
+text = ".,.,.,.,.,.,.,.,.,.,."
+horizontal_alignment = 1
