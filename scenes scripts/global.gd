@@ -19,8 +19,8 @@ var generalstats = [
 
 var iswinter: bool = false
 
-var money: int = 0
-var rerollmarketprice: int = 15
+var money: int = 999
+var rerollmarketprice: int = 10
 var lastworld: String
 var ismobile: bool
 

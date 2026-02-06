@@ -22,6 +22,8 @@ var isfemale = false
 var playerinarea = false
 var cantarget = true
 var player
+var time: float = 0.0
+var defscale: Vector3 = Vector3.ZERO
 
 @export var health: float = 5.0
 var curhealth: float = 5.0
@@ -74,8 +76,13 @@ func _ready():
 			(randspeed + randdamage + randhealth) / 2
 		)
 	curhealth = health
+	defscale = $Sprite3D.scale
 	
 	player = get_tree().get_first_node_in_group("player")
+
+func _process(delta: float) -> void:
+	time += delta
+	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.5
 
 func _physics_process(delta):
 	if curstate == STATE.SLEEP and !playerinarea and Engine.get_physics_frames() % 600 != 0: return
@@ -280,6 +287,9 @@ func stunn():
 	$Sprite3D.rotation.y = deg_to_rad(randf_range(-180, 180))
 	$Sprite3D.stop()
 	#$Sprite3D.position.y = randf_range(-0.6, -0.7)
+	
+	await get_tree().create_timer(15.0).timeout
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func areaplayerentered(body):
 	if body.is_in_group("player"):

@@ -18,7 +18,6 @@ extends Node3D
 var lastroom: int = 1
 @export var lastroomscene: PackedScene = preload("res://scenes scripts/rooms/endroom_1.tscn")
 var grooms = []
-@export var isboss2loc: bool = false
 
 
 func _ready():
@@ -27,7 +26,7 @@ func _ready():
 	
 	grooms.push_back(get_node("startroom1"))
 	grooms.push_back(get_node("startroom4"))
-	if isboss2loc: grooms.push_back(get_node("bossroom1"))
+	if get_node("bossroom1") != null: grooms.push_back(get_node("bossroom1"))
 	
 	var player
 	if get_tree(): player = get_tree().get_first_node_in_group("player")

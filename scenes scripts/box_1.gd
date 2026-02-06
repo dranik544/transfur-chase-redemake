@@ -34,6 +34,11 @@ func _ready() -> void:
 		var random = randi_range(0, greencrystalsprites.size() - 1)
 		$Sprite3D.texture = greencrystalsprites[random]
 		$Sprite3D2.texture = greencrystalsprites[random]
+	
+	await get_tree().create_timer(7.5).timeout
+	process_mode = Node.PROCESS_MODE_DISABLED
+	sleeping = true
+	set_physics_process(false)
 
 #func _process(delta: float) -> void:
 	#if !player:
@@ -46,6 +51,9 @@ func _ready() -> void:
 			#set_physics_process(true)
 
 func broke():
+	process_mode = Node.PROCESS_MODE_INHERIT
+	sleeping = false
+	set_physics_process(true)
 	var effect: Node3D = effectscene.instantiate()
 	get_parent().add_child(effect)
 	effect.global_position = global_position

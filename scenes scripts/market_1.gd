@@ -85,10 +85,15 @@ func _on_item_button_pressed(button: Button):
 	if Global.money >= button.get_meta("itemdata")["price"]:
 		minusmoney(button.get_meta("itemdata")["price"])
 		
+		var player = get_tree().get_first_node_in_group("player")
 		var item: RigidBody3D = button.get_meta("itemdata")["scene"].instantiate()
 		get_parent().add_child(item)
-		item.global_position = global_position
-		item.pick(get_tree().get_first_node_in_group("player"), false)
+		item.global_position = player.global_position + Vector3(randf_range(-0.6, 0.6), 2, randf_range(-0.6, 0.6))
+		if !player.isinv:
+			item.pick(player, false)
+		
+		$CanvasLayer/NinePatchRect/pursacheeffect.position = button.position + button.size / 2
+		$CanvasLayer/NinePatchRect/pursacheeffect.restart()
 		
 		button.visible = false
 		button.disabled = true

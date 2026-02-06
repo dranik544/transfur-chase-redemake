@@ -1,8 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgtsgl35bcky1"]
+[gd_scene load_steps=13 format=3 uid="uid://bgtsgl35bcky1"]
 
 [ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="1_dlj0j"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="2_4xnyi"]
 [ext_resource type="Texture2D" uid="uid://vgq3k3x1b2y1" path="res://sprites/inv1.png" id="3_l4ieh"]
+
+[sub_resource type="GDScript" id="GDScript_qa10m"]
+script/source = "extends Node2D
+
+
+func _process(delta: float) -> void:
+	if !get_tree(): return
+	
+	if get_tree().get_nodes_in_group(\"picked items\").size() > 0:
+		if get_tree().get_first_node_in_group(\"picked items\") != null:
+			var iteminfo = get_tree().get_first_node_in_group(\"picked items\").info
+			var itempos = get_tree().get_first_node_in_group(\"picked items\").global_position
+			$\"CanvasLayer/vboxc\".updatelabel(false, iteminfo, itempos)
+	else:
+		for i in get_tree().get_nodes_in_group(\"items\"):
+			if i.inzone: $\"CanvasLayer/vboxc\".updatelabel(true, i.info, i.global_position, delta)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1627"]
 size = Vector2(1038, 124)
@@ -37,16 +54,17 @@ var inzone: bool = false
 
 func _ready() -> void:
 	defdistsize = distsize
+	add_to_group(\"items\")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
+		if global_position.distance_to(event.position) < distsize: inzone = true
+		else: inzone = false
+		
 		if Input.is_action_pressed(\"LCM\"):
-			$\"../CanvasLayer/vboxc\".updatelabel(false, info, global_position)
-			if get_tree().get_node_count_in_group(\"picked items\") <= 1:
-				if global_position.distance_to(event.position) < distsize: inzone = true
-				else: inzone = false
-			else:
-				inzone = false
+			
+			#$\"../CanvasLayer/vboxc\".updatelabel(false, info, global_position)
+			if get_tree().get_node_count_in_group(\"picked items\") > 1: inzone = false
 			
 			if inzone:
 				distsize = 999.0
@@ -58,8 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			remove_from_group(\"picked items\")
 			freeze = false
 			distsize = defdistsize
-			if global_position.distance_to(event.position) < distsize:
-				$\"../CanvasLayer/vboxc\".updatelabel(true, info, global_position)
+			#if global_position.distance_to(event.position) < distsize:
+				#$\"../CanvasLayer/vboxc\".updatelabel(true, info, global_position)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlj0j"]
@@ -73,7 +91,7 @@ var inprocess: bool = false
 
 func _ready() -> void: visible = false
 
-func updatelabel(toggle: bool, info, pos: Vector2):
+func updatelabel(toggle: bool, info, pos: Vector2, delta = null):
 	if inprocess: return
 	inprocess = true
 	
@@ -85,7 +103,11 @@ func updatelabel(toggle: bool, info, pos: Vector2):
 		$label1.text = str(info[0])
 		$label2.text = str(info[1])
 		$label3.text = str(info[2])
-	if pos != null: global_position = pos
+	if pos != null:
+		if delta != null:
+			global_position = lerp(global_position, pos, 15 * delta)
+		else:
+			global_position = pos
 	
 	if toggle:
 		visible = true
@@ -117,6 +139,7 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [node name="new end" type="Node2D"]
+script = SubResource("GDScript_qa10m")
 
 [node name="bg" type="ColorRect" parent="."]
 offset_left = -25.0

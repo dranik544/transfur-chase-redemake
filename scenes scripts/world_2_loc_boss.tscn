@@ -397,7 +397,7 @@ _data = {
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_47n5y")
 loadrooms = 0
-isboss2loc = true
+lastroomscene = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_02t0b")

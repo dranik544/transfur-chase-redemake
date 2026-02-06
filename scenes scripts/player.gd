@@ -52,6 +52,8 @@ var fingermobiledown: bool = false
 var fingermobiledowntime: float = 0.0
 var achievement10length: float = 0.0
 var slimelerpvar: Vector2 = Vector2.ZERO
+var time: float = 0.0
+var defscale: Vector3 = Vector3.ZERO
 
 var camshake: float = 0.0
 var camshakedur: float = 0.0
@@ -110,6 +112,7 @@ func _ready():
 	
 	updateskin()
 	updatehints()
+	defscale = $Sprite3D.scale
 	
 	lasthealth = health
 	
@@ -536,6 +539,8 @@ func _process(delta: float) -> void:
 	driftcam = lerp(driftcam, 0.0, 8 * delta)
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
 	
+	time += delta
+	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.5
 	
 	updateslime(delta)
 	updatehealth(delta)

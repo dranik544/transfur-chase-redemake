@@ -14,7 +14,7 @@ func _ready():
 	baseposlabel.x += get_tree().root.content_scale_size.x / 5
 	
 	Global.money = 0
-	Global.rerollmarketprice = 15
+	Global.rerollmarketprice = 10
 	
 	if !Global.ismobile:
 		$r.visible = false
