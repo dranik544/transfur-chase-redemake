@@ -78,7 +78,8 @@ var settings = {
 	"pixelizescreen": false,
 	"enableshadows": true,
 	"fpscounter": false,
-	"screenlatex": 8
+	"screenlatex": 8,
+	"vsync": true,
 }
 
 signal navibake()
@@ -155,7 +156,7 @@ func updatewindowmode():
 		0: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		1: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func updatesizemode(from = settings["sizemode"], frompix = settings["pixelizescreen"]):
+func updatesizemode(from = settings["sizemode"], frompix = settings["pixelizescreen"], fromvsync = settings["vsync"]):
 	match from:
 		0:
 			get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
@@ -170,6 +171,9 @@ func updatesizemode(from = settings["sizemode"], frompix = settings["pixelizescr
 			else: get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 			get_tree().root.content_scale_size = Vector2i(850, 480)
 			get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	
+	if fromvsync: DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else: DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	
 	#match frompix:
 		#false: ProjectSettings.set_setting("display/window/stretch/mode", "disabled")

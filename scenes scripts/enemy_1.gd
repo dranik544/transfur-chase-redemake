@@ -288,7 +288,7 @@ func stunn():
 	$Sprite3D.stop()
 	#$Sprite3D.position.y = randf_range(-0.6, -0.7)
 	
-	await get_tree().create_timer(15.0).timeout
+	await get_tree().create_timer(12.5).timeout
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func areaplayerentered(body):

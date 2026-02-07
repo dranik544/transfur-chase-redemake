@@ -40,3 +40,5 @@ texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_28iu3")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]

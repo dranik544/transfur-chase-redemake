@@ -89,10 +89,6 @@ projection = 1
 size = 13.0
 far = 30.0
 
-[node name="RayCast3D" type="RayCast3D" parent="center camera/cam"]
-transform = Transform3D(1, 0, 0, 0, -8.9407e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)
-target_position = Vector3(0, -11, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mhidd")
 

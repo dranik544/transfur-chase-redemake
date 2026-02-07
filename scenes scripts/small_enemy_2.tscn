@@ -154,3 +154,5 @@ shaded = true
 alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("6_3dlo2")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]

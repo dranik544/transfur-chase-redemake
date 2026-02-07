@@ -39,6 +39,7 @@ func _ready() -> void:
 	$scc/vboxc/fpscounter.button_pressed = Global.settings["fpscounter"]
 	$scc/vboxc/screenlatex.value = Global.settings["screenlatex"]
 	$scc/vboxc/screenlatextext.text = tr("SETTINGS_SCREEN_LATEX").format({"count": int($scc/vboxc/screenlatex.value)})
+	$scc/vboxc/vsync.button_pressed = Global.settings["vsync"]
 
 func updatesettings():
 	Global.settings["soundvolume"] = $scc/vboxc/soundslider.value
@@ -64,6 +65,7 @@ func updatesettings():
 	Global.settings["enableshadows"] = $scc/vboxc/enableshadows.button_pressed
 	Global.settings["fpscounter"] = $scc/vboxc/fpscounter.button_pressed
 	Global.settings["screenlatex"] = $scc/vboxc/screenlatex.value
+	Global.settings["vsync"] = $scc/vboxc/vsync.button_pressed
 	
 	
 	Global.updatesoundandmusic.emit()

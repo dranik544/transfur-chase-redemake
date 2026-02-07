@@ -45,7 +45,7 @@ func enemy():
 	obj.set_physics_process(false)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_trans(Tween.TRANS_SPRING)
 	obj.global_position = global_position
 	tween.tween_property(obj, "global_position:y", 0.8, 1.0)
 	await tween.finished
@@ -62,7 +62,7 @@ func smallenemy():
 	obj.set_physics_process(false)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_trans(Tween.TRANS_SPRING)
 	obj.global_position = global_position - Vector3(0, 1.0, 0)
 	tween.tween_property(obj, "global_position:y", 0.1, 1.0)
 	await tween.finished
@@ -77,7 +77,7 @@ func item():
 	get_parent().add_child(obj)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_trans(Tween.TRANS_SPRING)
 	obj.global_position = global_position
 	tween.tween_property(obj, "global_position:y", 0.4, 1.0)
 	#item.global_position = global_position + Vector3(0, 0.4, 0)
