@@ -129,50 +129,50 @@ func _physics_process(delta):
 			if $Sprite3D.sprite_frames.has_animation(runanim):
 				$Sprite3D.play(runanim)
 			
-			if curtype != TYPE.blackdragon:
-				if velocity.length() < 0.7 and playerdist > 1.5:
-					framess += 1
-					framessl += 1
-					$wha.visible = true
-					$NavigationAgent3D.simplify_path = true
-					
-					if curtype != TYPE.mimic:
-						set_collision_layer_value(2, false)
-						set_collision_mask_value(2, false)
-					
-					if playerdist > 5:
-						set_collision_mask_value(1, false)
-					
-					curspeed += 1.0
-					var direction = (global_position - player.global_position).normalized()
-					
-					if framess > timess:
-						velocity += direction * ultratuffpower
-						framess = 0
-						ultratuffpower += 0.75
-						timess = clamp(timess - 2, 20, 80)
-					
-					if framessl > timessl:
-						velocity += direction * ultratuffpower * 2
-						set_collision_mask_value(1, false)
-						await get_tree().create_timer(2.5).timeout
-						framessl = 0
-						framess = 0
-						timess = 55
-						curstate = STATE.SLEEP
-						remove_from_group("unsleep enemy")
-						playerinarea = false
-						if $Sprite3D.sprite_frames.has_animation(sleepanim):
-							$Sprite3D.play(sleepanim)
-						velocity = Vector3.ZERO
-				elif velocity.length() > 0.7:
-					$NavigationAgent3D.simplify_path = false
-					if curtype == TYPE.mimic:
-						set_collision_layer_value(4, true)
-					else:
-						set_collision_layer_value(2, true)
-						set_collision_mask_value(2, true)
-						set_collision_mask_value(1, true)
+			#if curtype != TYPE.blackdragon:
+				#if velocity.length() < 0.7 and playerdist > 1.5:
+					#framess += 1
+					#framessl += 1
+					#$wha.visible = true
+					#$NavigationAgent3D.simplify_path = true
+					#
+					#if curtype != TYPE.mimic:
+						#set_collision_layer_value(2, false)
+						#set_collision_mask_value(2, false)
+					#
+					#if playerdist > 5:
+						#set_collision_mask_value(1, false)
+					#
+					#curspeed += 1.0
+					#var direction = (global_position - player.global_position).normalized()
+					#
+					#if framess > timess:
+						#velocity += direction * ultratuffpower
+						#framess = 0
+						#ultratuffpower += 0.75
+						#timess = clamp(timess - 2, 20, 80)
+					#
+					#if framessl > timessl:
+						#velocity += direction * ultratuffpower * 2
+						#set_collision_mask_value(1, false)
+						#await get_tree().create_timer(2.5).timeout
+						#framessl = 0
+						#framess = 0
+						#timess = 55
+						#curstate = STATE.SLEEP
+						#remove_from_group("unsleep enemy")
+						#playerinarea = false
+						#if $Sprite3D.sprite_frames.has_animation(sleepanim):
+							#$Sprite3D.play(sleepanim)
+						#velocity = Vector3.ZERO
+				#elif velocity.length() > 0.7:
+					#$NavigationAgent3D.simplify_path = false
+					#if curtype == TYPE.mimic:
+						#set_collision_layer_value(4, true)
+					#else:
+						#set_collision_layer_value(2, true)
+						#set_collision_mask_value(2, true)
+						#set_collision_mask_value(1, true)
 				
 				framessl = 0
 				framess = 0
