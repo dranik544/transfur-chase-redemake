@@ -164,6 +164,27 @@ alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("8_u44se")
 
+[node name="Sprite3D7" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(-2.89778, -0.776457, 2.62268e-07, -0.776457, 2.89778, 0, -2.53332e-07, -6.788e-08, -3, -2.53333, 1.5, 4.91333)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_eakbu")
+
+[node name="Sprite3D8" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(0.776457, 2.89778, 2.62268e-07, 2.89778, -0.776457, 0, 6.788e-08, 2.53332e-07, -3, -1.43333, 2.1, 4.91333)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_eakbu")
+
+[node name="Sprite3D9" type="Sprite3D" parent="NavigationRegion3D/StaticBody3D/dec"]
+transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -2.62268e-07, 0, -3, -1.93333, 1.9, 4.89333)
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("8_u44se")
+
 [node name="slime1" parent="NavigationRegion3D" instance=ExtResource("8_hm6ry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
 
