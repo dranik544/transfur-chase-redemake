@@ -3,6 +3,7 @@ extends StaticBody3D
 @export var hp: float = 0
 @export var HitColor: Color
 var canhit: bool = true
+var distenemytoplayer: float = 0.0
 
 @export var neffecttexture: Texture
 @export var nscaletexture: Vector2 = Vector2(0.25, 0.25)
@@ -13,6 +14,10 @@ var canhit: bool = true
 func _ready():
 	$door1.freeze = true
 	$door2.freeze = true
+	$door1.sleeping = true
+	$door2.sleeping = true
+	$door1.set_physics_process(false)
+	$door2.set_physics_process(false)
 	
 	Global.hitdoor.connect(hit)
 	
@@ -54,6 +59,15 @@ func hit(damage: float):
 	var player = get_tree().get_first_node_in_group("player")
 	if canhit:
 		if global_position.distance_to(player.global_position) < 1.8:
+			#distenemytoplayer = 0.0
+			#var enemy = get_tree().get_nodes_in_group("unsleep enemy")
+			#if enemy.size() > 0:
+				#for i in enemy.size(): distenemytoplayer += enemy[i].global_position.distance_to(player.global_position)
+				#distenemytoplayer = distenemytoplayer / enemy.size()
+				#
+				#distenemytoplayer = clamp(distenemytoplayer, 0.0, 999.0)
+				#hp *= distenemytoplayer * 0.1
+			
 			canhit = false
 			hp -= damage
 			$door1/Sprite3D.scale = Vector3(randf_range(6.5, 7.5), randf_range(6.5, 7.5), randf_range(6.5, 7.5))
@@ -67,20 +81,26 @@ func hit(damage: float):
 			if hp <= 0:
 				$effect1.seteffect(neffecttexture, nscaletexture, namounttexture, ncoloreffect)
 				
-				Global.brokendoors += 1
 				$door1.freeze = false
 				$door2.freeze = false
-				
+				$door1.sleeping = false
+				$door2.sleeping = false
+				$door1.set_physics_process(true)
+				$door2.set_physics_process(true)
 				$door1.collision_layer = false
 				$door2.collision_layer = false
+				
+				if get_tree():
+					await get_tree().physics_frame
+					await get_tree().create_timer(0.01).timeout
 				
 				if $hint:
 					$hint.queue_free()
 				if $Area3D:
 					$Area3D.queue_free()
 				
-				var impulsevec1 = Vector3(-3, 0.5, -1)
-				var impulsevec2 = Vector3(-3, 0.5, 1)
+				var impulsevec1 = Vector3(-55, 6.0, -5)
+				var impulsevec2 = Vector3(-55, 6.0, 5)
 				$door1.apply_impulse(impulsevec1, Vector3.ZERO)
 				$door2.apply_impulse(impulsevec2, Vector3.ZERO)
 				$Timer.start()

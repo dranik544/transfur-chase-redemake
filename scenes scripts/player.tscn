@@ -691,11 +691,13 @@ stream = ExtResource("9_h5cnr")
 script = ExtResource("10_nccrc")
 
 [node name="sh" type="GPUParticles3D" parent="."]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
 amount = 4
 lifetime = 0.5
 speed_scale = 0.6
+fixed_fps = 15
 process_material = SubResource("ParticleProcessMaterial_tlnr4")
 draw_pass_1 = SubResource("QuadMesh_hb04b")
 

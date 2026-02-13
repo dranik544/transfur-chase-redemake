@@ -245,10 +245,10 @@ func updateslime(delta):
 func updateshake(delta: float):
 	if Global.settings["shakescreen"] and iscamshaking and camshakedur > 0:
 		camshakeoffset = Vector2(
-			randf_range(-camshake, camshake),
-			randf_range(-camshake, camshake)
+			randf_range(-camshake, camshake) / 2,
+			randf_range(-camshake, camshake) / 2
 		)
-		camshakerotation = randf_range(-camshake, camshake) * 0.001
+		camshakerotation = randf_range(-camshake, camshake) * 0.00175
 		$gui.position = camshakeoffset
 		$gui.rotation = camshakerotation
 		
@@ -346,6 +346,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("CTRL") or ctrl:
 		if itemdata.has("kg"):
 			itemkg = itemdata["kg"]
+		else:
+			itemkg = 0.0
 		
 		if !isslide:
 			$CollisionShape3D2.disabled = false
