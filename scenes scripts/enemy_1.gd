@@ -82,7 +82,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	time += delta
-	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.5
+	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.2
 
 func _physics_process(delta):
 	if curstate == STATE.SLEEP and !playerinarea and Engine.get_physics_frames() % 600 != 0: return

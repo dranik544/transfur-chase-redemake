@@ -542,7 +542,7 @@ func _process(delta: float) -> void:
 	cam.rotation.z = lerp(cam.rotation.z, 0.0, 8 * delta)
 	
 	time += delta
-	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.5
+	$Sprite3D.scale.y = defscale.y + sin(time * 2) * 0.2
 	
 	updateslime(delta)
 	updatehealth(delta)

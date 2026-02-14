@@ -19,6 +19,7 @@ var enemyScene
 
 
 func _ready() -> void:
+	spawnanim()
 	$Sprite3D.texture = slimesprites[randi_range(1, 3)]
 	speed = randf_range(1.75, 3.5)
 	add_to_group("slime")
@@ -47,6 +48,14 @@ func touched():
 	
 	$touched.play()
 
+func spawnanim():
+	var basescale: Vector3 = $Sprite3D.scale
+	$Sprite3D.scale = Vector3.ZERO
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($Sprite3D, "scale", basescale, 0.8)
+
 func _on_timer_timeout() -> void:
 	if canBeEnemy:
 		var tween = create_tween()
@@ -54,7 +63,9 @@ func _on_timer_timeout() -> void:
 		get_parent().add_child(enemy)
 		enemy.exitfromvent()
 		enemy.global_position = global_position + Vector3(0, 0.8, 0)
-		tween.tween_property($Sprite3D, "scale", Vector3(0.0, 0.0, 0.0), randf_range(0.5, 2.0))
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_ELASTIC)
+		tween.tween_property($Sprite3D, "scale", Vector3.ZERO, randf_range(1.5, 2.5))
 		await tween.finished
 		queue_free()
 

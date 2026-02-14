@@ -7,6 +7,8 @@ var enemies
 var worldlight
 var lights
 var music
+var worldenv
+var reenergyworldenv: float = 0.7
 
 func _ready() -> void:
 	if !get_tree(): return
@@ -18,10 +20,9 @@ func updategroups():
 	if !get_tree(): return
 	lights = get_tree().get_nodes_in_group("light")
 	enemies = get_tree().get_nodes_in_group("enemy")
-	if !worldlight:
-		worldlight = get_tree().get_first_node_in_group("worldlight")
-	if !music:
-		music = get_tree().get_first_node_in_group("music")
+	if !worldlight: worldlight = get_tree().get_first_node_in_group("worldlight")
+	if !worldenv: worldenv = get_tree().get_first_node_in_group("worldenv")
+	if !music: music = get_tree().get_first_node_in_group("music")
 
 func timeout():
 	if !get_tree(): return
@@ -39,6 +40,7 @@ func timeout():
 				i.enabletarget(not onoff)
 				if !onoff: i.curstate = 0
 	if worldlight: worldlight.visible = onoff
+	if worldenv: worldenv.environment.ambient_light_energy = reenergyworldenv if onoff else 0.1
 	if music:
 		if onoff: music.volume_db -= 6.5
 		if !onoff: music.volume_db = Global.settings["musicvolume"] / 10

@@ -1,6 +1,8 @@
 extends WorldEnvironment
 
 func _ready() -> void:
+	add_to_group("worldenv")
+	
 	if Global.settings["beauty"]:
 		environment.tonemap_mode = Environment.TONE_MAPPER_AGX
 		environment.tonemap_exposure = 1.0
