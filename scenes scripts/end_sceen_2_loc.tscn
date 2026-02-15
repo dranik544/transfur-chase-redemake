@@ -1,0 +1,284 @@
+[gd_scene load_steps=19 format=3 uid="uid://3ih12a47g8aq"]
+
+[ext_resource type="Texture2D" uid="uid://myxtdyt8ldc3" path="res://sprites/Cat.png" id="1_8ug13"]
+[ext_resource type="Texture2D" uid="uid://do3cay1ox0yer" path="res://sprites/snow2.png" id="1_ufphf"]
+[ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="2_lpaju"]
+[ext_resource type="AudioStream" uid="uid://bgm4ru0tqth7j" path="res://sounds music/music asdasdsadsadas.mp3" id="4_ufphf"]
+
+[sub_resource type="GDScript" id="GDScript_ufphf"]
+script/source = "extends Node2D
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_action_pressed(\"ENTER\"): ScreenTransition.changescene(\"res://scenes scripts/menu.tscn\", Color.WHITE, 2.0)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ug13"]
+size = Vector2(698, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpaju"]
+size = Vector2(224, 544)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul5eg"]
+size = Vector2(633, 20)
+
+[sub_resource type="Curve" id="Curve_ul5eg"]
+_data = [Vector2(0.170659, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ufphf"]
+curve = SubResource("Curve_ul5eg")
+
+[sub_resource type="Gradient" id="Gradient_unxkq"]
+offsets = PackedFloat32Array(0, 0.06, 0.133333, 0.22, 0.293333, 0.393333, 0.486667, 0.606667, 0.673333, 0.746667, 0.84, 0.94)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.278876, 0.571186, 1, 0.786376, 0.678828, 1, 1, 0.217178, 0.846716, 1, 1, 0.525089, 1, 0.761856, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0.627451, 1, 0.552941, 0.223529, 0.627451, 1, 0.333333, 0.619608, 0.305882, 1, 0.658824, 0.282353, 0.545098, 1, 1, 0.700457, 0.751244, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ac1hi"]
+gradient = SubResource("Gradient_unxkq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufphf"]
+emission_shape = 3
+emission_box_extents = Vector3(640, 1, 1)
+spread = 180.0
+gravity = Vector3(0.1, 0.5, 0.1)
+linear_accel_min = -64.0
+linear_accel_max = 64.0
+scale_min = 0.8
+scale_max = 1.2
+scale_over_velocity_max = 64.0
+color_ramp = SubResource("GradientTexture1D_ac1hi")
+alpha_curve = SubResource("CurveTexture_ufphf")
+turbulence_noise_strength = 20.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8ug13"]
+bounce = 5.0
+
+[sub_resource type="GDScript" id="GDScript_ul5eg"]
+resource_name = "meow meow meow MEEEOWOW"
+script/source = "extends RigidBody2D
+
+var time: float = 0.0
+var defscale: Vector2
+var scalesin: float
+
+
+func _ready() -> void:
+	defscale = $Sprite2D.scale
+	scalesin = randf_range(2, 6)
+	
+	var timer = Timer.new()
+	timer.wait_time = randf_range(1.0, 4.0)
+	timer.autostart = true
+	timer.timeout.connect(
+		func():
+			apply_impulse(
+				Vector2(randf_range(-300, 300), randf_range(-300, 300))
+			); timer.wait_time = randf_range(1.0, 4.0)
+	)
+	add_child(timer)
+
+func _process(delta: float) -> void:
+	time += delta
+	$Sprite2D.scale = defscale + Vector2(
+		sin(time * scalesin) * 0.02,
+		sin(time * scalesin) * 0.02
+	)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ug13"]
+radius = 22.0227
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lpaju"]
+bounce = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpaju"]
+radius = 4.00888
+height = 458.017
+
+[node name="end sceen 2 loc" type="Node2D"]
+script = SubResource("GDScript_ufphf")
+
+[node name="cam" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 480
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1063.0
+offset_top = -873.0
+offset_right = 1692.0
+offset_bottom = 1309.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(319, 549)
+shape = SubResource("RectangleShape2D_8ug13")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(300, -68)
+shape = SubResource("RectangleShape2D_8ug13")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-106, 256)
+shape = SubResource("RectangleShape2D_lpaju")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(745, 244)
+shape = SubResource("RectangleShape2D_lpaju")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(317, 129)
+shape = SubResource("RectangleShape2D_ul5eg")
+
+[node name="particles" type="GPUParticles2D" parent="."]
+position = Vector2(319, -38)
+amount = 512
+texture = ExtResource("1_ufphf")
+lifetime = 8.0
+speed_scale = 1.4
+fixed_fps = 20
+process_material = SubResource("ParticleProcessMaterial_ufphf")
+
+[node name="cat meow meow" type="RigidBody2D" parent="."]
+position = Vector2(47, 185)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow2" type="RigidBody2D" parent="."]
+position = Vector2(202, 181)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow2"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow2"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow3" type="RigidBody2D" parent="."]
+position = Vector2(274, 175)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow3"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow3"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow4" type="RigidBody2D" parent="."]
+position = Vector2(122, 178)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow4"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow4"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow5" type="RigidBody2D" parent="."]
+position = Vector2(576, 188)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow5"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow5"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow6" type="RigidBody2D" parent="."]
+position = Vector2(415, 169)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow6"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow6"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow7" type="RigidBody2D" parent="."]
+position = Vector2(488, 178)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow7"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow7"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="cat meow meow8" type="RigidBody2D" parent="."]
+position = Vector2(334, 173)
+physics_material_override = SubResource("PhysicsMaterial_8ug13")
+script = SubResource("GDScript_ul5eg")
+
+[node name="Sprite2D" type="Sprite2D" parent="cat meow meow8"]
+scale = Vector2(0.153846, 0.172994)
+texture = ExtResource("1_8ug13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cat meow meow8"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8ug13")
+
+[node name="text" type="RigidBody2D" parent="."]
+position = Vector2(304, 62)
+rotation = 0.00698132
+collision_layer = 2
+collision_mask = 2
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_lpaju")
+
+[node name="Label" type="Label" parent="text"]
+offset_left = -215.0
+offset_top = -17.0
+offset_right = 215.0
+offset_bottom = 18.0
+pivot_offset = Vector2(215, 17)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_lpaju")
+text = "я не знаю как завершить 2 локацию, держите это.
+в любом случае ты молодец. :D
+
+idk how to end 2 location, get this. u cool :D .
+
+                                    press       ENTER"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="text"]
+position = Vector2(0.00906372, -0.999939)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lpaju")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ufphf")
+autoplay = true
+parameters/looping = true

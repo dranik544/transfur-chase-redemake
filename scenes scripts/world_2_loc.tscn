@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://wu3bvu2yly0j"]
+[gd_scene load_steps=40 format=3 uid="uid://wu3bvu2yly0j"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_rdsqj"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_iombt"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://h3bs5plnn3p5" path="res://scenes scripts/rooms/rooms 2 loc/sroom_1_1.tscn" id="6_ff8mw"]
 [ext_resource type="PackedScene" uid="uid://ces71ldf1x1w1" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_7.tscn" id="7_gks0a"]
 [ext_resource type="PackedScene" uid="uid://bgx7rl1b8tsud" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_8.tscn" id="8_mvru5"]
+[ext_resource type="PackedScene" uid="uid://2kigigfsnaot" path="res://scenes scripts/rooms/rooms 2 loc/endroom_2.tscn" id="9_gm8ny"]
 [ext_resource type="Texture2D" uid="uid://c2tg4xqk57gdw" path="res://sprites/list2.png" id="9_tdjod"]
 [ext_resource type="FontFile" uid="uid://d0cfdlx6nofnm" path="res://fonts/ofont.ru_SouthGhetto.ttf" id="10_8mb1v"]
 [ext_resource type="PackedScene" uid="uid://d1x1dfr476bcs" path="res://scenes scripts/guide_screen_world.tscn" id="10_rdsqj"]
@@ -107,7 +108,8 @@ func _ready() -> void:
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_rdsqj")
 rooms = [ExtResource("4_fti4m"), ExtResource("2_tdjod"), ExtResource("3_66px4"), ExtResource("5_7lqlk"), ExtResource("6_8mb1v"), ExtResource("7_gks0a"), ExtResource("8_mvru5")]
-loadrooms = 25
+loadrooms = 6
+lastroomscene = ExtResource("9_gm8ny")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_iombt")

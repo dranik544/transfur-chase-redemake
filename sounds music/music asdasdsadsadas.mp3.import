@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgm4ru0tqth7j"
+path="res://.godot/imported/music asdasdsadsadas.mp3-064ee05505a580b54c5fbdaec6325c23.mp3str"
+
+[deps]
+
+source_file="res://sounds music/music asdasdsadsadas.mp3"
+dest_files=["res://.godot/imported/music asdasdsadsadas.mp3-064ee05505a580b54c5fbdaec6325c23.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

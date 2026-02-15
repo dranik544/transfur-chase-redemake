@@ -7,7 +7,6 @@
 albedo_texture = ExtResource("1_yfwd8")
 metallic = 0.5
 normal_enabled = true
-normal_scale = 0.5
 normal_texture = ExtResource("2_7p1mf")
 uv1_scale = Vector3(0.6, 0.6, 0.6)
 uv1_triplanar = true

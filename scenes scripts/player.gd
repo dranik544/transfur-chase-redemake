@@ -109,6 +109,7 @@ func _ready():
 	defposspr = $Sprite3D.position
 	
 	$gui/crt.visible = Global.settings["crtshader"]
+	$gui/gui/invtexture.texture = null
 	
 	updateskin()
 	updatehints()
@@ -696,7 +697,8 @@ func useitem():
 				#item.queue_free()
 			
 			itemdata.clear()
-			$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
+			#$gui/gui/invtexture.texture = load("res://sprites/nullinv1.png")
+			$gui/gui/invtexture.texture = null
 			$gui/gui/Label.text = "DEFAULT_TYPE_ITEM"
 			isinv = false
 	elif itemdata["pointstime"] > 0:
