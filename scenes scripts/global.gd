@@ -19,7 +19,7 @@ var generalstats = [
 
 var iswinter: bool = false
 
-var money: int = 999
+var money: int = 0
 var rerollmarketprice: int = 10
 var lastworld: String
 var ismobile: bool
@@ -44,7 +44,7 @@ var achievements = [
 	{"name": tr("ACHIEVEMENT_1_NAME"), "desc": tr("ACHIEVEMENT_1_DESC"), "unlocked": false}, # Complete 1 location
 	{"name": tr("ACHIEVEMENT_2_NAME"), "desc": tr("ACHIEVEMENT_2_DESC"), "unlocked": false}, # WAAAA!
 	{"name": tr("ACHIEVEMENT_3_NAME"), "desc": tr("ACHIEVEMENT_3_DESC"), "unlocked": false}, # THIS GAME IS FULL OF BUGS!
-	{"name": tr("ACHIEVEMENT_4_NAME"), "desc": tr("ACHIEVEMENT_4_DESC"), "unlocked": false}, # OneShot.
+	{"name": tr("ACHIEVEMENT_4_NAME"), "desc": tr("ACHIEVEMENT_4_DESC"), "unlocked": false}, # OneShot. 
 	{"name": tr("ACHIEVEMENT_5_NAME"), "desc": tr("ACHIEVEMENT_5_DESC"), "unlocked": false}, # New Yeeeeear!
 	{"name": tr("ACHIEVEMENT_6_NAME"), "desc": tr("ACHIEVEMENT_6_DESC"), "unlocked": false}, # On the Brink of Death
 	{"name": tr("ACHIEVEMENT_7_NAME"), "desc": tr("ACHIEVEMENT_7_DESC"), "unlocked": false}, # This game has sliding?!

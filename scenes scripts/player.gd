@@ -499,7 +499,7 @@ func _physics_process(delta: float) -> void:
 	if speed > 6.1: 
 		achievement10length += velocity.length()
 		
-		if achievement10length >= 1900.0:
+		if achievement10length >= 1100.0: #1900.0:
 			if Global.unlockachievement(9):
 				var ach = get_tree().current_scene.get_node("notification")
 				ach.display(Global.achievements[9]["name"],

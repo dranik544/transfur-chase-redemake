@@ -29,7 +29,8 @@ func _ready():
 	if get_node("bossroom1") != null: grooms.push_back(get_node("bossroom1"))
 	
 	var player
-	if get_tree(): player = get_tree().get_first_node_in_group("player")
+	if get_tree():
+		player = get_tree().get_first_node_in_group("player")
 	
 	if $enemy1 and $enemy2:
 		$enemy1.set_physics_process(false)

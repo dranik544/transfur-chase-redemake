@@ -28,7 +28,20 @@ script/source = "extends Area3D
 
 func _ready() -> void:
 	body_entered.connect(
-		func(body): if body.is_in_group(\"player\"): ScreenTransition.changescene(\"res://scenes scripts/end_sceen_2_loc.tscn\", Color.WHITE)
+		func(body):
+			if body.is_in_group(\"player\"):
+				print(get_tree().get_nodes_in_group(\"unsleep enemy\").size())
+				if get_tree().get_nodes_in_group(\"unsleep enemy\").size() <= 0:
+					if Global.unlockachievement(8):
+						var ach = get_tree().current_scene.get_node(\"notification\")
+						ach.display(Global.achievements[8][\"name\"],
+						Global.achievements[8][\"desc\"],
+						load(\"res://sprites/icon12.png\"))
+						
+						#Global.listskins[1][\"unlocked\"] = true
+						#SavingManager.save(\"skinlist\", Global.listskins)
+				
+				ScreenTransition.changescene(\"res://scenes scripts/end_sceen_2_loc.tscn\", Color.WHITE)
 	)
 "
 
