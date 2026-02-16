@@ -306,6 +306,7 @@ func updatehealth(delta):
 		slimelerpvar = Vector2(2.5, 2.5)
 	if health <= 0.0:
 		if get_tree(): #if not is_queued_for_deletion() and get_tree():
+			Engine.time_scale = 1.0
 			Global.lastworld = get_tree().current_scene.get_scene_file_path()
 			ScreenTransition.changescene("res://scenes scripts/newdeathscreen.tscn", Color.WHITE, 0.5) #get_tree().change_scene_to_file("res://scenes scripts/newdeathscreen.tscn")
 	
