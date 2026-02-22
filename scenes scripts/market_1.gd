@@ -39,6 +39,7 @@ func bodyentered(body):
 		tween.tween_property($CanvasLayer/NinePatchRect, "modulate:a", 1.0, 0.5)
 		tween.tween_property($CanvasLayer/NinePatchRect, "position:x", get_tree().root.content_scale_size.x - 270, 0.5)
 		$CanvasLayer/NinePatchRect/money.text = str(Global.money)
+		$CanvasLayer/NinePatchRect/hbox/exit.grab_focus()
 		$CanvasLayer/NinePatchRect/hbox/reroll.text = str(Global.rerollmarketprice)
 
 func bodyexited(body):
@@ -94,6 +95,7 @@ func _on_item_button_pressed(button: Button):
 		
 		$CanvasLayer/NinePatchRect/pursacheeffect.position = button.position + button.size / 2
 		$CanvasLayer/NinePatchRect/pursacheeffect.restart()
+		$CanvasLayer/NinePatchRect/hbox/exit.grab_focus()
 		
 		button.visible = false
 		button.disabled = true

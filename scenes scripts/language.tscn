@@ -12,6 +12,7 @@ script/source = "extends Control
 func _ready() -> void:
 	$ru.pressed.connect(ru)
 	$en.pressed.connect(en)
+	$ru.grab_focus()
 
 func ru():
 	TranslationServer.set_locale(\"ru\")

@@ -163,7 +163,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		fingermobiledown = event.pressed
 	
-	if event is InputEventScreenDrag and Global.ismobile:
+	if event is InputEventScreenDrag and Global.ismobile and !Engine.time_scale < 1.0:
 		var lastpos = event.position
 		if event.position.x > get_viewport().get_visible_rect().size.x / 2 and event.position.x < get_viewport().get_visible_rect().size.x - 40:
 			if fingermobiledowntime >= Global.settings["holdtimemobile"]:
@@ -188,6 +188,21 @@ func _input(event):
 		labelhints["movecam"]["enable"] = false
 	else:
 		labelhints["movecam"]["enable"] = true
+	
+	if event is InputEventJoypadMotion and !Engine.time_scale < 1.0:
+		if abs(event.axis_value) < 0.1: return
+		
+		match event.axis:
+			JOY_AXIS_RIGHT_X:
+				rotate_y(-event.axis_value * sens * 10.0)
+			JOY_AXIS_RIGHT_Y:
+				centercam.rotate_x(-event.axis_value * sens * 10.0)
+				centercam.rotation.x = clamp(centercam.rotation.x, -deg_to_rad(45), deg_to_rad(45))
+		
+		labelhints["movecam"]["enable"] = false
+	else:
+		labelhints["movecam"]["enable"] = true
+	
 	if Input.is_action_just_pressed("F1"):
 		rotate_y(-deg_to_rad(45))
 	elif Input.is_action_just_pressed("F2"):

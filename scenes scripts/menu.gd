@@ -47,6 +47,7 @@ func _ready():
 	
 	$CanvasLayer/buttons/start/btnstart.pressed.connect(btnstartpressed)
 	$CanvasLayer/buttons/exit/btnexit.pressed.connect(btnexitpressed)
+	$CanvasLayer/buttons/start/btnstart.grab_focus()
 	
 	if Global.listskins[7]["unlocked"]:
 		$"room1 1/elka/gift".visible = false
@@ -166,8 +167,8 @@ func btnstatsmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
 func btnskinsmouseentered(): $CanvasLayer/text/Label.text = tr("HINT_SKINS_BUTTON")
 func btnskinsmouseexited(): $CanvasLayer/text/Label.text = tr("HINT_DEFAULT")
 
-func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false
-func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true
+func btnstatspressed(): $"CanvasLayer/stats menu".visible = true; $CanvasLayer/buttons.visible = false; $"CanvasLayer/stats menu/control/hbox/btnexit".grab_focus()
+func btnstatsexitpressed():$"CanvasLayer/stats menu".visible = false; $CanvasLayer/buttons.visible = true; $CanvasLayer/buttons/start/btnstart.grab_focus()
 func btnwaaapressed():
 	var random = randi_range(1, 5)
 	match random:

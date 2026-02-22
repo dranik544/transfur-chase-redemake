@@ -531,7 +531,6 @@ value = 0.1
 
 [node name="pause menu" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 script = ExtResource("8_nccrc")
 
 [node name="pause menu" type="TextureRect" parent="pause menu"]
@@ -598,6 +597,29 @@ Continue - ESC
 Quit - CTRL+Q"
 horizontal_alignment = 1
 
+[node name="q" type="Button" parent="pause menu"]
+process_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -45.0
+offset_right = -42.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath("../r")
+focus_neighbor_right = NodePath("../esc")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_511js")
+theme_override_font_sizes/font_size = 32
+text = "Q"
+expand_icon = true
+
 [node name="esc" type="Button" parent="pause menu"]
 process_mode = 3
 anchors_preset = 7
@@ -611,6 +633,8 @@ offset_right = 35.5
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../q")
+focus_neighbor_right = NodePath("../r")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -632,33 +656,14 @@ offset_right = 86.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../esc")
+focus_neighbor_right = NodePath("../q")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("6_511js")
 theme_override_font_sizes/font_size = 32
 text = "R"
-expand_icon = true
-
-[node name="q" type="Button" parent="pause menu"]
-process_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -89.0
-offset_top = -45.0
-offset_right = -42.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("6_511js")
-theme_override_font_sizes/font_size = 32
-text = "Q"
 expand_icon = true
 
 [node name="Timer" type="Timer" parent="."]

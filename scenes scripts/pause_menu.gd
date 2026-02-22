@@ -17,13 +17,13 @@ func _ready() -> void:
 	
 	$"../mobilecontrols/escbtn".pressed.connect(escmobile)
 	
-	if !Global.ismobile:
-		$esc.visible = false
-		$esc.disabled = false
-		$r.visible = false
-		$r.disabled = false
-		$q.visible = false
-		$q.disabled = false
+	#if !Global.ismobile:
+		#$esc.visible = false
+		#$esc.disabled = false
+		#$r.visible = false
+		#$r.disabled = false
+		#$q.visible = false
+		#$q.disabled = false
 	
 	$esc.pressed.connect(escmobile)
 	$r.pressed.connect(rmobile)
@@ -33,6 +33,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ESC") or esc:
+		$esc.grab_focus()
 		esc = false
 		get_tree().paused = not get_tree().paused
 		visible = not visible
