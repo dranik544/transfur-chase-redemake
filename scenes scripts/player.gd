@@ -629,6 +629,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		slidespeedminus -= randf_range(1.5, 2.5)
 		
 		startshake(30, 0.2)
+	elif body.is_in_group("broke") and !isslide:
+		if body.curtype == 3:
+			minushealth(0.75, Color.SEA_GREEN)
+			speed -= 6.25
 
 func minushealth(num, color: Color = Color.WHITE):
 	health -= num

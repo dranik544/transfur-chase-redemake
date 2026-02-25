@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bbk73bjynlxn0"]
+[gd_scene load_steps=70 format=3 uid="uid://bbk73bjynlxn0"]
 
 [ext_resource type="Script" uid="uid://8ncvjw5bgr1k" path="res://scenes scripts/world.gd" id="1_47n5y"]
 [ext_resource type="Environment" uid="uid://c3pmcy4eose3s" path="res://materials/defworld2.tres" id="2_02t0b"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://vv3yyifjc8ba" path="res://scenes scripts/small_enemy_2.tscn" id="19_632un"]
 [ext_resource type="PackedScene" uid="uid://blxs373auyw5e" path="res://scenes scripts/lightcontrol_2_loc.tscn" id="27_c8eib"]
 [ext_resource type="PackedScene" uid="uid://biqk3s6fngopa" path="res://scenes scripts/rooms/rooms 2 loc/sroom_2_5.tscn" id="27_okxji"]
-[ext_resource type="PackedScene" uid="uid://d2pgxmrhtitay" path="res://scenes scripts/crystalattack_1.tscn" id="28_y3rk5"]
 [ext_resource type="NavigationMesh" uid="uid://cc8w71ejygk66" path="res://navimesh/navimesh1.tres" id="29_2w8rc"]
 [ext_resource type="Texture2D" uid="uid://vxoxololnmph" path="res://sprites/bottom4.png" id="30_8c7yh"]
 [ext_resource type="Texture2D" uid="uid://dsuh7f3tmv2vb" path="res://normalmaps/bottom1normalmap1.png" id="31_w0ldb"]
@@ -30,6 +29,7 @@
 [ext_resource type="Script" uid="uid://gya044modcto" path="res://scenes scripts/light.gd" id="35_j54va"]
 [ext_resource type="Texture2D" uid="uid://p1hwbujyb2ch" path="res://sprites/greenbcrystal1.png" id="36_4xfim"]
 [ext_resource type="Texture2D" uid="uid://cr51l3nyhvhvr" path="res://sprites/greenbcrystal2.png" id="37_utsyn"]
+[ext_resource type="PackedScene" uid="uid://b24olo70jj02w" path="res://scenes scripts/box_1.tscn" id="37_w0ldb"]
 [ext_resource type="Texture2D" uid="uid://dv0dfaw6u0itu" path="res://sprites/greenbcrystal3.png" id="38_632un"]
 [ext_resource type="PackedScene" uid="uid://c3wqma3nv75ud" path="res://scenes scripts/cristall1.tscn" id="39_632un"]
 [ext_resource type="PackedScene" uid="uid://drgkrskxakgsj" path="res://scenes scripts/enemy_5.tscn" id="40_j54va"]
@@ -133,6 +133,8 @@ func start(body):
 		get_tree().get_first_node_in_group(\"player\").get_node(\"Virtual Joystick\").visible = false
 		get_tree().get_first_node_in_group(\"player\").get_node(\"mobilecontrols\").visible = false
 	get_tree().get_first_node_in_group(\"player\").process_mode = Node.PROCESS_MODE_DISABLED
+	
+	$\"../StaticBody3D/CollisionShape3D\".disabled = false
 
 func spawnattack():
 	var attack: Node3D = load(\"res://scenes scripts/crystalattack_1.tscn\").instantiate()
@@ -394,9 +396,13 @@ _data = {
 &"intro": SubResource("Animation_fch41")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c7yh"]
+size = Vector3(1, 3, 17)
+
 [node name="world2loc" type="Node3D"]
 script = ExtResource("1_47n5y")
 loadrooms = 0
+lastroomscene = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_02t0b")
@@ -603,8 +609,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, -3)
 
 [node name="colb2" parent="." instance=ExtResource("18_utsyn")]
 transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -2.5, 0.6, 3.1)
-
-[node name="crystalattack1" parent="." instance=ExtResource("28_y3rk5")]
 
 [node name="bossroom1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
@@ -909,7 +913,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.5, -3)
 curtype = 3
 
 [node name="cristall4" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 0.5, -1.9)
 curtype = 3
 
 [node name="cristall5" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -941,7 +945,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0.5, -3)
 curtype = 3
 
 [node name="cristall12" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0.5, -1.7)
 curtype = 3
 
 [node name="cristall13" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -961,15 +965,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0.5, 7)
 curtype = 3
 
 [node name="cristall17" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.3, 0.5, -3.7)
 curtype = 3
 
 [node name="cristall18" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9, 0.5, 2.8)
 curtype = 3
 
 [node name="cristall19" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5, 0.5, -2.6)
 curtype = 3
 
 [node name="cristall20" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -977,31 +981,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, -1)
 curtype = 3
 
 [node name="cristall21" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6, 0.5, 1)
 curtype = 3
 
 [node name="cristall22" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0.5, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1, 0.5, 5.7)
 curtype = 3
 
 [node name="cristall23" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.3, 0.5, 5.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.6, 0.5, 5.9)
 curtype = 3
 
 [node name="cristall24" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.5, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0.5, 4.6)
 curtype = 3
 
 [node name="cristall25" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0.5, -2)
 curtype = 3
 
 [node name="cristall26" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0.5, -3)
 curtype = 3
 
 [node name="cristall27" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6, 0.5, -2.7)
 curtype = 3
 
 [node name="cristall28" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -1009,11 +1013,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, -1)
 curtype = 3
 
 [node name="cristall29" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, 0.6)
 curtype = 3
 
 [node name="cristall30" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3, 0.5, 5)
 curtype = 3
 
 [node name="cristall31" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -1025,31 +1029,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0.5, 7)
 curtype = 3
 
 [node name="cristall33" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.4, 0.5, -7.4)
 curtype = 3
 
 [node name="cristall34" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.4, 0.5, -5.9)
 curtype = 3
 
 [node name="cristall35" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.3, 0.5, -4.3)
 curtype = 3
 
 [node name="cristall36" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.6, 0.5, -3)
 curtype = 3
 
 [node name="cristall37" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6, 0.5, -3)
 curtype = 3
 
 [node name="cristall38" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0.5, 4.6)
 curtype = 3
 
 [node name="cristall39" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.2, 0.5, 5.1)
 curtype = 3
 
 [node name="cristall40" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -1057,31 +1061,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 0.5, 7)
 curtype = 3
 
 [node name="cristall41" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0.5, -7)
 curtype = 3
 
 [node name="cristall42" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.5, -6)
 curtype = 3
 
 [node name="cristall43" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, -7)
 curtype = 3
 
 [node name="cristall44" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.5, -3)
 curtype = 3
 
 [node name="cristall45" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 0.5, 7)
 curtype = 3
 
 [node name="cristall46" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, 1)
 curtype = 3
 
 [node name="cristall47" parent="bossroom1/example1" instance=ExtResource("39_632un")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 0.5, 1)
 curtype = 3
 
 [node name="cristall48" parent="bossroom1/example1" instance=ExtResource("39_632un")]
@@ -1148,7 +1152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8745, -0.0500002)
 shape = SubResource("BoxShape3D_0y0gu")
 
 [node name="ice3" type="StaticBody3D" parent="bossroom1/example1" groups=["ice"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1, 0, -3.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.6, 0, -5.5)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("43_osu06")
@@ -1164,7 +1168,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8745, -2.38419e-07)
 shape = SubResource("BoxShape3D_5acm8")
 
 [node name="ice4" type="StaticBody3D" parent="bossroom1/example1" groups=["ice"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1, 0, 2.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.7, 0, 2.1)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("43_osu06")
@@ -1178,6 +1182,34 @@ mesh = SubResource("QuadMesh_b3f0x")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bossroom1/example1/ice4/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8745, -0.0500002)
 shape = SubResource("BoxShape3D_0y0gu")
+
+[node name="ice5" type="StaticBody3D" parent="bossroom1/example1" groups=["ice"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -52.1, 0, 0.8)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("43_osu06")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bossroom1/example1/ice5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1, 0)
+mesh = SubResource("QuadMesh_b3f0x")
+
+[node name="Area3D" type="Area3D" parent="bossroom1/example1/ice5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bossroom1/example1/ice5/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8745, -0.0500002)
+shape = SubResource("BoxShape3D_0y0gu")
+
+[node name="box1" parent="bossroom1/example1" instance=ExtResource("37_w0ldb")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -30, 0.5, -1)
+
+[node name="box2" parent="bossroom1/example1" instance=ExtResource("37_w0ldb")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -46.7, 0.5, -4.3)
+
+[node name="box3" parent="bossroom1/example1" instance=ExtResource("37_w0ldb")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -55.6, 0.5, -4.5)
+
+[node name="box8" parent="bossroom1/example1" instance=ExtResource("37_w0ldb")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -62.9, 0.5, -4.7)
 
 [node name="cam" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -24, 11, 7)
@@ -1212,6 +1244,17 @@ The Elder One
 [font size=18][wave](BOSS)"
 horizontal_alignment = 1
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+collision_layer = 15
+collision_mask = 15
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, 0)
+shape = SubResource("BoxShape3D_8c7yh")
+disabled = true
+
 [connection signal="timeout" from="bossroom1/Timer" to="bossroom1" method="_on_timer_timeout"]
 [connection signal="body_entered" from="bossroom1/Area3D" to="bossroom1" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="bossroom1/Area3D" to="bossroom1" method="_on_area_3d_body_exited"]
@@ -1223,3 +1266,5 @@ horizontal_alignment = 1
 [connection signal="body_exited" from="bossroom1/example1/ice3/Area3D" to="bossroom1/example1/ice3" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="bossroom1/example1/ice4/Area3D" to="bossroom1/example1/ice4" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="bossroom1/example1/ice4/Area3D" to="bossroom1/example1/ice4" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="bossroom1/example1/ice5/Area3D" to="bossroom1/example1/ice5" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="bossroom1/example1/ice5/Area3D" to="bossroom1/example1/ice5" method="_on_area_3d_body_exited"]

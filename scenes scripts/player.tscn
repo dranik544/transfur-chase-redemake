@@ -531,6 +531,7 @@ value = 0.1
 
 [node name="pause menu" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 script = ExtResource("8_nccrc")
 
 [node name="pause menu" type="TextureRect" parent="pause menu"]
